@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <projectDescription>
-	<name>M2MTransformation</name>
+	<name>M2MTransformations</name>
 	<comment></comment>
 	<projects>
 		<project>CommonMM</project>
