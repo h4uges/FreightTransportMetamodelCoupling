@@ -1,0 +1,105 @@
+library common2matsimCarrierDemand;
+
+import common2matsimNetwork;
+import common2matsimBaseMappings;
+
+modeltype COMMON_MM uses CommonFreightTransportMetamodel('http://www.cep-model-coupling.com/commonFreightTransportMetamodel');
+modeltype MATSIM uses MATSimFreightMetamodel('http://www.cep-model-coupling.com/MATSimFreightMetamodel');
+
+property SERVICE_DURATION_DEFAULT = 60;
+property PICKUP_SERVICE_TIME_DEFAULT = 60;
+property DELIVERY_SERVICE_TIME_DEFAULT = 60;
+
+helper createAndAssignShipment(shipment : COMMON_MM::logisticDemand::Shipment) {
+	var responsibleMATSimCarrier := shipment.responsibleCEPSP.resolveone(MATSIM::freightContrib::Carrier);
+	
+	if (isCarrierShipment(shipment)) then {
+		responsibleMATSimCarrier.shipments += shipment.map mapShipment2shipment();
+	}
+	endif;
+	
+	if (isCarrierService(shipment)) then {
+		responsibleMATSimCarrier.services += shipment.map mapShipment2service();
+	}
+	endif;
+}
+
+helper isCarrierShipment(shipment : COMMON_MM::logisticDemand::Shipment) : oclstdlib::Boolean {
+	return shipment.oclIsKindOf(COMMON_MM::logisticDemand::InsideToInsideShipment) or shipment.oclIsKindOf(COMMON_MM::logisticDemand::SplittedShipment);
+}
+
+helper isCarrierService(shipment : COMMON_MM::logisticDemand::Shipment) : oclstdlib::Boolean {
+	return shipment.oclIsKindOf(COMMON_MM::logisticDemand::InsideToOutsideShipment) or shipment.oclIsKindOf(COMMON_MM::logisticDemand::OutsideToInsideShipment);
+}
+
+mapping COMMON_MM::logisticDemand::Shipment::mapShipment2shipment(): MATSIM::freightContrib::CarrierShipment
+disjuncts
+	COMMON_MM::logisticDemand::InsideToInsideShipment::insideShipment2carrierShipment,
+	COMMON_MM::logisticDemand::SplittedShipment::splittedShipment2CarrierShipment
+when {self.oclIsKindOf(COMMON_MM::logisticDemand::InsideToInsideShipment) or self.oclIsKindOf(COMMON_MM::logisticDemand::SplittedShipment)} {}
+
+mapping COMMON_MM::logisticDemand::Shipment::mapShipment2service(): MATSIM::freightContrib::CarrierService
+disjuncts
+	COMMON_MM::logisticDemand::InsideToOutsideShipment::insideToOutside2CarrierService,
+	COMMON_MM::logisticDemand::OutsideToInsideShipment::outsideToInside2CarrierService
+when {self.oclIsKindOf(COMMON_MM::logisticDemand::InsideToOutsideShipment) or self.oclIsKindOf(COMMON_MM::logisticDemand::OutsideToInsideShipment)} {}
+
+mapping COMMON_MM::logisticDemand::InsideToInsideShipment::insideShipment2carrierShipment() : MATSIM::freightContrib::CarrierShipment
+inherits COMMON_MM::logisticDemand::Shipment::mapShipment2shipment
+{
+	id := self.id;
+	size := dimension2capacity(self.size);
+	_from := location2Link(self.origin);
+	to := location2Link(self.destination);
+	
+	pickupTimeWindow := timeStampToRightOpenTimeWindow(self.arrivalAtOrigin);
+	deliveryTimeWindow := optionalTimeWindow2TimeWindow(self.arrivalAtDestinationTimeWindow);
+	
+	pickupServiceTime := PICKUP_SERVICE_TIME_DEFAULT;
+	deliveryServiceTime := DELIVERY_SERVICE_TIME_DEFAULT;
+	
+}
+
+mapping COMMON_MM::logisticDemand::SplittedShipment::splittedShipment2CarrierShipment() : MATSIM::freightContrib::CarrierShipment
+inherits COMMON_MM::logisticDemand::Shipment::mapShipment2shipment
+{
+	id := self.id;
+	size := dimension2capacity(self.size);
+	_from := location2Link(self.origin);
+	to := location2Link(self.destination);
+	
+	pickupTimeWindow := timeStampToRightOpenTimeWindow(self.arrivalAtOrigin);
+	deliveryTimeWindow := optionalTimeWindow2TimeWindow(self.arrivalAtDestinationTimeWindow);
+	
+	pickupServiceTime := PICKUP_SERVICE_TIME_DEFAULT;
+	deliveryServiceTime := DELIVERY_SERVICE_TIME_DEFAULT;
+}
+
+mapping COMMON_MM::logisticDemand::InsideToOutsideShipment::insideToOutside2CarrierService() : MATSIM::freightContrib::CarrierService 
+inherits COMMON_MM::logisticDemand::Shipment::mapShipment2service
+{
+	id := self.id;
+	name := self.id;
+	location := location2Link(self.origin);
+	
+	capacityDemand := dimension2capacity(self.size);
+	
+	timeWindow := timeStampToRightOpenTimeWindow(self.arrivalAtOrigin);
+	
+	serviceDuration := SERVICE_DURATION_DEFAULT;
+}
+
+mapping COMMON_MM::logisticDemand::OutsideToInsideShipment::outsideToInside2CarrierService() : MATSIM::freightContrib::CarrierService 
+inherits COMMON_MM::logisticDemand::Shipment::mapShipment2service
+{
+	id := self.id;
+	name := self.id;
+	location := location2Link(self.destination);
+	
+	capacityDemand := dimension2capacity(self.size);
+	
+	// TODO: information missing: self.arrivalAtOriginDepot
+	timeWindow := optionalTimeWindow2TimeWindow(self.arrivalAtDestinationTimeWindow);
+	
+	serviceDuration := SERVICE_DURATION_DEFAULT;
+}

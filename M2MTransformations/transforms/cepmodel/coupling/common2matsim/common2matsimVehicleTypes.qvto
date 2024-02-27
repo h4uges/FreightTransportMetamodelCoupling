@@ -1,0 +1,48 @@
+library common2matsimVehicleTypes;
+
+import common2matsimBaseMappings;
+
+modeltype COMMON_MM uses CommonFreightTransportMetamodel('http://www.cep-model-coupling.com/commonFreightTransportMetamodel');
+modeltype MATSIM uses MATSimFreightMetamodel('http://www.cep-model-coupling.com/MATSimFreightMetamodel');
+
+helper createVehicleTypes(vehicles : Collection(COMMON_MM::logisticNetwork::Vehicle)) : MATSIM::matsim::vehicles::VehicleTypes {
+	var notDistinctVehicleTypes := vehicles -> map vehicle2vehicleType();
+	var distinctVehicleTypes := distinctVehicleTypes(notDistinctVehicleTypes);
+	return new MATSIM::matsim::vehicles::VehicleTypes(distinctVehicleTypes);
+}
+
+constructor MATSIM::matsim::vehicles::VehicleTypes::VehicleTypes(vehicleTypes_ : Collection(MATSIM::matsim::vehicles::VehicleType)) {
+	vehicleTypes += vehicleTypes_;
+	// vehicleTypes.vehicles remeins empty (containment in carrier.capabilites)
+}
+
+helper distinctVehicleTypes(collection : Collection(MATSIM::matsim::vehicles::VehicleType)) : Collection(MATSIM::matsim::vehicles::VehicleType) {
+  var distinctVehicleTypes : OrderedSet(MATSIM::matsim::vehicles::VehicleType) = OrderedSet{};
+  var containedIds : Set(String) = Set{};
+  
+  collection -> forEach(element) {
+  	var id : String = element.id;
+    
+    if (not containedIds->includes(id)) then {
+    	distinctVehicleTypes += element;
+    	containedIds += id;
+    }
+    endif;
+  }; 
+  return distinctVehicleTypes;
+}
+
+mapping COMMON_MM::logisticNetwork::Vehicle::vehicle2vehicleType() : MATSIM::matsim::vehicles::VehicleType {
+	capacity := self.storageCapacity.map dimension2vehicleCapacity();
+	
+	id := self.type.toString() + "_" + capacity.other.toString();
+	description := self.type.toString() + "_" + capacity.other.toString();
+	
+	networkMode := vehicleType2TransportMode(self.type);
+	
+	width := DEFAULT_VEHICLE_WIDTH;
+	length := DEFAULT_VEHICLE_LENGTH;
+	maxVelocity := DEFAULT_VEHICLE_MAX_VELOCITY;
+	pcuEquivalents := DEFAULT_VEHICLE_PCU;
+	flowEfficiencyFactor := DEFAULT_VEHICLE_FLOW_EFFICENCY;
+}

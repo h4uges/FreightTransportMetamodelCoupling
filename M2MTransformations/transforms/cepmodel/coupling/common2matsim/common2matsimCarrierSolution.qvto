@@ -1,0 +1,76 @@
+library common2matsimCarrierSolution;
+
+modeltype COMMON_MM uses CommonFreightTransportMetamodel('http://www.cep-model-coupling.com/commonFreightTransportMetamodel');
+modeltype MATSIM uses MATSimFreightMetamodel('http://www.cep-model-coupling.com/MATSimFreightMetamodel');
+
+property SCORE_DEFAULT = 0;
+
+helper createAndAssignTour(tour : COMMON_MM::logisticSolution::PlannedTour) {
+	var executingMATSimCarrier := tour.executingCEPSP.resolveone(MATSIM::freightContrib::Carrier);
+	
+	if(executingMATSimCarrier.plan = null) {
+		executingMATSimCarrier.plan := new MATSIM::freightContrib::CarrierPlan();
+	}
+	endif;
+	
+	executingMATSimCarrier.plan.scheduledTours += tour -> map plannedTour2ScheduledTour();
+}
+
+constructor MATSIM::freightContrib::CarrierPlan::CarrierPlan() {
+	score := SCORE_DEFAULT;
+}
+
+mapping COMMON_MM::logisticSolution::PlannedTour::plannedTour2ScheduledTour() : MATSIM::freightContrib::ScheduledTour {
+	vehicle := self.vehicle.resolveone(MATSIM::freightContrib::CarrierVehicle);
+	var tourElements := createTourElements(self.stops);
+	tour := new MATSIM::freightContrib::tour::Tour(tourElements);
+	departureTime := tour.start.timeWindow.start;
+}
+
+constructor MATSIM::freightContrib::tour::Tour::Tour(tourElements_ : List(MATSIM::freightContrib::tour::TourElement)) {
+	tourElements += tourElements_;
+	start := tourElements_ -> first().oclAsType(MATSIM::freightContrib::tour::Start);
+	_end := tourElements_ -> last().oclAsType(MATSIM::freightContrib::tour::End);
+}
+
+helper createTourElements(commonStops : OrderedSet(COMMON_MM::logisticSolution::Stop)) : List(MATSIM::freightContrib::tour::TourElement) {
+	// create all stops
+	var stopTourElements := List{};
+	
+	//commonStops -> forEach(commonStop) {
+		// start (StartEndStop, num = 1)
+		// end (StartEndStop, num != 1)
+		// pickupDeliveryStop
+			// unloadedShipments - foreach
+				// isShipment? -> Delivery
+				// isService? : isNormalStop? -> ServiceStop, isLogisticFalciltyStop -> ???
+			// loadedShipments - foreach
+				// isShipment? -> Pickup
+				// isService? : isNormalStop? -> ServiceStop, isLogisticFalciltyStop -> ???
+				
+				// (we need to enforce a stop that doesn't references a shipment/service, only if no stop was created -> Start/End combination? -> split tours)
+				// does a tour need to start/end at vehicle depot?
+				
+		//* isShipment: inside-inside or splitted
+		//* isService: fromInside, toOutside
+		
+		//?: stopTimes? - split equally
+	//}
+	
+	
+	// add legs between stops
+	// needed for every leg pair?
+	var tourElements := List{};
+	return tourElements
+}
+
+
+mapping COMMON_MM::logisticSolution::StartEndStop::startEndStop2Start() : MATSIM::freightContrib::tour::Start {
+	timeWindow;
+	location;
+}
+
+mapping COMMON_MM::logisticSolution::StartEndStop::startEndStop2End() : MATSIM::freightContrib::tour::End {
+	timeWindow;
+	location;
+}

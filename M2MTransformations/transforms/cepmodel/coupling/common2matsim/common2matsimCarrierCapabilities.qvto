@@ -1,0 +1,42 @@
+library common2matsimCarrierCapabilites;
+
+import common2matsimBaseMappings;
+
+modeltype COMMON_MM uses CommonFreightTransportMetamodel('http://www.cep-model-coupling.com/commonFreightTransportMetamodel');
+modeltype MATSIM uses MATSimFreightMetamodel('http://www.cep-model-coupling.com/MATSimFreightMetamodel');
+
+mapping COMMON_MM::logisticNetwork::CEPSP::cepsp2InitialCarrier(matSimVehicleTypes : MATSIM::matsim::vehicles::VehicleTypes) : MATSIM::freightContrib::Carrier {
+	// only initalize carrierCapabilities
+	id := self.id;
+	var vehicles := self.vehicleDepots -> collect(depot | createMATSimVehiclesFromDepot(depot, matSimVehicleTypes)) -> flatten() -> asBag();
+	carrierCapabilities := new MATSIM::freightContrib::CarrierCapabilities(vehicles);
+}
+
+helper createMATSimVehiclesFromDepot(depot: COMMON_MM::logisticNetwork::VehicleDepot, matSimVehicleTypes : MATSIM::matsim::vehicles::VehicleTypes) : Collection(MATSIM::freightContrib::CarrierVehicle) {
+	var depotLink := location2Link(depot.location);
+	
+	// missing information: depot operation hours
+	assert (depot.operationHours -> size() = 1);
+	var consideredOperationTimeWindow := mapTimeWindow(depot.operationHours -> asSequence() -> first());
+	
+	var depotEaliestStartTime := consideredOperationTimeWindow.start;
+	var depotLatestEndTime := consideredOperationTimeWindow._end;
+	return depot.vehicles -> map vehicle2carrierVehicle(depotLink, depotEaliestStartTime, depotLatestEndTime, matSimVehicleTypes);
+}
+
+mapping COMMON_MM::logisticNetwork::Vehicle::vehicle2carrierVehicle(link : MATSIM::matsim::core::network::Link, depotEarliestStartTime : Real, depotLatestEndTime : Real, matSimVehicleTypes : MATSIM::matsim::vehicles::VehicleTypes): MATSIM::freightContrib::CarrierVehicle {
+	id := self.id;
+	location := link;
+	var typeId := self.resolveone(MATSIM::matsim::vehicles::VehicleType).id;
+	
+	type := matSimVehicleTypes.vehicleTypes -> any(vehicleType | vehicleType.id = typeId);
+	// simplification: only use left and right boarder
+	earliestStartTime := mapTimeWindow(self.operationHours -> first()).start;
+	latestEndTime := mapTimeWindow(self.operationHours -> last())._end;
+}
+
+constructor MATSIM::freightContrib::CarrierCapabilities::CarrierCapabilities(vehicles : Bag(MATSIM::freightContrib::CarrierVehicle)) {
+	fleetSize := MATSIM::freightContrib::FleetSize::FINITE;
+	vehicleTypes += vehicles -> collect(x | x.type).oclAsSet();
+	carrierVehicles += vehicles;
+}

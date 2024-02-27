@@ -1,0 +1,48 @@
+library common2matsimNetwork;
+
+import common2matsimBaseMappings;
+
+modeltype COMMON_MM uses CommonFreightTransportMetamodel('http://www.cep-model-coupling.com/commonFreightTransportMetamodel');
+modeltype MATSIM uses MATSimFreightMetamodel('http://www.cep-model-coupling.com/MATSimFreightMetamodel');
+
+property CAPACITY_PERIOD_DEFAULT = 3600;
+property EFFECTIVE_CELL_SIZE_DEFAULT = 7.5;
+property EFFECTIVE_LANE_WIDTH_DEFAULT = 3.75;
+// TODO: default values
+property FREESPEED_DEFAULT = 14;
+property CAPACITY_DEFAULT = 1000;
+property NOF_LANES_DEFAULT = 1;
+
+mapping COMMON_MM::network::Network::network2network() : MATSIM::matsim::core::network::Network {
+	capacityPeriod := CAPACITY_PERIOD_DEFAULT;
+	effectiveCellSize := EFFECTIVE_CELL_SIZE_DEFAULT;
+	effectiveLaneWidht := EFFECTIVE_LANE_WIDTH_DEFAULT;
+	
+	nodes := self.nodes -> map node2node();
+	links := self.edges -> map edge2link();
+}
+
+mapping COMMON_MM::network::Node::node2node() : MATSIM::matsim::core::network::Node {
+	id := self.id;
+	coord := self.coordinate.map coordinate2coordinate()
+}
+
+mapping COMMON_MM::utils::Coordinate::coordinate2coordinate() : MATSIM::matsim::core::Coord {
+	x := self.x;
+	y := self.y;
+	z := 0;
+}
+
+mapping COMMON_MM::network::Edge::edge2link() : MATSIM::matsim::core::network::Link {
+	// TODO: discuss uniqueness of edges
+	id := self._from.id + "->" + self.to.id;
+	_from := self._from.resolveone(MATSIM::matsim::core::network::Node);
+	to := self.to.resolveone(MATSIM::matsim::core::network::Node);
+	
+	length := self.length;
+	allowedModes += self.allowedVehicleTypes -> collect(x | vehicleType2TransportMode(x));
+	
+	freespeed := FREESPEED_DEFAULT;
+	capacity := CAPACITY_DEFAULT;
+	nofLanes := NOF_LANES_DEFAULT;
+}

@@ -1,0 +1,161 @@
+library common2matsimBaseMappings;
+
+modeltype COMMON_MM uses CommonFreightTransportMetamodel('http://www.cep-model-coupling.com/commonFreightTransportMetamodel');
+modeltype MATSIM uses MATSimFreightMetamodel('http://www.cep-model-coupling.com/MATSimFreightMetamodel');
+
+// ---- constants ----
+
+property doubleMaxValue = 1.0E308;
+property startOfSimulationSeconds = 0;
+property endOfSimulationSeconds = 23 * 60 * 60 + 59 * 60 + 59;
+
+// TODO: default values
+property DEFAULT_VEHICLE_WIDTH = 2.5;
+property DEFAULT_VEHICLE_LENGTH = 4;
+property DEFAULT_VEHICLE_MAX_VELOCITY = 30;
+property DEFAULT_VEHICLE_PCU = 1;
+property DEFAULT_VEHICLE_FLOW_EFFICENCY = 1;
+property DEFAULT_VEHICLE_SEATS = 0;
+property DEFAULT_VEHICLE_STANDINGROOM = 0;
+
+// ---- ENUMS ----
+
+// TODO: discuss, maybe add 1 : n mapping
+helper vehicleType2TransportMode(vehicleType : COMMON_MM::network::VehicleType_) : MATSIM::matsim::TransportMode {
+	switch
+	{
+		case (vehicleType = COMMON_MM::network::VehicleType_::TRUCK) {return MATSIM::matsim::TransportMode::truck};
+		case (vehicleType = COMMON_MM::network::VehicleType_::TRAM) {return MATSIM::matsim::TransportMode::pt};
+		case (vehicleType = COMMON_MM::network::VehicleType_::CAR) {return MATSIM::matsim::TransportMode::car};
+		case (vehicleType = COMMON_MM::network::VehicleType_::BIKE) {return MATSIM::matsim::TransportMode::bike};
+		case (vehicleType = COMMON_MM::network::VehicleType_::WALKING) {return MATSIM::matsim::TransportMode::walk};
+		case (vehicleType = COMMON_MM::network::VehicleType_::DELIVERY_VEHICLE) {return MATSIM::matsim::TransportMode::truck};
+		case (vehicleType = COMMON_MM::network::VehicleType_::OTHER) {return MATSIM::matsim::TransportMode::other};
+		else {return null};
+	};
+}
+
+// ---- helper: network ----
+
+helper location2Link(location: COMMON_MM::network::Location_) : MATSIM::matsim::core::network::Link {
+	var edge := location.networkAccess.oclAsType(COMMON_MM::network::EdgeBasedNetworkAccess).edge;
+	return edge.resolveone(MATSIM::matsim::core::network::Link);
+}
+
+// ---- helper: time ----
+
+constructor MATSIM::freightContrib::TimeWindow::TimeWindow(start_ : Real, _end_: Real) {
+	start := start_;
+	_end := _end_;
+}
+
+helper optionalTimeWindow2TimeWindow(timeWindow : COMMON_MM::utils::TimeWindow_) : MATSIM::freightContrib::TimeWindow {
+	if (timeWindow <> null) then {
+		return mapTimeWindow(timeWindow);
+	} else {
+		return new MATSIM::freightContrib::TimeWindow(startOfSimulationSeconds, endOfSimulationSeconds);
+	}
+	endif
+}
+
+helper mapTimeWindow(timeWindow : COMMON_MM::utils::TimeWindow_) : MATSIM::freightContrib::TimeWindow {
+	var singleDayTimeWindow = timeWindow.oclAsType(COMMON_MM::utils::SingleDayTimeWindow);
+	var start := handleTimeWindowStart(singleDayTimeWindow._from);
+	var _end := handleTimeWindowEnd(singleDayTimeWindow.to);
+	return new MATSIM::freightContrib::TimeWindow(start, _end);
+}
+
+helper handleTimeWindowStart(start : COMMON_MM::utils::SingleDayTimestamp) : Real {
+	if (start <> null) then {
+		return timeStamp2Seconds(start);
+	} else {
+		return startOfSimulationSeconds;
+	}
+	endif
+}
+
+helper handleTimeWindowEnd(_end : COMMON_MM::utils::SingleDayTimestamp) : Real {
+	if (_end <> null) then {
+		return timeStamp2Seconds(_end);
+	} else {
+		return endOfSimulationSeconds;
+	}
+	endif
+}
+
+
+helper timeStampToRightOpenTimeWindow(timeStamp : COMMON_MM::utils::Timestamp_) : MATSIM::freightContrib::TimeWindow {
+	var singleDayTimeStamp := timeStamp.oclAsType(COMMON_MM::utils::SingleDayTimestamp);
+	return new MATSIM::freightContrib::TimeWindow(timeStamp2Seconds(singleDayTimeStamp), 23 * 60 * 60 + 59 * 60 + 59);
+}
+
+helper timeStamp2Seconds(timeStamp : COMMON_MM::utils::SingleDayTimestamp) : Real {
+	return timeStamp.hour * 60 * 60 + timeStamp.minute * 60 + timeStamp.second;
+}
+
+// ---- helper: capacity ----
+
+helper dimension2capacity(dimension: COMMON_MM::utils::Dimension) : Integer {
+	// TODO: very hacky
+	return dimension.map dimension2vehicleCapacity().other.round()
+}
+
+abstract mapping COMMON_MM::utils::Dimension::dimension2vehicleCapacity() : MATSIM::matsim::vehicles::VehicleCapacity
+disjuncts
+	COMMON_MM::utils::InfiniteVolumeDimension::infiniteVolume2vehicleCapacity,
+	COMMON_MM::utils::FiniteVolumeDimension::finiteVolume2vehicleCapacity,
+	COMMON_MM::utils::InfiniteWeightDimension::infiniteWeight2vehicleCapacity,
+	COMMON_MM::utils::FiniteWeightDimension::finiteWeight2vehicleCapacity,
+	COMMON_MM::utils::VolumeAndWeightBasedDimension::volumeAndWeight2VehicleCapacity
+{}
+
+mapping COMMON_MM::utils::InfiniteVolumeDimension::infiniteVolume2vehicleCapacity(): MATSIM::matsim::vehicles::VehicleCapacity
+inherits COMMON_MM::utils::Dimension::dimension2vehicleCapacity
+when {self.oclIsKindOf(COMMON_MM::utils::InfiniteVolumeDimension)}{
+	volumeInCubicMeters := doubleMaxValue;
+	other := doubleMaxValue;
+	
+	weightInTons := 0;
+	seats := DEFAULT_VEHICLE_SEATS;
+	standingRoom := DEFAULT_VEHICLE_STANDINGROOM;
+}
+
+mapping COMMON_MM::utils::FiniteVolumeDimension::finiteVolume2vehicleCapacity(): MATSIM::matsim::vehicles::VehicleCapacity
+inherits COMMON_MM::utils::Dimension::dimension2vehicleCapacity
+when {self.oclIsKindOf(COMMON_MM::utils::FiniteVolumeDimension)}{
+	volumeInCubicMeters := self.volumeCubicMetre;
+	other := self.volumeCubicMetre;
+	
+	weightInTons := 0;
+	seats := DEFAULT_VEHICLE_SEATS;
+	standingRoom := DEFAULT_VEHICLE_STANDINGROOM;
+}
+
+mapping COMMON_MM::utils::InfiniteWeightDimension::infiniteWeight2vehicleCapacity(): MATSIM::matsim::vehicles::VehicleCapacity
+inherits COMMON_MM::utils::Dimension::dimension2vehicleCapacity
+when {self.oclIsKindOf(COMMON_MM::utils::InfiniteWeightDimension)}{
+	weightInTons := doubleMaxValue;
+	other := doubleMaxValue;
+	
+	volumeInCubicMeters := 0;
+	seats := DEFAULT_VEHICLE_SEATS;
+	standingRoom := DEFAULT_VEHICLE_STANDINGROOM;
+}
+
+mapping COMMON_MM::utils::FiniteWeightDimension::finiteWeight2vehicleCapacity(): MATSIM::matsim::vehicles::VehicleCapacity
+inherits COMMON_MM::utils::Dimension::dimension2vehicleCapacity
+when {self.oclIsKindOf(COMMON_MM::utils::FiniteWeightDimension)}{
+	weightInTons := self.weightKg / 1000;
+	other := self.weightKg / 1000;
+	
+	volumeInCubicMeters := 0;
+	seats := DEFAULT_VEHICLE_SEATS;
+	standingRoom := DEFAULT_VEHICLE_STANDINGROOM;
+}
+
+mapping COMMON_MM::utils::VolumeAndWeightBasedDimension::volumeAndWeight2VehicleCapacity(): MATSIM::matsim::vehicles::VehicleCapacity
+inherits COMMON_MM::utils::Dimension::dimension2vehicleCapacity
+when {self.oclIsKindOf(COMMON_MM::utils::VolumeAndWeightBasedDimension)} {
+	log("invariant: only VolumeBasedDimension or only WeightBasedDimension");
+	assert(false);
+}
