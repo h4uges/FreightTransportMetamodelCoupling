@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<coupling:CommonFreightTransportMetamodelRoot xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:coupling="http://www.cep-model-coupling.com/commonFreightTransportMetamodel/coupling" xmlns:network="http://www.cep-model-coupling.com/commonFreightTransportMetamodel/network" xmlns:utils="http://www.cep-model-coupling.com/commonFreightTransportMetamodel/utils">
+  <network>
+    <nodes id="A">
+      <coordinate x="55.0" y="5.0"/>
+    </nodes>
+    <nodes id="B">
+      <coordinate x="0.5" y="1.0"/>
+    </nodes>
+    <nodes id="C">
+      <coordinate x="60.0" y="60.0"/>
+    </nodes>
+    <edges from="//@network/@nodes.1" to="//@network/@nodes.0" length="50.0">
+      <allowedVehicleTypes>TRUCK</allowedVehicleTypes>
+    </edges>
+    <edges from="//@network/@nodes.1" to="//@network/@nodes.2" length="500.0">
+      <allowedVehicleTypes>TRUCK</allowedVehicleTypes>
+      <allowedVehicleTypes>TRAM</allowedVehicleTypes>
+      <allowedVehicleTypes>CAR</allowedVehicleTypes>
+    </edges>
+  </network>
+  <logisticNetwork>
+    <CEPSPs id="cepsp_1" name="CEPSP 1">
+      <vehicleDepots id="depot_1_1">
+        <location id="loc_depot_1_1">
+          <networkAccess xsi:type="network:EdgeBasedNetworkAccess" edge="//@network/@edges.0"/>
+        </location>
+        <vehicles id="v1">
+          <storageCapacity xsi:type="utils:InfiniteVolumeDimension"/>
+        </vehicles>
+        <vehicles id="v2" type="CAR">
+          <storageCapacity xsi:type="utils:FiniteVolumeDimension" volumeCubicMetre="500.0"/>
+        </vehicles>
+      </vehicleDepots>
+      <vehicleDepots id="depot_1_2">
+        <location id="loc_depot_1_2">
+          <networkAccess xsi:type="network:EdgeBasedNetworkAccess" edge="//@network/@edges.1" edgePosition="0.5"/>
+        </location>
+        <vehicles id="v3">
+          <storageCapacity xsi:type="utils:InfiniteVolumeDimension"/>
+        </vehicles>
+        <vehicles id="v3" type="BIKE">
+          <storageCapacity xsi:type="utils:FiniteVolumeDimension" volumeCubicMetre="1000.0"/>
+        </vehicles>
+      </vehicleDepots>
+    </CEPSPs>
+  </logisticNetwork>
+</coupling:CommonFreightTransportMetamodelRoot>

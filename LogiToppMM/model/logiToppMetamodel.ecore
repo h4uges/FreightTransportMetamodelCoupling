@@ -1,0 +1,477 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ecore:EPackage xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore" name="logiToppMetamodel" nsURI="http://www.cep-model-coupling.com/logiToppMetamodel"
+    nsPrefix="logiToppMetamodel">
+  <eClassifiers xsi:type="ecore:EClass" name="Demand">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="parcels" upperBound="-1"
+        eType="#//logiTopp/parcels/Parcel" containment="true"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="Population">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="households" upperBound="-1"
+        eType="#//mobiTopp/citizens/Household" containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="businesses" upperBound="-1"
+        eType="#//logiTopp/business/Business" containment="true"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="TransportInfrastructure">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="timetable" lowerBound="1"
+        eType="#//logiTopp/distribution/timetable/TimeTable" containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="cepServiceProviders" upperBound="-1"
+        eType="#//logiTopp/distribution/CEPServiceProvider" containment="true"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="Solution">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="plannedTours" upperBound="-1"
+        eType="#//logiTopp/distribution/tours/PlannedDeliveryTour" containment="true"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="DemandExchangeRoot">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="demand" lowerBound="1"
+        eType="#//Demand" containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="population" lowerBound="1"
+        eType="#//Population" containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="transportNetwork" lowerBound="1"
+        eType="#//TransportInfrastructure" containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="network" lowerBound="1"
+        eType="#//mobiTopp/network/RoadNetwork" containment="true"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="SolutionExchangeRoot" eSuperTypes="#//DemandExchangeRoot">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="solution" lowerBound="1"
+        eType="#//Solution" containment="true"/>
+  </eClassifiers>
+  <eSubpackages name="mobiTopp" nsURI="http://www.cep-model-coupling.com/logiToppMetamodel/mobiTopp"
+      nsPrefix="mobiTopp">
+    <eSubpackages name="network" nsURI="http://www.cep-model-coupling.com/logiToppMetamodel/mobiTopp/network"
+        nsPrefix="network">
+      <eClassifiers xsi:type="ecore:EClass" name="Node" eSuperTypes="#//base/Entity">
+        <eStructuralFeatures xsi:type="ecore:EReference" name="coord" lowerBound="1"
+            eType="#//mobiTopp/network/Point2D" containment="true"/>
+      </eClassifiers>
+      <eClassifiers xsi:type="ecore:EClass" name="Edge" eSuperTypes="#//base/Entity">
+        <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+          <details key="documentation" value="- carAllowed&#xA;- allowedVelocityInKm&#xA;- length&#xA;- transportSystems"/>
+        </eAnnotations>
+        <eStructuralFeatures xsi:type="ecore:EReference" name="twin" eType="#//mobiTopp/network/Edge"/>
+        <eStructuralFeatures xsi:type="ecore:EReference" name="from" lowerBound="1"
+            eType="#//mobiTopp/network/Node"/>
+        <eStructuralFeatures xsi:type="ecore:EReference" name="to" lowerBound="1"
+            eType="#//mobiTopp/network/Node"/>
+        <eStructuralFeatures xsi:type="ecore:EAttribute" name="length" lowerBound="1"
+            eType="ecore:EDataType http://www.eclipse.org/emf/2003/XMLType#//Double"/>
+      </eClassifiers>
+      <eClassifiers xsi:type="ecore:EClass" name="Graph" abstract="true">
+        <eStructuralFeatures xsi:type="ecore:EReference" name="edges" upperBound="-1"
+            eType="#//mobiTopp/network/Edge" containment="true"/>
+        <eStructuralFeatures xsi:type="ecore:EReference" name="nodes" upperBound="-1"
+            eType="#//mobiTopp/network/Node" containment="true"/>
+      </eClassifiers>
+      <eClassifiers xsi:type="ecore:EClass" name="RoadNetwork" eSuperTypes="#//mobiTopp/network/Graph">
+        <eStructuralFeatures xsi:type="ecore:EReference" name="zones" upperBound="-1"
+            eType="#//mobiTopp/network/Zone" containment="true"/>
+      </eClassifiers>
+      <eClassifiers xsi:type="ecore:EClass" name="Zone" eSuperTypes="#//base/NamedEntity">
+        <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+          <details key="documentation" value="TAZ&#xA;Verkehrszellen&#xA;&#xA;--------------------&#xA;- AreaType&#xA;- RegionType&#xA;- ZoneClassificationType&#xA;- #parkingPlaces&#xA;- isDestination&#xA;- relief&#xA;- zoneProperties (Map)&#xA;&#xA;- Attractivities: Map&lt;ActivityType, Integer>&#xA;- ChargingData&#xA;- CarSharingData&#xA;- BikeSharingData&#xA;&#xA;- PolulationData (-> List Households, #inhabitants) *&#xA;- OpportunityData (-> OppertunityLocations)&#xA;&#xA;- totalArea *&#xA;- zoneAreasByLanduse: Map&lt;String, ZoneArea> *&#xA;- intersectingEdges: List&lt;Edge>&#xA;&#xA;&#xA;&#xA;&#xA;&#xA;"/>
+        </eAnnotations>
+        <eStructuralFeatures xsi:type="ecore:EReference" name="centroid" lowerBound="1"
+            eType="#//mobiTopp/network/Location" containment="true"/>
+        <eStructuralFeatures xsi:type="ecore:EReference" name="totalArea" eType="#//mobiTopp/network/ZoneArea"
+            containment="true"/>
+        <eStructuralFeatures xsi:type="ecore:EReference" name="households" upperBound="-1"
+            eType="#//mobiTopp/citizens/Household" eOpposite="#//mobiTopp/citizens/Household/zone"/>
+      </eClassifiers>
+      <eClassifiers xsi:type="ecore:EClass" name="Location">
+        <eStructuralFeatures xsi:type="ecore:EReference" name="coordinate" lowerBound="1"
+            eType="#//mobiTopp/network/Point2D" containment="true"/>
+        <eStructuralFeatures xsi:type="ecore:EAttribute" name="roadPosition" lowerBound="1"
+            eType="ecore:EDataType http://www.eclipse.org/emf/2003/XMLType#//Double"/>
+        <eStructuralFeatures xsi:type="ecore:EReference" name="roadAccessEdge" lowerBound="1"
+            eType="#//mobiTopp/network/Edge"/>
+      </eClassifiers>
+      <eClassifiers xsi:type="ecore:EClass" name="ZoneAndLocation">
+        <eStructuralFeatures xsi:type="ecore:EReference" name="location" lowerBound="1"
+            eType="#//mobiTopp/network/Location" containment="true"/>
+        <eStructuralFeatures xsi:type="ecore:EReference" name="zone" lowerBound="1"
+            eType="#//mobiTopp/network/Zone"/>
+      </eClassifiers>
+      <eClassifiers xsi:type="ecore:EClass" name="ZoneArea">
+        <eStructuralFeatures xsi:type="ecore:EAttribute" name="size" lowerBound="1"
+            eType="ecore:EDataType http://www.eclipse.org/emf/2003/XMLType#//Double"/>
+        <eStructuralFeatures xsi:type="ecore:EReference" name="borders" lowerBound="1"
+            upperBound="-1" eType="#//mobiTopp/network/Polygon" containment="true"/>
+      </eClassifiers>
+      <eClassifiers xsi:type="ecore:EClass" name="Point2D">
+        <eStructuralFeatures xsi:type="ecore:EAttribute" name="x" lowerBound="1" eType="ecore:EDataType http://www.eclipse.org/emf/2003/XMLType#//Double"/>
+        <eStructuralFeatures xsi:type="ecore:EAttribute" name="y" lowerBound="1" eType="ecore:EDataType http://www.eclipse.org/emf/2003/XMLType#//Double"/>
+      </eClassifiers>
+      <eClassifiers xsi:type="ecore:EClass" name="Polygon">
+        <eStructuralFeatures xsi:type="ecore:EReference" name="lines" lowerBound="3"
+            upperBound="-1" eType="#//mobiTopp/network/Line" containment="true"/>
+      </eClassifiers>
+      <eClassifiers xsi:type="ecore:EClass" name="Line">
+        <eStructuralFeatures xsi:type="ecore:EReference" name="start" lowerBound="1"
+            eType="#//mobiTopp/network/Point2D" containment="true"/>
+        <eStructuralFeatures xsi:type="ecore:EReference" name="end" lowerBound="1"
+            eType="#//mobiTopp/network/Point2D" containment="true"/>
+      </eClassifiers>
+    </eSubpackages>
+    <eSubpackages name="citizens" nsURI="http://www.cep-model-coupling.com/logiToppMetamodel/mobiTopp/citizens"
+        nsPrefix="citizens">
+      <eClassifiers xsi:type="ecore:EClass" name="Person" eSuperTypes="#//base/Entity">
+        <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+          <details key="documentation" value="- age&#xA;- employment&#xA;- gender&#xA;- graduation&#xA;- income&#xA;- hasBike&#xA;- hasAccessToCar&#xA;- hasPersonalCar&#xA;- hasCommuterTicket&#xA;- hasLicense&#xA;? mobilityProviderCustomership&#xA;? modeChoicePreferences (...)&#xA;&#xA;* Planned activity program&#xA;* Realised activity program&#xA;&#xA;- currentTrip&#xA;- car&#xA;- carUsage&#xA;- bike&#xA;- bikeUsage&#xA;&#xA;missing: SimulationPersonPassenger, EmobilityPerson"/>
+        </eAnnotations>
+        <eStructuralFeatures xsi:type="ecore:EReference" name="household" lowerBound="1"
+            eType="#//mobiTopp/citizens/Household" eOpposite="#//mobiTopp/citizens/Household/members"/>
+        <eStructuralFeatures xsi:type="ecore:EAttribute" name="age" lowerBound="1"
+            eType="ecore:EDataType http://www.eclipse.org/emf/2003/XMLType#//Int"
+            defaultValueLiteral="99"/>
+        <eStructuralFeatures xsi:type="ecore:EAttribute" name="gender" lowerBound="1"
+            eType="#//mobiTopp/citizens/Gender"/>
+        <eStructuralFeatures xsi:type="ecore:EAttribute" name="employment" lowerBound="1"
+            eType="#//mobiTopp/citizens/Employment"/>
+      </eClassifiers>
+      <eClassifiers xsi:type="ecore:EEnum" name="Employment">
+        <eLiterals name="UNKNOWN" value="-1"/>
+        <eLiterals name="FULLTIME" value="1"/>
+        <eLiterals name="PARTTIME" value="2"/>
+        <eLiterals name="MARGINAL" value="22"/>
+        <eLiterals name="UNEMPLOYED" value="3"/>
+        <eLiterals name="STUDENT" value="4"/>
+        <eLiterals name="STUDENT_PRIMARY" value="40"/>
+        <eLiterals name="STUDENT_SECONDARY" value="41"/>
+        <eLiterals name="STUDENT_TERTIARY" value="42"/>
+        <eLiterals name="EDUCATION" value="5"/>
+        <eLiterals name="HOMEKEEPER" value="6"/>
+        <eLiterals name="RETIRED" value="7"/>
+        <eLiterals name="INFANT" value="8"/>
+        <eLiterals name="NONE" value="9"/>
+      </eClassifiers>
+      <eClassifiers xsi:type="ecore:EEnum" name="Gender">
+        <eLiterals name="MALE"/>
+        <eLiterals name="FEMALE" value="1"/>
+      </eClassifiers>
+      <eClassifiers xsi:type="ecore:EClass" name="Household" eSuperTypes="#//base/Entity">
+        <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+          <details key="documentation" value="- domCode&#xA;- type&#xA;- numberOfCars&#xA;- numberOfMinors&#xA;- numberOfNotSimulatedChildren&#xA;- nominalSize&#xA;- income&#xA;- incomeClass&#xA;- economicalStatus&#xA;- availableCars&#xA;- ownedCars&#xA;- canChargePrivately"/>
+        </eAnnotations>
+        <eStructuralFeatures xsi:type="ecore:EReference" name="location" lowerBound="1"
+            eType="#//mobiTopp/network/Location" containment="true"/>
+        <eStructuralFeatures xsi:type="ecore:EReference" name="members" lowerBound="1"
+            upperBound="-1" eType="#//mobiTopp/citizens/Person" containment="true"
+            eOpposite="#//mobiTopp/citizens/Person/household"/>
+        <eStructuralFeatures xsi:type="ecore:EReference" name="zone" lowerBound="1"
+            eType="#//mobiTopp/network/Zone" eOpposite="#//mobiTopp/network/Zone/households"/>
+      </eClassifiers>
+    </eSubpackages>
+  </eSubpackages>
+  <eSubpackages name="base" nsURI="http://www.cep-model-coupling.com/logiToppMetamodel/base"
+      nsPrefix="base">
+    <eClassifiers xsi:type="ecore:EClass" name="Entity" abstract="true">
+      <eStructuralFeatures xsi:type="ecore:EAttribute" name="id" lowerBound="1" eType="ecore:EDataType http://www.eclipse.org/emf/2003/XMLType#//Int"/>
+    </eClassifiers>
+    <eClassifiers xsi:type="ecore:EClass" name="NamedEntity" abstract="true" eSuperTypes="#//base/Entity">
+      <eStructuralFeatures xsi:type="ecore:EAttribute" name="name" lowerBound="1"
+          eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    </eClassifiers>
+    <eClassifiers xsi:type="ecore:EClass" name="Time">
+      <eStructuralFeatures xsi:type="ecore:EAttribute" name="seconds" lowerBound="1"
+          eType="ecore:EDataType http://www.eclipse.org/emf/2003/XMLType#//Int"/>
+    </eClassifiers>
+    <eClassifiers xsi:type="ecore:EClass" name="RelativeTime">
+      <eStructuralFeatures xsi:type="ecore:EAttribute" name="seconds" lowerBound="1"
+          eType="ecore:EDataType http://www.eclipse.org/emf/2003/XMLType#//Int"/>
+    </eClassifiers>
+    <eClassifiers xsi:type="ecore:EEnum" name="Weekday">
+      <eLiterals name="MONDAY"/>
+      <eLiterals name="TUESDAY" value="1"/>
+      <eLiterals name="WEDNESDAY" value="2"/>
+      <eLiterals name="THURSDAY" value="3"/>
+      <eLiterals name="FRIDAY" value="4"/>
+      <eLiterals name="SATURDAY" value="5"/>
+      <eLiterals name="SUNDAY" value="6"/>
+    </eClassifiers>
+  </eSubpackages>
+  <eSubpackages name="logiTopp" nsURI="http://www.cep-model-coupling.com/logiToppMetamodel/logiTopp"
+      nsPrefix="logiTopp">
+    <eClassifiers xsi:type="ecore:EClass" name="ParcelAgent" abstract="true"/>
+    <eClassifiers xsi:type="ecore:EClass" name="ParcelProducer" abstract="true" eSuperTypes="#//logiTopp/ParcelAgent"/>
+    <eClassifiers xsi:type="ecore:EClass" name="ParcelConsumer" abstract="true" eSuperTypes="#//logiTopp/ParcelAgent"/>
+    <eSubpackages name="business" nsURI="http://www.cep-model-coupling.com/logiToppMetamodel/logiTopp/business"
+        nsPrefix="business">
+      <eClassifiers xsi:type="ecore:EEnum" name="Branch">
+        <eLiterals name="A" value="1"/>
+        <eLiterals name="B" value="2"/>
+        <eLiterals name="C" value="3"/>
+        <eLiterals name="D" value="4"/>
+        <eLiterals name="E" value="5"/>
+        <eLiterals name="F" value="6"/>
+        <eLiterals name="G" value="7"/>
+        <eLiterals name="H" value="8"/>
+        <eLiterals name="I" value="9"/>
+        <eLiterals name="J" value="10"/>
+        <eLiterals name="K" value="11"/>
+        <eLiterals name="L" value="12"/>
+        <eLiterals name="M" value="13"/>
+        <eLiterals name="N" value="14"/>
+        <eLiterals name="O" value="15"/>
+        <eLiterals name="P" value="16"/>
+        <eLiterals name="Q" value="17"/>
+        <eLiterals name="R" value="18"/>
+        <eLiterals name="S" value="19"/>
+        <eLiterals name="T" value="20"/>
+        <eLiterals name="U" value="21"/>
+        <eLiterals name="OTHER" literal="OTHER"/>
+      </eClassifiers>
+      <eClassifiers xsi:type="ecore:EEnum" name="BuildingType">
+        <eLiterals name="LEISURE" value="2"/>
+        <eLiterals name="HOSPITAL" value="7"/>
+        <eLiterals name="STORE" value="1"/>
+        <eLiterals name="HOTEL" value="4"/>
+        <eLiterals name="WAREHAUSE" value="8"/>
+        <eLiterals name="SCHOOL_UNIVERSITY" value="9"/>
+        <eLiterals name="RESTAURANT" value="3"/>
+        <eLiterals name="IINDUSTRIAL" value="6"/>
+        <eLiterals name="OFFICE" value="5"/>
+        <eLiterals name="OTHER"/>
+      </eClassifiers>
+      <eClassifiers xsi:type="ecore:EClass" name="Business" eSuperTypes="#//base/NamedEntity #//logiTopp/ParcelProducer #//logiTopp/ParcelConsumer">
+        <eStructuralFeatures xsi:type="ecore:EAttribute" name="branch" lowerBound="1"
+            eType="#//logiTopp/business/Branch" defaultValueLiteral="A"/>
+        <eStructuralFeatures xsi:type="ecore:EAttribute" name="buildingType" lowerBound="1"
+            eType="#//logiTopp/business/BuildingType" defaultValueLiteral="OTHER"/>
+        <eStructuralFeatures xsi:type="ecore:EAttribute" name="emplyees" eType="ecore:EDataType http://www.eclipse.org/emf/2003/XMLType#//Int"
+            defaultValueLiteral="0"/>
+        <eStructuralFeatures xsi:type="ecore:EAttribute" name="area" eType="ecore:EDataType http://www.eclipse.org/emf/2003/XMLType#//Double"
+            defaultValueLiteral="0"/>
+        <eStructuralFeatures xsi:type="ecore:EReference" name="zone" lowerBound="1"
+            eType="#//mobiTopp/network/Zone"/>
+        <eStructuralFeatures xsi:type="ecore:EReference" name="location" lowerBound="1"
+            eType="#//mobiTopp/network/Location" containment="true"/>
+        <eStructuralFeatures xsi:type="ecore:EReference" name="deliveryPartners" upperBound="-1"
+            eType="#//logiTopp/distribution/CEPServiceProvider"/>
+        <eStructuralFeatures xsi:type="ecore:EReference" name="pickUpPartners" upperBound="-1"
+            eType="#//logiTopp/distribution/CEPServiceProvider"/>
+        <eStructuralFeatures xsi:type="ecore:EReference" name="openingHours" upperBound="-1"
+            eType="#//logiTopp/business/OpeningHour" containment="true"/>
+      </eClassifiers>
+      <eClassifiers xsi:type="ecore:EEnum" name="Sector">
+        <eLiterals name="HOSPITALITY"/>
+        <eLiterals name="SERVICE" value="1"/>
+        <eLiterals name="ADMINISTRATION" value="2"/>
+        <eLiterals name="INDUSTRY" value="3"/>
+        <eLiterals name="RETAIL" value="4"/>
+        <eLiterals name="LEISURE" value="5"/>
+        <eLiterals name="OTHER" value="6"/>
+      </eClassifiers>
+      <eClassifiers xsi:type="ecore:EClass" name="OpeningHour">
+        <eStructuralFeatures xsi:type="ecore:EAttribute" name="dayOfWeek" lowerBound="1"
+            eType="#//base/Weekday"/>
+        <eStructuralFeatures xsi:type="ecore:EReference" name="start" lowerBound="1"
+            eType="#//base/Time"/>
+        <eStructuralFeatures xsi:type="ecore:EReference" name="end" lowerBound="1"
+            eType="#//base/Time"/>
+      </eClassifiers>
+    </eSubpackages>
+    <eSubpackages name="distribution" nsURI="http://www.cep-model-coupling.com/logiToppMetamodel/logiTopp/distribution"
+        nsPrefix="distribution">
+      <eClassifiers xsi:type="ecore:EClass" name="CEPServiceProvider" eSuperTypes="#//base/NamedEntity">
+        <eStructuralFeatures xsi:type="ecore:EReference" name="distributionCenters"
+            upperBound="-1" eType="#//logiTopp/distribution/DistributionCenter" containment="true"
+            eOpposite="#//logiTopp/distribution/DistributionCenter/CEPSP"/>
+      </eClassifiers>
+      <eClassifiers xsi:type="ecore:EClass" name="DistributionCenter" eSuperTypes="#//base/NamedEntity #//logiTopp/ParcelProducer #//logiTopp/ParcelConsumer">
+        <eStructuralFeatures xsi:type="ecore:EReference" name="zone" lowerBound="1"
+            eType="#//mobiTopp/network/Zone"/>
+        <eStructuralFeatures xsi:type="ecore:EReference" name="location" lowerBound="1"
+            eType="#//mobiTopp/network/Location" containment="true"/>
+        <eStructuralFeatures xsi:type="ecore:EAttribute" name="attempts" lowerBound="1"
+            eType="ecore:EDataType http://www.eclipse.org/emf/2003/XMLType#//Int"
+            defaultValueLiteral="1"/>
+        <eStructuralFeatures xsi:type="ecore:EReference" name="fleet" lowerBound="1"
+            eType="#//logiTopp/distribution/fleet/Fleet" containment="true"/>
+        <eStructuralFeatures xsi:type="ecore:EReference" name="regionalStructure"
+            lowerBound="1" eType="#//logiTopp/distribution/region/RegionalReach" containment="true"/>
+        <eStructuralFeatures xsi:type="ecore:EReference" name="CEPSP" lowerBound="1"
+            eType="#//logiTopp/distribution/CEPServiceProvider" eOpposite="#//logiTopp/distribution/CEPServiceProvider/distributionCenters"/>
+      </eClassifiers>
+      <eSubpackages name="chains" nsURI="http://www.cep-model-coupling.com/logiToppMetamodel/logiTopp/distribution/chains"
+          nsPrefix="chains">
+        <eClassifiers xsi:type="ecore:EClass" name="TransportChain">
+          <eStructuralFeatures xsi:type="ecore:EReference" name="hubs" upperBound="-1"
+              eType="#//logiTopp/distribution/DistributionCenter"/>
+          <eStructuralFeatures xsi:type="ecore:EAttribute" name="deliveryDirection"
+              lowerBound="1" eType="ecore:EDataType http://www.eclipse.org/emf/2003/XMLType#//Boolean"
+              defaultValueLiteral="true"/>
+        </eClassifiers>
+        <eClassifiers xsi:type="ecore:EClass" name="TimedTransportChain" eSuperTypes="#//logiTopp/distribution/chains/TransportChain">
+          <eStructuralFeatures xsi:type="ecore:EReference" name="departures" upperBound="-1"
+              eType="#//logiTopp/distribution/chains/HubToDeparture"/>
+          <eStructuralFeatures xsi:type="ecore:EReference" name="durations" upperBound="-1"
+              eType="#//logiTopp/distribution/chains/HubToDuration"/>
+        </eClassifiers>
+        <eClassifiers xsi:type="ecore:EClass" name="HubToDeparture">
+          <eStructuralFeatures xsi:type="ecore:EReference" name="hub" lowerBound="1"
+              eType="#//logiTopp/distribution/DistributionCenter"/>
+          <eStructuralFeatures xsi:type="ecore:EReference" name="depature" lowerBound="1"
+              eType="#//base/Time"/>
+        </eClassifiers>
+        <eClassifiers xsi:type="ecore:EClass" name="HubToDuration">
+          <eStructuralFeatures xsi:type="ecore:EReference" name="hub" lowerBound="1"
+              eType="#//logiTopp/distribution/DistributionCenter"/>
+          <eStructuralFeatures xsi:type="ecore:EAttribute" name="duration" lowerBound="1"
+              eType="ecore:EDataType http://www.eclipse.org/emf/2003/XMLType#//Int"
+              defaultValueLiteral="0"/>
+        </eClassifiers>
+      </eSubpackages>
+      <eSubpackages name="delivery" nsURI="http://www.cep-model-coupling.com/logiToppMetamodel/logiTopp/distribution/delivery"
+          nsPrefix="delivery">
+        <eClassifiers xsi:type="ecore:EClass" name="ParcelActivity">
+          <eStructuralFeatures xsi:type="ecore:EAttribute" name="no" lowerBound="1"
+              eType="ecore:EDataType http://www.eclipse.org/emf/2003/XMLType#//Int"/>
+          <eStructuralFeatures xsi:type="ecore:EReference" name="parcels" upperBound="-1"
+              eType="#//logiTopp/parcels/Parcel"/>
+          <eStructuralFeatures xsi:type="ecore:EReference" name="pickUps" upperBound="-1"
+              eType="#//logiTopp/parcels/Parcel"/>
+          <eStructuralFeatures xsi:type="ecore:EReference" name="stopLocation" lowerBound="1"
+              eType="#//mobiTopp/network/ZoneAndLocation" containment="true"/>
+          <eStructuralFeatures xsi:type="ecore:EReference" name="plannedTime" lowerBound="1"
+              eType="#//base/Time"/>
+          <eStructuralFeatures xsi:type="ecore:EAttribute" name="distance" lowerBound="1"
+              eType="ecore:EDataType http://www.eclipse.org/emf/2003/XMLType#//Double"/>
+          <eStructuralFeatures xsi:type="ecore:EAttribute" name="tripDuration" lowerBound="1"
+              eType="ecore:EDataType http://www.eclipse.org/emf/2003/XMLType#//Int"/>
+          <eStructuralFeatures xsi:type="ecore:EAttribute" name="deliveryDuration"
+              lowerBound="1" eType="ecore:EDataType http://www.eclipse.org/emf/2003/XMLType#//Int"/>
+          <eStructuralFeatures xsi:type="ecore:EReference" name="vehicle" lowerBound="1"
+              eType="#//logiTopp/distribution/fleet/DeliveryVehicle"/>
+        </eClassifiers>
+      </eSubpackages>
+      <eSubpackages name="fleet" nsURI="http://www.cep-model-coupling.com/logiToppMetamodel/logiTopp/distribution/fleet"
+          nsPrefix="fleet">
+        <eClassifiers xsi:type="ecore:EClass" name="Fleet">
+          <eStructuralFeatures xsi:type="ecore:EAttribute" name="vehicleType" lowerBound="1"
+              eType="#//logiTopp/distribution/fleet/VehicleType" defaultValueLiteral="TRUCK"/>
+          <eStructuralFeatures xsi:type="ecore:EReference" name="deliveryVehicles"
+              upperBound="-1" eType="#//logiTopp/distribution/fleet/DeliveryVehicle"
+              containment="true"/>
+        </eClassifiers>
+        <eClassifiers xsi:type="ecore:EEnum" name="VehicleType">
+          <eLiterals name="BIKE" value="1"/>
+          <eLiterals name="TRUCK" value="2"/>
+          <eLiterals name="TRAM" value="3"/>
+          <eLiterals name="OTHERS"/>
+        </eClassifiers>
+        <eClassifiers xsi:type="ecore:EClass" name="DeliveryVehicle" eSuperTypes="#//base/Entity">
+          <eStructuralFeatures xsi:type="ecore:EAttribute" name="vehicleType" lowerBound="1"
+              eType="#//logiTopp/distribution/fleet/VehicleType" defaultValueLiteral="TRUCK"/>
+          <eStructuralFeatures xsi:type="ecore:EAttribute" name="capacity" lowerBound="1"
+              eType="ecore:EDataType http://www.eclipse.org/emf/2003/XMLType#//Int"
+              defaultValueLiteral="0"/>
+          <eStructuralFeatures xsi:type="ecore:EReference" name="earliestStartTime"
+              lowerBound="1" eType="#//base/Time"/>
+          <eStructuralFeatures xsi:type="ecore:EReference" name="latestEndTime" lowerBound="1"
+              eType="#//base/Time"/>
+        </eClassifiers>
+      </eSubpackages>
+      <eSubpackages name="policies" nsURI="http://www.cep-model-coupling.com/logiToppMetamodel/logiTopp/distribution/policies"
+          nsPrefix="policies">
+        <eClassifiers xsi:type="ecore:EEnum" name="RecipientType">
+          <eLiterals name="PERSONAL"/>
+          <eLiterals name="HOUSEHOLDMEMBER" value="1"/>
+          <eLiterals name="NEIGHBOR" value="2"/>
+          <eLiterals name="PACKSTATION" value="3"/>
+          <eLiterals name="BUSINESS" value="4"/>
+          <eLiterals name="DISTRIBUTION_CENTER" value="5"/>
+        </eClassifiers>
+      </eSubpackages>
+      <eSubpackages name="region" nsURI="http://www.cep-model-coupling.com/logiToppMetamodel/logiTopp/distribution/region"
+          nsPrefix="region">
+        <eClassifiers xsi:type="ecore:EClass" name="RegionalReach">
+          <eStructuralFeatures xsi:type="ecore:EReference" name="serviceArea" lowerBound="1"
+              eType="#//logiTopp/distribution/region/ServiceArea" containment="true"/>
+          <eStructuralFeatures xsi:type="ecore:EReference" name="relatedDeliveryHubs"
+              upperBound="-1" eType="#//logiTopp/distribution/DistributionCenter"/>
+          <eStructuralFeatures xsi:type="ecore:EReference" name="relatedPickUpHubs"
+              upperBound="-1" eType="#//logiTopp/distribution/DistributionCenter"/>
+        </eClassifiers>
+        <eClassifiers xsi:type="ecore:EClass" name="ServiceArea">
+          <eStructuralFeatures xsi:type="ecore:EReference" name="zones" upperBound="-1"
+              eType="#//mobiTopp/network/Zone"/>
+        </eClassifiers>
+      </eSubpackages>
+      <eSubpackages name="timetable" nsURI="http://www.cep-model-coupling.com/logiToppMetamodel/logiTopp/distribution/timetable"
+          nsPrefix="timetable">
+        <eClassifiers xsi:type="ecore:EClass" name="TimeTable">
+          <eStructuralFeatures xsi:type="ecore:EReference" name="connections" upperBound="-1"
+              eType="#//logiTopp/distribution/timetable/Connection" containment="true"/>
+        </eClassifiers>
+        <eClassifiers xsi:type="ecore:EClass" name="Connection">
+          <eStructuralFeatures xsi:type="ecore:EReference" name="from" lowerBound="1"
+              eType="#//logiTopp/distribution/DistributionCenter"/>
+          <eStructuralFeatures xsi:type="ecore:EReference" name="to" lowerBound="1"
+              eType="#//logiTopp/distribution/DistributionCenter"/>
+          <eStructuralFeatures xsi:type="ecore:EReference" name="departure" lowerBound="1"
+              eType="#//base/Time"/>
+          <eStructuralFeatures xsi:type="ecore:EReference" name="duration" lowerBound="1"
+              eType="#//base/RelativeTime"/>
+        </eClassifiers>
+      </eSubpackages>
+      <eSubpackages name="tours" nsURI="http://www.cep-model-coupling.com/logiToppMetamodel/logiTopp/distribution/tours"
+          nsPrefix="tours">
+        <eClassifiers xsi:type="ecore:EClass" name="PlannedDeliveryTour">
+          <eStructuralFeatures xsi:type="ecore:EReference" name="stops" upperBound="-1"
+              eType="#//logiTopp/distribution/delivery/ParcelActivity" containment="true"/>
+          <eStructuralFeatures xsi:type="ecore:EAttribute" name="vehicleType" lowerBound="1"
+              eType="#//logiTopp/distribution/fleet/VehicleType" defaultValueLiteral="TRUCK"/>
+          <eStructuralFeatures xsi:type="ecore:EReference" name="plannedDuration"
+              lowerBound="1" eType="#//base/RelativeTime" containment="true"/>
+          <eStructuralFeatures xsi:type="ecore:EReference" name="plannedAt" lowerBound="1"
+              eType="#//base/Time" containment="true"/>
+          <eStructuralFeatures xsi:type="ecore:EReference" name="executingCEPSP" lowerBound="1"
+              eType="#//logiTopp/distribution/CEPServiceProvider"/>
+        </eClassifiers>
+      </eSubpackages>
+    </eSubpackages>
+    <eSubpackages name="parcels" nsURI="http://www.cep-model-coupling.com/logiToppMetamodel/logiTopp/parcels"
+        nsPrefix="parcels">
+      <eClassifiers xsi:type="ecore:EClass" name="Parcel" abstract="true" eSuperTypes="#//base/Entity">
+        <eStructuralFeatures xsi:type="ecore:EReference" name="plannedArrivalDate"
+            eType="#//base/Time"/>
+        <eStructuralFeatures xsi:type="ecore:EReference" name="producer" lowerBound="1"
+            eType="#//logiTopp/ParcelProducer"/>
+        <eStructuralFeatures xsi:type="ecore:EReference" name="zoneAndLocation" lowerBound="1"
+            eType="#//mobiTopp/network/ZoneAndLocation" containment="true"/>
+        <eStructuralFeatures xsi:type="ecore:EAttribute" name="shipmentSize" lowerBound="1"
+            eType="#//logiTopp/parcels/ShipmentSize" defaultValueLiteral="SMALL"/>
+        <eStructuralFeatures xsi:type="ecore:EAttribute" name="isPickup" lowerBound="1"
+            eType="ecore:EDataType http://www.eclipse.org/emf/2003/XMLType#//Boolean"/>
+        <eStructuralFeatures xsi:type="ecore:EReference" name="consumer" lowerBound="1"
+            eType="#//logiTopp/ParcelConsumer"/>
+        <eStructuralFeatures xsi:type="ecore:EReference" name="responsibleCEPSP" lowerBound="1"
+            eType="#//logiTopp/distribution/CEPServiceProvider"/>
+      </eClassifiers>
+      <eClassifiers xsi:type="ecore:EClass" name="PrivateParcel" eSuperTypes="#//logiTopp/parcels/Parcel">
+        <eStructuralFeatures xsi:type="ecore:EAttribute" name="destinationType" lowerBound="1"
+            eType="#//logiTopp/parcels/ParcelDestinationType" defaultValueLiteral="HOME"/>
+      </eClassifiers>
+      <eClassifiers xsi:type="ecore:EClass" name="BusinessParcel" eSuperTypes="#//logiTopp/parcels/Parcel"/>
+      <eClassifiers xsi:type="ecore:EEnum" name="ShipmentSize">
+        <eLiterals name="SMALL"/>
+        <eLiterals name="MEDIUM" value="1"/>
+        <eLiterals name="LARGE" value="2"/>
+        <eLiterals name="EXTRA_LARGE" value="3"/>
+        <eLiterals name="PALLET" value="4"/>
+        <eLiterals name="CONTAINER" value="5"/>
+      </eClassifiers>
+      <eClassifiers xsi:type="ecore:EEnum" name="ParcelState">
+        <eLiterals name="DELIVERED"/>
+        <eLiterals name="RETURNING" value="1"/>
+        <eLiterals name="ONDELIVERY" value="2"/>
+        <eLiterals name="UNDEFINED" value="3"/>
+      </eClassifiers>
+      <eClassifiers xsi:type="ecore:EEnum" name="ParcelDestinationType">
+        <eLiterals name="HOME"/>
+        <eLiterals name="WORK" value="1"/>
+        <eLiterals name="PACK_STATION" value="2"/>
+      </eClassifiers>
+    </eSubpackages>
+  </eSubpackages>
+</ecore:EPackage>

@@ -1,0 +1,129 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?eclipse version="3.0"?>
+
+<!--
+-->
+
+<plugin>
+
+   <extension point="org.eclipse.emf.ecore.generated_package">
+      <!-- @generated logiToppMetamodel -->
+      <package
+            uri="http://www.cep-model-coupling.com/logiToppMetamodel"
+            class="logiToppMetamodel.LogiToppMetamodelPackage"
+            genModel="model/logiToppMetamodel.genmodel"/>
+   </extension>
+
+   <extension point="org.eclipse.emf.ecore.generated_package">
+      <!-- @generated logiToppMetamodel -->
+      <package
+            uri="http://www.cep-model-coupling.com/logiToppMetamodel/mobiTopp/network"
+            class="logiToppMetamodel.mobiTopp.network.NetworkPackage"
+            genModel="model/logiToppMetamodel.genmodel"/>
+   </extension>
+
+   <extension point="org.eclipse.emf.ecore.generated_package">
+      <!-- @generated logiToppMetamodel -->
+      <package
+            uri="http://www.cep-model-coupling.com/logiToppMetamodel/mobiTopp/citizens"
+            class="logiToppMetamodel.mobiTopp.citizens.CitizensPackage"
+            genModel="model/logiToppMetamodel.genmodel"/>
+   </extension>
+
+   <extension point="org.eclipse.emf.ecore.generated_package">
+      <!-- @generated logiToppMetamodel -->
+      <package
+            uri="http://www.cep-model-coupling.com/logiToppMetamodel/base"
+            class="logiToppMetamodel.base.BasePackage"
+            genModel="model/logiToppMetamodel.genmodel"/>
+   </extension>
+
+   <extension point="org.eclipse.emf.ecore.generated_package">
+      <!-- @generated logiToppMetamodel -->
+      <package
+            uri="http://www.cep-model-coupling.com/logiToppMetamodel/logiTopp"
+            class="logiToppMetamodel.logiTopp.LogiToppPackage"
+            genModel="model/logiToppMetamodel.genmodel"/>
+   </extension>
+
+   <extension point="org.eclipse.emf.ecore.generated_package">
+      <!-- @generated logiToppMetamodel -->
+      <package
+            uri="http://www.cep-model-coupling.com/logiToppMetamodel/logiTopp/business"
+            class="logiToppMetamodel.logiTopp.business.BusinessPackage"
+            genModel="model/logiToppMetamodel.genmodel"/>
+   </extension>
+
+   <extension point="org.eclipse.emf.ecore.generated_package">
+      <!-- @generated logiToppMetamodel -->
+      <package
+            uri="http://www.cep-model-coupling.com/logiToppMetamodel/logiTopp/distribution"
+            class="logiToppMetamodel.logiTopp.distribution.DistributionPackage"
+            genModel="model/logiToppMetamodel.genmodel"/>
+   </extension>
+
+   <extension point="org.eclipse.emf.ecore.generated_package">
+      <!-- @generated logiToppMetamodel -->
+      <package
+            uri="http://www.cep-model-coupling.com/logiToppMetamodel/logiTopp/distribution/chains"
+            class="logiToppMetamodel.logiTopp.distribution.chains.ChainsPackage"
+            genModel="model/logiToppMetamodel.genmodel"/>
+   </extension>
+
+   <extension point="org.eclipse.emf.ecore.generated_package">
+      <!-- @generated logiToppMetamodel -->
+      <package
+            uri="http://www.cep-model-coupling.com/logiToppMetamodel/logiTopp/distribution/delivery"
+            class="logiToppMetamodel.logiTopp.distribution.delivery.DeliveryPackage"
+            genModel="model/logiToppMetamodel.genmodel"/>
+   </extension>
+
+   <extension point="org.eclipse.emf.ecore.generated_package">
+      <!-- @generated logiToppMetamodel -->
+      <package
+            uri="http://www.cep-model-coupling.com/logiToppMetamodel/logiTopp/distribution/fleet"
+            class="logiToppMetamodel.logiTopp.distribution.fleet.FleetPackage"
+            genModel="model/logiToppMetamodel.genmodel"/>
+   </extension>
+
+   <extension point="org.eclipse.emf.ecore.generated_package">
+      <!-- @generated logiToppMetamodel -->
+      <package
+            uri="http://www.cep-model-coupling.com/logiToppMetamodel/logiTopp/distribution/policies"
+            class="logiToppMetamodel.logiTopp.distribution.policies.PoliciesPackage"
+            genModel="model/logiToppMetamodel.genmodel"/>
+   </extension>
+
+   <extension point="org.eclipse.emf.ecore.generated_package">
+      <!-- @generated logiToppMetamodel -->
+      <package
+            uri="http://www.cep-model-coupling.com/logiToppMetamodel/logiTopp/distribution/region"
+            class="logiToppMetamodel.logiTopp.distribution.region.RegionPackage"
+            genModel="model/logiToppMetamodel.genmodel"/>
+   </extension>
+
+   <extension point="org.eclipse.emf.ecore.generated_package">
+      <!-- @generated logiToppMetamodel -->
+      <package
+            uri="http://www.cep-model-coupling.com/logiToppMetamodel/logiTopp/distribution/timetable"
+            class="logiToppMetamodel.logiTopp.distribution.timetable.TimetablePackage"
+            genModel="model/logiToppMetamodel.genmodel"/>
+   </extension>
+
+   <extension point="org.eclipse.emf.ecore.generated_package">
+      <!-- @generated logiToppMetamodel -->
+      <package
+            uri="http://www.cep-model-coupling.com/logiToppMetamodel/logiTopp/distribution/tours"
+            class="logiToppMetamodel.logiTopp.distribution.tours.ToursPackage"
+            genModel="model/logiToppMetamodel.genmodel"/>
+   </extension>
+
+   <extension point="org.eclipse.emf.ecore.generated_package">
+      <!-- @generated logiToppMetamodel -->
+      <package
+            uri="http://www.cep-model-coupling.com/logiToppMetamodel/logiTopp/parcels"
+            class="logiToppMetamodel.logiTopp.parcels.ParcelsPackage"
+            genModel="model/logiToppMetamodel.genmodel"/>
+   </extension>
+
+</plugin>

@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?eclipse version="3.0"?>
+
+<!--
+-->
+
+<plugin>
+
+   <extension point="org.eclipse.emf.ecore.generated_package">
+      <!-- @generated commonFreightTransportMetamodel -->
+      <package
+            uri="http://www.cep-model-coupling.com/commonFreightTransportMetamodel/logisticDemand"
+            class="CommonFreightTransportMetamodel.logisticDemand.LogisticDemandPackage"
+            genModel="model/commonFreightTransportMetamodel.genmodel"/>
+   </extension>
+
+   <extension point="org.eclipse.emf.ecore.generated_package">
+      <!-- @generated commonFreightTransportMetamodel -->
+      <package
+            uri="http://www.cep-model-coupling.com/commonFreightTransportMetamodel/utils"
+            class="CommonFreightTransportMetamodel.utils.UtilsPackage"
+            genModel="model/commonFreightTransportMetamodel.genmodel"/>
+   </extension>
+
+   <extension point="org.eclipse.emf.ecore.generated_package">
+      <!-- @generated commonFreightTransportMetamodel -->
+      <package
+            uri="http://www.cep-model-coupling.com/commonFreightTransportMetamodel/network"
+            class="CommonFreightTransportMetamodel.network.NetworkPackage"
+            genModel="model/commonFreightTransportMetamodel.genmodel"/>
+   </extension>
+
+   <extension point="org.eclipse.emf.ecore.generated_package">
+      <!-- @generated commonFreightTransportMetamodel -->
+      <package
+            uri="http://www.cep-model-coupling.com/commonFreightTransportMetamodel/localEntites"
+            class="CommonFreightTransportMetamodel.localEntities.LocalEntitiesPackage"
+            genModel="model/commonFreightTransportMetamodel.genmodel"/>
+   </extension>
+
+   <extension point="org.eclipse.emf.ecore.generated_package">
+      <!-- @generated commonFreightTransportMetamodel -->
+      <package
+            uri="http://www.cep-model-coupling.com/commonFreightTransportMetamodel/logisticNetwork"
+            class="CommonFreightTransportMetamodel.logisticNetwork.LogisticNetworkPackage"
+            genModel="model/commonFreightTransportMetamodel.genmodel"/>
+   </extension>
+
+   <extension point="org.eclipse.emf.ecore.generated_package">
+      <!-- @generated commonFreightTransportMetamodel -->
+      <package
+            uri="http://www.cep-model-coupling.com/commonFreightTransportMetamodel/logisticSolution"
+            class="CommonFreightTransportMetamodel.logisticSolution.LogisticSolutionPackage"
+            genModel="model/commonFreightTransportMetamodel.genmodel"/>
+   </extension>
+
+   <extension point="org.eclipse.emf.ecore.generated_package">
+      <!-- @generated commonFreightTransportMetamodel -->
+      <package
+            uri="http://www.cep-model-coupling.com/commonFreightTransportMetamodel/results"
+            class="CommonFreightTransportMetamodel.results.ResultsPackage"
+            genModel="model/commonFreightTransportMetamodel.genmodel"/>
+   </extension>
+
+   <extension point="org.eclipse.emf.ecore.generated_package">
+      <!-- @generated commonFreightTransportMetamodel -->
+      <package
+            uri="http://www.cep-model-coupling.com/commonFreightTransportMetamodel/coupling"
+            class="CommonFreightTransportMetamodel.coupling.CouplingPackage"
+            genModel="model/commonFreightTransportMetamodel.genmodel"/>
+   </extension>
+</plugin>

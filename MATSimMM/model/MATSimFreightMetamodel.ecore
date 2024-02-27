@@ -1,0 +1,478 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ecore:EPackage xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore" name="MATSimFreightMetamodel" nsURI="http://www.cep-model-coupling.com/MATSimFreightMetamodel"
+    nsPrefix="MATSimFreightMetamodel">
+  <eClassifiers xsi:type="ecore:EClass" name="DataExchangeRoot">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="carriers" upperBound="-1"
+        eType="#//freightContrib/Carrier" containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="network" lowerBound="1"
+        eType="#//matsim/core/network/Network" containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="vehicleTypes" lowerBound="1"
+        eType="#//matsim/vehicles/VehicleTypes" containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="population" lowerBound="1"
+        eType="#//matsim/households/Population" containment="true"/>
+  </eClassifiers>
+  <eSubpackages name="freightContrib" nsURI="http://www.cep-model-coupling.com/MATSimFreightMetamodel/freightContrib"
+      nsPrefix="freightContrib">
+    <eClassifiers xsi:type="ecore:EClass" name="Carrier" eSuperTypes="#//base/Entity">
+      <eStructuralFeatures xsi:type="ecore:EReference" name="plan" eType="#//freightContrib/CarrierPlan"
+          containment="true"/>
+      <eStructuralFeatures xsi:type="ecore:EReference" name="services" upperBound="-1"
+          eType="#//freightContrib/CarrierService" containment="true"/>
+      <eStructuralFeatures xsi:type="ecore:EReference" name="shipments" upperBound="-1"
+          eType="#//freightContrib/CarrierShipment" containment="true"/>
+      <eStructuralFeatures xsi:type="ecore:EReference" name="carrierCapabilities"
+          lowerBound="1" eType="#//freightContrib/CarrierCapabilities" containment="true"/>
+    </eClassifiers>
+    <eClassifiers xsi:type="ecore:EClass" name="CarrierCapabilities">
+      <eStructuralFeatures xsi:type="ecore:EReference" name="carrierVehicles" upperBound="-1"
+          eType="#//freightContrib/CarrierVehicle" containment="true"/>
+      <eStructuralFeatures xsi:type="ecore:EReference" name="vehicleTypes" upperBound="-1"
+          eType="#//matsim/vehicles/VehicleType"/>
+      <eStructuralFeatures xsi:type="ecore:EAttribute" name="fleetSize" lowerBound="1"
+          eType="#//freightContrib/FleetSize"/>
+    </eClassifiers>
+    <eClassifiers xsi:type="ecore:EClass" name="CarrierPlan">
+      <eStructuralFeatures xsi:type="ecore:EReference" name="scheduledTours" upperBound="-1"
+          eType="#//freightContrib/ScheduledTour" containment="true"/>
+      <eStructuralFeatures xsi:type="ecore:EAttribute" name="score" eType="ecore:EDataType http://www.eclipse.org/emf/2003/XMLType#//Double"/>
+    </eClassifiers>
+    <eClassifiers xsi:type="ecore:EClass" name="CarrierContainer">
+      <eStructuralFeatures xsi:type="ecore:EReference" name="carriers" upperBound="-1"
+          eType="#//freightContrib/Carrier" containment="true"/>
+    </eClassifiers>
+    <eClassifiers xsi:type="ecore:EClass" name="CarrierService" eSuperTypes="#//base/Entity">
+      <eStructuralFeatures xsi:type="ecore:EAttribute" name="name" lowerBound="1"
+          eType="ecore:EDataType http://www.eclipse.org/emf/2003/XMLType#//String"/>
+      <eStructuralFeatures xsi:type="ecore:EAttribute" name="serviceDuration" lowerBound="1"
+          eType="ecore:EDataType http://www.eclipse.org/emf/2003/XMLType#//Double"/>
+      <eStructuralFeatures xsi:type="ecore:EReference" name="timeWindow" lowerBound="1"
+          eType="#//freightContrib/TimeWindow" containment="true"/>
+      <eStructuralFeatures xsi:type="ecore:EAttribute" name="capacityDemand" lowerBound="1"
+          eType="ecore:EDataType http://www.eclipse.org/emf/2003/XMLType#//Int"/>
+      <eStructuralFeatures xsi:type="ecore:EReference" name="location" lowerBound="1"
+          eType="#//matsim/core/network/Link"/>
+    </eClassifiers>
+    <eClassifiers xsi:type="ecore:EClass" name="CarrierShipment" eSuperTypes="#//base/Entity">
+      <eStructuralFeatures xsi:type="ecore:EAttribute" name="size" lowerBound="1"
+          eType="ecore:EDataType http://www.eclipse.org/emf/2003/XMLType#//Int"/>
+      <eStructuralFeatures xsi:type="ecore:EReference" name="pickupTimeWindow" lowerBound="1"
+          eType="#//freightContrib/TimeWindow" containment="true"/>
+      <eStructuralFeatures xsi:type="ecore:EReference" name="deliveryTimeWindow" lowerBound="1"
+          eType="#//freightContrib/TimeWindow" containment="true"/>
+      <eStructuralFeatures xsi:type="ecore:EAttribute" name="pickupServiceTime" lowerBound="1"
+          eType="ecore:EDataType http://www.eclipse.org/emf/2003/XMLType#//Double"/>
+      <eStructuralFeatures xsi:type="ecore:EAttribute" name="deliveryServiceTime"
+          lowerBound="1" eType="ecore:EDataType http://www.eclipse.org/emf/2003/XMLType#//Double"/>
+      <eStructuralFeatures xsi:type="ecore:EReference" name="from" lowerBound="1"
+          eType="#//matsim/core/network/Link"/>
+      <eStructuralFeatures xsi:type="ecore:EReference" name="to" lowerBound="1" eType="#//matsim/core/network/Link"/>
+    </eClassifiers>
+    <eClassifiers xsi:type="ecore:EClass" name="ScheduledTour">
+      <eStructuralFeatures xsi:type="ecore:EAttribute" name="departureTime" lowerBound="1"
+          eType="ecore:EDataType http://www.eclipse.org/emf/2003/XMLType#//Double"/>
+      <eStructuralFeatures xsi:type="ecore:EReference" name="vehicle" lowerBound="1"
+          eType="#//freightContrib/CarrierVehicle"/>
+      <eStructuralFeatures xsi:type="ecore:EReference" name="tour" lowerBound="1"
+          eType="#//freightContrib/tour/Tour" containment="true"/>
+    </eClassifiers>
+    <eClassifiers xsi:type="ecore:EClass" name="TimeWindow">
+      <eStructuralFeatures xsi:type="ecore:EAttribute" name="start" lowerBound="1"
+          eType="ecore:EDataType http://www.eclipse.org/emf/2003/XMLType#//Double"/>
+      <eStructuralFeatures xsi:type="ecore:EAttribute" name="end" lowerBound="1" eType="ecore:EDataType http://www.eclipse.org/emf/2003/XMLType#//Double"/>
+    </eClassifiers>
+    <eClassifiers xsi:type="ecore:EClass" name="CarrierVehicle" eSuperTypes="#//matsim/vehicles/Vehicle">
+      <eStructuralFeatures xsi:type="ecore:EAttribute" name="earliestStartTime" lowerBound="1"
+          eType="ecore:EDataType http://www.eclipse.org/emf/2003/XMLType#//Double"/>
+      <eStructuralFeatures xsi:type="ecore:EAttribute" name="latestEndTime" lowerBound="1"
+          eType="ecore:EDataType http://www.eclipse.org/emf/2003/XMLType#//Double"/>
+      <eStructuralFeatures xsi:type="ecore:EReference" name="location" lowerBound="1"
+          eType="#//matsim/core/network/Link"/>
+    </eClassifiers>
+    <eClassifiers xsi:type="ecore:EEnum" name="FleetSize">
+      <eLiterals name="INFINITE"/>
+      <eLiterals name="FINITE" value="1"/>
+    </eClassifiers>
+    <eSubpackages name="tour" nsURI="http://www.cep-model-coupling.com/MATSimFreightMetamodel/freightContrib/tour"
+        nsPrefix="tour">
+      <eClassifiers xsi:type="ecore:EClass" name="Tour" eSuperTypes="#//base/Entity">
+        <eStructuralFeatures xsi:type="ecore:EReference" name="tourElements" lowerBound="3"
+            upperBound="-1" eType="#//freightContrib/tour/TourElement" containment="true"/>
+        <eStructuralFeatures xsi:type="ecore:EReference" name="start" lowerBound="1"
+            eType="#//freightContrib/tour/Start"/>
+        <eStructuralFeatures xsi:type="ecore:EReference" name="end" lowerBound="1"
+            eType="#//freightContrib/tour/End"/>
+      </eClassifiers>
+      <eClassifiers xsi:type="ecore:EClass" name="TourElement" abstract="true"/>
+      <eClassifiers xsi:type="ecore:EClass" name="Leg" eSuperTypes="#//freightContrib/tour/TourElement">
+        <eStructuralFeatures xsi:type="ecore:EAttribute" name="expectedTransportTime"
+            lowerBound="1" eType="ecore:EDataType http://www.eclipse.org/emf/2003/XMLType#//Double"/>
+        <eStructuralFeatures xsi:type="ecore:EAttribute" name="expectedDepartureTime"
+            lowerBound="1" eType="ecore:EDataType http://www.eclipse.org/emf/2003/XMLType#//Double">
+          <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+            <details key="documentation" value="expected?"/>
+          </eAnnotations>
+        </eStructuralFeatures>
+      </eClassifiers>
+      <eClassifiers xsi:type="ecore:EClass" name="TourActivity" abstract="true" eSuperTypes="#//freightContrib/tour/TourElement"/>
+      <eClassifiers xsi:type="ecore:EClass" name="ServiceActivity" eSuperTypes="#//freightContrib/tour/TourActivity">
+        <eStructuralFeatures xsi:type="ecore:EReference" name="service" lowerBound="1"
+            eType="#//freightContrib/CarrierService"/>
+        <eStructuralFeatures xsi:type="ecore:EAttribute" name="arrivalTime" lowerBound="1"
+            eType="ecore:EDataType http://www.eclipse.org/emf/2003/XMLType#//Double"/>
+      </eClassifiers>
+      <eClassifiers xsi:type="ecore:EClass" name="Start" eSuperTypes="#//freightContrib/tour/TourActivity">
+        <eStructuralFeatures xsi:type="ecore:EReference" name="timeWindow" lowerBound="1"
+            eType="#//freightContrib/TimeWindow" containment="true"/>
+        <eStructuralFeatures xsi:type="ecore:EReference" name="location" lowerBound="1"
+            eType="#//matsim/core/network/Link" containment="true"/>
+      </eClassifiers>
+      <eClassifiers xsi:type="ecore:EClass" name="End" eSuperTypes="#//freightContrib/tour/TourActivity">
+        <eStructuralFeatures xsi:type="ecore:EReference" name="timeWindow" lowerBound="1"
+            eType="#//freightContrib/TimeWindow" containment="true"/>
+        <eStructuralFeatures xsi:type="ecore:EAttribute" name="expectedArrivalTime"
+            lowerBound="1" eType="ecore:EDataType http://www.eclipse.org/emf/2003/XMLType#//Double">
+          <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+            <details key="documentation" value="expected?&#xA;"/>
+          </eAnnotations>
+        </eStructuralFeatures>
+        <eStructuralFeatures xsi:type="ecore:EReference" name="location" lowerBound="1"
+            eType="#//matsim/core/network/Link" containment="true"/>
+      </eClassifiers>
+      <eClassifiers xsi:type="ecore:EClass" name="ShipmentBasedActivity" abstract="true"
+          eSuperTypes="#//freightContrib/tour/TourActivity">
+        <eStructuralFeatures xsi:type="ecore:EReference" name="shipment" lowerBound="1"
+            eType="#//freightContrib/CarrierShipment"/>
+        <eStructuralFeatures xsi:type="ecore:EAttribute" name="expectedArrivalTime"
+            lowerBound="1" eType="ecore:EDataType http://www.eclipse.org/emf/2003/XMLType#//Double"/>
+      </eClassifiers>
+      <eClassifiers xsi:type="ecore:EClass" name="Pickup" eSuperTypes="#//freightContrib/tour/ShipmentBasedActivity"/>
+      <eClassifiers xsi:type="ecore:EClass" name="Delivery" eSuperTypes="#//freightContrib/tour/ShipmentBasedActivity"/>
+    </eSubpackages>
+    <eSubpackages name="events" nsURI="http://www.cep-model-coupling.com/MATSimFreightMetamodel/freightContrib/events"
+        nsPrefix="events">
+      <eClassifiers xsi:type="ecore:EClass" name="CarrierEvent" abstract="true" eSuperTypes="#//matsim/core/Event">
+        <eStructuralFeatures xsi:type="ecore:EReference" name="carrier" lowerBound="1"
+            eType="#//freightContrib/Carrier"/>
+        <eStructuralFeatures xsi:type="ecore:EReference" name="link" lowerBound="1"
+            eType="#//matsim/core/network/Link"/>
+        <eStructuralFeatures xsi:type="ecore:EReference" name="carriervehicle" lowerBound="1"
+            eType="#//freightContrib/CarrierVehicle"/>
+      </eClassifiers>
+      <eClassifiers xsi:type="ecore:EClass" name="CarrierShipmentDeliveryStartEvent"
+          eSuperTypes="#//freightContrib/events/CarrierEvent">
+        <eStructuralFeatures xsi:type="ecore:EReference" name="carrierShipment" lowerBound="1"
+            eType="#//freightContrib/CarrierShipment"/>
+        <eStructuralFeatures xsi:type="ecore:EAttribute" name="deliveryDuration" lowerBound="1"
+            eType="ecore:EDataType http://www.eclipse.org/emf/2003/XMLType#//Double"/>
+        <eStructuralFeatures xsi:type="ecore:EAttribute" name="capacityDemand" lowerBound="1"
+            eType="ecore:EDataType http://www.eclipse.org/emf/2003/XMLType#//Int"/>
+      </eClassifiers>
+      <eClassifiers xsi:type="ecore:EClass" name="CarrierShipmentDeliveryEndEvent"
+          eSuperTypes="#//freightContrib/events/CarrierEvent">
+        <eStructuralFeatures xsi:type="ecore:EReference" name="carrierShipment" lowerBound="1"
+            eType="#//freightContrib/CarrierShipment"/>
+        <eStructuralFeatures xsi:type="ecore:EAttribute" name="deliveryDuration" lowerBound="1"
+            eType="ecore:EDataType http://www.eclipse.org/emf/2003/XMLType#//Double"/>
+        <eStructuralFeatures xsi:type="ecore:EAttribute" name="capacityDemand" lowerBound="1"
+            eType="ecore:EDataType http://www.eclipse.org/emf/2003/XMLType#//Int"/>
+      </eClassifiers>
+      <eClassifiers xsi:type="ecore:EClass" name="CarrierServieStartEvent" eSuperTypes="#//freightContrib/events/CarrierEvent">
+        <eStructuralFeatures xsi:type="ecore:EReference" name="carrierService" lowerBound="1"
+            eType="#//freightContrib/CarrierService"/>
+        <eStructuralFeatures xsi:type="ecore:EAttribute" name="serviceDuration" lowerBound="1"
+            eType="ecore:EDataType http://www.eclipse.org/emf/2003/XMLType#//Double"/>
+        <eStructuralFeatures xsi:type="ecore:EAttribute" name="capacityDemand" lowerBound="1"
+            eType="ecore:EDataType http://www.eclipse.org/emf/2003/XMLType#//Int"/>
+      </eClassifiers>
+      <eClassifiers xsi:type="ecore:EClass" name="CarrierServiceEndEvent" eSuperTypes="#//freightContrib/events/CarrierEvent">
+        <eStructuralFeatures xsi:type="ecore:EReference" name="carrierService" lowerBound="1"
+            eType="#//freightContrib/CarrierService"/>
+        <eStructuralFeatures xsi:type="ecore:EAttribute" name="capacityDemand" lowerBound="1"
+            eType="ecore:EDataType http://www.eclipse.org/emf/2003/XMLType#//Int"/>
+        <eStructuralFeatures xsi:type="ecore:EAttribute" name="serviceDuration" lowerBound="1"
+            eType="ecore:EDataType http://www.eclipse.org/emf/2003/XMLType#//Double"/>
+      </eClassifiers>
+      <eClassifiers xsi:type="ecore:EClass" name="CarrierTourStartEvent" eSuperTypes="#//freightContrib/events/CarrierEvent">
+        <eStructuralFeatures xsi:type="ecore:EReference" name="tour" lowerBound="1"
+            eType="#//freightContrib/tour/Tour"/>
+      </eClassifiers>
+      <eClassifiers xsi:type="ecore:EClass" name="CarrierTourEndEvent" eSuperTypes="#//freightContrib/events/CarrierEvent">
+        <eStructuralFeatures xsi:type="ecore:EReference" name="tour" lowerBound="1"
+            eType="#//freightContrib/tour/Tour"/>
+      </eClassifiers>
+      <eClassifiers xsi:type="ecore:EClass" name="CarrierShipmentPickupStartEvent"
+          eSuperTypes="#//freightContrib/events/CarrierEvent">
+        <eStructuralFeatures xsi:type="ecore:EAttribute" name="pickupDuration" lowerBound="1"
+            eType="ecore:EDataType http://www.eclipse.org/emf/2003/XMLType#//Double"/>
+        <eStructuralFeatures xsi:type="ecore:EAttribute" name="capacityDemand" lowerBound="1"
+            eType="ecore:EDataType http://www.eclipse.org/emf/2003/XMLType#//Int"/>
+        <eStructuralFeatures xsi:type="ecore:EReference" name="carrierShipment" lowerBound="1"
+            eType="#//freightContrib/CarrierShipment"/>
+      </eClassifiers>
+      <eClassifiers xsi:type="ecore:EClass" name="CarrierShipmentPickupEndEvent" eSuperTypes="#//freightContrib/events/CarrierEvent">
+        <eStructuralFeatures xsi:type="ecore:EAttribute" name="capacityDemand" lowerBound="1"
+            eType="ecore:EDataType http://www.eclipse.org/emf/2003/XMLType#//Int"/>
+        <eStructuralFeatures xsi:type="ecore:EAttribute" name="pickupDuration" lowerBound="1"
+            eType="ecore:EDataType http://www.eclipse.org/emf/2003/XMLType#//Double"/>
+        <eStructuralFeatures xsi:type="ecore:EReference" name="carrierShipment" lowerBound="1"
+            eType="#//freightContrib/CarrierShipment"/>
+      </eClassifiers>
+    </eSubpackages>
+  </eSubpackages>
+  <eSubpackages name="base" nsURI="http://www.cep-model-coupling.com/MATSimFreightMetamodel/base"
+      nsPrefix="base">
+    <eClassifiers xsi:type="ecore:EClass" name="Entity" abstract="true">
+      <eStructuralFeatures xsi:type="ecore:EAttribute" name="id" lowerBound="1" eType="ecore:EDataType http://www.eclipse.org/emf/2003/XMLType#//String"/>
+    </eClassifiers>
+  </eSubpackages>
+  <eSubpackages name="matsim" nsURI="http://www.cep-model-coupling.com/MATSimFreightMetamodel/matsim"
+      nsPrefix="matsim">
+    <eClassifiers xsi:type="ecore:EEnum" name="TransportMode">
+      <eLiterals name="car"/>
+      <eLiterals name="ride" value="1"/>
+      <eLiterals name="bike" value="2"/>
+      <eLiterals name="motorcycle" value="3"/>
+      <eLiterals name="truck" value="4"/>
+      <eLiterals name="pt" value="5"/>
+      <eLiterals name="drt" value="6"/>
+      <eLiterals name="taxi" value="7"/>
+      <eLiterals name="walk" value="8"/>
+      <eLiterals name="transit_walk" value="9"/>
+      <eLiterals name="train" value="10"/>
+      <eLiterals name="ship" value="11"/>
+      <eLiterals name="airplane" value="12"/>
+      <eLiterals name="non_network_walk" value="13"/>
+      <eLiterals name="other" value="14"/>
+    </eClassifiers>
+    <eSubpackages name="vehicles" nsURI="http://www.cep-model-coupling.com/MATSimFreightMetamodel/matsim/vehicles"
+        nsPrefix="vehicles">
+      <eClassifiers xsi:type="ecore:EClass" name="VehicleType" eSuperTypes="#//base/Entity">
+        <eStructuralFeatures xsi:type="ecore:EAttribute" name="width" lowerBound="1"
+            eType="ecore:EDataType http://www.eclipse.org/emf/2003/XMLType#//Double"
+            defaultValueLiteral="1"/>
+        <eStructuralFeatures xsi:type="ecore:EAttribute" name="maxVelocity" lowerBound="1"
+            eType="ecore:EDataType http://www.eclipse.org/emf/2003/XMLType#//Double"
+            defaultValueLiteral="9999"/>
+        <eStructuralFeatures xsi:type="ecore:EAttribute" name="length" lowerBound="1"
+            eType="ecore:EDataType http://www.eclipse.org/emf/2003/XMLType#//Double"
+            defaultValueLiteral="7.5"/>
+        <eStructuralFeatures xsi:type="ecore:EAttribute" name="pcuEquivalents" lowerBound="1"
+            eType="ecore:EDataType http://www.eclipse.org/emf/2003/XMLType#//Double"
+            defaultValueLiteral="1.0"/>
+        <eStructuralFeatures xsi:type="ecore:EAttribute" name="flowEfficiencyFactor"
+            lowerBound="1" eType="ecore:EDataType http://www.eclipse.org/emf/2003/XMLType#//Double"
+            defaultValueLiteral="1.0"/>
+        <eStructuralFeatures xsi:type="ecore:EAttribute" name="description" lowerBound="1"
+            eType="ecore:EDataType http://www.eclipse.org/emf/2003/XMLType#//String"/>
+        <eStructuralFeatures xsi:type="ecore:EAttribute" name="networkMode" lowerBound="1"
+            eType="#//matsim/TransportMode"/>
+        <eStructuralFeatures xsi:type="ecore:EReference" name="capacity" lowerBound="1"
+            eType="#//matsim/vehicles/VehicleCapacity" containment="true"/>
+      </eClassifiers>
+      <eClassifiers xsi:type="ecore:EClass" name="VehicleCapacity">
+        <eStructuralFeatures xsi:type="ecore:EAttribute" name="seats" lowerBound="1"
+            eType="ecore:EDataType http://www.eclipse.org/emf/2003/XMLType#//Int"
+            defaultValueLiteral="0"/>
+        <eStructuralFeatures xsi:type="ecore:EAttribute" name="standingRoom" lowerBound="1"
+            eType="ecore:EDataType http://www.eclipse.org/emf/2003/XMLType#//Int"
+            defaultValueLiteral="0"/>
+        <eStructuralFeatures xsi:type="ecore:EAttribute" name="volumeInCubicMeters"
+            lowerBound="1" eType="ecore:EDataType http://www.eclipse.org/emf/2003/XMLType#//Double"/>
+        <eStructuralFeatures xsi:type="ecore:EAttribute" name="weightInTons" lowerBound="1"
+            eType="ecore:EDataType http://www.eclipse.org/emf/2003/XMLType#//Double"/>
+        <eStructuralFeatures xsi:type="ecore:EAttribute" name="other" lowerBound="1"
+            eType="ecore:EDataType http://www.eclipse.org/emf/2003/XMLType#//Double"/>
+      </eClassifiers>
+      <eClassifiers xsi:type="ecore:EClass" name="Vehicle" abstract="true" eSuperTypes="#//base/Entity">
+        <eStructuralFeatures xsi:type="ecore:EReference" name="type" lowerBound="1"
+            eType="#//matsim/vehicles/VehicleType">
+          <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+            <details key="documentation" value="Containment&#xA;"/>
+          </eAnnotations>
+        </eStructuralFeatures>
+      </eClassifiers>
+      <eClassifiers xsi:type="ecore:EClass" name="VehicleTypes">
+        <eStructuralFeatures xsi:type="ecore:EReference" name="vehicleTypes" upperBound="-1"
+            eType="#//matsim/vehicles/VehicleType" containment="true"/>
+        <eStructuralFeatures xsi:type="ecore:EReference" name="vehicles" upperBound="-1"
+            eType="#//matsim/vehicles/Vehicle">
+          <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+            <details key="documentation" value="should be person vehicles"/>
+          </eAnnotations>
+        </eStructuralFeatures>
+      </eClassifiers>
+      <eClassifiers xsi:type="ecore:EClass" name="PersonVehicle" eSuperTypes="#//matsim/vehicles/Vehicle"/>
+    </eSubpackages>
+    <eSubpackages name="core" nsURI="http://www.cep-model-coupling.com/MATSimFreightMetamodel/matsim/core"
+        nsPrefix="core">
+      <eClassifiers xsi:type="ecore:EClass" name="Coord">
+        <eStructuralFeatures xsi:type="ecore:EAttribute" name="x" lowerBound="1" eType="ecore:EDataType http://www.eclipse.org/emf/2003/XMLType#//Double"
+            defaultValueLiteral="0"/>
+        <eStructuralFeatures xsi:type="ecore:EAttribute" name="y" lowerBound="1" eType="ecore:EDataType http://www.eclipse.org/emf/2003/XMLType#//Double"
+            defaultValueLiteral="0"/>
+        <eStructuralFeatures xsi:type="ecore:EAttribute" name="z" eType="ecore:EDataType http://www.eclipse.org/emf/2003/XMLType#//Double"
+            defaultValueLiteral="0"/>
+      </eClassifiers>
+      <eClassifiers xsi:type="ecore:EClass" name="Event" abstract="true">
+        <eStructuralFeatures xsi:type="ecore:EAttribute" name="time" lowerBound="1"
+            eType="ecore:EDataType http://www.eclipse.org/emf/2003/XMLType#//Double"/>
+      </eClassifiers>
+      <eSubpackages name="network" nsURI="http://www.cep-model-coupling.com/MATSimFreightMetamodel/matsim/core/network"
+          nsPrefix="network">
+        <eClassifiers xsi:type="ecore:EClass" name="Network">
+          <eStructuralFeatures xsi:type="ecore:EReference" name="nodes" upperBound="-1"
+              eType="#//matsim/core/network/Node" containment="true"/>
+          <eStructuralFeatures xsi:type="ecore:EReference" name="links" upperBound="-1"
+              eType="#//matsim/core/network/Link" containment="true"/>
+          <eStructuralFeatures xsi:type="ecore:EAttribute" name="capacityPeriod" lowerBound="1"
+              eType="ecore:EDataType http://www.eclipse.org/emf/2003/XMLType#//Double"
+              defaultValueLiteral="3600"/>
+          <eStructuralFeatures xsi:type="ecore:EAttribute" name="effectiveCellSize"
+              lowerBound="1" eType="ecore:EDataType http://www.eclipse.org/emf/2003/XMLType#//Double"
+              defaultValueLiteral="7.5"/>
+          <eStructuralFeatures xsi:type="ecore:EAttribute" name="effectiveLaneWidht"
+              lowerBound="1" eType="ecore:EDataType http://www.eclipse.org/emf/2003/XMLType#//Double"
+              defaultValueLiteral="3.75"/>
+        </eClassifiers>
+        <eClassifiers xsi:type="ecore:EClass" name="Node" eSuperTypes="#//base/Entity">
+          <eStructuralFeatures xsi:type="ecore:EReference" name="coord" lowerBound="1"
+              eType="#//matsim/core/Coord" containment="true"/>
+        </eClassifiers>
+        <eClassifiers xsi:type="ecore:EClass" name="Link" eSuperTypes="#//base/Entity">
+          <eStructuralFeatures xsi:type="ecore:EReference" name="from" lowerBound="1"
+              eType="#//matsim/core/network/Node"/>
+          <eStructuralFeatures xsi:type="ecore:EReference" name="to" lowerBound="1"
+              eType="#//matsim/core/network/Node"/>
+          <eStructuralFeatures xsi:type="ecore:EAttribute" name="length" lowerBound="1"
+              eType="ecore:EDataType http://www.eclipse.org/emf/2003/XMLType#//Double"
+              defaultValueLiteral="0"/>
+          <eStructuralFeatures xsi:type="ecore:EAttribute" name="freespeed" lowerBound="1"
+              eType="ecore:EDataType http://www.eclipse.org/emf/2003/XMLType#//Double"
+              defaultValueLiteral="0"/>
+          <eStructuralFeatures xsi:type="ecore:EAttribute" name="capacity" lowerBound="1"
+              eType="ecore:EDataType http://www.eclipse.org/emf/2003/XMLType#//Double"
+              defaultValueLiteral="0"/>
+          <eStructuralFeatures xsi:type="ecore:EAttribute" name="nofLanes" lowerBound="1"
+              eType="ecore:EDataType http://www.eclipse.org/emf/2003/XMLType#//Double"
+              defaultValueLiteral="0"/>
+          <eStructuralFeatures xsi:type="ecore:EAttribute" name="allowedModes" upperBound="-1"
+              eType="#//matsim/TransportMode"/>
+        </eClassifiers>
+      </eSubpackages>
+      <eSubpackages name="population" nsURI="http://www.cep-model-coupling.com/MATSimFreightMetamodel/matsim/core/population"
+          nsPrefix="population">
+        <eClassifiers xsi:type="ecore:EClass" name="Person" eSuperTypes="#//base/Entity"/>
+      </eSubpackages>
+    </eSubpackages>
+    <eSubpackages name="households" nsURI="http://www.cep-model-coupling.com/MATSimFreightMetamodel/matsim/households"
+        nsPrefix="households">
+      <eClassifiers xsi:type="ecore:EClass" name="Household" eSuperTypes="#//base/Entity">
+        <eStructuralFeatures xsi:type="ecore:EReference" name="members" upperBound="-1"
+            eType="#//matsim/core/population/Person" containment="true"/>
+        <eStructuralFeatures xsi:type="ecore:EReference" name="vehicles" upperBound="-1"
+            eType="#//matsim/vehicles/Vehicle" containment="true">
+          <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+            <details key="documentation" value="containment&#xA;"/>
+          </eAnnotations>
+        </eStructuralFeatures>
+        <eStructuralFeatures xsi:type="ecore:EReference" name="income" lowerBound="1"
+            eType="#//matsim/households/Income" containment="true"/>
+      </eClassifiers>
+      <eClassifiers xsi:type="ecore:EClass" name="Population">
+        <eStructuralFeatures xsi:type="ecore:EReference" name="households" upperBound="-1"
+            eType="#//matsim/households/Household" containment="true"/>
+      </eClassifiers>
+      <eClassifiers xsi:type="ecore:EClass" name="Income">
+        <eStructuralFeatures xsi:type="ecore:EAttribute" name="period" lowerBound="1"
+            eType="#//matsim/households/IncomePeriod"/>
+        <eStructuralFeatures xsi:type="ecore:EAttribute" name="income" lowerBound="1"
+            eType="ecore:EDataType http://www.eclipse.org/emf/2003/XMLType#//Double"/>
+        <eStructuralFeatures xsi:type="ecore:EAttribute" name="currency" lowerBound="1"
+            eType="#//matsim/households/Currency"/>
+      </eClassifiers>
+      <eClassifiers xsi:type="ecore:EEnum" name="IncomePeriod">
+        <eLiterals name="year"/>
+        <eLiterals name="week" value="1"/>
+        <eLiterals name="month" value="2"/>
+        <eLiterals name="day" value="3"/>
+        <eLiterals name="hour" value="4"/>
+        <eLiterals name="second" value="5"/>
+      </eClassifiers>
+      <eClassifiers xsi:type="ecore:EEnum" name="Currency">
+        <eLiterals name="EUR" value="1"/>
+      </eClassifiers>
+    </eSubpackages>
+  </eSubpackages>
+  <eSubpackages name="freightReceiver" nsURI="http://www.cep-model-coupling.com/MATSimFreightMetamodel/reightReceiver"
+      nsPrefix="freightReceiver">
+    <eClassifiers xsi:type="ecore:EClass" name="Receivers">
+      <eStructuralFeatures xsi:type="ecore:EReference" name="receivers" upperBound="-1"
+          eType="#//freightReceiver/Receiver" containment="true"/>
+      <eStructuralFeatures xsi:type="ecore:EReference" name="productTypes" upperBound="-1"
+          eType="#//freightReceiver/ProductType" containment="true"/>
+      <eStructuralFeatures xsi:type="ecore:EAttribute" name="desc" lowerBound="1"
+          eType="ecore:EDataType http://www.eclipse.org/emf/2003/XMLType#//String"/>
+    </eClassifiers>
+    <eClassifiers xsi:type="ecore:EClass" name="Receiver" eSuperTypes="#//base/Entity">
+      <eStructuralFeatures xsi:type="ecore:EReference" name="plans" upperBound="-1"
+          eType="#//freightReceiver/ReceiverPlan" containment="true"/>
+      <eStructuralFeatures xsi:type="ecore:EReference" name="products" upperBound="-1"
+          eType="#//freightReceiver/ReceiverProduct" containment="true"/>
+      <eStructuralFeatures xsi:type="ecore:EReference" name="selectedPlan" eType="#//freightReceiver/ReceiverPlan"/>
+      <eStructuralFeatures xsi:type="ecore:EAttribute" name="moneyBalance" lowerBound="1"
+          eType="ecore:EDataType http://www.eclipse.org/emf/2003/XMLType#//Double"/>
+      <eStructuralFeatures xsi:type="ecore:EReference" name="location" lowerBound="1"
+          eType="#//matsim/core/network/Link"/>
+    </eClassifiers>
+    <eClassifiers xsi:type="ecore:EClass" name="ProductType" eSuperTypes="#//base/Entity">
+      <eStructuralFeatures xsi:type="ecore:EAttribute" name="desc" lowerBound="1"
+          eType="ecore:EDataType http://www.eclipse.org/emf/2003/XMLType#//String"/>
+      <eStructuralFeatures xsi:type="ecore:EAttribute" name="reqCapacity" lowerBound="1"
+          eType="ecore:EDataType http://www.eclipse.org/emf/2003/XMLType#//Double"/>
+      <eStructuralFeatures xsi:type="ecore:EReference" name="originLink" lowerBound="1"
+          eType="#//matsim/core/network/Link"/>
+    </eClassifiers>
+    <eClassifiers xsi:type="ecore:EClass" name="ReceiverPlan">
+      <eStructuralFeatures xsi:type="ecore:EAttribute" name="score" lowerBound="1"
+          eType="ecore:EDataType http://www.eclipse.org/emf/2003/XMLType#//Double"/>
+      <eStructuralFeatures xsi:type="ecore:EReference" name="timeWindows" upperBound="-1"
+          eType="#//freightContrib/TimeWindow" containment="true"/>
+      <eStructuralFeatures xsi:type="ecore:EReference" name="orders" upperBound="-1"
+          eType="#//freightReceiver/ReceiverOrder" containment="true"/>
+    </eClassifiers>
+    <eClassifiers xsi:type="ecore:EClass" name="ReceiverProduct">
+      <eStructuralFeatures xsi:type="ecore:EReference" name="productType" lowerBound="1"
+          eType="#//freightReceiver/ProductType"/>
+      <eStructuralFeatures xsi:type="ecore:EAttribute" name="stockOnHand" lowerBound="1"
+          eType="ecore:EDataType http://www.eclipse.org/emf/2003/XMLType#//Double"/>
+      <eStructuralFeatures xsi:type="ecore:EReference" name="policy" lowerBound="1"
+          eType="#//freightReceiver/ReorderPolicy"/>
+    </eClassifiers>
+    <eClassifiers xsi:type="ecore:EClass" name="ReorderPolicy" abstract="true" interface="true">
+      <eOperations name="getPolicyName" eType="ecore:EDataType http://www.eclipse.org/emf/2003/XMLType#//String"/>
+      <eOperations name="calculateOrderQuantity" eType="ecore:EDataType http://www.eclipse.org/emf/2003/XMLType#//Double"/>
+    </eClassifiers>
+    <eClassifiers xsi:type="ecore:EClass" name="ReceiverOrder">
+      <eStructuralFeatures xsi:type="ecore:EAttribute" name="cost" lowerBound="1"
+          eType="ecore:EDataType http://www.eclipse.org/emf/2003/XMLType#//Double"/>
+      <eStructuralFeatures xsi:type="ecore:EReference" name="carrier" lowerBound="1"
+          eType="#//freightContrib/Carrier"/>
+      <eStructuralFeatures xsi:type="ecore:EReference" name="orders" upperBound="-1"
+          eType="#//freightReceiver/Order" containment="true"/>
+    </eClassifiers>
+    <eClassifiers xsi:type="ecore:EClass" name="Order" eSuperTypes="#//base/Entity">
+      <eStructuralFeatures xsi:type="ecore:EReference" name="receiverProduct" lowerBound="1"
+          eType="#//freightReceiver/ReceiverProduct"/>
+      <eStructuralFeatures xsi:type="ecore:EAttribute" name="orderQuantity" lowerBound="1"
+          eType="ecore:EDataType http://www.eclipse.org/emf/2003/XMLType#//Double"/>
+      <eStructuralFeatures xsi:type="ecore:EAttribute" name="dailyOrderQuantity" lowerBound="1"
+          eType="ecore:EDataType http://www.eclipse.org/emf/2003/XMLType#//Double"/>
+      <eStructuralFeatures xsi:type="ecore:EAttribute" name="serviceTime" lowerBound="1"
+          eType="ecore:EDataType http://www.eclipse.org/emf/2003/XMLType#//Double"/>
+      <eStructuralFeatures xsi:type="ecore:EAttribute" name="numberOfWeekleyDeliveries"
+          lowerBound="1" eType="ecore:EDataType http://www.eclipse.org/emf/2003/XMLType#//Double"
+          defaultValueLiteral="5"/>
+    </eClassifiers>
+  </eSubpackages>
+</ecore:EPackage>

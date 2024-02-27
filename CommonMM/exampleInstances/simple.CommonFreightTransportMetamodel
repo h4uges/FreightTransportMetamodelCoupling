@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<commonFreightTransportMetamodel:CommonFreightTransportMetamodelRoot xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:commonFreightTransportMetamodel="http://www.cep-model-coupling.com/commonFreightTransportMetamodel" xmlns:network="http://www.cep-model-coupling.com/commonFreightTransportMetamodel/network" xmlns:utils="http://www.cep-model-coupling.com/commonFreightTransportMetamodel/utils">
+  <network>
+    <nodes id="node_1">
+      <coordinate/>
+    </nodes>
+  </network>
+  <population/>
+  <logisticNetwork>
+    <CEPSPs id="cepsp_1" name="DummyCEPSP">
+      <logisticHubs id="hub_1">
+        <storageCapacity xsi:type="utils:FiniteWeightDimension" weightKg="8000.0"/>
+        <location id="loc_hub_1">
+          <coordinate x="0.1"/>
+          <networkAccess xsi:type="network:NodeBasedNetworkAccess" node="//@network/@nodes.0"/>
+        </location>
+        <operationHours xsi:type="utils:SingleDayTimeWindow"/>
+        <acceptedVehicleTypes>DELIVERY_VEHICLE</acceptedVehicleTypes>
+        <minimumTranshipmentTime minutes="30"/>
+      </logisticHubs>
+    </CEPSPs>
+  </logisticNetwork>
+  <demand/>
+</commonFreightTransportMetamodel:CommonFreightTransportMetamodelRoot>

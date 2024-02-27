@@ -1,0 +1,526 @@
+modeltype COMMON_MM uses CommonFreightTransportMetamodel('http://www.cep-model-coupling.com/commonFreightTransportMetamodel');
+modeltype MATSIM uses MATSimFreightMetamodel('http://www.cep-model-coupling.com/MATSimFreightMetamodel');
+
+transformation common2matsim(in commonModel: COMMON_MM, out matsimModel : MATSIM);
+
+property doubleMaxValue = 1.0E308;
+property globalMatSimVehicleTypes : Set(MATSIM::matsim::vehicles::VehicleType) = Set{};
+
+main() {
+	var commonRoot := commonModel.objectsOfType(COMMON_MM::coupling::CommonFreightTransportMetamodelRoot) -> asSequence() -> first();
+	
+	// network
+	var matSimNetwork := commonRoot.network -> map network2network() -> asSequence() -> first();
+	
+	// vehicle types
+	var allVehicles := commonRoot.logisticNetwork.CEPSPs -> collect(cepsp | cepsp.vehicleDepots -> collect(depot | depot.vehicles) -> flatten()) -> flatten();
+	var matSimVehicleTypes := createVehicleTypes(allVehicles);
+	globalMatSimVehicleTypes += matSimVehicleTypes.vehicleTypes;
+	
+	// skip: transformation of population
+	
+	// carrier
+	var demand := commonRoot.demand -> asSequence() -> first();
+	var carriers := commonRoot.logisticNetwork.CEPSPs;
+	var solution := commonRoot.logisticSolution;
+	var matSimCarriers := createCarriers(carriers, demand, solution);
+	
+	var matSimRoot := new MATSIM::DataExchangeRoot(matSimNetwork, matSimVehicleTypes, matSimCarriers);
+	
+	cleanupResult(matsimModel, matSimRoot);
+}
+
+constructor MATSIM::DataExchangeRoot::DataExchangeRoot(
+	networkElem : MATSIM::matsim::core::network::Network,
+	vehicleTypesElem : MATSIM::matsim::vehicles::VehicleTypes,
+	carrierElems: Bag(MATSIM::freightContrib::Carrier)) {
+	network := networkElem;
+	vehicleTypes := vehicleTypesElem;
+	carriers += carrierElems;
+}
+
+helper cleanupResult(model : MATSIM, matSimRoot : MATSIM::DataExchangeRoot) {
+	var toBeDeleted := model.rootObjects() -> select(e | e <> matSimRoot);
+	toBeDeleted -> forEach (e) { model.removeElement(e)};
+}
+
+// ---- network ----
+
+mapping COMMON_MM::network::Network::network2network() : MATSIM::matsim::core::network::Network {
+	//default values
+	capacityPeriod := 3600;
+	effectiveCellSize := 7.5;
+	effectiveLaneWidht := 3.75;
+	
+	nodes := self.nodes -> map node2node();
+	links := self.edges -> map edge2link();
+}
+
+mapping COMMON_MM::network::Node::node2node() : MATSIM::matsim::core::network::Node {
+	id := self.id;
+	coord := self.coordinate.map coordinate2coordinate()
+}
+
+mapping COMMON_MM::utils::Coordinate::coordinate2coordinate() : MATSIM::matsim::core::Coord {
+	x := self.x;
+	y := self.y;
+	z := 0; //default value
+}
+
+mapping COMMON_MM::network::Edge::edge2link() : MATSIM::matsim::core::network::Link {
+	id := self._from.id + "->" + self.to.id; // TODO: discuss uniqueness of Edges
+	_from := self._from.resolveone(MATSIM::matsim::core::network::Node);
+	to := self.to.resolveone(MATSIM::matsim::core::network::Node);
+	
+	length := self.length;
+	allowedModes += self.allowedVehicleTypes -> collect(x | vehicleType2TransportMode(x));
+	
+	//TODO: default values
+	freespeed;
+	capacity;
+	nofLanes;
+}
+
+// TODO: discuss, maybe add 1 : n mapping
+helper vehicleType2TransportMode(vehicleType : COMMON_MM::network::VehicleType_) : MATSIM::matsim::TransportMode {
+	switch
+	{
+		case (vehicleType = COMMON_MM::network::VehicleType_::TRUCK) {return MATSIM::matsim::TransportMode::truck};
+		case (vehicleType = COMMON_MM::network::VehicleType_::TRAM) {return MATSIM::matsim::TransportMode::pt};
+		case (vehicleType = COMMON_MM::network::VehicleType_::CAR) {return MATSIM::matsim::TransportMode::car};
+		case (vehicleType = COMMON_MM::network::VehicleType_::BIKE) {return MATSIM::matsim::TransportMode::bike};
+		case (vehicleType = COMMON_MM::network::VehicleType_::WALKING) {return MATSIM::matsim::TransportMode::walk};
+		case (vehicleType = COMMON_MM::network::VehicleType_::DELIVERY_VEHICLE) {return MATSIM::matsim::TransportMode::truck};
+		case (vehicleType = COMMON_MM::network::VehicleType_::OTHER) {return MATSIM::matsim::TransportMode::other};
+		else {return null};
+	};
+}
+
+// ---- vehicleTypes ----
+
+query COMMON_MM::coupling::CommonFreightTransportMetamodelRoot::uniqueVehiclesTypTypeAndStorageCapacity() : Set(COMMON_MM::logisticNetwork::Vehicle) {
+	var allVehicles := self.allSubobjectsOfType(COMMON_MM::logisticNetwork::Vehicle);
+	return allVehicles->iterate(e1; res: Set(COMMON_MM::logisticNetwork::Vehicle) = Set{} | 
+    	res->including(allVehicles->select(e | e.type = e1.type and e.storageCapacity = e1.storageCapacity)->asList()->first())
+	);
+}
+
+helper createVehicleTypes(vehicles : Collection(COMMON_MM::logisticNetwork::Vehicle)) : MATSIM::matsim::vehicles::VehicleTypes {
+	var notDistinctVehicleTypes := vehicles -> map vehicle2VehicleType();
+	var distinctVehicleTypes := distinctVehicleTypes(notDistinctVehicleTypes);
+	return new MATSIM::matsim::vehicles::VehicleTypes(distinctVehicleTypes);
+}
+
+constructor MATSIM::matsim::vehicles::VehicleTypes::VehicleTypes(vehicleTypes_ : Collection(MATSIM::matsim::vehicles::VehicleType)) {
+	vehicleTypes += vehicleTypes_;
+	// skip vehicleTypes.vehicles
+}
+
+helper distinctVehicleTypes(collection : Collection(MATSIM::matsim::vehicles::VehicleType)) : Collection(MATSIM::matsim::vehicles::VehicleType) {
+  var distinctVehicleTypes : OrderedSet(MATSIM::matsim::vehicles::VehicleType) = OrderedSet{};
+  var containedIds : Set(String) = Set{};
+  
+  collection -> forEach(element) {
+  	var id : String = element.id;
+    
+    if (not containedIds->includes(id)) then {
+    	distinctVehicleTypes += element;
+    	containedIds += id;
+    }
+    endif;
+  }; 
+  return distinctVehicleTypes;
+}
+
+mapping COMMON_MM::logisticNetwork::Vehicle::vehicle2VehicleType() : MATSIM::matsim::vehicles::VehicleType {
+	capacity := self.storageCapacity.map dimension2VehicleCapacity();
+	
+	// TODO: discuss
+	id := self.type.toString() + "_" + capacity.other.toString();
+	description := self.type.toString() + "_" + capacity.other.toString();
+	
+	networkMode := vehicleType2TransportMode(self.type);
+	
+	// TODO: default values
+	width := 2.5;
+	length := 3.5;
+	maxVelocity := 100;
+	pcuEquivalents := 1;
+	flowEfficiencyFactor := 1;
+}
+
+abstract mapping COMMON_MM::utils::Dimension::dimension2VehicleCapacity() : MATSIM::matsim::vehicles::VehicleCapacity
+disjuncts
+	COMMON_MM::utils::InfiniteVolumeDimension::infiniteVolume2VehicleCapacity,
+	COMMON_MM::utils::FiniteVolumeDimension::finiteVolume2VehicleCapacity,
+	COMMON_MM::utils::InfiniteWeightDimension::infiniteWeight2VehicleCapacity,
+	COMMON_MM::utils::FiniteWeightDimension::finiteWeight2VehicleCapacity,
+	COMMON_MM::utils::VolumeAndWeightBasedDimension::volumeAndWeight2VehicleCapacity
+{
+	// TODO: move code
+	volumeInCubicMeters := 0;
+	weightInTons := 0;
+	other := 0;
+	
+	// TODO: default values
+	seats := 0;
+	standingRoom := 5;
+}
+
+// TODO: case allowed?
+mapping COMMON_MM::utils::InfiniteVolumeDimension::infiniteVolume2VehicleCapacity(): MATSIM::matsim::vehicles::VehicleCapacity
+inherits COMMON_MM::utils::Dimension::dimension2VehicleCapacity
+when {self.oclIsKindOf(COMMON_MM::utils::InfiniteVolumeDimension)}{
+	volumeInCubicMeters := doubleMaxValue;
+	other := doubleMaxValue;
+}
+
+mapping COMMON_MM::utils::FiniteVolumeDimension::finiteVolume2VehicleCapacity(): MATSIM::matsim::vehicles::VehicleCapacity
+inherits COMMON_MM::utils::Dimension::dimension2VehicleCapacity
+when {self.oclIsKindOf(COMMON_MM::utils::FiniteVolumeDimension)}{
+	volumeInCubicMeters := self.volumeCubicMetre;
+	other := self.volumeCubicMetre;
+}
+
+// TODO: case allowed?
+mapping COMMON_MM::utils::InfiniteWeightDimension::infiniteWeight2VehicleCapacity(): MATSIM::matsim::vehicles::VehicleCapacity
+inherits COMMON_MM::utils::Dimension::dimension2VehicleCapacity
+when {self.oclIsKindOf(COMMON_MM::utils::InfiniteWeightDimension)}{
+	weightInTons := doubleMaxValue;
+	other := doubleMaxValue;
+}
+
+mapping COMMON_MM::utils::FiniteWeightDimension::finiteWeight2VehicleCapacity(): MATSIM::matsim::vehicles::VehicleCapacity
+inherits COMMON_MM::utils::Dimension::dimension2VehicleCapacity
+when {self.oclIsKindOf(COMMON_MM::utils::FiniteWeightDimension)}{
+	weightInTons := self.weightKg / 1000;
+	other := self.weightKg / 1000;
+}
+
+mapping COMMON_MM::utils::VolumeAndWeightBasedDimension::volumeAndWeight2VehicleCapacity(): MATSIM::matsim::vehicles::VehicleCapacity
+inherits COMMON_MM::utils::Dimension::dimension2VehicleCapacity
+when {self.oclIsKindOf(COMMON_MM::utils::VolumeAndWeightBasedDimension)} {
+	var mappedVolume := self.volumeDimension.map dimension2VehicleCapacity();
+	var mappedWeight := self.weightDimension.map dimension2VehicleCapacity();
+	
+	if(self.volumeDimension.oclIsTypeOf(COMMON_MM::utils::InfiniteVolumeDimension) and 
+		self.weightDimension.oclIsTypeOf(COMMON_MM::utils::InfiniteWeightDimension)) then {
+		volumeInCubicMeters := mappedVolume.volumeInCubicMeters;
+		weightInTons := mappedWeight.weightInTons;
+		other := new oclstdlib::Real('Double::maxValue');
+	}	
+	endif;
+	if (self.volumeDimension.oclIsTypeOf(COMMON_MM::utils::InfiniteVolumeDimension) 
+		and self.weightDimension.oclIsTypeOf(COMMON_MM::utils::FiniteWeightDimension)) then {
+		volumeInCubicMeters := mappedVolume.volumeInCubicMeters;
+		weightInTons := mappedWeight.weightInTons;
+		other := weightInTons;
+	}	
+	endif;
+	if (self.volumeDimension.oclIsTypeOf(COMMON_MM::utils::FiniteVolumeDimension) 
+		and self.weightDimension.oclIsTypeOf(COMMON_MM::utils::InfiniteWeightDimension)) then {
+		volumeInCubicMeters := mappedVolume.volumeInCubicMeters;
+		weightInTons := mappedWeight.weightInTons;
+		other := volumeInCubicMeters;
+	}	
+	endif;
+	// TODO: dominant value?
+	if (self.volumeDimension.oclIsTypeOf(COMMON_MM::utils::FiniteVolumeDimension) 
+		and self.weightDimension.oclIsTypeOf(COMMON_MM::utils::FiniteWeightDimension)) then {
+		volumeInCubicMeters := mappedVolume.volumeInCubicMeters;
+		weightInTons := mappedWeight.weightInTons;
+		other := 0;
+	}	
+	endif;
+}
+
+// ---- carrier ----
+// carrier -> demand -> solution
+
+helper createCarriers(carriers : Collection(COMMON_MM::logisticNetwork::CEPSP), demand : COMMON_MM::logisticDemand::Demand, solution : COMMON_MM::logisticSolution::LogisticSolution) : Bag(MATSIM::freightContrib::Carrier) {
+	var matSimCarriers := carriers -> map cepsp2Carrier();
+	
+	demand.shipments -> forEach(shipment) {createAndAssignShipment(shipment)};
+	solution.tours -> forEach(tour) {createAndAssignTour(tour)};
+	
+	
+	return matSimCarriers;
+}
+
+// ---- carrier.capabilites ----
+
+mapping COMMON_MM::logisticNetwork::CEPSP::cepsp2Carrier() : MATSIM::freightContrib::Carrier {
+	// skip plan, services and shipments
+	id := self.id;
+	var vehicles := self.vehicleDepots -> collect(depot | createMATSimVehiclesFromDepot(depot)) -> flatten() -> asBag();
+	carrierCapabilities := new MATSIM::freightContrib::CarrierCapabilities(vehicles);
+}
+
+helper createMATSimVehiclesFromDepot(depot: COMMON_MM::logisticNetwork::VehicleDepot) : Collection(MATSIM::freightContrib::CarrierVehicle) {
+	var depotLink := location2Link(depot.location);
+	
+	// how to handle multiple operation hours durring a single day?
+	assert (depot.operationHours -> size() = 1);
+	var consideredOperationTimeWindow := mapTimeWindow(depot.operationHours -> asSequence() -> first());
+	
+	var depotEaliestStartTime := consideredOperationTimeWindow.start;
+	var depotLatestEndTime := consideredOperationTimeWindow._end;
+	return depot.vehicles -> map vehicle2CarrierVehicle(depotLink, depotEaliestStartTime, depotLatestEndTime);
+}
+
+mapping COMMON_MM::logisticNetwork::Vehicle::vehicle2CarrierVehicle(link : MATSIM::matsim::core::network::Link, depotEarliestStartTime : Real, depotLatestEndTime : Real): MATSIM::freightContrib::CarrierVehicle {
+	id := self.id;
+	location := link;
+	var typeId := self.resolveone(MATSIM::matsim::vehicles::VehicleType).id;
+	
+	type := globalMatSimVehicleTypes -> any(vehicleType | vehicleType.id = typeId);
+	earliestStartTime := depotEarliestStartTime;
+	latestEndTime := depotLatestEndTime;
+}
+
+constructor MATSIM::freightContrib::CarrierCapabilities::CarrierCapabilities(vehicles : Bag(MATSIM::freightContrib::CarrierVehicle)) {
+	fleetSize := MATSIM::freightContrib::FleetSize::FINITE;
+	vehicleTypes += vehicles -> collect(x | x.type).oclAsSet();
+	carrierVehicles += vehicles;
+}
+
+// ---- carrier.demand ----
+
+helper createAndAssignShipment(shipment : COMMON_MM::logisticDemand::Shipment) {
+	var responsibleMATSimCarrier := shipment.responsibleCEPSP.resolveone(MATSIM::freightContrib::Carrier);
+	
+	if (isCarrierShipment(shipment)) then {
+		responsibleMATSimCarrier.shipments += shipment.map mapShipment2Shipment();
+	}
+	endif;
+	
+	if (isCarrierService(shipment)) then {
+		responsibleMATSimCarrier.services += shipment.map mapShipment2Service();
+	}
+	endif;
+}
+
+helper isCarrierShipment(shipment : COMMON_MM::logisticDemand::Shipment) : oclstdlib::Boolean {
+	return shipment.oclIsKindOf(COMMON_MM::logisticDemand::InsideToInsideShipment) or shipment.oclIsKindOf(COMMON_MM::logisticDemand::SplittedShipment);
+}
+
+helper isCarrierService(shipment : COMMON_MM::logisticDemand::Shipment) : oclstdlib::Boolean {
+	return shipment.oclIsKindOf(COMMON_MM::logisticDemand::InsideToOutsideShipment) or shipment.oclIsKindOf(COMMON_MM::logisticDemand::OutsideToInsideShipment);
+}
+
+mapping COMMON_MM::logisticDemand::Shipment::mapShipment2Shipment(): MATSIM::freightContrib::CarrierShipment
+disjuncts
+	COMMON_MM::logisticDemand::InsideToInsideShipment::insideShipment2CarrierShipment,
+	COMMON_MM::logisticDemand::SplittedShipment::splittedShipment2CarrierShipment
+when {self.oclIsKindOf(COMMON_MM::logisticDemand::InsideToInsideShipment) or self.oclIsKindOf(COMMON_MM::logisticDemand::SplittedShipment)} {	
+}
+
+mapping COMMON_MM::logisticDemand::Shipment::mapShipment2Service(): MATSIM::freightContrib::CarrierService
+disjuncts
+	COMMON_MM::logisticDemand::InsideToOutsideShipment::insideToOutside2CarrierService,
+	COMMON_MM::logisticDemand::OutsideToInsideShipment::outsideToInside2CarrierService
+when {self.oclIsKindOf(COMMON_MM::logisticDemand::InsideToOutsideShipment) or self.oclIsKindOf(COMMON_MM::logisticDemand::OutsideToInsideShipment)} {
+	
+}
+
+mapping COMMON_MM::logisticDemand::InsideToInsideShipment::insideShipment2CarrierShipment() : MATSIM::freightContrib::CarrierShipment
+inherits COMMON_MM::logisticDemand::Shipment::mapShipment2Shipment
+{
+	id := self.id;
+	size := dimension2Capacity(self.size);
+	_from := location2Link(self.origin);
+	to := location2Link(self.destination);
+	
+	pickupTimeWindow := timeStampToRightOpenTimeWindow(self.arrivalAtOrigin);
+	deliveryTimeWindow := optionalTimeWindow2TimeWindow(self.arrivalAtDestinationTimeWindow);
+	
+	// default values
+	pickupServiceTime := 60;
+	deliveryServiceTime := 60;
+	
+}
+
+mapping COMMON_MM::logisticDemand::SplittedShipment::splittedShipment2CarrierShipment() : MATSIM::freightContrib::CarrierShipment
+inherits COMMON_MM::logisticDemand::Shipment::mapShipment2Shipment
+{
+	id := self.id;
+	size := dimension2Capacity(self.size);
+	_from := location2Link(self.origin);
+	to := location2Link(self.destination);
+	
+	pickupTimeWindow := timeStampToRightOpenTimeWindow(self.arrivalAtOrigin);
+	deliveryTimeWindow := optionalTimeWindow2TimeWindow(self.arrivalAtDestinationTimeWindow);
+	
+	// default values
+	pickupServiceTime := 60;
+	deliveryServiceTime := 60;
+}
+
+mapping COMMON_MM::logisticDemand::InsideToOutsideShipment::insideToOutside2CarrierService() : MATSIM::freightContrib::CarrierService 
+inherits COMMON_MM::logisticDemand::Shipment::mapShipment2Service
+{
+	id := self.id;
+	name := self.id;
+	location := location2Link(self.origin);
+	
+	capacityDemand := dimension2Capacity(self.size);
+	
+	timeWindow := timeStampToRightOpenTimeWindow(self.arrivalAtOrigin);
+	
+	// default value
+	serviceDuration := 60;
+}
+
+mapping COMMON_MM::logisticDemand::OutsideToInsideShipment::outsideToInside2CarrierService() : MATSIM::freightContrib::CarrierService 
+inherits COMMON_MM::logisticDemand::Shipment::mapShipment2Service
+{
+	id := self.id;
+	name := self.id;
+	location := location2Link(self.destination);
+	
+	capacityDemand := dimension2Capacity(self.size);
+	
+	// TODO: information missing: self.arrivalAtOriginDepot
+	timeWindow := optionalTimeWindow2TimeWindow(self.arrivalAtDestinationTimeWindow);
+	
+	// default value
+	serviceDuration := 60;
+}
+
+// ---- carrier.solution ----
+
+helper createAndAssignTour(tour : COMMON_MM::logisticSolution::PlannedTour) {
+	var executingMATSimCarrier := tour.executingCEPSP.resolveone(MATSIM::freightContrib::Carrier);
+	
+	if(executingMATSimCarrier.plan = null) {
+		executingMATSimCarrier.plan := new MATSIM::freightContrib::CarrierPlan();
+	}
+	endif;
+	
+	executingMATSimCarrier.plan.scheduledTours += tour -> map plannedTour2ScheduledTour();
+}
+
+constructor MATSIM::freightContrib::CarrierPlan::CarrierPlan() {
+	score := 0;
+}
+
+mapping COMMON_MM::logisticSolution::PlannedTour::plannedTour2ScheduledTour() : MATSIM::freightContrib::ScheduledTour {
+	vehicle := self.vehicle.resolveone(MATSIM::freightContrib::CarrierVehicle);
+	var tourElements := createTourElements(self.stops);
+	tour := new MATSIM::freightContrib::tour::Tour(tourElements);
+	departureTime := tour.start.timeWindow.start;
+}
+
+constructor MATSIM::freightContrib::tour::Tour::Tour(tourElements_ : List(MATSIM::freightContrib::tour::TourElement)) {
+	tourElements += tourElements_;
+	start := tourElements_ -> first().oclAsType(MATSIM::freightContrib::tour::Start);
+	_end := tourElements_ -> last().oclAsType(MATSIM::freightContrib::tour::End);
+}
+
+helper createTourElements(commonStops : OrderedSet(COMMON_MM::logisticSolution::Stop)) : List(MATSIM::freightContrib::tour::TourElement) {
+	// create all stops
+	var stopTourElements := List{};
+	
+	//commonStops -> forEach(commonStop) {
+		// start (StartEndStop, num = 1)
+		// end (StartEndStop, num != 1)
+		// pickupDeliveryStop
+			// unloadedShipments - foreach
+				// isShipment? -> Delivery
+				// isService? : isNormalStop? -> ServiceStop, isLogisticFalciltyStop -> ???
+			// loadedShipments - foreach
+				// isShipment? -> Pickup
+				// isService? : isNormalStop? -> ServiceStop, isLogisticFalciltyStop -> ???
+				
+				// (we need to enforce a stop that doesn't references a shipment/service, only if no stop was created -> Start/End combination? -> split tours)
+				// does a tour need to start/end at vehicle depot?
+				
+		//* isShipment: inside-inside or splitted
+		//* isService: fromInside, toOutside
+		
+		//?: stopTimes? - split equally
+	//}
+	
+	
+	// add legs between stops
+	// needed for every leg pair?
+	var tourElements := List{};
+	return tourElements
+}
+
+
+mapping COMMON_MM::logisticSolution::StartEndStop::startEndStop2Start() : MATSIM::freightContrib::tour::Start 
+{
+	// TODO
+	timeWindow;
+	location;
+}
+
+mapping COMMON_MM::logisticSolution::StartEndStop::startEndStop2End() : MATSIM::freightContrib::tour::End {
+	// TODO
+	timeWindow;
+	location;
+}
+
+// ---- helper ----
+
+helper location2Link(location: COMMON_MM::network::Location_) : MATSIM::matsim::core::network::Link {
+	var edge := location.networkAccess.oclAsType(COMMON_MM::network::EdgeBasedNetworkAccess).edge;
+	return edge.resolveone(MATSIM::matsim::core::network::Link);
+}
+
+helper dimension2Capacity(dimension: COMMON_MM::utils::Dimension) : Integer {
+	// TODO: very hacky
+	return dimension.map dimension2VehicleCapacity().other.round()
+}
+
+// ---- helper.time ----
+
+helper optionalTimeWindow2TimeWindow(timeWindow : COMMON_MM::utils::TimeWindow_) : MATSIM::freightContrib::TimeWindow {
+	if (timeWindow <> null) then {
+		return mapTimeWindow(timeWindow);
+	} else {
+		return new MATSIM::freightContrib::TimeWindow(0, 23 * 60 * 60 + 59 * 60 + 59);
+	}
+	endif
+}
+
+helper mapTimeWindow(timeWindow : COMMON_MM::utils::TimeWindow_) : MATSIM::freightContrib::TimeWindow {
+	// inv: singe day representation
+	var singleDayTimeWindow = timeWindow.oclAsType(COMMON_MM::utils::SingleDayTimeWindow);
+	var start := handleTimeWindowStart(singleDayTimeWindow._from);
+	var _end := handleTimeWindowEnd(singleDayTimeWindow.to);
+	return new MATSIM::freightContrib::TimeWindow(start, _end);
+}
+
+helper handleTimeWindowStart(start : COMMON_MM::utils::SingleDayTimestamp) : Real {
+	if (start <> null) then {
+		return timeStamp2Seconds(start);
+	} else {
+		return 0;
+	}
+	endif
+}
+
+helper handleTimeWindowEnd(_end : COMMON_MM::utils::SingleDayTimestamp) : Real {
+	if (_end <> null) then {
+		return timeStamp2Seconds(_end);
+	} else {
+		return 23 * 60 * 60 + 59 * 60 + 59;
+	}
+	endif
+}
+
+constructor MATSIM::freightContrib::TimeWindow::TimeWindow(start_ : Real, _end_: Real) {
+	start := start_;
+	_end := _end_;
+}
+
+helper timeStampToRightOpenTimeWindow(timeStamp : COMMON_MM::utils::Timestamp_) : MATSIM::freightContrib::TimeWindow {
+	var singleDayTimeStamp := timeStamp.oclAsType(COMMON_MM::utils::SingleDayTimestamp);
+	return new MATSIM::freightContrib::TimeWindow(timeStamp2Seconds(singleDayTimeStamp), 23 * 60 * 60 + 59 * 60 + 59);
+}
+
+helper timeStamp2Seconds(timeStamp : COMMON_MM::utils::SingleDayTimestamp) : Real {
+	return timeStamp.hour * 60 * 60 + timeStamp.minute * 60 + timeStamp.second;
+}

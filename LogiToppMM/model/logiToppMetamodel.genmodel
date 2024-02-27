@@ -1,0 +1,380 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<genmodel:GenModel xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore"
+    xmlns:genmodel="http://www.eclipse.org/emf/2002/GenModel" modelDirectory="/LogiToppMM/src" modelPluginID="LogiToppMM" modelName="LogiToppMetamodel"
+    rootExtendsClass="org.eclipse.emf.ecore.impl.MinimalEObjectImpl$Container" importerID="org.eclipse.emf.importer.ecore"
+    complianceLevel="17.0" copyrightFields="false" operationReflection="true" importOrganizing="true">
+  <foreignModel>logiToppMetamodel.ecore</foreignModel>
+  <genPackages prefix="LogiToppMetamodel" disposableProviderFactory="true" ecorePackage="logiToppMetamodel.ecore#/">
+    <genClasses ecoreClass="logiToppMetamodel.ecore#//Demand">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference logiToppMetamodel.ecore#//Demand/parcels"/>
+    </genClasses>
+    <genClasses ecoreClass="logiToppMetamodel.ecore#//Population">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference logiToppMetamodel.ecore#//Population/households"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference logiToppMetamodel.ecore#//Population/businesses"/>
+    </genClasses>
+    <genClasses ecoreClass="logiToppMetamodel.ecore#//TransportInfrastructure">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference logiToppMetamodel.ecore#//TransportInfrastructure/timetable"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference logiToppMetamodel.ecore#//TransportInfrastructure/cepServiceProviders"/>
+    </genClasses>
+    <genClasses ecoreClass="logiToppMetamodel.ecore#//Solution">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference logiToppMetamodel.ecore#//Solution/plannedTours"/>
+    </genClasses>
+    <genClasses ecoreClass="logiToppMetamodel.ecore#//DemandExchangeRoot">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference logiToppMetamodel.ecore#//DemandExchangeRoot/demand"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference logiToppMetamodel.ecore#//DemandExchangeRoot/population"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference logiToppMetamodel.ecore#//DemandExchangeRoot/transportNetwork"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference logiToppMetamodel.ecore#//DemandExchangeRoot/network"/>
+    </genClasses>
+    <genClasses ecoreClass="logiToppMetamodel.ecore#//SolutionExchangeRoot">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference logiToppMetamodel.ecore#//SolutionExchangeRoot/solution"/>
+    </genClasses>
+    <nestedGenPackages prefix="MobiTopp" disposableProviderFactory="true" ecorePackage="logiToppMetamodel.ecore#//mobiTopp">
+      <nestedGenPackages prefix="Network" disposableProviderFactory="true" ecorePackage="logiToppMetamodel.ecore#//mobiTopp/network">
+        <genClasses ecoreClass="logiToppMetamodel.ecore#//mobiTopp/network/Node">
+          <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference logiToppMetamodel.ecore#//mobiTopp/network/Node/coord"/>
+        </genClasses>
+        <genClasses ecoreClass="logiToppMetamodel.ecore#//mobiTopp/network/Edge">
+          <genFeatures notify="false" createChild="false" propertySortChoices="true"
+              ecoreFeature="ecore:EReference logiToppMetamodel.ecore#//mobiTopp/network/Edge/twin"/>
+          <genFeatures notify="false" createChild="false" propertySortChoices="true"
+              ecoreFeature="ecore:EReference logiToppMetamodel.ecore#//mobiTopp/network/Edge/from"/>
+          <genFeatures notify="false" createChild="false" propertySortChoices="true"
+              ecoreFeature="ecore:EReference logiToppMetamodel.ecore#//mobiTopp/network/Edge/to"/>
+          <genFeatures createChild="false" ecoreFeature="ecore:EAttribute logiToppMetamodel.ecore#//mobiTopp/network/Edge/length"/>
+        </genClasses>
+        <genClasses image="false" ecoreClass="logiToppMetamodel.ecore#//mobiTopp/network/Graph">
+          <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference logiToppMetamodel.ecore#//mobiTopp/network/Graph/edges"/>
+          <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference logiToppMetamodel.ecore#//mobiTopp/network/Graph/nodes"/>
+        </genClasses>
+        <genClasses ecoreClass="logiToppMetamodel.ecore#//mobiTopp/network/RoadNetwork">
+          <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference logiToppMetamodel.ecore#//mobiTopp/network/RoadNetwork/zones"/>
+        </genClasses>
+        <genClasses ecoreClass="logiToppMetamodel.ecore#//mobiTopp/network/Zone">
+          <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference logiToppMetamodel.ecore#//mobiTopp/network/Zone/centroid"/>
+          <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference logiToppMetamodel.ecore#//mobiTopp/network/Zone/totalArea"/>
+          <genFeatures notify="false" createChild="false" propertySortChoices="true"
+              ecoreFeature="ecore:EReference logiToppMetamodel.ecore#//mobiTopp/network/Zone/households"/>
+        </genClasses>
+        <genClasses ecoreClass="logiToppMetamodel.ecore#//mobiTopp/network/Location">
+          <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference logiToppMetamodel.ecore#//mobiTopp/network/Location/coordinate"/>
+          <genFeatures createChild="false" ecoreFeature="ecore:EAttribute logiToppMetamodel.ecore#//mobiTopp/network/Location/roadPosition"/>
+          <genFeatures notify="false" createChild="false" propertySortChoices="true"
+              ecoreFeature="ecore:EReference logiToppMetamodel.ecore#//mobiTopp/network/Location/roadAccessEdge"/>
+        </genClasses>
+        <genClasses ecoreClass="logiToppMetamodel.ecore#//mobiTopp/network/ZoneAndLocation">
+          <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference logiToppMetamodel.ecore#//mobiTopp/network/ZoneAndLocation/location"/>
+          <genFeatures notify="false" createChild="false" propertySortChoices="true"
+              ecoreFeature="ecore:EReference logiToppMetamodel.ecore#//mobiTopp/network/ZoneAndLocation/zone"/>
+        </genClasses>
+        <genClasses ecoreClass="logiToppMetamodel.ecore#//mobiTopp/network/ZoneArea">
+          <genFeatures createChild="false" ecoreFeature="ecore:EAttribute logiToppMetamodel.ecore#//mobiTopp/network/ZoneArea/size"/>
+          <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference logiToppMetamodel.ecore#//mobiTopp/network/ZoneArea/borders"/>
+        </genClasses>
+        <genClasses ecoreClass="logiToppMetamodel.ecore#//mobiTopp/network/Point2D">
+          <genFeatures createChild="false" ecoreFeature="ecore:EAttribute logiToppMetamodel.ecore#//mobiTopp/network/Point2D/x"/>
+          <genFeatures createChild="false" ecoreFeature="ecore:EAttribute logiToppMetamodel.ecore#//mobiTopp/network/Point2D/y"/>
+        </genClasses>
+        <genClasses ecoreClass="logiToppMetamodel.ecore#//mobiTopp/network/Polygon">
+          <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference logiToppMetamodel.ecore#//mobiTopp/network/Polygon/lines"/>
+        </genClasses>
+        <genClasses ecoreClass="logiToppMetamodel.ecore#//mobiTopp/network/Line">
+          <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference logiToppMetamodel.ecore#//mobiTopp/network/Line/start"/>
+          <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference logiToppMetamodel.ecore#//mobiTopp/network/Line/end"/>
+        </genClasses>
+      </nestedGenPackages>
+      <nestedGenPackages prefix="Citizens" disposableProviderFactory="true" ecorePackage="logiToppMetamodel.ecore#//mobiTopp/citizens">
+        <genEnums typeSafeEnumCompatible="false" ecoreEnum="logiToppMetamodel.ecore#//mobiTopp/citizens/Employment">
+          <genEnumLiterals ecoreEnumLiteral="logiToppMetamodel.ecore#//mobiTopp/citizens/Employment/UNKNOWN"/>
+          <genEnumLiterals ecoreEnumLiteral="logiToppMetamodel.ecore#//mobiTopp/citizens/Employment/FULLTIME"/>
+          <genEnumLiterals ecoreEnumLiteral="logiToppMetamodel.ecore#//mobiTopp/citizens/Employment/PARTTIME"/>
+          <genEnumLiterals ecoreEnumLiteral="logiToppMetamodel.ecore#//mobiTopp/citizens/Employment/MARGINAL"/>
+          <genEnumLiterals ecoreEnumLiteral="logiToppMetamodel.ecore#//mobiTopp/citizens/Employment/UNEMPLOYED"/>
+          <genEnumLiterals ecoreEnumLiteral="logiToppMetamodel.ecore#//mobiTopp/citizens/Employment/STUDENT"/>
+          <genEnumLiterals ecoreEnumLiteral="logiToppMetamodel.ecore#//mobiTopp/citizens/Employment/STUDENT_PRIMARY"/>
+          <genEnumLiterals ecoreEnumLiteral="logiToppMetamodel.ecore#//mobiTopp/citizens/Employment/STUDENT_SECONDARY"/>
+          <genEnumLiterals ecoreEnumLiteral="logiToppMetamodel.ecore#//mobiTopp/citizens/Employment/STUDENT_TERTIARY"/>
+          <genEnumLiterals ecoreEnumLiteral="logiToppMetamodel.ecore#//mobiTopp/citizens/Employment/EDUCATION"/>
+          <genEnumLiterals ecoreEnumLiteral="logiToppMetamodel.ecore#//mobiTopp/citizens/Employment/HOMEKEEPER"/>
+          <genEnumLiterals ecoreEnumLiteral="logiToppMetamodel.ecore#//mobiTopp/citizens/Employment/RETIRED"/>
+          <genEnumLiterals ecoreEnumLiteral="logiToppMetamodel.ecore#//mobiTopp/citizens/Employment/INFANT"/>
+          <genEnumLiterals ecoreEnumLiteral="logiToppMetamodel.ecore#//mobiTopp/citizens/Employment/NONE"/>
+        </genEnums>
+        <genEnums typeSafeEnumCompatible="false" ecoreEnum="logiToppMetamodel.ecore#//mobiTopp/citizens/Gender">
+          <genEnumLiterals ecoreEnumLiteral="logiToppMetamodel.ecore#//mobiTopp/citizens/Gender/MALE"/>
+          <genEnumLiterals ecoreEnumLiteral="logiToppMetamodel.ecore#//mobiTopp/citizens/Gender/FEMALE"/>
+        </genEnums>
+        <genClasses ecoreClass="logiToppMetamodel.ecore#//mobiTopp/citizens/Person">
+          <genFeatures property="None" notify="false" createChild="false" ecoreFeature="ecore:EReference logiToppMetamodel.ecore#//mobiTopp/citizens/Person/household"/>
+          <genFeatures createChild="false" ecoreFeature="ecore:EAttribute logiToppMetamodel.ecore#//mobiTopp/citizens/Person/age"/>
+          <genFeatures createChild="false" ecoreFeature="ecore:EAttribute logiToppMetamodel.ecore#//mobiTopp/citizens/Person/gender"/>
+          <genFeatures createChild="false" ecoreFeature="ecore:EAttribute logiToppMetamodel.ecore#//mobiTopp/citizens/Person/employment"/>
+        </genClasses>
+        <genClasses ecoreClass="logiToppMetamodel.ecore#//mobiTopp/citizens/Household">
+          <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference logiToppMetamodel.ecore#//mobiTopp/citizens/Household/location"/>
+          <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference logiToppMetamodel.ecore#//mobiTopp/citizens/Household/members"/>
+          <genFeatures notify="false" createChild="false" propertySortChoices="true"
+              ecoreFeature="ecore:EReference logiToppMetamodel.ecore#//mobiTopp/citizens/Household/zone"/>
+        </genClasses>
+      </nestedGenPackages>
+    </nestedGenPackages>
+    <nestedGenPackages prefix="Base" disposableProviderFactory="true" ecorePackage="logiToppMetamodel.ecore#//base">
+      <genEnums typeSafeEnumCompatible="false" ecoreEnum="logiToppMetamodel.ecore#//base/Weekday">
+        <genEnumLiterals ecoreEnumLiteral="logiToppMetamodel.ecore#//base/Weekday/MONDAY"/>
+        <genEnumLiterals ecoreEnumLiteral="logiToppMetamodel.ecore#//base/Weekday/TUESDAY"/>
+        <genEnumLiterals ecoreEnumLiteral="logiToppMetamodel.ecore#//base/Weekday/WEDNESDAY"/>
+        <genEnumLiterals ecoreEnumLiteral="logiToppMetamodel.ecore#//base/Weekday/THURSDAY"/>
+        <genEnumLiterals ecoreEnumLiteral="logiToppMetamodel.ecore#//base/Weekday/FRIDAY"/>
+        <genEnumLiterals ecoreEnumLiteral="logiToppMetamodel.ecore#//base/Weekday/SATURDAY"/>
+        <genEnumLiterals ecoreEnumLiteral="logiToppMetamodel.ecore#//base/Weekday/SUNDAY"/>
+      </genEnums>
+      <genClasses image="false" ecoreClass="logiToppMetamodel.ecore#//base/Entity">
+        <genFeatures createChild="false" ecoreFeature="ecore:EAttribute logiToppMetamodel.ecore#//base/Entity/id"/>
+      </genClasses>
+      <genClasses image="false" ecoreClass="logiToppMetamodel.ecore#//base/NamedEntity">
+        <genFeatures createChild="false" ecoreFeature="ecore:EAttribute logiToppMetamodel.ecore#//base/NamedEntity/name"/>
+      </genClasses>
+      <genClasses ecoreClass="logiToppMetamodel.ecore#//base/Time">
+        <genFeatures createChild="false" ecoreFeature="ecore:EAttribute logiToppMetamodel.ecore#//base/Time/seconds"/>
+      </genClasses>
+      <genClasses ecoreClass="logiToppMetamodel.ecore#//base/RelativeTime">
+        <genFeatures createChild="false" ecoreFeature="ecore:EAttribute logiToppMetamodel.ecore#//base/RelativeTime/seconds"/>
+      </genClasses>
+    </nestedGenPackages>
+    <nestedGenPackages prefix="LogiTopp" disposableProviderFactory="true" ecorePackage="logiToppMetamodel.ecore#//logiTopp">
+      <genClasses image="false" ecoreClass="logiToppMetamodel.ecore#//logiTopp/ParcelAgent"/>
+      <genClasses image="false" ecoreClass="logiToppMetamodel.ecore#//logiTopp/ParcelProducer"/>
+      <genClasses image="false" ecoreClass="logiToppMetamodel.ecore#//logiTopp/ParcelConsumer"/>
+      <nestedGenPackages prefix="Business" disposableProviderFactory="true" ecorePackage="logiToppMetamodel.ecore#//logiTopp/business">
+        <genEnums typeSafeEnumCompatible="false" ecoreEnum="logiToppMetamodel.ecore#//logiTopp/business/Branch">
+          <genEnumLiterals ecoreEnumLiteral="logiToppMetamodel.ecore#//logiTopp/business/Branch/A"/>
+          <genEnumLiterals ecoreEnumLiteral="logiToppMetamodel.ecore#//logiTopp/business/Branch/B"/>
+          <genEnumLiterals ecoreEnumLiteral="logiToppMetamodel.ecore#//logiTopp/business/Branch/C"/>
+          <genEnumLiterals ecoreEnumLiteral="logiToppMetamodel.ecore#//logiTopp/business/Branch/D"/>
+          <genEnumLiterals ecoreEnumLiteral="logiToppMetamodel.ecore#//logiTopp/business/Branch/E"/>
+          <genEnumLiterals ecoreEnumLiteral="logiToppMetamodel.ecore#//logiTopp/business/Branch/F"/>
+          <genEnumLiterals ecoreEnumLiteral="logiToppMetamodel.ecore#//logiTopp/business/Branch/G"/>
+          <genEnumLiterals ecoreEnumLiteral="logiToppMetamodel.ecore#//logiTopp/business/Branch/H"/>
+          <genEnumLiterals ecoreEnumLiteral="logiToppMetamodel.ecore#//logiTopp/business/Branch/I"/>
+          <genEnumLiterals ecoreEnumLiteral="logiToppMetamodel.ecore#//logiTopp/business/Branch/J"/>
+          <genEnumLiterals ecoreEnumLiteral="logiToppMetamodel.ecore#//logiTopp/business/Branch/K"/>
+          <genEnumLiterals ecoreEnumLiteral="logiToppMetamodel.ecore#//logiTopp/business/Branch/L"/>
+          <genEnumLiterals ecoreEnumLiteral="logiToppMetamodel.ecore#//logiTopp/business/Branch/M"/>
+          <genEnumLiterals ecoreEnumLiteral="logiToppMetamodel.ecore#//logiTopp/business/Branch/N"/>
+          <genEnumLiterals ecoreEnumLiteral="logiToppMetamodel.ecore#//logiTopp/business/Branch/O"/>
+          <genEnumLiterals ecoreEnumLiteral="logiToppMetamodel.ecore#//logiTopp/business/Branch/P"/>
+          <genEnumLiterals ecoreEnumLiteral="logiToppMetamodel.ecore#//logiTopp/business/Branch/Q"/>
+          <genEnumLiterals ecoreEnumLiteral="logiToppMetamodel.ecore#//logiTopp/business/Branch/R"/>
+          <genEnumLiterals ecoreEnumLiteral="logiToppMetamodel.ecore#//logiTopp/business/Branch/S"/>
+          <genEnumLiterals ecoreEnumLiteral="logiToppMetamodel.ecore#//logiTopp/business/Branch/T"/>
+          <genEnumLiterals ecoreEnumLiteral="logiToppMetamodel.ecore#//logiTopp/business/Branch/U"/>
+          <genEnumLiterals ecoreEnumLiteral="logiToppMetamodel.ecore#//logiTopp/business/Branch/OTHER"/>
+        </genEnums>
+        <genEnums typeSafeEnumCompatible="false" ecoreEnum="logiToppMetamodel.ecore#//logiTopp/business/BuildingType">
+          <genEnumLiterals ecoreEnumLiteral="logiToppMetamodel.ecore#//logiTopp/business/BuildingType/LEISURE"/>
+          <genEnumLiterals ecoreEnumLiteral="logiToppMetamodel.ecore#//logiTopp/business/BuildingType/HOSPITAL"/>
+          <genEnumLiterals ecoreEnumLiteral="logiToppMetamodel.ecore#//logiTopp/business/BuildingType/STORE"/>
+          <genEnumLiterals ecoreEnumLiteral="logiToppMetamodel.ecore#//logiTopp/business/BuildingType/HOTEL"/>
+          <genEnumLiterals ecoreEnumLiteral="logiToppMetamodel.ecore#//logiTopp/business/BuildingType/WAREHAUSE"/>
+          <genEnumLiterals ecoreEnumLiteral="logiToppMetamodel.ecore#//logiTopp/business/BuildingType/SCHOOL_UNIVERSITY"/>
+          <genEnumLiterals ecoreEnumLiteral="logiToppMetamodel.ecore#//logiTopp/business/BuildingType/RESTAURANT"/>
+          <genEnumLiterals ecoreEnumLiteral="logiToppMetamodel.ecore#//logiTopp/business/BuildingType/IINDUSTRIAL"/>
+          <genEnumLiterals ecoreEnumLiteral="logiToppMetamodel.ecore#//logiTopp/business/BuildingType/OFFICE"/>
+          <genEnumLiterals ecoreEnumLiteral="logiToppMetamodel.ecore#//logiTopp/business/BuildingType/OTHER"/>
+        </genEnums>
+        <genEnums typeSafeEnumCompatible="false" ecoreEnum="logiToppMetamodel.ecore#//logiTopp/business/Sector">
+          <genEnumLiterals ecoreEnumLiteral="logiToppMetamodel.ecore#//logiTopp/business/Sector/HOSPITALITY"/>
+          <genEnumLiterals ecoreEnumLiteral="logiToppMetamodel.ecore#//logiTopp/business/Sector/SERVICE"/>
+          <genEnumLiterals ecoreEnumLiteral="logiToppMetamodel.ecore#//logiTopp/business/Sector/ADMINISTRATION"/>
+          <genEnumLiterals ecoreEnumLiteral="logiToppMetamodel.ecore#//logiTopp/business/Sector/INDUSTRY"/>
+          <genEnumLiterals ecoreEnumLiteral="logiToppMetamodel.ecore#//logiTopp/business/Sector/RETAIL"/>
+          <genEnumLiterals ecoreEnumLiteral="logiToppMetamodel.ecore#//logiTopp/business/Sector/LEISURE"/>
+          <genEnumLiterals ecoreEnumLiteral="logiToppMetamodel.ecore#//logiTopp/business/Sector/OTHER"/>
+        </genEnums>
+        <genClasses ecoreClass="logiToppMetamodel.ecore#//logiTopp/business/Business">
+          <genFeatures createChild="false" ecoreFeature="ecore:EAttribute logiToppMetamodel.ecore#//logiTopp/business/Business/branch"/>
+          <genFeatures createChild="false" ecoreFeature="ecore:EAttribute logiToppMetamodel.ecore#//logiTopp/business/Business/buildingType"/>
+          <genFeatures createChild="false" ecoreFeature="ecore:EAttribute logiToppMetamodel.ecore#//logiTopp/business/Business/emplyees"/>
+          <genFeatures createChild="false" ecoreFeature="ecore:EAttribute logiToppMetamodel.ecore#//logiTopp/business/Business/area"/>
+          <genFeatures notify="false" createChild="false" propertySortChoices="true"
+              ecoreFeature="ecore:EReference logiToppMetamodel.ecore#//logiTopp/business/Business/zone"/>
+          <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference logiToppMetamodel.ecore#//logiTopp/business/Business/location"/>
+          <genFeatures notify="false" createChild="false" propertySortChoices="true"
+              ecoreFeature="ecore:EReference logiToppMetamodel.ecore#//logiTopp/business/Business/deliveryPartners"/>
+          <genFeatures notify="false" createChild="false" propertySortChoices="true"
+              ecoreFeature="ecore:EReference logiToppMetamodel.ecore#//logiTopp/business/Business/pickUpPartners"/>
+          <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference logiToppMetamodel.ecore#//logiTopp/business/Business/openingHours"/>
+        </genClasses>
+        <genClasses ecoreClass="logiToppMetamodel.ecore#//logiTopp/business/OpeningHour">
+          <genFeatures createChild="false" ecoreFeature="ecore:EAttribute logiToppMetamodel.ecore#//logiTopp/business/OpeningHour/dayOfWeek"/>
+          <genFeatures notify="false" createChild="false" propertySortChoices="true"
+              ecoreFeature="ecore:EReference logiToppMetamodel.ecore#//logiTopp/business/OpeningHour/start"/>
+          <genFeatures notify="false" createChild="false" propertySortChoices="true"
+              ecoreFeature="ecore:EReference logiToppMetamodel.ecore#//logiTopp/business/OpeningHour/end"/>
+        </genClasses>
+      </nestedGenPackages>
+      <nestedGenPackages prefix="Distribution" disposableProviderFactory="true" ecorePackage="logiToppMetamodel.ecore#//logiTopp/distribution">
+        <genClasses ecoreClass="logiToppMetamodel.ecore#//logiTopp/distribution/CEPServiceProvider">
+          <genFeatures children="true" createChild="true" propertySortChoices="true"
+              ecoreFeature="ecore:EReference logiToppMetamodel.ecore#//logiTopp/distribution/CEPServiceProvider/distributionCenters"/>
+        </genClasses>
+        <genClasses ecoreClass="logiToppMetamodel.ecore#//logiTopp/distribution/DistributionCenter">
+          <genFeatures notify="false" createChild="false" propertySortChoices="true"
+              ecoreFeature="ecore:EReference logiToppMetamodel.ecore#//logiTopp/distribution/DistributionCenter/zone"/>
+          <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference logiToppMetamodel.ecore#//logiTopp/distribution/DistributionCenter/location"/>
+          <genFeatures createChild="false" ecoreFeature="ecore:EAttribute logiToppMetamodel.ecore#//logiTopp/distribution/DistributionCenter/attempts"/>
+          <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference logiToppMetamodel.ecore#//logiTopp/distribution/DistributionCenter/fleet"/>
+          <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference logiToppMetamodel.ecore#//logiTopp/distribution/DistributionCenter/regionalStructure"/>
+          <genFeatures notify="false" createChild="false" propertySortChoices="true"
+              ecoreFeature="ecore:EReference logiToppMetamodel.ecore#//logiTopp/distribution/DistributionCenter/CEPSP"/>
+        </genClasses>
+        <nestedGenPackages prefix="Chains" disposableProviderFactory="true" ecorePackage="logiToppMetamodel.ecore#//logiTopp/distribution/chains">
+          <genClasses ecoreClass="logiToppMetamodel.ecore#//logiTopp/distribution/chains/TransportChain">
+            <genFeatures notify="false" createChild="false" propertySortChoices="true"
+                ecoreFeature="ecore:EReference logiToppMetamodel.ecore#//logiTopp/distribution/chains/TransportChain/hubs"/>
+            <genFeatures createChild="false" ecoreFeature="ecore:EAttribute logiToppMetamodel.ecore#//logiTopp/distribution/chains/TransportChain/deliveryDirection"/>
+          </genClasses>
+          <genClasses ecoreClass="logiToppMetamodel.ecore#//logiTopp/distribution/chains/TimedTransportChain">
+            <genFeatures notify="false" createChild="false" propertySortChoices="true"
+                ecoreFeature="ecore:EReference logiToppMetamodel.ecore#//logiTopp/distribution/chains/TimedTransportChain/departures"/>
+            <genFeatures notify="false" createChild="false" propertySortChoices="true"
+                ecoreFeature="ecore:EReference logiToppMetamodel.ecore#//logiTopp/distribution/chains/TimedTransportChain/durations"/>
+          </genClasses>
+          <genClasses ecoreClass="logiToppMetamodel.ecore#//logiTopp/distribution/chains/HubToDeparture">
+            <genFeatures notify="false" createChild="false" propertySortChoices="true"
+                ecoreFeature="ecore:EReference logiToppMetamodel.ecore#//logiTopp/distribution/chains/HubToDeparture/hub"/>
+            <genFeatures notify="false" createChild="false" propertySortChoices="true"
+                ecoreFeature="ecore:EReference logiToppMetamodel.ecore#//logiTopp/distribution/chains/HubToDeparture/depature"/>
+          </genClasses>
+          <genClasses ecoreClass="logiToppMetamodel.ecore#//logiTopp/distribution/chains/HubToDuration">
+            <genFeatures notify="false" createChild="false" propertySortChoices="true"
+                ecoreFeature="ecore:EReference logiToppMetamodel.ecore#//logiTopp/distribution/chains/HubToDuration/hub"/>
+            <genFeatures createChild="false" ecoreFeature="ecore:EAttribute logiToppMetamodel.ecore#//logiTopp/distribution/chains/HubToDuration/duration"/>
+          </genClasses>
+        </nestedGenPackages>
+        <nestedGenPackages prefix="Delivery" disposableProviderFactory="true" ecorePackage="logiToppMetamodel.ecore#//logiTopp/distribution/delivery">
+          <genClasses ecoreClass="logiToppMetamodel.ecore#//logiTopp/distribution/delivery/ParcelActivity">
+            <genFeatures createChild="false" ecoreFeature="ecore:EAttribute logiToppMetamodel.ecore#//logiTopp/distribution/delivery/ParcelActivity/no"/>
+            <genFeatures notify="false" createChild="false" propertySortChoices="true"
+                ecoreFeature="ecore:EReference logiToppMetamodel.ecore#//logiTopp/distribution/delivery/ParcelActivity/parcels"/>
+            <genFeatures notify="false" createChild="false" propertySortChoices="true"
+                ecoreFeature="ecore:EReference logiToppMetamodel.ecore#//logiTopp/distribution/delivery/ParcelActivity/pickUps"/>
+            <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference logiToppMetamodel.ecore#//logiTopp/distribution/delivery/ParcelActivity/stopLocation"/>
+            <genFeatures notify="false" createChild="false" propertySortChoices="true"
+                ecoreFeature="ecore:EReference logiToppMetamodel.ecore#//logiTopp/distribution/delivery/ParcelActivity/plannedTime"/>
+            <genFeatures createChild="false" ecoreFeature="ecore:EAttribute logiToppMetamodel.ecore#//logiTopp/distribution/delivery/ParcelActivity/distance"/>
+            <genFeatures createChild="false" ecoreFeature="ecore:EAttribute logiToppMetamodel.ecore#//logiTopp/distribution/delivery/ParcelActivity/tripDuration"/>
+            <genFeatures createChild="false" ecoreFeature="ecore:EAttribute logiToppMetamodel.ecore#//logiTopp/distribution/delivery/ParcelActivity/deliveryDuration"/>
+            <genFeatures notify="false" createChild="false" propertySortChoices="true"
+                ecoreFeature="ecore:EReference logiToppMetamodel.ecore#//logiTopp/distribution/delivery/ParcelActivity/vehicle"/>
+          </genClasses>
+        </nestedGenPackages>
+        <nestedGenPackages prefix="Fleet" disposableProviderFactory="true" ecorePackage="logiToppMetamodel.ecore#//logiTopp/distribution/fleet">
+          <genEnums typeSafeEnumCompatible="false" ecoreEnum="logiToppMetamodel.ecore#//logiTopp/distribution/fleet/VehicleType">
+            <genEnumLiterals ecoreEnumLiteral="logiToppMetamodel.ecore#//logiTopp/distribution/fleet/VehicleType/BIKE"/>
+            <genEnumLiterals ecoreEnumLiteral="logiToppMetamodel.ecore#//logiTopp/distribution/fleet/VehicleType/TRUCK"/>
+            <genEnumLiterals ecoreEnumLiteral="logiToppMetamodel.ecore#//logiTopp/distribution/fleet/VehicleType/TRAM"/>
+            <genEnumLiterals ecoreEnumLiteral="logiToppMetamodel.ecore#//logiTopp/distribution/fleet/VehicleType/OTHERS"/>
+          </genEnums>
+          <genClasses ecoreClass="logiToppMetamodel.ecore#//logiTopp/distribution/fleet/Fleet">
+            <genFeatures createChild="false" ecoreFeature="ecore:EAttribute logiToppMetamodel.ecore#//logiTopp/distribution/fleet/Fleet/vehicleType"/>
+            <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference logiToppMetamodel.ecore#//logiTopp/distribution/fleet/Fleet/deliveryVehicles"/>
+          </genClasses>
+          <genClasses ecoreClass="logiToppMetamodel.ecore#//logiTopp/distribution/fleet/DeliveryVehicle">
+            <genFeatures createChild="false" ecoreFeature="ecore:EAttribute logiToppMetamodel.ecore#//logiTopp/distribution/fleet/DeliveryVehicle/vehicleType"/>
+            <genFeatures createChild="false" ecoreFeature="ecore:EAttribute logiToppMetamodel.ecore#//logiTopp/distribution/fleet/DeliveryVehicle/capacity"/>
+            <genFeatures notify="false" createChild="false" propertySortChoices="true"
+                ecoreFeature="ecore:EReference logiToppMetamodel.ecore#//logiTopp/distribution/fleet/DeliveryVehicle/earliestStartTime"/>
+            <genFeatures notify="false" createChild="false" propertySortChoices="true"
+                ecoreFeature="ecore:EReference logiToppMetamodel.ecore#//logiTopp/distribution/fleet/DeliveryVehicle/latestEndTime"/>
+          </genClasses>
+        </nestedGenPackages>
+        <nestedGenPackages prefix="Policies" disposableProviderFactory="true" ecorePackage="logiToppMetamodel.ecore#//logiTopp/distribution/policies">
+          <genEnums typeSafeEnumCompatible="false" ecoreEnum="logiToppMetamodel.ecore#//logiTopp/distribution/policies/RecipientType">
+            <genEnumLiterals ecoreEnumLiteral="logiToppMetamodel.ecore#//logiTopp/distribution/policies/RecipientType/PERSONAL"/>
+            <genEnumLiterals ecoreEnumLiteral="logiToppMetamodel.ecore#//logiTopp/distribution/policies/RecipientType/HOUSEHOLDMEMBER"/>
+            <genEnumLiterals ecoreEnumLiteral="logiToppMetamodel.ecore#//logiTopp/distribution/policies/RecipientType/NEIGHBOR"/>
+            <genEnumLiterals ecoreEnumLiteral="logiToppMetamodel.ecore#//logiTopp/distribution/policies/RecipientType/PACKSTATION"/>
+            <genEnumLiterals ecoreEnumLiteral="logiToppMetamodel.ecore#//logiTopp/distribution/policies/RecipientType/BUSINESS"/>
+            <genEnumLiterals ecoreEnumLiteral="logiToppMetamodel.ecore#//logiTopp/distribution/policies/RecipientType/DISTRIBUTION_CENTER"/>
+          </genEnums>
+        </nestedGenPackages>
+        <nestedGenPackages prefix="Region" disposableProviderFactory="true" ecorePackage="logiToppMetamodel.ecore#//logiTopp/distribution/region">
+          <genClasses ecoreClass="logiToppMetamodel.ecore#//logiTopp/distribution/region/RegionalReach">
+            <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference logiToppMetamodel.ecore#//logiTopp/distribution/region/RegionalReach/serviceArea"/>
+            <genFeatures notify="false" createChild="false" propertySortChoices="true"
+                ecoreFeature="ecore:EReference logiToppMetamodel.ecore#//logiTopp/distribution/region/RegionalReach/relatedDeliveryHubs"/>
+            <genFeatures notify="false" createChild="false" propertySortChoices="true"
+                ecoreFeature="ecore:EReference logiToppMetamodel.ecore#//logiTopp/distribution/region/RegionalReach/relatedPickUpHubs"/>
+          </genClasses>
+          <genClasses ecoreClass="logiToppMetamodel.ecore#//logiTopp/distribution/region/ServiceArea">
+            <genFeatures notify="false" createChild="false" propertySortChoices="true"
+                ecoreFeature="ecore:EReference logiToppMetamodel.ecore#//logiTopp/distribution/region/ServiceArea/zones"/>
+          </genClasses>
+        </nestedGenPackages>
+        <nestedGenPackages prefix="Timetable" disposableProviderFactory="true" ecorePackage="logiToppMetamodel.ecore#//logiTopp/distribution/timetable">
+          <genClasses ecoreClass="logiToppMetamodel.ecore#//logiTopp/distribution/timetable/TimeTable">
+            <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference logiToppMetamodel.ecore#//logiTopp/distribution/timetable/TimeTable/connections"/>
+          </genClasses>
+          <genClasses ecoreClass="logiToppMetamodel.ecore#//logiTopp/distribution/timetable/Connection">
+            <genFeatures notify="false" createChild="false" propertySortChoices="true"
+                ecoreFeature="ecore:EReference logiToppMetamodel.ecore#//logiTopp/distribution/timetable/Connection/from"/>
+            <genFeatures notify="false" createChild="false" propertySortChoices="true"
+                ecoreFeature="ecore:EReference logiToppMetamodel.ecore#//logiTopp/distribution/timetable/Connection/to"/>
+            <genFeatures notify="false" createChild="false" propertySortChoices="true"
+                ecoreFeature="ecore:EReference logiToppMetamodel.ecore#//logiTopp/distribution/timetable/Connection/departure"/>
+            <genFeatures notify="false" createChild="false" propertySortChoices="true"
+                ecoreFeature="ecore:EReference logiToppMetamodel.ecore#//logiTopp/distribution/timetable/Connection/duration"/>
+          </genClasses>
+        </nestedGenPackages>
+        <nestedGenPackages prefix="Tours" disposableProviderFactory="true" ecorePackage="logiToppMetamodel.ecore#//logiTopp/distribution/tours">
+          <genClasses ecoreClass="logiToppMetamodel.ecore#//logiTopp/distribution/tours/PlannedDeliveryTour">
+            <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference logiToppMetamodel.ecore#//logiTopp/distribution/tours/PlannedDeliveryTour/stops"/>
+            <genFeatures createChild="false" ecoreFeature="ecore:EAttribute logiToppMetamodel.ecore#//logiTopp/distribution/tours/PlannedDeliveryTour/vehicleType"/>
+            <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference logiToppMetamodel.ecore#//logiTopp/distribution/tours/PlannedDeliveryTour/plannedDuration"/>
+            <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference logiToppMetamodel.ecore#//logiTopp/distribution/tours/PlannedDeliveryTour/plannedAt"/>
+            <genFeatures notify="false" createChild="false" propertySortChoices="true"
+                ecoreFeature="ecore:EReference logiToppMetamodel.ecore#//logiTopp/distribution/tours/PlannedDeliveryTour/executingCEPSP"/>
+          </genClasses>
+        </nestedGenPackages>
+      </nestedGenPackages>
+      <nestedGenPackages prefix="Parcels" disposableProviderFactory="true" ecorePackage="logiToppMetamodel.ecore#//logiTopp/parcels">
+        <genEnums typeSafeEnumCompatible="false" ecoreEnum="logiToppMetamodel.ecore#//logiTopp/parcels/ShipmentSize">
+          <genEnumLiterals ecoreEnumLiteral="logiToppMetamodel.ecore#//logiTopp/parcels/ShipmentSize/SMALL"/>
+          <genEnumLiterals ecoreEnumLiteral="logiToppMetamodel.ecore#//logiTopp/parcels/ShipmentSize/MEDIUM"/>
+          <genEnumLiterals ecoreEnumLiteral="logiToppMetamodel.ecore#//logiTopp/parcels/ShipmentSize/LARGE"/>
+          <genEnumLiterals ecoreEnumLiteral="logiToppMetamodel.ecore#//logiTopp/parcels/ShipmentSize/EXTRA_LARGE"/>
+          <genEnumLiterals ecoreEnumLiteral="logiToppMetamodel.ecore#//logiTopp/parcels/ShipmentSize/PALLET"/>
+          <genEnumLiterals ecoreEnumLiteral="logiToppMetamodel.ecore#//logiTopp/parcels/ShipmentSize/CONTAINER"/>
+        </genEnums>
+        <genEnums typeSafeEnumCompatible="false" ecoreEnum="logiToppMetamodel.ecore#//logiTopp/parcels/ParcelState">
+          <genEnumLiterals ecoreEnumLiteral="logiToppMetamodel.ecore#//logiTopp/parcels/ParcelState/DELIVERED"/>
+          <genEnumLiterals ecoreEnumLiteral="logiToppMetamodel.ecore#//logiTopp/parcels/ParcelState/RETURNING"/>
+          <genEnumLiterals ecoreEnumLiteral="logiToppMetamodel.ecore#//logiTopp/parcels/ParcelState/ONDELIVERY"/>
+          <genEnumLiterals ecoreEnumLiteral="logiToppMetamodel.ecore#//logiTopp/parcels/ParcelState/UNDEFINED"/>
+        </genEnums>
+        <genEnums typeSafeEnumCompatible="false" ecoreEnum="logiToppMetamodel.ecore#//logiTopp/parcels/ParcelDestinationType">
+          <genEnumLiterals ecoreEnumLiteral="logiToppMetamodel.ecore#//logiTopp/parcels/ParcelDestinationType/HOME"/>
+          <genEnumLiterals ecoreEnumLiteral="logiToppMetamodel.ecore#//logiTopp/parcels/ParcelDestinationType/WORK"/>
+          <genEnumLiterals ecoreEnumLiteral="logiToppMetamodel.ecore#//logiTopp/parcels/ParcelDestinationType/PACK_STATION"/>
+        </genEnums>
+        <genClasses image="false" ecoreClass="logiToppMetamodel.ecore#//logiTopp/parcels/Parcel">
+          <genFeatures notify="false" createChild="false" propertySortChoices="true"
+              ecoreFeature="ecore:EReference logiToppMetamodel.ecore#//logiTopp/parcels/Parcel/plannedArrivalDate"/>
+          <genFeatures notify="false" createChild="false" propertySortChoices="true"
+              ecoreFeature="ecore:EReference logiToppMetamodel.ecore#//logiTopp/parcels/Parcel/producer"/>
+          <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference logiToppMetamodel.ecore#//logiTopp/parcels/Parcel/zoneAndLocation"/>
+          <genFeatures createChild="false" ecoreFeature="ecore:EAttribute logiToppMetamodel.ecore#//logiTopp/parcels/Parcel/shipmentSize"/>
+          <genFeatures createChild="false" ecoreFeature="ecore:EAttribute logiToppMetamodel.ecore#//logiTopp/parcels/Parcel/isPickup"/>
+          <genFeatures notify="false" createChild="false" propertySortChoices="true"
+              ecoreFeature="ecore:EReference logiToppMetamodel.ecore#//logiTopp/parcels/Parcel/consumer"/>
+          <genFeatures notify="false" createChild="false" propertySortChoices="true"
+              ecoreFeature="ecore:EReference logiToppMetamodel.ecore#//logiTopp/parcels/Parcel/responsibleCEPSP"/>
+        </genClasses>
+        <genClasses ecoreClass="logiToppMetamodel.ecore#//logiTopp/parcels/PrivateParcel">
+          <genFeatures createChild="false" ecoreFeature="ecore:EAttribute logiToppMetamodel.ecore#//logiTopp/parcels/PrivateParcel/destinationType"/>
+        </genClasses>
+        <genClasses ecoreClass="logiToppMetamodel.ecore#//logiTopp/parcels/BusinessParcel"/>
+      </nestedGenPackages>
+    </nestedGenPackages>
+  </genPackages>
+</genmodel:GenModel>

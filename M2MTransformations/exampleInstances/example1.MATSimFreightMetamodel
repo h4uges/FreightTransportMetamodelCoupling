@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<MATSimFreightMetamodel:DataExchangeRoot xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:MATSimFreightMetamodel="http://www.cep-model-coupling.com/MATSimFreightMetamodel" xsi:schemaLocation="http://www.cep-model-coupling.com/MATSimFreightMetamodel ../../MATSimMM/model/MATSimFreightMetamodel.ecore">
+  <carriers id="cepsp_1">
+    <carrierCapabilities vehicleTypes="//@vehicleTypes/@vehicleTypes.2 //@vehicleTypes/@vehicleTypes.0 //@vehicleTypes/@vehicleTypes.1" fleetSize="FINITE">
+      <carrierVehicles id="v3" type="//@vehicleTypes/@vehicleTypes.2" location="//@network/@links.1"/>
+      <carrierVehicles id="v3" type="//@vehicleTypes/@vehicleTypes.0" location="//@network/@links.1"/>
+      <carrierVehicles id="v1" type="//@vehicleTypes/@vehicleTypes.0" location="//@network/@links.0"/>
+      <carrierVehicles id="v2" type="//@vehicleTypes/@vehicleTypes.1" location="//@network/@links.0"/>
+    </carrierCapabilities>
+  </carriers>
+  <network>
+    <nodes id="A">
+      <coord x="55.0" y="5.0"/>
+    </nodes>
+    <nodes id="B">
+      <coord x="0.5" y="1.0"/>
+    </nodes>
+    <nodes id="C">
+      <coord x="60.0" y="60.0"/>
+    </nodes>
+    <links id="B->A" from="//@network/@nodes.1" to="//@network/@nodes.0" length="50.0">
+      <allowedModes>truck</allowedModes>
+    </links>
+    <links id="B->C" from="//@network/@nodes.1" to="//@network/@nodes.2" length="500.0">
+      <allowedModes>truck</allowedModes>
+      <allowedModes>pt</allowedModes>
+      <allowedModes>car</allowedModes>
+    </links>
+  </network>
+  <vehicleTypes>
+    <vehicleTypes id="TRUCK_1.0E308" width="2.5" maxVelocity="100.0" length="3.5" description="TRUCK_1.0E308" networkMode="truck">
+      <capacity volumeInCubicMeters="1.0E308" other="1.0E308"/>
+    </vehicleTypes>
+    <vehicleTypes id="CAR_500.0" width="2.5" maxVelocity="100.0" length="3.5" description="CAR_500.0">
+      <capacity volumeInCubicMeters="500.0" other="500.0"/>
+    </vehicleTypes>
+    <vehicleTypes id="BIKE_1000.0" width="2.5" maxVelocity="100.0" length="3.5" description="BIKE_1000.0" networkMode="bike">
+      <capacity volumeInCubicMeters="1000.0" other="1000.0"/>
+    </vehicleTypes>
+  </vehicleTypes>
+</MATSimFreightMetamodel:DataExchangeRoot>

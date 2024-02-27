@@ -1,0 +1,345 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<genmodel:GenModel xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore"
+    xmlns:genmodel="http://www.eclipse.org/emf/2002/GenModel" modelDirectory="/CommonMM/src" modelPluginID="CommonMM" modelName="CommonFreightTransportMetamodel"
+    rootExtendsClass="org.eclipse.emf.ecore.impl.MinimalEObjectImpl$Container" importerID="org.eclipse.emf.importer.ecore"
+    complianceLevel="17.0" copyrightFields="false" operationReflection="true" importOrganizing="true">
+  <foreignModel>CommonFreightTransportMetamodel.ecore</foreignModel>
+  <genPackages prefix="CommonFreighTransportMetamodel" disposableProviderFactory="true"
+      fileExtensions="cftpm" ecorePackage="CommonFreightTransportMetamodel.ecore#/">
+    <nestedGenPackages prefix="LogisticDemand" disposableProviderFactory="true" ecorePackage="CommonFreightTransportMetamodel.ecore#//logisticDemand">
+      <genClasses ecoreClass="CommonFreightTransportMetamodel.ecore#//logisticDemand/Demand">
+        <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference CommonFreightTransportMetamodel.ecore#//logisticDemand/Demand/shipments"/>
+      </genClasses>
+      <genClasses image="false" ecoreClass="CommonFreightTransportMetamodel.ecore#//logisticDemand/FromOutsideStudyAreaShipment">
+        <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference CommonFreightTransportMetamodel.ecore#//logisticDemand/FromOutsideStudyAreaShipment/arrivalAtOriginDepot"/>
+      </genClasses>
+      <genClasses image="false" ecoreClass="CommonFreightTransportMetamodel.ecore#//logisticDemand/FromInsideStudyAreaShipment">
+        <genFeatures notify="false" createChild="false" propertySortChoices="true"
+            ecoreFeature="ecore:EReference CommonFreightTransportMetamodel.ecore#//logisticDemand/FromInsideStudyAreaShipment/producer"/>
+      </genClasses>
+      <genClasses image="false" ecoreClass="CommonFreightTransportMetamodel.ecore#//logisticDemand/ToOutsideStudyAreaShipment">
+        <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference CommonFreightTransportMetamodel.ecore#//logisticDemand/ToOutsideStudyAreaShipment/arrivalAtDepotTimeWindow"/>
+      </genClasses>
+      <genClasses image="false" ecoreClass="CommonFreightTransportMetamodel.ecore#//logisticDemand/ToInsideStudyAreaShipment">
+        <genFeatures notify="false" createChild="false" propertySortChoices="true"
+            ecoreFeature="ecore:EReference CommonFreightTransportMetamodel.ecore#//logisticDemand/ToInsideStudyAreaShipment/receiver"/>
+      </genClasses>
+      <genClasses ecoreClass="CommonFreightTransportMetamodel.ecore#//logisticDemand/OutsideToInsideShipment"/>
+      <genClasses ecoreClass="CommonFreightTransportMetamodel.ecore#//logisticDemand/InsideToInsideShipment"/>
+      <genClasses ecoreClass="CommonFreightTransportMetamodel.ecore#//logisticDemand/InsideToOutsideShipment"/>
+      <genClasses image="false" ecoreClass="CommonFreightTransportMetamodel.ecore#//logisticDemand/Shipment">
+        <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference CommonFreightTransportMetamodel.ecore#//logisticDemand/Shipment/responsibleCEPSP"/>
+        <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference CommonFreightTransportMetamodel.ecore#//logisticDemand/Shipment/size"/>
+      </genClasses>
+      <genClasses ecoreClass="CommonFreightTransportMetamodel.ecore#//logisticDemand/SplittedShipment">
+        <genFeatures createChild="false" ecoreFeature="ecore:EAttribute CommonFreightTransportMetamodel.ecore#//logisticDemand/SplittedShipment/originalId"/>
+      </genClasses>
+      <genClasses image="false" ecoreClass="CommonFreightTransportMetamodel.ecore#//logisticDemand/FromInsideStudyAreaShipmentBase">
+        <genFeatures notify="false" createChild="false" propertySortChoices="true"
+            ecoreFeature="ecore:EReference CommonFreightTransportMetamodel.ecore#//logisticDemand/FromInsideStudyAreaShipmentBase/origin"/>
+        <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference CommonFreightTransportMetamodel.ecore#//logisticDemand/FromInsideStudyAreaShipmentBase/arrivalAtOrigin"/>
+      </genClasses>
+      <genClasses image="false" ecoreClass="CommonFreightTransportMetamodel.ecore#//logisticDemand/ToInsideStudyAreaShipmentBase">
+        <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference CommonFreightTransportMetamodel.ecore#//logisticDemand/ToInsideStudyAreaShipmentBase/arrivalAtDestinationTimeWindow"/>
+        <genFeatures notify="false" createChild="false" propertySortChoices="true"
+            ecoreFeature="ecore:EReference CommonFreightTransportMetamodel.ecore#//logisticDemand/ToInsideStudyAreaShipmentBase/destination"/>
+      </genClasses>
+    </nestedGenPackages>
+    <nestedGenPackages prefix="Utils" disposableProviderFactory="true" ecorePackage="CommonFreightTransportMetamodel.ecore#//utils">
+      <genEnums typeSafeEnumCompatible="false" ecoreEnum="CommonFreightTransportMetamodel.ecore#//utils/DayOfWeek"/>
+      <genClasses ecoreClass="CommonFreightTransportMetamodel.ecore#//utils/SingleDayTimestamp">
+        <genFeatures createChild="false" ecoreFeature="ecore:EAttribute CommonFreightTransportMetamodel.ecore#//utils/SingleDayTimestamp/hour"/>
+        <genFeatures createChild="false" ecoreFeature="ecore:EAttribute CommonFreightTransportMetamodel.ecore#//utils/SingleDayTimestamp/minute"/>
+        <genFeatures createChild="false" ecoreFeature="ecore:EAttribute CommonFreightTransportMetamodel.ecore#//utils/SingleDayTimestamp/second"/>
+      </genClasses>
+      <genClasses image="false" ecoreClass="CommonFreightTransportMetamodel.ecore#//utils/Timestamp_"/>
+      <genClasses image="false" ecoreClass="CommonFreightTransportMetamodel.ecore#//utils/TimeWindow_"/>
+      <genClasses ecoreClass="CommonFreightTransportMetamodel.ecore#//utils/MultiDayTimestamp">
+        <genFeatures createChild="false" ecoreFeature="ecore:EAttribute CommonFreightTransportMetamodel.ecore#//utils/MultiDayTimestamp/simulationDay"/>
+        <genFeatures createChild="false" ecoreFeature="ecore:EAttribute CommonFreightTransportMetamodel.ecore#//utils/MultiDayTimestamp/hour"/>
+        <genFeatures createChild="false" ecoreFeature="ecore:EAttribute CommonFreightTransportMetamodel.ecore#//utils/MultiDayTimestamp/second"/>
+        <genFeatures createChild="false" ecoreFeature="ecore:EAttribute CommonFreightTransportMetamodel.ecore#//utils/MultiDayTimestamp/minute"/>
+      </genClasses>
+      <genClasses ecoreClass="CommonFreightTransportMetamodel.ecore#//utils/SingleDayTimeWindow">
+        <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference CommonFreightTransportMetamodel.ecore#//utils/SingleDayTimeWindow/from"/>
+        <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference CommonFreightTransportMetamodel.ecore#//utils/SingleDayTimeWindow/to"/>
+      </genClasses>
+      <genClasses ecoreClass="CommonFreightTransportMetamodel.ecore#//utils/MultiDayTimeWindow">
+        <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference CommonFreightTransportMetamodel.ecore#//utils/MultiDayTimeWindow/from"/>
+        <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference CommonFreightTransportMetamodel.ecore#//utils/MultiDayTimeWindow/to"/>
+      </genClasses>
+      <genClasses image="false" ecoreClass="CommonFreightTransportMetamodel.ecore#//utils/HasId_">
+        <genFeatures createChild="false" ecoreFeature="ecore:EAttribute CommonFreightTransportMetamodel.ecore#//utils/HasId_/id"/>
+      </genClasses>
+      <genClasses ecoreClass="CommonFreightTransportMetamodel.ecore#//utils/Durration_">
+        <genFeatures createChild="false" ecoreFeature="ecore:EAttribute CommonFreightTransportMetamodel.ecore#//utils/Durration_/hours"/>
+        <genFeatures createChild="false" ecoreFeature="ecore:EAttribute CommonFreightTransportMetamodel.ecore#//utils/Durration_/days"/>
+        <genFeatures createChild="false" ecoreFeature="ecore:EAttribute CommonFreightTransportMetamodel.ecore#//utils/Durration_/seconds"/>
+        <genFeatures createChild="false" ecoreFeature="ecore:EAttribute CommonFreightTransportMetamodel.ecore#//utils/Durration_/minutes"/>
+      </genClasses>
+      <genClasses ecoreClass="CommonFreightTransportMetamodel.ecore#//utils/Coordinate">
+        <genFeatures createChild="false" ecoreFeature="ecore:EAttribute CommonFreightTransportMetamodel.ecore#//utils/Coordinate/x"/>
+        <genFeatures createChild="false" ecoreFeature="ecore:EAttribute CommonFreightTransportMetamodel.ecore#//utils/Coordinate/y"/>
+      </genClasses>
+      <genClasses image="false" ecoreClass="CommonFreightTransportMetamodel.ecore#//utils/VolumeBasedDimension"/>
+      <genClasses image="false" ecoreClass="CommonFreightTransportMetamodel.ecore#//utils/WeightBasedDimension"/>
+      <genClasses ecoreClass="CommonFreightTransportMetamodel.ecore#//utils/VolumeAndWeightBasedDimension">
+        <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference CommonFreightTransportMetamodel.ecore#//utils/VolumeAndWeightBasedDimension/volumeDimension"/>
+        <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference CommonFreightTransportMetamodel.ecore#//utils/VolumeAndWeightBasedDimension/weightDimension"/>
+      </genClasses>
+      <genClasses image="false" ecoreClass="CommonFreightTransportMetamodel.ecore#//utils/Dimension"/>
+      <genClasses image="false" ecoreClass="CommonFreightTransportMetamodel.ecore#//utils/ShipmentlLegStartEndPoint"/>
+      <genClasses ecoreClass="CommonFreightTransportMetamodel.ecore#//utils/InfiniteVolumeDimension"/>
+      <genClasses ecoreClass="CommonFreightTransportMetamodel.ecore#//utils/FiniteVolumeDimension">
+        <genFeatures createChild="false" ecoreFeature="ecore:EAttribute CommonFreightTransportMetamodel.ecore#//utils/FiniteVolumeDimension/volumeCubicMetre"/>
+      </genClasses>
+      <genClasses ecoreClass="CommonFreightTransportMetamodel.ecore#//utils/FiniteWeightDimension">
+        <genFeatures createChild="false" ecoreFeature="ecore:EAttribute CommonFreightTransportMetamodel.ecore#//utils/FiniteWeightDimension/weightKg"/>
+      </genClasses>
+      <genClasses ecoreClass="CommonFreightTransportMetamodel.ecore#//utils/InfiniteWeightDimension"/>
+    </nestedGenPackages>
+    <nestedGenPackages prefix="Network" disposableProviderFactory="true" ecorePackage="CommonFreightTransportMetamodel.ecore#//network">
+      <genEnums typeSafeEnumCompatible="false" ecoreEnum="CommonFreightTransportMetamodel.ecore#//network/VehicleType_">
+        <genEnumLiterals ecoreEnumLiteral="CommonFreightTransportMetamodel.ecore#//network/VehicleType_/TRUCK"/>
+        <genEnumLiterals ecoreEnumLiteral="CommonFreightTransportMetamodel.ecore#//network/VehicleType_/TRAM"/>
+        <genEnumLiterals ecoreEnumLiteral="CommonFreightTransportMetamodel.ecore#//network/VehicleType_/CAR"/>
+        <genEnumLiterals ecoreEnumLiteral="CommonFreightTransportMetamodel.ecore#//network/VehicleType_/BIKE"/>
+        <genEnumLiterals ecoreEnumLiteral="CommonFreightTransportMetamodel.ecore#//network/VehicleType_/WALKING"/>
+        <genEnumLiterals ecoreEnumLiteral="CommonFreightTransportMetamodel.ecore#//network/VehicleType_/DELIVERY_VEHICLE"/>
+        <genEnumLiterals ecoreEnumLiteral="CommonFreightTransportMetamodel.ecore#//network/VehicleType_/OTHER"/>
+      </genEnums>
+      <genClasses ecoreClass="CommonFreightTransportMetamodel.ecore#//network/Network">
+        <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference CommonFreightTransportMetamodel.ecore#//network/Network/nodes"/>
+        <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference CommonFreightTransportMetamodel.ecore#//network/Network/edges"/>
+      </genClasses>
+      <genClasses ecoreClass="CommonFreightTransportMetamodel.ecore#//network/Location_">
+        <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference CommonFreightTransportMetamodel.ecore#//network/Location_/coordinate"/>
+        <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference CommonFreightTransportMetamodel.ecore#//network/Location_/networkAccess"/>
+      </genClasses>
+      <genClasses ecoreClass="CommonFreightTransportMetamodel.ecore#//network/Node">
+        <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference CommonFreightTransportMetamodel.ecore#//network/Node/coordinate"/>
+      </genClasses>
+      <genClasses ecoreClass="CommonFreightTransportMetamodel.ecore#//network/Edge">
+        <genFeatures notify="false" createChild="false" propertySortChoices="true"
+            ecoreFeature="ecore:EReference CommonFreightTransportMetamodel.ecore#//network/Edge/from"/>
+        <genFeatures notify="false" createChild="false" propertySortChoices="true"
+            ecoreFeature="ecore:EReference CommonFreightTransportMetamodel.ecore#//network/Edge/to"/>
+        <genFeatures createChild="false" ecoreFeature="ecore:EAttribute CommonFreightTransportMetamodel.ecore#//network/Edge/length"/>
+        <genFeatures createChild="false" ecoreFeature="ecore:EAttribute CommonFreightTransportMetamodel.ecore#//network/Edge/allowedVehicleTypes"/>
+      </genClasses>
+      <genClasses image="false" ecoreClass="CommonFreightTransportMetamodel.ecore#//network/NetworkAccess"/>
+      <genClasses ecoreClass="CommonFreightTransportMetamodel.ecore#//network/NodeBasedNetworkAccess">
+        <genFeatures notify="false" createChild="false" propertySortChoices="true"
+            ecoreFeature="ecore:EReference CommonFreightTransportMetamodel.ecore#//network/NodeBasedNetworkAccess/node"/>
+      </genClasses>
+      <genClasses ecoreClass="CommonFreightTransportMetamodel.ecore#//network/EdgeBasedNetworkAccess">
+        <genFeatures notify="false" createChild="false" propertySortChoices="true"
+            ecoreFeature="ecore:EReference CommonFreightTransportMetamodel.ecore#//network/EdgeBasedNetworkAccess/edge"/>
+        <genFeatures createChild="false" ecoreFeature="ecore:EAttribute CommonFreightTransportMetamodel.ecore#//network/EdgeBasedNetworkAccess/edgePosition"/>
+      </genClasses>
+    </nestedGenPackages>
+    <nestedGenPackages prefix="LocalEntities" disposableProviderFactory="true" ecorePackage="CommonFreightTransportMetamodel.ecore#//localEntities">
+      <genClasses ecoreClass="CommonFreightTransportMetamodel.ecore#//localEntities/BusinessBranch">
+        <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference CommonFreightTransportMetamodel.ecore#//localEntities/BusinessBranch/location"/>
+        <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference CommonFreightTransportMetamodel.ecore#//localEntities/BusinessBranch/openingHours"/>
+      </genClasses>
+      <genClasses ecoreClass="CommonFreightTransportMetamodel.ecore#//localEntities/Person">
+        <genFeatures notify="false" createChild="false" propertySortChoices="true"
+            ecoreFeature="ecore:EReference CommonFreightTransportMetamodel.ecore#//localEntities/Person/household"/>
+      </genClasses>
+      <genClasses ecoreClass="CommonFreightTransportMetamodel.ecore#//localEntities/Population">
+        <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference CommonFreightTransportMetamodel.ecore#//localEntities/Population/households"/>
+        <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference CommonFreightTransportMetamodel.ecore#//localEntities/Population/businesses"/>
+      </genClasses>
+      <genClasses ecoreClass="CommonFreightTransportMetamodel.ecore#//localEntities/Business">
+        <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference CommonFreightTransportMetamodel.ecore#//localEntities/Business/branches"/>
+      </genClasses>
+      <genClasses image="false" ecoreClass="CommonFreightTransportMetamodel.ecore#//localEntities/ShipmentConsumerProducer"/>
+      <genClasses ecoreClass="CommonFreightTransportMetamodel.ecore#//localEntities/Household">
+        <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference CommonFreightTransportMetamodel.ecore#//localEntities/Household/location"/>
+        <genFeatures children="true" createChild="true" propertySortChoices="true"
+            ecoreFeature="ecore:EReference CommonFreightTransportMetamodel.ecore#//localEntities/Household/member"/>
+      </genClasses>
+    </nestedGenPackages>
+    <nestedGenPackages prefix="LogisticNetwork" disposableProviderFactory="true" ecorePackage="CommonFreightTransportMetamodel.ecore#//logisticNetwork">
+      <genClasses ecoreClass="CommonFreightTransportMetamodel.ecore#//logisticNetwork/CEPSP">
+        <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference CommonFreightTransportMetamodel.ecore#//logisticNetwork/CEPSP/vehicleDepots"/>
+        <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference CommonFreightTransportMetamodel.ecore#//logisticNetwork/CEPSP/logisticHubs"/>
+        <genFeatures createChild="false" ecoreFeature="ecore:EAttribute CommonFreightTransportMetamodel.ecore#//logisticNetwork/CEPSP/name"/>
+        <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference CommonFreightTransportMetamodel.ecore#//logisticNetwork/CEPSP/usedPublicServicePoints"/>
+        <genFeatures notify="false" createChild="false" propertySortChoices="true"
+            ecoreFeature="ecore:EReference CommonFreightTransportMetamodel.ecore#//logisticNetwork/CEPSP/deliveryPartners"/>
+        <genFeatures notify="false" createChild="false" propertySortChoices="true"
+            ecoreFeature="ecore:EReference CommonFreightTransportMetamodel.ecore#//logisticNetwork/CEPSP/pickUpPartners"/>
+      </genClasses>
+      <genClasses ecoreClass="CommonFreightTransportMetamodel.ecore#//logisticNetwork/LogisticNetwork">
+        <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference CommonFreightTransportMetamodel.ecore#//logisticNetwork/LogisticNetwork/CEPSPs"/>
+        <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference CommonFreightTransportMetamodel.ecore#//logisticNetwork/LogisticNetwork/publicServicePoints"/>
+      </genClasses>
+      <genClasses image="false" ecoreClass="CommonFreightTransportMetamodel.ecore#//logisticNetwork/PublicServicePoint">
+        <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference CommonFreightTransportMetamodel.ecore#//logisticNetwork/PublicServicePoint/location"/>
+        <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference CommonFreightTransportMetamodel.ecore#//logisticNetwork/PublicServicePoint/storageCapacity"/>
+      </genClasses>
+      <genClasses ecoreClass="CommonFreightTransportMetamodel.ecore#//logisticNetwork/Packstation"/>
+      <genClasses ecoreClass="CommonFreightTransportMetamodel.ecore#//logisticNetwork/Shop">
+        <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference CommonFreightTransportMetamodel.ecore#//logisticNetwork/Shop/openingHours"/>
+      </genClasses>
+      <genClasses ecoreClass="CommonFreightTransportMetamodel.ecore#//logisticNetwork/VehicleDepot">
+        <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference CommonFreightTransportMetamodel.ecore#//logisticNetwork/VehicleDepot/location"/>
+        <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference CommonFreightTransportMetamodel.ecore#//logisticNetwork/VehicleDepot/operationHours"/>
+        <genFeatures children="true" createChild="true" propertySortChoices="true"
+            ecoreFeature="ecore:EReference CommonFreightTransportMetamodel.ecore#//logisticNetwork/VehicleDepot/vehicles"/>
+      </genClasses>
+      <genClasses ecoreClass="CommonFreightTransportMetamodel.ecore#//logisticNetwork/LogisticHub">
+        <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference CommonFreightTransportMetamodel.ecore#//logisticNetwork/LogisticHub/storageCapacity"/>
+        <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference CommonFreightTransportMetamodel.ecore#//logisticNetwork/LogisticHub/location"/>
+        <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference CommonFreightTransportMetamodel.ecore#//logisticNetwork/LogisticHub/operationHours"/>
+        <genFeatures createChild="false" ecoreFeature="ecore:EAttribute CommonFreightTransportMetamodel.ecore#//logisticNetwork/LogisticHub/acceptedVehicleTypes"/>
+        <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference CommonFreightTransportMetamodel.ecore#//logisticNetwork/LogisticHub/minimumTranshipmentTime"/>
+        <genFeatures createChild="false" ecoreFeature="ecore:EAttribute CommonFreightTransportMetamodel.ecore#//logisticNetwork/LogisticHub/isExit"/>
+        <genFeatures createChild="false" ecoreFeature="ecore:EAttribute CommonFreightTransportMetamodel.ecore#//logisticNetwork/LogisticHub/isEntry"/>
+      </genClasses>
+      <genClasses ecoreClass="CommonFreightTransportMetamodel.ecore#//logisticNetwork/UsedPublicServicePoint">
+        <genFeatures notify="false" createChild="false" propertySortChoices="true"
+            ecoreFeature="ecore:EReference CommonFreightTransportMetamodel.ecore#//logisticNetwork/UsedPublicServicePoint/publicServicePoint"/>
+        <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference CommonFreightTransportMetamodel.ecore#//logisticNetwork/UsedPublicServicePoint/grantedStorageCapacity"/>
+      </genClasses>
+      <genClasses ecoreClass="CommonFreightTransportMetamodel.ecore#//logisticNetwork/Vehicle">
+        <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference CommonFreightTransportMetamodel.ecore#//logisticNetwork/Vehicle/storageCapacity"/>
+        <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference CommonFreightTransportMetamodel.ecore#//logisticNetwork/Vehicle/operationHours"/>
+        <genFeatures createChild="false" ecoreFeature="ecore:EAttribute CommonFreightTransportMetamodel.ecore#//logisticNetwork/Vehicle/type"/>
+        <genFeatures notify="false" createChild="false" propertySortChoices="true"
+            ecoreFeature="ecore:EReference CommonFreightTransportMetamodel.ecore#//logisticNetwork/Vehicle/depot"/>
+      </genClasses>
+      <genClasses image="false" ecoreClass="CommonFreightTransportMetamodel.ecore#//logisticNetwork/LogisticFacility"/>
+    </nestedGenPackages>
+    <nestedGenPackages prefix="LogisticSolution" disposableProviderFactory="true"
+        ecorePackage="CommonFreightTransportMetamodel.ecore#//logisticSolution">
+      <genClasses image="false" ecoreClass="CommonFreightTransportMetamodel.ecore#//logisticSolution/Tour">
+        <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference CommonFreightTransportMetamodel.ecore#//logisticSolution/Tour/stops"/>
+        <genFeatures notify="false" createChild="false" propertySortChoices="true"
+            ecoreFeature="ecore:EReference CommonFreightTransportMetamodel.ecore#//logisticSolution/Tour/vehicle"/>
+      </genClasses>
+      <genClasses image="false" ecoreClass="CommonFreightTransportMetamodel.ecore#//logisticSolution/Stop">
+        <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference CommonFreightTransportMetamodel.ecore#//logisticSolution/Stop/stopTimeWindow"/>
+        <genFeatures createChild="false" ecoreFeature="ecore:EAttribute CommonFreightTransportMetamodel.ecore#//logisticSolution/Stop/no"/>
+        <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference CommonFreightTransportMetamodel.ecore#//logisticSolution/Stop/stopLocation"/>
+      </genClasses>
+      <genClasses ecoreClass="CommonFreightTransportMetamodel.ecore#//logisticSolution/ShipmentRecord">
+        <genFeatures notify="false" createChild="false" propertySortChoices="true"
+            ecoreFeature="ecore:EReference CommonFreightTransportMetamodel.ecore#//logisticSolution/ShipmentRecord/shipment"/>
+        <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference CommonFreightTransportMetamodel.ecore#//logisticSolution/ShipmentRecord/entries"/>
+        <genFeatures notify="false" createChild="false" propertySortChoices="true"
+            ecoreFeature="ecore:EReference CommonFreightTransportMetamodel.ecore#//logisticSolution/ShipmentRecord/repsonsibleCEPSP"/>
+        <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference CommonFreightTransportMetamodel.ecore#//logisticSolution/ShipmentRecord/entry"/>
+        <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference CommonFreightTransportMetamodel.ecore#//logisticSolution/ShipmentRecord/exit"/>
+      </genClasses>
+      <genClasses ecoreClass="CommonFreightTransportMetamodel.ecore#//logisticSolution/StartEndStop">
+        <genFeatures notify="false" createChild="false" propertySortChoices="true"
+            ecoreFeature="ecore:EReference CommonFreightTransportMetamodel.ecore#//logisticSolution/StartEndStop/depot"/>
+      </genClasses>
+      <genClasses image="false" ecoreClass="CommonFreightTransportMetamodel.ecore#//logisticSolution/PickUpDeliveryStop">
+        <genFeatures notify="false" createChild="false" propertySortChoices="true"
+            ecoreFeature="ecore:EReference CommonFreightTransportMetamodel.ecore#//logisticSolution/PickUpDeliveryStop/unloadedShipments"/>
+        <genFeatures notify="false" createChild="false" propertySortChoices="true"
+            ecoreFeature="ecore:EReference CommonFreightTransportMetamodel.ecore#//logisticSolution/PickUpDeliveryStop/loadedShipments"/>
+      </genClasses>
+      <genClasses ecoreClass="CommonFreightTransportMetamodel.ecore#//logisticSolution/LogisticFacilityStop">
+        <genFeatures notify="false" createChild="false" propertySortChoices="true"
+            ecoreFeature="ecore:EReference CommonFreightTransportMetamodel.ecore#//logisticSolution/LogisticFacilityStop/logisticFacility"/>
+      </genClasses>
+      <genClasses ecoreClass="CommonFreightTransportMetamodel.ecore#//logisticSolution/NormalStop"/>
+      <genClasses ecoreClass="CommonFreightTransportMetamodel.ecore#//logisticSolution/ShipmentRecordEntry">
+        <genFeatures notify="false" createChild="false" propertySortChoices="true"
+            ecoreFeature="ecore:EReference CommonFreightTransportMetamodel.ecore#//logisticSolution/ShipmentRecordEntry/executingCEPSP"/>
+        <genFeatures createChild="false" ecoreFeature="ecore:EAttribute CommonFreightTransportMetamodel.ecore#//logisticSolution/ShipmentRecordEntry/no"/>
+        <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference CommonFreightTransportMetamodel.ecore#//logisticSolution/ShipmentRecordEntry/from"/>
+        <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference CommonFreightTransportMetamodel.ecore#//logisticSolution/ShipmentRecordEntry/to"/>
+        <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference CommonFreightTransportMetamodel.ecore#//logisticSolution/ShipmentRecordEntry/timeWindow"/>
+        <genFeatures notify="false" createChild="false" propertySortChoices="true"
+            ecoreFeature="ecore:EReference CommonFreightTransportMetamodel.ecore#//logisticSolution/ShipmentRecordEntry/fromSpec"/>
+        <genFeatures notify="false" createChild="false" propertySortChoices="true"
+            ecoreFeature="ecore:EReference CommonFreightTransportMetamodel.ecore#//logisticSolution/ShipmentRecordEntry/toSpec"/>
+        <genFeatures notify="false" createChild="false" propertySortChoices="true"
+            ecoreFeature="ecore:EReference CommonFreightTransportMetamodel.ecore#//logisticSolution/ShipmentRecordEntry/tour"/>
+      </genClasses>
+      <genClasses image="false" ecoreClass="CommonFreightTransportMetamodel.ecore#//logisticSolution/ShipmentEntry">
+        <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference CommonFreightTransportMetamodel.ecore#//logisticSolution/ShipmentEntry/time"/>
+      </genClasses>
+      <genClasses image="false" ecoreClass="CommonFreightTransportMetamodel.ecore#//logisticSolution/ShipmentExit">
+        <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference CommonFreightTransportMetamodel.ecore#//logisticSolution/ShipmentExit/time"/>
+      </genClasses>
+      <genClasses ecoreClass="CommonFreightTransportMetamodel.ecore#//logisticSolution/LogisticHubEntry">
+        <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference CommonFreightTransportMetamodel.ecore#//logisticSolution/LogisticHubEntry/logisticHub"/>
+      </genClasses>
+      <genClasses ecoreClass="CommonFreightTransportMetamodel.ecore#//logisticSolution/PickUpEntry">
+        <genFeatures notify="false" createChild="false" propertySortChoices="true"
+            ecoreFeature="ecore:EReference CommonFreightTransportMetamodel.ecore#//logisticSolution/PickUpEntry/pickUpLeg"/>
+      </genClasses>
+      <genClasses ecoreClass="CommonFreightTransportMetamodel.ecore#//logisticSolution/LogisticHubExit">
+        <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference CommonFreightTransportMetamodel.ecore#//logisticSolution/LogisticHubExit/logisticHub"/>
+      </genClasses>
+      <genClasses ecoreClass="CommonFreightTransportMetamodel.ecore#//logisticSolution/DeliveryExit">
+        <genFeatures notify="false" createChild="false" propertySortChoices="true"
+            ecoreFeature="ecore:EReference CommonFreightTransportMetamodel.ecore#//logisticSolution/DeliveryExit/deliveryLeg"/>
+      </genClasses>
+      <genClasses ecoreClass="CommonFreightTransportMetamodel.ecore#//logisticSolution/PlannedTour">
+        <genFeatures notify="false" createChild="false" propertySortChoices="true"
+            ecoreFeature="ecore:EReference CommonFreightTransportMetamodel.ecore#//logisticSolution/PlannedTour/executingCEPSP"/>
+      </genClasses>
+      <genClasses image="false" ecoreClass="CommonFreightTransportMetamodel.ecore#//logisticSolution/StopLocation"/>
+      <genClasses ecoreClass="CommonFreightTransportMetamodel.ecore#//logisticSolution/ReferenceStopLocation">
+        <genFeatures notify="false" createChild="false" propertySortChoices="true"
+            ecoreFeature="ecore:EReference CommonFreightTransportMetamodel.ecore#//logisticSolution/ReferenceStopLocation/location"/>
+      </genClasses>
+      <genClasses ecoreClass="CommonFreightTransportMetamodel.ecore#//logisticSolution/CustomStopLocation">
+        <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference CommonFreightTransportMetamodel.ecore#//logisticSolution/CustomStopLocation/location"/>
+      </genClasses>
+      <genClasses ecoreClass="CommonFreightTransportMetamodel.ecore#//logisticSolution/LogisticSolution">
+        <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference CommonFreightTransportMetamodel.ecore#//logisticSolution/LogisticSolution/shipmentRecords"/>
+        <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference CommonFreightTransportMetamodel.ecore#//logisticSolution/LogisticSolution/tours"/>
+      </genClasses>
+    </nestedGenPackages>
+    <nestedGenPackages prefix="Results" disposableProviderFactory="true" ecorePackage="CommonFreightTransportMetamodel.ecore#//results">
+      <genClasses ecoreClass="CommonFreightTransportMetamodel.ecore#//results/FailedPickupAttempt"/>
+      <genClasses ecoreClass="CommonFreightTransportMetamodel.ecore#//results/FailedDeliveryAttempt">
+        <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference CommonFreightTransportMetamodel.ecore#//results/FailedDeliveryAttempt/failedDeliveryLocation"/>
+        <genFeatures notify="false" createChild="false" propertySortChoices="true"
+            ecoreFeature="ecore:EReference CommonFreightTransportMetamodel.ecore#//results/FailedDeliveryAttempt/failedDeliveryFacility"/>
+      </genClasses>
+      <genClasses ecoreClass="CommonFreightTransportMetamodel.ecore#//results/InitialFailedDeliveryAttempt"/>
+      <genClasses ecoreClass="CommonFreightTransportMetamodel.ecore#//results/ResultDeliveryExit">
+        <genFeatures notify="false" createChild="false" propertySortChoices="true"
+            ecoreFeature="ecore:EReference CommonFreightTransportMetamodel.ecore#//results/ResultDeliveryExit/failedPickUpAttempts"/>
+      </genClasses>
+      <genClasses ecoreClass="CommonFreightTransportMetamodel.ecore#//results/ResultPickUpEntry">
+        <genFeatures notify="false" createChild="false" propertySortChoices="true"
+            ecoreFeature="ecore:EReference CommonFreightTransportMetamodel.ecore#//results/ResultPickUpEntry/failedPickUpAttempts"/>
+      </genClasses>
+      <genClasses ecoreClass="CommonFreightTransportMetamodel.ecore#//results/ExecutedTour">
+        <genFeatures notify="false" createChild="false" propertySortChoices="true"
+            ecoreFeature="ecore:EReference CommonFreightTransportMetamodel.ecore#//results/ExecutedTour/plannedTour"/>
+        <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference CommonFreightTransportMetamodel.ecore#//results/ExecutedTour/mappings"/>
+      </genClasses>
+      <genClasses ecoreClass="CommonFreightTransportMetamodel.ecore#//results/TourStopMapping">
+        <genFeatures notify="false" createChild="false" propertySortChoices="true"
+            ecoreFeature="ecore:EReference CommonFreightTransportMetamodel.ecore#//results/TourStopMapping/plannedStop"/>
+        <genFeatures notify="false" createChild="false" propertySortChoices="true"
+            ecoreFeature="ecore:EReference CommonFreightTransportMetamodel.ecore#//results/TourStopMapping/executedStop"/>
+      </genClasses>
+      <genClasses ecoreClass="CommonFreightTransportMetamodel.ecore#//results/Results">
+        <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference CommonFreightTransportMetamodel.ecore#//results/Results/shipmentRecords"/>
+        <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference CommonFreightTransportMetamodel.ecore#//results/Results/executedTours"/>
+      </genClasses>
+    </nestedGenPackages>
+    <nestedGenPackages prefix="Coupling" disposableProviderFactory="true" ecorePackage="CommonFreightTransportMetamodel.ecore#//coupling">
+      <genClasses ecoreClass="CommonFreightTransportMetamodel.ecore#//coupling/CommonFreightTransportMetamodelRoot">
+        <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference CommonFreightTransportMetamodel.ecore#//coupling/CommonFreightTransportMetamodelRoot/network"/>
+        <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference CommonFreightTransportMetamodel.ecore#//coupling/CommonFreightTransportMetamodelRoot/population"/>
+        <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference CommonFreightTransportMetamodel.ecore#//coupling/CommonFreightTransportMetamodelRoot/logisticNetwork"/>
+        <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference CommonFreightTransportMetamodel.ecore#//coupling/CommonFreightTransportMetamodelRoot/demand"/>
+        <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference CommonFreightTransportMetamodel.ecore#//coupling/CommonFreightTransportMetamodelRoot/logisticSolution"/>
+      </genClasses>
+    </nestedGenPackages>
+  </genPackages>
+</genmodel:GenModel>

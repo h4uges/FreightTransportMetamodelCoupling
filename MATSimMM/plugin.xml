@@ -1,0 +1,105 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?eclipse version="3.0"?>
+
+<!--
+-->
+
+<plugin>
+
+   <extension point="org.eclipse.emf.ecore.generated_package">
+      <!-- @generated MATSimFreightMetamodel -->
+      <package
+            uri="http://www.cep-model-coupling.com/MATSimFreightMetamodel"
+            class="MATSimFreightMetamodel.MATSimFreightMetamodelPackage"
+            genModel="model/MATSimFreightMetamodel.genmodel"/>
+   </extension>
+
+   <extension point="org.eclipse.emf.ecore.generated_package">
+      <!-- @generated MATSimFreightMetamodel -->
+      <package
+            uri="http://www.cep-model-coupling.com/MATSimFreightMetamodel/freightContrib"
+            class="MATSimFreightMetamodel.freightContrib.FreightContribPackage"
+            genModel="model/MATSimFreightMetamodel.genmodel"/>
+   </extension>
+
+   <extension point="org.eclipse.emf.ecore.generated_package">
+      <!-- @generated MATSimFreightMetamodel -->
+      <package
+            uri="http://www.cep-model-coupling.com/MATSimFreightMetamodel/freightContrib/tour"
+            class="MATSimFreightMetamodel.freightContrib.tour.TourPackage"
+            genModel="model/MATSimFreightMetamodel.genmodel"/>
+   </extension>
+
+   <extension point="org.eclipse.emf.ecore.generated_package">
+      <!-- @generated MATSimFreightMetamodel -->
+      <package
+            uri="http://www.cep-model-coupling.com/MATSimFreightMetamodel/freightContrib/events"
+            class="MATSimFreightMetamodel.freightContrib.events.EventsPackage"
+            genModel="model/MATSimFreightMetamodel.genmodel"/>
+   </extension>
+
+   <extension point="org.eclipse.emf.ecore.generated_package">
+      <!-- @generated MATSimFreightMetamodel -->
+      <package
+            uri="http://www.cep-model-coupling.com/MATSimFreightMetamodel/base"
+            class="MATSimFreightMetamodel.base.BasePackage"
+            genModel="model/MATSimFreightMetamodel.genmodel"/>
+   </extension>
+
+   <extension point="org.eclipse.emf.ecore.generated_package">
+      <!-- @generated MATSimFreightMetamodel -->
+      <package
+            uri="http://www.cep-model-coupling.com/MATSimFreightMetamodel/matsim"
+            class="MATSimFreightMetamodel.matsim.MatsimPackage"
+            genModel="model/MATSimFreightMetamodel.genmodel"/>
+   </extension>
+
+   <extension point="org.eclipse.emf.ecore.generated_package">
+      <!-- @generated MATSimFreightMetamodel -->
+      <package
+            uri="http://www.cep-model-coupling.com/MATSimFreightMetamodel/matsim/vehicles"
+            class="MATSimFreightMetamodel.matsim.vehicles.VehiclesPackage"
+            genModel="model/MATSimFreightMetamodel.genmodel"/>
+   </extension>
+
+   <extension point="org.eclipse.emf.ecore.generated_package">
+      <!-- @generated MATSimFreightMetamodel -->
+      <package
+            uri="http://www.cep-model-coupling.com/MATSimFreightMetamodel/matsim/core"
+            class="MATSimFreightMetamodel.matsim.core.CorePackage"
+            genModel="model/MATSimFreightMetamodel.genmodel"/>
+   </extension>
+
+   <extension point="org.eclipse.emf.ecore.generated_package">
+      <!-- @generated MATSimFreightMetamodel -->
+      <package
+            uri="http://www.cep-model-coupling.com/MATSimFreightMetamodel/matsim/core/network"
+            class="MATSimFreightMetamodel.matsim.core.network.NetworkPackage"
+            genModel="model/MATSimFreightMetamodel.genmodel"/>
+   </extension>
+
+   <extension point="org.eclipse.emf.ecore.generated_package">
+      <!-- @generated MATSimFreightMetamodel -->
+      <package
+            uri="http://www.cep-model-coupling.com/MATSimFreightMetamodel/matsim/core/population"
+            class="MATSimFreightMetamodel.matsim.core.population.PopulationPackage"
+            genModel="model/MATSimFreightMetamodel.genmodel"/>
+   </extension>
+
+   <extension point="org.eclipse.emf.ecore.generated_package">
+      <!-- @generated MATSimFreightMetamodel -->
+      <package
+            uri="http://www.cep-model-coupling.com/MATSimFreightMetamodel/matsim/households"
+            class="MATSimFreightMetamodel.matsim.households.HouseholdsPackage"
+            genModel="model/MATSimFreightMetamodel.genmodel"/>
+   </extension>
+
+   <extension point="org.eclipse.emf.ecore.generated_package">
+      <!-- @generated MATSimFreightMetamodel -->
+      <package
+            uri="http://www.cep-model-coupling.com/MATSimFreightMetamodel/reightReceiver"
+            class="MATSimFreightMetamodel.freightReceiver.FreightReceiverPackage"
+            genModel="model/MATSimFreightMetamodel.genmodel"/>
+   </extension>
+
+</plugin>

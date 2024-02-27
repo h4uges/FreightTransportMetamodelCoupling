@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xmi:XMI xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:logisticDemand="http://www.cep-model-coupling.com/commonFreightTransportMetamodel/logisticDemand" xmlns:network="http://www.cep-model-coupling.com/commonFreightTransportMetamodel/network" xmlns:utils="http://www.cep-model-coupling.com/commonFreightTransportMetamodel/utils" xsi:schemaLocation="http://www.cep-model-coupling.com/commonFreightTransportMetamodel/logisticDemand ../../CommonMM/model/CommonFreightTransportMetamodel.ecore#//LogisticDemand http://www.cep-model-coupling.com/commonFreightTransportMetamodel/network ../../CommonMM/model/CommonFreightTransportMetamodel.ecore#//Network http://www.cep-model-coupling.com/commonFreightTransportMetamodel/utils ../../CommonMM/model/CommonFreightTransportMetamodel.ecore#//Utils">
+  <logisticDemand:CommonFreightTransportMetamodelRoot>
+    <network>
+      <nodes id="xy">
+        <coordinate x="5.0"/>
+      </nodes>
+    </network>
+    <logisticNetwork>
+      <CEPSPs id="xy_cepsp" name="cepsp">
+        <logisticHubs id="foo" isExit="true" isEntry="true">
+          <storageCapacity xsi:type="utils:FiniteWeightDimension" weightKg="50.0"/>
+          <location id="xy">
+            <coordinate x="6.0"/>
+            <networkAccess xsi:type="network:NodeBasedNetworkAccess" node="/0/@network/@nodes.0"/>
+          </location>
+          <acceptedVehicleTypes>DELIVERY_VEHICLE</acceptedVehicleTypes>
+        </logisticHubs>
+      </CEPSPs>
+    </logisticNetwork>
+  </logisticDemand:CommonFreightTransportMetamodelRoot>
+</xmi:XMI>
