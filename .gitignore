@@ -1,8 +1,13 @@
 # ---- Project related ----
+MATSimMM/src/
 MATSimMM.edit/
 MATSimMM.editor/
+
+CommonMM/src/
 CommonMM.edit/
 CommonMM.editor/
+
+LogiToppMM/src/
 LogiToppMM.edit/
 LogiToppMM.editor/
 
