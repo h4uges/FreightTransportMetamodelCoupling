@@ -1,0 +1,131 @@
+library logitopp2commonUtil;
+
+modeltype COMMON_MM uses CommonFreightTransportMetamodel('http://www.cep-model-coupling.com/commonFreightTransportMetamodel');
+modeltype LOGITOPP uses logiToppMetamodel('http://www.cep-model-coupling.com/logiToppMetamodel');
+
+// ---- MAPPING ----
+
+// TODO: review
+helper weekdayToSimulationDay(weekday : LOGITOPP::base::Weekday) : Integer {
+	switch {
+		case (weekday = LOGITOPP::base::Weekday::MONDAY) {return 0};
+		case (weekday = LOGITOPP::base::Weekday::TUESDAY) {return 1};
+		case (weekday = LOGITOPP::base::Weekday::WEDNESDAY) {return 2};
+		case (weekday = LOGITOPP::base::Weekday::THURSDAY) {return 3};
+		case (weekday = LOGITOPP::base::Weekday::FRIDAY) {return 4};
+		case (weekday = LOGITOPP::base::Weekday::SATURDAY) {return 5};
+		case (weekday = LOGITOPP::base::Weekday::SUNDAY) {return 6};
+		else {return -1;}
+	}
+}
+
+helper mapVehicleType(logiToppVehicleType : LOGITOPP::logiTopp::distribution::fleet::VehicleType) : COMMON_MM::network::VehicleType_ {
+	switch {
+		case (logiToppVehicleType = LOGITOPP::logiTopp::distribution::fleet::VehicleType::BIKE) {return COMMON_MM::network::VehicleType_::BIKE;}
+		case (logiToppVehicleType = LOGITOPP::logiTopp::distribution::fleet::VehicleType::TRUCK) {return COMMON_MM::network::VehicleType_::TRUCK;}
+		case (logiToppVehicleType = LOGITOPP::logiTopp::distribution::fleet::VehicleType::TRAM) {return COMMON_MM::network::VehicleType_::TRAM;}
+		case (logiToppVehicleType = LOGITOPP::logiTopp::distribution::fleet::VehicleType::OTHERS) {return COMMON_MM::network::VehicleType_::OTHER;}
+		else {return null;}
+	};
+}
+
+
+// TODO: discuss
+helper size2Volume(parcelSize : LOGITOPP::logiTopp::parcels::ShipmentSize) : COMMON_MM::utils::FiniteVolumeDimension {
+	switch {
+		case (parcelSize = LOGITOPP::logiTopp::parcels::ShipmentSize::SMALL) {return new COMMON_MM::utils::FiniteVolumeDimension(420 + (18240 - 420).div(2));}
+		case (parcelSize = LOGITOPP::logiTopp::parcels::ShipmentSize::MEDIUM) {return new COMMON_MM::utils::FiniteVolumeDimension(18240 + (38760 - 18240).div(2));}
+		case (parcelSize = LOGITOPP::logiTopp::parcels::ShipmentSize::LARGE) {return new COMMON_MM::utils::FiniteVolumeDimension(38760 + (82080 - 38760).div(2));}
+		case (parcelSize = LOGITOPP::logiTopp::parcels::ShipmentSize::EXTRA_LARGE) {return new COMMON_MM::utils::FiniteVolumeDimension(820080 + (171000 - 820080).div(2));}
+		case (parcelSize = LOGITOPP::logiTopp::parcels::ShipmentSize::PALLET) {return new COMMON_MM::utils::FiniteVolumeDimension(0);}
+		case (parcelSize = LOGITOPP::logiTopp::parcels::ShipmentSize::CONTAINER) {return new COMMON_MM::utils::FiniteVolumeDimension(0);}
+		else return null;
+	};
+}
+
+// ---- TIME ----
+
+// ---- MultiDayTimeWindow ----
+
+constructor COMMON_MM::utils::MultiDayTimeWindow::MultiDayTimeWindow(from_ : COMMON_MM::utils::MultiDayTimestamp, to_ : COMMON_MM::utils::MultiDayTimestamp) {
+	_from := from_;
+	to := to_;
+}
+
+helper createWholeSimulationPeriodTimeWindow() : COMMON_MM::utils::MultiDayTimeWindow {
+	return new COMMON_MM::utils::MultiDayTimeWindow(null, null);
+}
+
+// ---- MultiDayTimestamp ----
+
+constructor COMMON_MM::utils::MultiDayTimestamp::MultiDayTimestamp(simulationDay_ : Integer, hour_ : Integer, minute_ : Integer, second_ : Integer) {
+	simulationDay := simulationDay_;
+	hour := hour_;
+	minute := minute_;
+	second := second_;
+}
+
+constructor COMMON_MM::utils::MultiDayTimestamp::MultiDayTimestamp(simulationDay_ : Integer, timeWithinDay : LOGITOPP::base::Time) {
+	simulationDay := simulationDay_;
+	hour := timeWithinDay.seconds.div(60).div(60).mod(24);
+	minute := timeWithinDay.seconds.div(60).mod(60); 
+	second := timeWithinDay.seconds.mod(60);
+}
+
+constructor COMMON_MM::utils::MultiDayTimestamp::MultiDayTimestamp(weekday : LOGITOPP::base::Weekday, time : LOGITOPP::base::Time) {
+	simulationDay := weekdayToSimulationDay(weekday);
+	hour := time.seconds.div(60).div(60).mod(24);
+	minute := time.seconds.div(60).mod(60); 
+	second := time.seconds.mod(60);
+}
+
+constructor COMMON_MM::utils::MultiDayTimestamp::MultiDayTimestamp(timestamp : LOGITOPP::base::Time) {
+	simulationDay := timestamp.seconds.div(24).div(60).div(60);
+	hour := timestamp.seconds.div(60).div(60).mod(24);
+	minute := timestamp.seconds.div(60).mod(60);
+	second := timestamp.seconds.mod(60);
+}
+
+// ---- Duration ----
+
+constructor COMMON_MM::utils::Durration_::Durration_(days_ : Integer, hours_ : Integer, minutes_ : Integer, seconds_ : Integer) {
+	days := days_;
+	hours := hours_;
+	minutes := minutes_;
+	seconds := seconds_;
+}
+
+// --- Time: helper ----
+
+helper addMinutes(timeStamp : COMMON_MM::utils::MultiDayTimestamp, minutes : Integer) : COMMON_MM::utils::MultiDayTimestamp {
+	var totalMinutes = timeStamp.minute + minutes;
+    var additionalHours = totalMinutes.div(60);
+    var remainingMinutes = totalMinutes.mod(60);
+    var newHours = (timeStamp.hour + additionalHours).mod(24);
+    var newDays = timeStamp.simulationDay + (timeStamp.simulationDay + additionalHours).div(24);
+	
+	return new COMMON_MM::utils::MultiDayTimestamp(newDays, newHours, remainingMinutes, timeStamp.second)
+}
+
+// ---- CAPACITY ----
+
+constructor COMMON_MM::utils::InfiniteVolumeDimension::InfiniteVolumeDimension() {}
+
+constructor COMMON_MM::utils::FiniteVolumeDimension::FiniteVolumeDimension(volumeCubicCentimeter : Real) {
+	volumeCubicMetre := volumeCubicCentimeter / 10000000;
+}
+
+// ---- MISC ----
+
+helper createAllVehicleTypes() : Collection(COMMON_MM::network::VehicleType_) {
+	var allVehicleTypes := Sequence {
+		COMMON_MM::network::VehicleType_::TRUCK,
+		COMMON_MM::network::VehicleType_::TRAM,
+		COMMON_MM::network::VehicleType_::CAR,
+		COMMON_MM::network::VehicleType_::BIKE,
+		COMMON_MM::network::VehicleType_::WALKING,
+		COMMON_MM::network::VehicleType_::DELIVERY_VEHICLE,
+		COMMON_MM::network::VehicleType_::OTHER
+	};
+	return allVehicleTypes;
+}

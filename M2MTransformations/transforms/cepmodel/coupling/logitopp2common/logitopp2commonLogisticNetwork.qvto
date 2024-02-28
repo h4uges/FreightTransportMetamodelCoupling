@@ -1,0 +1,127 @@
+library logitopp2commonLogisticNetwork;
+
+import logitopp2commonUtil;
+import logitopp2commonNetwork;
+
+modeltype COMMON_MM uses CommonFreightTransportMetamodel('http://www.cep-model-coupling.com/commonFreightTransportMetamodel');
+modeltype LOGITOPP uses logiToppMetamodel('http://www.cep-model-coupling.com/logiToppMetamodel');
+
+// TODO: default values
+property DEFAULT_TRANSSHIPMENT_TIME = new COMMON_MM::utils::Durration_(0, 0, 0, 0);
+property DEFAULT_HUB_IS_EXIT = true;
+property DEFAULT_HUB_IS_ENTRY = true;
+
+mapping LOGITOPP::TransportInfrastructure::transportInfrastructure2LogisticNetwork(demand : LOGITOPP::Demand) : COMMON_MM::logisticNetwork::LogisticNetwork {
+	publicServicePoints := findAllPackstationLocations(demand) -> collect(loc | new COMMON_MM::logisticNetwork::Packstation(loc));
+	
+	CEPSPs += self.cepServiceProviders -> map cepsp2CEPSP(publicServicePoints, demand);
+}
+
+mapping LOGITOPP::logiTopp::distribution::CEPServiceProvider::cepsp2CEPSP(publicServicePoints : Collection(COMMON_MM::logisticNetwork::PublicServicePoint), demand : LOGITOPP::Demand) : COMMON_MM::logisticNetwork::CEPSP {
+	id := self.id.toString();
+	name := self.name.toString();
+	
+	vehicleDepots := self.distributionCenters -> map distributionCenter2VehicleDepot();
+	logisticHubs := self.distributionCenters -> map distributionCenter2LogisticHub();
+	
+	deliveryPartners += self.distributionCenters -> collect(dc | dc.regionalStructure.relatedDeliveryHubs -> collect(hub | hub.CEPSP)) -> flatten() -> asSet() -> late resolveone(COMMON_MM::logisticNetwork::CEPSP);
+	pickUpPartners += self.distributionCenters -> collect(dc | dc.regionalStructure.relatedPickUpHubs -> collect(hub | hub.CEPSP)) -> flatten() -> asSet() -> late resolveone(COMMON_MM::logisticNetwork::CEPSP);
+	
+	var allUsedPackstationLocations := findAllPackstationLocationsForCEPSP(demand, self);
+	var allUsedPublicServicePoints := publicServicePoints -> select(sp | allUsedPackstationLocations -> select(neededPsLocation | areEqualLocations(neededPsLocation, sp.location)) -> size() > 0);
+		
+	usedPublicServicePoints += allUsedPublicServicePoints -> collect(sp | new COMMON_MM::logisticNetwork::UsedPublicServicePoint(sp));
+}
+
+mapping LOGITOPP::logiTopp::distribution::DistributionCenter::distributionCenter2VehicleDepot() : COMMON_MM::logisticNetwork::VehicleDepot {
+	id := "depot_" + self.id.toString();
+	location := self.location.map location2Location();
+	
+	operationHours := createWholeSimulationPeriodTimeWindow();
+	
+	vehicles += self.fleet.deliveryVehicles -> map deliveryVehicle2Vehicle();
+}
+
+mapping LOGITOPP::logiTopp::distribution::fleet::DeliveryVehicle::deliveryVehicle2Vehicle() : COMMON_MM::logisticNetwork::Vehicle {
+	id := self.id.toString();
+	storageCapacity := new COMMON_MM::utils::FiniteVolumeDimension(self.capacity);
+	operationHours += createVehicleOperationHours(self.earliestStartTime, self.latestEndTime);
+	type := mapVehicleType(self.vehicleType);
+}
+
+helper createVehicleOperationHours(earliestStartTime : LOGITOPP::base::Time, latestEndTime : LOGITOPP::base::Time): Collection(COMMON_MM::utils::MultiDayTimeWindow){
+	var operationHours : Sequence(COMMON_MM::utils::MultiDayTimeWindow) := Sequence {};
+	var weekdays := Sequence { 0, 1, 2, 3, 4, 5, 6};
+	
+	weekdays -> forEach (weekday) {
+		operationHours += new COMMON_MM::utils::MultiDayTimeWindow(new COMMON_MM::utils::MultiDayTimestamp(weekday, earliestStartTime), new COMMON_MM::utils::MultiDayTimestamp(weekday, latestEndTime))
+	};
+	
+	return operationHours;
+}
+
+mapping LOGITOPP::logiTopp::distribution::DistributionCenter::distributionCenter2LogisticHub() : COMMON_MM::logisticNetwork::LogisticHub {
+	id := "hub_" + self.id.toString();
+	location := self.location.map location2Location();
+	
+	storageCapacity := new COMMON_MM::utils::InfiniteVolumeDimension();
+	operationHours := createWholeSimulationPeriodTimeWindow();
+	acceptedVehicleTypes := createAllVehicleTypes();
+	
+	minimumTranshipmentTime := DEFAULT_TRANSSHIPMENT_TIME.clone();
+	isExit := DEFAULT_HUB_IS_EXIT;
+	isEntry := DEFAULT_HUB_IS_ENTRY;
+}
+
+// ---- logisticNetwork.publicServicePoints ----
+
+constructor COMMON_MM::logisticNetwork::UsedPublicServicePoint::UsedPublicServicePoint(publicServicePoint_ : COMMON_MM::logisticNetwork::PublicServicePoint) {
+	grantedStorageCapacity := new COMMON_MM::utils::InfiniteVolumeDimension();
+	publicServicePoint := publicServicePoint_;
+}
+
+constructor COMMON_MM::logisticNetwork::Packstation::Packstation(location_ : COMMON_MM::network::Location_) {
+	location := location_;
+	storageCapacity := new COMMON_MM::utils::InfiniteVolumeDimension();
+}
+
+helper findAllPackstationLocations(demand : LOGITOPP::Demand) :Set(COMMON_MM::network::Location_) {
+	var packstationLocatons := 
+		demand.parcels 
+		-> selectByKind(LOGITOPP::logiTopp::parcels::PrivateParcel)
+		-> select(p | p.destinationType = LOGITOPP::logiTopp::parcels::ParcelDestinationType::PACK_STATION)
+		-> collect(p | p.zoneAndLocation.location.map location2Location())
+		-> asSet();
+		
+  	var representativeLocations : Set(COMMON_MM::network::Location_) = Set{};
+	
+	packstationLocatons -> forEach(loc) {
+		var representativeFound : Boolean = false;
+	
+	    representativeLocations -> forEach(rep) {
+	    	if (areEqualLocations(loc, rep)) {
+	        	representativeFound := true;
+	      	}
+	      	endif;
+	    };
+	
+	    if (not representativeFound) {
+	      	representativeLocations := representativeLocations -> including(loc);
+	    }
+	    endif;
+	  };
+	
+	  return representativeLocations;
+}
+
+query findAllPackstationLocationsForCEPSP(demand : LOGITOPP::Demand, cepsp : LOGITOPP::logiTopp::distribution::CEPServiceProvider) : Collection(COMMON_MM::network::Location_) {
+	var packstationLocatons := 
+		demand.parcels
+		-> selectByKind(LOGITOPP::logiTopp::parcels::PrivateParcel)
+		-> select(p | p.destinationType = LOGITOPP::logiTopp::parcels::ParcelDestinationType::PACK_STATION)
+		-> select(p | p.responsibleCEPSP = cepsp)
+		-> collect(p | p.zoneAndLocation.location.map location2Location())
+		-> asSet();
+	
+	return packstationLocatons;
+}

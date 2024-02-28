@@ -1,0 +1,116 @@
+library logitopp2commonSolutionTours;
+
+import logitopp2commonUtil;
+import logitopp2commonNetwork;
+
+modeltype COMMON_MM uses CommonFreightTransportMetamodel('http://www.cep-model-coupling.com/commonFreightTransportMetamodel');
+modeltype LOGITOPP uses logiToppMetamodel('http://www.cep-model-coupling.com/logiToppMetamodel');
+
+property tourIdCounter = 0;
+
+mapping LOGITOPP::logiTopp::distribution::tours::PlannedDeliveryTour::plannedTour2PlannedTour(logisticNetwork : COMMON_MM::logisticNetwork::LogisticNetwork) : COMMON_MM::logisticSolution::PlannedTour {
+	id := createTourId();
+	executingCEPSP := self.executingCEPSP.resolveone(COMMON_MM::logisticNetwork::CEPSP);
+	vehicle := self.stops -> first().vehicle.resolveone(COMMON_MM::logisticNetwork::Vehicle);
+	
+	var intermediateStops := self.stops -> map parcelActivity2PickUpDeliveryStop(id, logisticNetwork);
+	stops += intermediateStops;
+	var orgFirstStop := intermediateStops -> first();
+	var orgLastStop := intermediateStops -> last();
+	
+	var firstStop := new COMMON_MM::logisticSolution::StartEndStop(id, orgFirstStop.no - 1, vehicle.depot, orgFirstStop.stopTimeWindow.oclAsType(COMMON_MM::utils::MultiDayTimeWindow));
+	var lastStop := new COMMON_MM::logisticSolution::StartEndStop(id, orgFirstStop.no + 1, vehicle.depot, orgFirstStop.stopTimeWindow.oclAsType(COMMON_MM::utils::MultiDayTimeWindow));
+	stops -> prepend(firstStop);
+	stops += lastStop;
+}
+
+helper createTourId() : String {
+	var id = "tour_" + tourIdCounter.toString();
+	tourIdCounter := tourIdCounter + 1;
+	return id;
+}
+
+mapping LOGITOPP::logiTopp::distribution::delivery::ParcelActivity::parcelActivity2PickUpDeliveryStop(tourId : String, logisticNetwork : COMMON_MM::logisticNetwork::LogisticNetwork) : COMMON_MM::logisticSolution::PickUpDeliveryStop 
+disjuncts LOGITOPP::logiTopp::distribution::delivery::ParcelActivity::parcelActivity2LogisticFacilityStop,
+LOGITOPP::logiTopp::distribution::delivery::ParcelActivity::parcelActivity2NormalStop
+{}
+
+mapping LOGITOPP::logiTopp::distribution::delivery::ParcelActivity::parcelActivity2LogisticFacilityStop(tourId : String, logisticNetwork : COMMON_MM::logisticNetwork::LogisticNetwork) : COMMON_MM::logisticSolution::LogisticFacilityStop
+when {
+	findLogisticFacility(self.stopLocation.location, logisticNetwork) <> null
+}{
+	logisticFacility := findLogisticFacility(self.stopLocation.location, logisticNetwork);
+	
+	no := self.no; // TODO: correct?
+	id := tourId + "_" + no.toString();
+	
+	stopLocation := null;
+	if(logisticFacility.oclIsKindOf(COMMON_MM::logisticNetwork::Packstation)) {
+		stopLocation := new COMMON_MM::logisticSolution::ReferenceStopLocation(logisticFacility.oclAsType(COMMON_MM::logisticNetwork::Packstation).location)
+	} endif;
+	if(logisticFacility.oclIsKindOf(COMMON_MM::logisticNetwork::LogisticHub)) {
+		stopLocation := new COMMON_MM::logisticSolution::ReferenceStopLocation(logisticFacility.oclAsType(COMMON_MM::logisticNetwork::LogisticHub).location)
+	} endif;
+	
+	stopTimeWindow := createStopTimeWindow(self.plannedTime, self.deliveryDuration);
+	
+	unloadedShipments +=  self.parcels -> collect(parcel | parcel.resolveone(COMMON_MM::logisticDemand::Shipment));
+	loadedShipments +=  self.pickUps -> collect(parcel | parcel.resolveone(COMMON_MM::logisticDemand::Shipment));
+}
+
+mapping LOGITOPP::logiTopp::distribution::delivery::ParcelActivity::parcelActivity2NormalStop(tourId : String, logisticNetwork : COMMON_MM::logisticNetwork::LogisticNetwork) : COMMON_MM::logisticSolution::NormalStop when {
+	findLogisticFacility(self.stopLocation.location, logisticNetwork) = null
+}{
+	no := self.no; // TODO: correct?
+	id := tourId + "_" + no.toString();
+	
+	stopLocation := new COMMON_MM::logisticSolution::CustomStopLocation(self.stopLocation.location.map location2Location());
+	stopTimeWindow := createStopTimeWindow(self.plannedTime, self.deliveryDuration);
+	
+	unloadedShipments +=  self.parcels -> collect(parcel | parcel.resolveone(COMMON_MM::logisticDemand::Shipment));
+	loadedShipments +=  self.pickUps -> collect(parcel | parcel.resolveone(COMMON_MM::logisticDemand::Shipment));
+}
+
+query findLogisticFacility(stopLocation_ : LOGITOPP::mobiTopp::network::Location, logisticNetwork : COMMON_MM::logisticNetwork::LogisticNetwork) : COMMON_MM::logisticNetwork::LogisticFacility {
+	var stopLocation := stopLocation_.map location2Location();
+
+	var foundPackstation := 
+		logisticNetwork.publicServicePoints 
+		-> selectByKind(COMMON_MM::logisticNetwork::Packstation)
+		-> select(ps | areEqualLocations(ps.location, stopLocation)) -> first();
+	if (foundPackstation <> null) {
+		return foundPackstation;
+	} endif;
+	
+	var foundHub := 
+		logisticNetwork.CEPSPs -> collect(cepsp | cepsp.logisticHubs) -> flatten()
+		-> select(hub | areEqualLocations(hub.location, stopLocation)) -> first();
+	if (foundHub <> null) {
+		return foundHub;
+	} endif;
+	
+	return null;
+}
+
+constructor COMMON_MM::logisticSolution::CustomStopLocation::CustomStopLocation(location_ : COMMON_MM::network::Location_) {
+	location := location_;
+}
+
+constructor COMMON_MM::logisticSolution::ReferenceStopLocation::ReferenceStopLocation(location_ : COMMON_MM::network::Location_) {
+	location := location_;
+}
+
+helper createStopTimeWindow(time : LOGITOPP::base::Time, minutes: Integer) : COMMON_MM::utils::MultiDayTimeWindow {
+	var startTimeStamp := new COMMON_MM::utils::MultiDayTimestamp(time);
+	var endTimeStamp := addMinutes(startTimeStamp.clone(), minutes);
+	
+	return new COMMON_MM::utils::MultiDayTimeWindow(startTimeStamp, endTimeStamp);
+}
+
+constructor COMMON_MM::logisticSolution::StartEndStop::StartEndStop(tourId : String, stopNo : Integer, depot_ : COMMON_MM::logisticNetwork::VehicleDepot, stopTimeWindow_ : COMMON_MM::utils::MultiDayTimeWindow) {
+	id := tourId + "_" + no.toString();
+	no := stopNo;
+	depot := depot_;
+	stopLocation := new COMMON_MM::logisticSolution::ReferenceStopLocation(depot.location);
+	stopTimeWindow := stopTimeWindow_.clone();
+}

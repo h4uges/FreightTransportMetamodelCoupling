@@ -1,0 +1,58 @@
+library logitopp2commonNetwork;
+
+modeltype COMMON_MM uses CommonFreightTransportMetamodel('http://www.cep-model-coupling.com/commonFreightTransportMetamodel');
+modeltype LOGITOPP uses logiToppMetamodel('http://www.cep-model-coupling.com/logiToppMetamodel');
+
+property locationIdCounter = 0;
+
+mapping LOGITOPP::mobiTopp::network::RoadNetwork::roadNetwork2Network() : COMMON_MM::network::Network {
+	nodes += self.nodes -> map node2Node();
+	edges += self.edges -> map edge2Edge();
+	// no zones in common
+}
+
+mapping LOGITOPP::mobiTopp::network::Node::node2Node() : COMMON_MM::network::Node {
+	id := self.id.toString();
+	coordinate := self.coord.map point2D2Coordinate();
+}
+
+mapping LOGITOPP::mobiTopp::network::Point2D::point2D2Coordinate() : COMMON_MM::utils::Coordinate {
+	x := self.x;
+	y := self.y;
+}
+
+mapping LOGITOPP::mobiTopp::network::Edge::edge2Edge() : COMMON_MM::network::Edge {
+	_from := self._from.resolveone(COMMON_MM::network::Node);
+	to := self.to.resolveone(COMMON_MM::network::Node);
+	length := self.length;
+	allowedVehicleTypes;
+}
+
+// ---- network.location ----
+
+mapping LOGITOPP::mobiTopp::network::Location::location2Location() : COMMON_MM::network::Location_ {
+	id := createLocationId();
+	coordinate := self.coordinate.map point2D2Coordinate();
+	networkAccess := new COMMON_MM::network::EdgeBasedNetworkAccess(self.roadAccessEdge, self.roadPosition);
+}
+
+helper createLocationId() : String {
+	var id = "loc_" + locationIdCounter.toString();
+	locationIdCounter := locationIdCounter + 1;
+	return id;
+}
+
+constructor COMMON_MM::network::EdgeBasedNetworkAccess::EdgeBasedNetworkAccess(edge_ : LOGITOPP::mobiTopp::network::Edge, edgePostion_ : Real) {
+	edge := edge_.resolveone(COMMON_MM::network::Edge);
+	edgePosition := edgePostion_;
+}
+
+helper areEqualLocations(a : COMMON_MM::network::Location_, b : COMMON_MM::network::Location_) : Boolean {
+	var aEdgeBasedAccess := a.networkAccess.oclAsType(COMMON_MM::network::EdgeBasedNetworkAccess);
+	var bEdgeBasedAccess := b.networkAccess.oclAsType(COMMON_MM::network::EdgeBasedNetworkAccess);
+	
+	return a.coordinate.x = b.coordinate.x and
+  	a.coordinate.y = b.coordinate.y and
+  	aEdgeBasedAccess.edge = bEdgeBasedAccess.edge and
+  	aEdgeBasedAccess.edgePosition = bEdgeBasedAccess.edgePosition;
+}

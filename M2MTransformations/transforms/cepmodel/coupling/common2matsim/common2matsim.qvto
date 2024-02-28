@@ -16,6 +16,7 @@ main() {
 	// TODO: check for invariants
 	// inv: singe day representation
 	// inv: only volume or only capacity based
+	// inv: shipment only referenced in one tour
 	// inv: ...
 	
 	// network

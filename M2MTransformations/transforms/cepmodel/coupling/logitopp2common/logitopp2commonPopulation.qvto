@@ -1,0 +1,39 @@
+library logitopp2commonPopulation;
+
+import logitopp2commonUtil;
+import logitopp2commonNetwork;
+
+modeltype COMMON_MM uses CommonFreightTransportMetamodel('http://www.cep-model-coupling.com/commonFreightTransportMetamodel');
+modeltype LOGITOPP uses logiToppMetamodel('http://www.cep-model-coupling.com/logiToppMetamodel');
+
+mapping LOGITOPP::Population::population2Population() : COMMON_MM::localEntities::Population {
+	households += self.households -> map household2Household();
+	businesses;
+}
+
+mapping LOGITOPP::mobiTopp::citizens::Household::household2Household() : COMMON_MM::localEntities::Household {
+	id := self.id.toString();
+	member += self.members -> map person2Person();
+	location := self.location.map location2Location();
+}
+
+mapping LOGITOPP::mobiTopp::citizens::Person::person2Person() : COMMON_MM::localEntities::Person {
+	id := self.id.toString();
+}
+
+mapping LOGITOPP::logiTopp::business::Business::business2Business() : COMMON_MM::localEntities::Business {
+	id := self.id.toString();
+	branches += new COMMON_MM::localEntities::BusinessBranch(self);
+}
+
+constructor COMMON_MM::localEntities::BusinessBranch::BusinessBranch(business : LOGITOPP::logiTopp::business::Business) {
+	id := "branch_" + business.id.toString();
+	location := business.location.map location2Location();
+	openingHours += business.openingHours -> map openingHour2OpeningHour();
+}
+
+// TODO: review
+mapping LOGITOPP::logiTopp::business::OpeningHour::openingHour2OpeningHour() : COMMON_MM::utils::MultiDayTimeWindow {
+	_from := new COMMON_MM::utils::MultiDayTimestamp(self.dayOfWeek, self.start);
+	to := new COMMON_MM::utils::MultiDayTimestamp(self.dayOfWeek, self._end)
+}
