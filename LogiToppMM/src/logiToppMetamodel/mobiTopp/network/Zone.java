@@ -3,6 +3,9 @@
 package logiToppMetamodel.mobiTopp.network;
 
 import logiToppMetamodel.base.NamedEntity;
+
+import logiToppMetamodel.mobiTopp.citizens.Household;
+
 import org.eclipse.emf.common.util.EList;
 
 /**
@@ -112,6 +115,6 @@ public interface Zone extends NamedEntity {
 	 * @model opposite="zone"
 	 * @generated
 	 */
-	EList<logiToppMetamodel.mobiTopp.citizens.Household> getHouseholds();
+	EList<Household> getHouseholds();
 
 } // Zone

@@ -2,6 +2,8 @@
  */
 package CommonFreightTransportMetamodel.logisticDemand;
 
+import CommonFreightTransportMetamodel.localEntities.ShipmentConsumerProducer;
+
 /**
  * <!-- begin-user-doc -->
  * A representation of the model object '<em><b>From Inside Study Area Shipment</b></em>'.
@@ -24,12 +26,12 @@ public interface FromInsideStudyAreaShipment extends FromInsideStudyAreaShipment
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Producer</em>' reference.
-	 * @see #setProducer(CommonFreightTransportMetamodel.localEntities.ShipmentConsumerProducer)
+	 * @see #setProducer(ShipmentConsumerProducer)
 	 * @see CommonFreightTransportMetamodel.logisticDemand.LogisticDemandPackage#getFromInsideStudyAreaShipment_Producer()
 	 * @model required="true"
 	 * @generated
 	 */
-	CommonFreightTransportMetamodel.localEntities.ShipmentConsumerProducer getProducer();
+	ShipmentConsumerProducer getProducer();
 
 	/**
 	 * Sets the value of the '{@link CommonFreightTransportMetamodel.logisticDemand.FromInsideStudyAreaShipment#getProducer <em>Producer</em>}' reference.
@@ -39,6 +41,6 @@ public interface FromInsideStudyAreaShipment extends FromInsideStudyAreaShipment
 	 * @see #getProducer()
 	 * @generated
 	 */
-	void setProducer(CommonFreightTransportMetamodel.localEntities.ShipmentConsumerProducer value);
+	void setProducer(ShipmentConsumerProducer value);
 
 } // FromInsideStudyAreaShipment

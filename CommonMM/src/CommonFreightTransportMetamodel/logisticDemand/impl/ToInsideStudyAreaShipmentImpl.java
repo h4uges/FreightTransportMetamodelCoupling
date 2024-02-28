@@ -2,9 +2,13 @@
  */
 package CommonFreightTransportMetamodel.logisticDemand.impl;
 
+import CommonFreightTransportMetamodel.localEntities.ShipmentConsumerProducer;
+
 import CommonFreightTransportMetamodel.logisticDemand.LogisticDemandPackage;
 import CommonFreightTransportMetamodel.logisticDemand.ToInsideStudyAreaShipment;
+
 import org.eclipse.emf.common.notify.Notification;
+
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.InternalEObject;
 
@@ -32,7 +36,7 @@ public abstract class ToInsideStudyAreaShipmentImpl extends ToInsideStudyAreaShi
 	 * @generated
 	 * @ordered
 	 */
-	protected CommonFreightTransportMetamodel.localEntities.ShipmentConsumerProducer receiver;
+	protected ShipmentConsumerProducer receiver;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -59,10 +63,10 @@ public abstract class ToInsideStudyAreaShipmentImpl extends ToInsideStudyAreaShi
 	 * @generated
 	 */
 	@Override
-	public CommonFreightTransportMetamodel.localEntities.ShipmentConsumerProducer getReceiver() {
+	public ShipmentConsumerProducer getReceiver() {
 		if (receiver != null && receiver.eIsProxy()) {
 			InternalEObject oldReceiver = (InternalEObject)receiver;
-			receiver = (CommonFreightTransportMetamodel.localEntities.ShipmentConsumerProducer)eResolveProxy(oldReceiver);
+			receiver = (ShipmentConsumerProducer)eResolveProxy(oldReceiver);
 			if (receiver != oldReceiver) {
 				if (eNotificationRequired())
 					eNotify(new ENotificationImpl(this, Notification.RESOLVE, LogisticDemandPackage.TO_INSIDE_STUDY_AREA_SHIPMENT__RECEIVER, oldReceiver, receiver));
@@ -76,7 +80,7 @@ public abstract class ToInsideStudyAreaShipmentImpl extends ToInsideStudyAreaShi
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public CommonFreightTransportMetamodel.localEntities.ShipmentConsumerProducer basicGetReceiver() {
+	public ShipmentConsumerProducer basicGetReceiver() {
 		return receiver;
 	}
 
@@ -86,8 +90,8 @@ public abstract class ToInsideStudyAreaShipmentImpl extends ToInsideStudyAreaShi
 	 * @generated
 	 */
 	@Override
-	public void setReceiver(CommonFreightTransportMetamodel.localEntities.ShipmentConsumerProducer newReceiver) {
-		CommonFreightTransportMetamodel.localEntities.ShipmentConsumerProducer oldReceiver = receiver;
+	public void setReceiver(ShipmentConsumerProducer newReceiver) {
+		ShipmentConsumerProducer oldReceiver = receiver;
 		receiver = newReceiver;
 		if (eNotificationRequired())
 			eNotify(new ENotificationImpl(this, Notification.SET, LogisticDemandPackage.TO_INSIDE_STUDY_AREA_SHIPMENT__RECEIVER, oldReceiver, receiver));
@@ -117,7 +121,7 @@ public abstract class ToInsideStudyAreaShipmentImpl extends ToInsideStudyAreaShi
 	public void eSet(int featureID, Object newValue) {
 		switch (featureID) {
 			case LogisticDemandPackage.TO_INSIDE_STUDY_AREA_SHIPMENT__RECEIVER:
-				setReceiver((CommonFreightTransportMetamodel.localEntities.ShipmentConsumerProducer)newValue);
+				setReceiver((ShipmentConsumerProducer)newValue);
 				return;
 		}
 		super.eSet(featureID, newValue);
@@ -132,7 +136,7 @@ public abstract class ToInsideStudyAreaShipmentImpl extends ToInsideStudyAreaShi
 	public void eUnset(int featureID) {
 		switch (featureID) {
 			case LogisticDemandPackage.TO_INSIDE_STUDY_AREA_SHIPMENT__RECEIVER:
-				setReceiver((CommonFreightTransportMetamodel.localEntities.ShipmentConsumerProducer)null);
+				setReceiver((ShipmentConsumerProducer)null);
 				return;
 		}
 		super.eUnset(featureID);

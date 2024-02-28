@@ -7,10 +7,13 @@ import java.util.Collection;
 import logiToppMetamodel.base.impl.NamedEntityImpl;
 
 import logiToppMetamodel.mobiTopp.citizens.CitizensPackage;
+import logiToppMetamodel.mobiTopp.citizens.Household;
+
 import logiToppMetamodel.mobiTopp.network.Location;
 import logiToppMetamodel.mobiTopp.network.NetworkPackage;
 import logiToppMetamodel.mobiTopp.network.Zone;
 import logiToppMetamodel.mobiTopp.network.ZoneArea;
+
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.common.notify.NotificationChain;
 
@@ -68,7 +71,7 @@ public class ZoneImpl extends NamedEntityImpl implements Zone {
 	 * @generated
 	 * @ordered
 	 */
-	protected EList<logiToppMetamodel.mobiTopp.citizens.Household> households;
+	protected EList<Household> households;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -185,9 +188,9 @@ public class ZoneImpl extends NamedEntityImpl implements Zone {
 	 * @generated
 	 */
 	@Override
-	public EList<logiToppMetamodel.mobiTopp.citizens.Household> getHouseholds() {
+	public EList<Household> getHouseholds() {
 		if (households == null) {
-			households = new EObjectWithInverseResolvingEList<logiToppMetamodel.mobiTopp.citizens.Household>(logiToppMetamodel.mobiTopp.citizens.Household.class, this, NetworkPackage.ZONE__HOUSEHOLDS, CitizensPackage.HOUSEHOLD__ZONE);
+			households = new EObjectWithInverseResolvingEList<Household>(Household.class, this, NetworkPackage.ZONE__HOUSEHOLDS, CitizensPackage.HOUSEHOLD__ZONE);
 		}
 		return households;
 	}
@@ -260,7 +263,7 @@ public class ZoneImpl extends NamedEntityImpl implements Zone {
 				return;
 			case NetworkPackage.ZONE__HOUSEHOLDS:
 				getHouseholds().clear();
-				getHouseholds().addAll((Collection<? extends logiToppMetamodel.mobiTopp.citizens.Household>)newValue);
+				getHouseholds().addAll((Collection<? extends Household>)newValue);
 				return;
 		}
 		super.eSet(featureID, newValue);

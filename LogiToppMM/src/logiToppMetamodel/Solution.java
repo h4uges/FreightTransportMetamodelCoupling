@@ -3,7 +3,9 @@
 package logiToppMetamodel;
 
 import logiToppMetamodel.logiTopp.distribution.tours.PlannedDeliveryTour;
+
 import org.eclipse.emf.common.util.EList;
+
 import org.eclipse.emf.ecore.EObject;
 
 /**
@@ -23,7 +25,6 @@ import org.eclipse.emf.ecore.EObject;
  * @generated
  */
 public interface Solution extends EObject {
-
 	/**
 	 * Returns the value of the '<em><b>Planned Tours</b></em>' containment reference list.
 	 * The list contents are of type {@link logiToppMetamodel.logiTopp.distribution.tours.PlannedDeliveryTour}.
@@ -35,4 +36,5 @@ public interface Solution extends EObject {
 	 * @generated
 	 */
 	EList<PlannedDeliveryTour> getPlannedTours();
+
 } // Solution

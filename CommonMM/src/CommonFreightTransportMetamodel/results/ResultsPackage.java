@@ -149,6 +149,15 @@ public interface ResultsPackage extends EPackage {
 	int FAILED_PICKUP_ATTEMPT__TOUR = LogisticSolutionPackage.SHIPMENT_RECORD_ENTRY__TOUR;
 
 	/**
+	 * The feature id for the '<em><b>Record</b></em>' container reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int FAILED_PICKUP_ATTEMPT__RECORD = LogisticSolutionPackage.SHIPMENT_RECORD_ENTRY__RECORD;
+
+	/**
 	 * The number of structural features of the '<em>Failed Pickup Attempt</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -256,6 +265,15 @@ public interface ResultsPackage extends EPackage {
 	 * @ordered
 	 */
 	int FAILED_DELIVERY_ATTEMPT__TOUR = LogisticSolutionPackage.SHIPMENT_RECORD_ENTRY__TOUR;
+
+	/**
+	 * The feature id for the '<em><b>Record</b></em>' container reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int FAILED_DELIVERY_ATTEMPT__RECORD = LogisticSolutionPackage.SHIPMENT_RECORD_ENTRY__RECORD;
 
 	/**
 	 * The feature id for the '<em><b>Failed Delivery Location</b></em>' containment reference.
@@ -383,6 +401,15 @@ public interface ResultsPackage extends EPackage {
 	 * @ordered
 	 */
 	int INITIAL_FAILED_DELIVERY_ATTEMPT__TOUR = FAILED_DELIVERY_ATTEMPT__TOUR;
+
+	/**
+	 * The feature id for the '<em><b>Record</b></em>' container reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int INITIAL_FAILED_DELIVERY_ATTEMPT__RECORD = FAILED_DELIVERY_ATTEMPT__RECORD;
 
 	/**
 	 * The feature id for the '<em><b>Failed Delivery Location</b></em>' containment reference.

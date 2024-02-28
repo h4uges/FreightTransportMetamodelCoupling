@@ -27,6 +27,7 @@ import CommonFreightTransportMetamodel.utils.TimeWindow_;
  *   <li>{@link CommonFreightTransportMetamodel.logisticSolution.ShipmentRecordEntry#getFromSpec <em>From Spec</em>}</li>
  *   <li>{@link CommonFreightTransportMetamodel.logisticSolution.ShipmentRecordEntry#getToSpec <em>To Spec</em>}</li>
  *   <li>{@link CommonFreightTransportMetamodel.logisticSolution.ShipmentRecordEntry#getTour <em>Tour</em>}</li>
+ *   <li>{@link CommonFreightTransportMetamodel.logisticSolution.ShipmentRecordEntry#getRecord <em>Record</em>}</li>
  * </ul>
  *
  * @see CommonFreightTransportMetamodel.logisticSolution.LogisticSolutionPackage#getShipmentRecordEntry()
@@ -209,5 +210,29 @@ public interface ShipmentRecordEntry extends HasId_ {
 	 * @generated
 	 */
 	void setTour(Tour value);
+
+	/**
+	 * Returns the value of the '<em><b>Record</b></em>' container reference.
+	 * It is bidirectional and its opposite is '{@link CommonFreightTransportMetamodel.logisticSolution.ShipmentRecord#getEntries <em>Entries</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the value of the '<em>Record</em>' container reference.
+	 * @see #setRecord(ShipmentRecord)
+	 * @see CommonFreightTransportMetamodel.logisticSolution.LogisticSolutionPackage#getShipmentRecordEntry_Record()
+	 * @see CommonFreightTransportMetamodel.logisticSolution.ShipmentRecord#getEntries
+	 * @model opposite="entries" required="true" transient="false"
+	 * @generated
+	 */
+	ShipmentRecord getRecord();
+
+	/**
+	 * Sets the value of the '{@link CommonFreightTransportMetamodel.logisticSolution.ShipmentRecordEntry#getRecord <em>Record</em>}' container reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @param value the new value of the '<em>Record</em>' container reference.
+	 * @see #getRecord()
+	 * @generated
+	 */
+	void setRecord(ShipmentRecord value);
 
 } // ShipmentRecordEntry

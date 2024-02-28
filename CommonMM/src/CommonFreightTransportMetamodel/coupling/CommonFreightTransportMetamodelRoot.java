@@ -2,6 +2,8 @@
  */
 package CommonFreightTransportMetamodel.coupling;
 
+import CommonFreightTransportMetamodel.localEntities.Population;
+
 import CommonFreightTransportMetamodel.logisticDemand.Demand;
 
 import CommonFreightTransportMetamodel.logisticNetwork.LogisticNetwork;
@@ -9,6 +11,7 @@ import CommonFreightTransportMetamodel.logisticNetwork.LogisticNetwork;
 import CommonFreightTransportMetamodel.logisticSolution.LogisticSolution;
 
 import CommonFreightTransportMetamodel.network.Network;
+
 import org.eclipse.emf.ecore.EObject;
 
 /**
@@ -59,12 +62,12 @@ public interface CommonFreightTransportMetamodelRoot extends EObject {
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Population</em>' containment reference.
-	 * @see #setPopulation(CommonFreightTransportMetamodel.localEntities.Population)
+	 * @see #setPopulation(Population)
 	 * @see CommonFreightTransportMetamodel.coupling.CouplingPackage#getCommonFreightTransportMetamodelRoot_Population()
 	 * @model containment="true" required="true"
 	 * @generated
 	 */
-	CommonFreightTransportMetamodel.localEntities.Population getPopulation();
+	Population getPopulation();
 
 	/**
 	 * Sets the value of the '{@link CommonFreightTransportMetamodel.coupling.CommonFreightTransportMetamodelRoot#getPopulation <em>Population</em>}' containment reference.
@@ -74,7 +77,7 @@ public interface CommonFreightTransportMetamodelRoot extends EObject {
 	 * @see #getPopulation()
 	 * @generated
 	 */
-	void setPopulation(CommonFreightTransportMetamodel.localEntities.Population value);
+	void setPopulation(Population value);
 
 	/**
 	 * Returns the value of the '<em><b>Logistic Network</b></em>' containment reference.

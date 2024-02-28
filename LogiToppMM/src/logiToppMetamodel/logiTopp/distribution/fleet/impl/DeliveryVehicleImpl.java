@@ -3,6 +3,7 @@
 package logiToppMetamodel.logiTopp.distribution.fleet.impl;
 
 import logiToppMetamodel.base.Time;
+
 import logiToppMetamodel.base.impl.EntityImpl;
 
 import logiToppMetamodel.logiTopp.distribution.fleet.DeliveryVehicle;
@@ -12,8 +13,8 @@ import logiToppMetamodel.logiTopp.distribution.fleet.VehicleType;
 import org.eclipse.emf.common.notify.Notification;
 
 import org.eclipse.emf.ecore.EClass;
-
 import org.eclipse.emf.ecore.InternalEObject;
+
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
 
 /**

@@ -51,6 +51,18 @@ public interface VehicleDepot extends HasId_ {
 	void setLocation(Location_ value);
 
 	/**
+	 * Returns the value of the '<em><b>Operation Hours</b></em>' containment reference list.
+	 * The list contents are of type {@link CommonFreightTransportMetamodel.utils.TimeWindow_}.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the value of the '<em>Operation Hours</em>' containment reference list.
+	 * @see CommonFreightTransportMetamodel.logisticNetwork.LogisticNetworkPackage#getVehicleDepot_OperationHours()
+	 * @model containment="true" required="true"
+	 * @generated
+	 */
+	EList<TimeWindow_> getOperationHours();
+
+	/**
 	 * Returns the value of the '<em><b>Vehicles</b></em>' containment reference list.
 	 * The list contents are of type {@link CommonFreightTransportMetamodel.logisticNetwork.Vehicle}.
 	 * It is bidirectional and its opposite is '{@link CommonFreightTransportMetamodel.logisticNetwork.Vehicle#getDepot <em>Depot</em>}'.
@@ -63,17 +75,5 @@ public interface VehicleDepot extends HasId_ {
 	 * @generated
 	 */
 	EList<Vehicle> getVehicles();
-
-	/**
-	 * Returns the value of the '<em><b>Operation Hours</b></em>' containment reference list.
-	 * The list contents are of type {@link CommonFreightTransportMetamodel.utils.TimeWindow_}.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>Operation Hours</em>' containment reference list.
-	 * @see CommonFreightTransportMetamodel.logisticNetwork.LogisticNetworkPackage#getVehicleDepot_OperationHours()
-	 * @model containment="true" required="true"
-	 * @generated
-	 */
-	EList<TimeWindow_> getOperationHours();
 
 } // VehicleDepot

@@ -847,17 +847,6 @@ public interface LogisticNetworkPackage extends EPackage {
 	EReference getVehicleDepot_Location();
 
 	/**
-	 * Returns the meta object for the containment reference list '{@link CommonFreightTransportMetamodel.logisticNetwork.VehicleDepot#getVehicles <em>Vehicles</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for the containment reference list '<em>Vehicles</em>'.
-	 * @see CommonFreightTransportMetamodel.logisticNetwork.VehicleDepot#getVehicles()
-	 * @see #getVehicleDepot()
-	 * @generated
-	 */
-	EReference getVehicleDepot_Vehicles();
-
-	/**
 	 * Returns the meta object for the containment reference list '{@link CommonFreightTransportMetamodel.logisticNetwork.VehicleDepot#getOperationHours <em>Operation Hours</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -867,6 +856,17 @@ public interface LogisticNetworkPackage extends EPackage {
 	 * @generated
 	 */
 	EReference getVehicleDepot_OperationHours();
+
+	/**
+	 * Returns the meta object for the containment reference list '{@link CommonFreightTransportMetamodel.logisticNetwork.VehicleDepot#getVehicles <em>Vehicles</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the containment reference list '<em>Vehicles</em>'.
+	 * @see CommonFreightTransportMetamodel.logisticNetwork.VehicleDepot#getVehicles()
+	 * @see #getVehicleDepot()
+	 * @generated
+	 */
+	EReference getVehicleDepot_Vehicles();
 
 	/**
 	 * Returns the meta object for class '{@link CommonFreightTransportMetamodel.logisticNetwork.LogisticHub <em>Logistic Hub</em>}'.
@@ -1231,20 +1231,20 @@ public interface LogisticNetworkPackage extends EPackage {
 		EReference VEHICLE_DEPOT__LOCATION = eINSTANCE.getVehicleDepot_Location();
 
 		/**
-		 * The meta object literal for the '<em><b>Vehicles</b></em>' containment reference list feature.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @generated
-		 */
-		EReference VEHICLE_DEPOT__VEHICLES = eINSTANCE.getVehicleDepot_Vehicles();
-
-		/**
 		 * The meta object literal for the '<em><b>Operation Hours</b></em>' containment reference list feature.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
 		 * @generated
 		 */
 		EReference VEHICLE_DEPOT__OPERATION_HOURS = eINSTANCE.getVehicleDepot_OperationHours();
+
+		/**
+		 * The meta object literal for the '<em><b>Vehicles</b></em>' containment reference list feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference VEHICLE_DEPOT__VEHICLES = eINSTANCE.getVehicleDepot_Vehicles();
 
 		/**
 		 * The meta object literal for the '{@link CommonFreightTransportMetamodel.logisticNetwork.impl.LogisticHubImpl <em>Logistic Hub</em>}' class.

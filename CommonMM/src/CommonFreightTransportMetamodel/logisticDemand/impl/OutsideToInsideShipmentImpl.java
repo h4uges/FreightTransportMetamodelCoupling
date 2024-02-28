@@ -2,15 +2,18 @@
  */
 package CommonFreightTransportMetamodel.logisticDemand.impl;
 
+import CommonFreightTransportMetamodel.localEntities.ShipmentConsumerProducer;
+
 import CommonFreightTransportMetamodel.logisticDemand.LogisticDemandPackage;
 import CommonFreightTransportMetamodel.logisticDemand.OutsideToInsideShipment;
 import CommonFreightTransportMetamodel.logisticDemand.Shipment;
 import CommonFreightTransportMetamodel.logisticDemand.ToInsideStudyAreaShipment;
-
 import CommonFreightTransportMetamodel.logisticDemand.ToInsideStudyAreaShipmentBase;
+
 import CommonFreightTransportMetamodel.logisticNetwork.CEPSP;
 
 import CommonFreightTransportMetamodel.network.Location_;
+
 import CommonFreightTransportMetamodel.utils.Dimension;
 import CommonFreightTransportMetamodel.utils.HasId_;
 import CommonFreightTransportMetamodel.utils.TimeWindow_;
@@ -71,7 +74,7 @@ public class OutsideToInsideShipmentImpl extends FromOutsideStudyAreaShipmentImp
 	 * @generated
 	 * @ordered
 	 */
-	protected CommonFreightTransportMetamodel.localEntities.ShipmentConsumerProducer receiver;
+	protected ShipmentConsumerProducer receiver;
 
 	/**
 	 * The default value of the '{@link #getId() <em>Id</em>}' attribute.
@@ -130,46 +133,6 @@ public class OutsideToInsideShipmentImpl extends FromOutsideStudyAreaShipmentImp
 	@Override
 	protected EClass eStaticClass() {
 		return LogisticDemandPackage.Literals.OUTSIDE_TO_INSIDE_SHIPMENT;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public CommonFreightTransportMetamodel.localEntities.ShipmentConsumerProducer getReceiver() {
-		if (receiver != null && receiver.eIsProxy()) {
-			InternalEObject oldReceiver = (InternalEObject)receiver;
-			receiver = (CommonFreightTransportMetamodel.localEntities.ShipmentConsumerProducer)eResolveProxy(oldReceiver);
-			if (receiver != oldReceiver) {
-				if (eNotificationRequired())
-					eNotify(new ENotificationImpl(this, Notification.RESOLVE, LogisticDemandPackage.OUTSIDE_TO_INSIDE_SHIPMENT__RECEIVER, oldReceiver, receiver));
-			}
-		}
-		return receiver;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public CommonFreightTransportMetamodel.localEntities.ShipmentConsumerProducer basicGetReceiver() {
-		return receiver;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public void setReceiver(CommonFreightTransportMetamodel.localEntities.ShipmentConsumerProducer newReceiver) {
-		CommonFreightTransportMetamodel.localEntities.ShipmentConsumerProducer oldReceiver = receiver;
-		receiver = newReceiver;
-		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, LogisticDemandPackage.OUTSIDE_TO_INSIDE_SHIPMENT__RECEIVER, oldReceiver, receiver));
 	}
 
 	/**
@@ -255,6 +218,46 @@ public class OutsideToInsideShipmentImpl extends FromOutsideStudyAreaShipmentImp
 		destination = newDestination;
 		if (eNotificationRequired())
 			eNotify(new ENotificationImpl(this, Notification.SET, LogisticDemandPackage.OUTSIDE_TO_INSIDE_SHIPMENT__DESTINATION, oldDestination, destination));
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public ShipmentConsumerProducer getReceiver() {
+		if (receiver != null && receiver.eIsProxy()) {
+			InternalEObject oldReceiver = (InternalEObject)receiver;
+			receiver = (ShipmentConsumerProducer)eResolveProxy(oldReceiver);
+			if (receiver != oldReceiver) {
+				if (eNotificationRequired())
+					eNotify(new ENotificationImpl(this, Notification.RESOLVE, LogisticDemandPackage.OUTSIDE_TO_INSIDE_SHIPMENT__RECEIVER, oldReceiver, receiver));
+			}
+		}
+		return receiver;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public ShipmentConsumerProducer basicGetReceiver() {
+		return receiver;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public void setReceiver(ShipmentConsumerProducer newReceiver) {
+		ShipmentConsumerProducer oldReceiver = receiver;
+		receiver = newReceiver;
+		if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, LogisticDemandPackage.OUTSIDE_TO_INSIDE_SHIPMENT__RECEIVER, oldReceiver, receiver));
 	}
 
 	/**
@@ -429,7 +432,7 @@ public class OutsideToInsideShipmentImpl extends FromOutsideStudyAreaShipmentImp
 				setDestination((Location_)newValue);
 				return;
 			case LogisticDemandPackage.OUTSIDE_TO_INSIDE_SHIPMENT__RECEIVER:
-				setReceiver((CommonFreightTransportMetamodel.localEntities.ShipmentConsumerProducer)newValue);
+				setReceiver((ShipmentConsumerProducer)newValue);
 				return;
 			case LogisticDemandPackage.OUTSIDE_TO_INSIDE_SHIPMENT__ID:
 				setId((String)newValue);
@@ -459,7 +462,7 @@ public class OutsideToInsideShipmentImpl extends FromOutsideStudyAreaShipmentImp
 				setDestination((Location_)null);
 				return;
 			case LogisticDemandPackage.OUTSIDE_TO_INSIDE_SHIPMENT__RECEIVER:
-				setReceiver((CommonFreightTransportMetamodel.localEntities.ShipmentConsumerProducer)null);
+				setReceiver((ShipmentConsumerProducer)null);
 				return;
 			case LogisticDemandPackage.OUTSIDE_TO_INSIDE_SHIPMENT__ID:
 				setId(ID_EDEFAULT);

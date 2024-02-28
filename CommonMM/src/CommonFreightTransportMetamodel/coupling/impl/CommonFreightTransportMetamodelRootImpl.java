@@ -5,6 +5,8 @@ package CommonFreightTransportMetamodel.coupling.impl;
 import CommonFreightTransportMetamodel.coupling.CommonFreightTransportMetamodelRoot;
 import CommonFreightTransportMetamodel.coupling.CouplingPackage;
 
+import CommonFreightTransportMetamodel.localEntities.Population;
+
 import CommonFreightTransportMetamodel.logisticDemand.Demand;
 
 import CommonFreightTransportMetamodel.logisticNetwork.LogisticNetwork;
@@ -12,6 +14,7 @@ import CommonFreightTransportMetamodel.logisticNetwork.LogisticNetwork;
 import CommonFreightTransportMetamodel.logisticSolution.LogisticSolution;
 
 import CommonFreightTransportMetamodel.network.Network;
+
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.common.notify.NotificationChain;
 
@@ -57,7 +60,7 @@ public class CommonFreightTransportMetamodelRootImpl extends MinimalEObjectImpl.
 	 * @generated
 	 * @ordered
 	 */
-	protected CommonFreightTransportMetamodel.localEntities.Population population;
+	protected Population population;
 
 	/**
 	 * The cached value of the '{@link #getLogisticNetwork() <em>Logistic Network</em>}' containment reference.
@@ -159,7 +162,7 @@ public class CommonFreightTransportMetamodelRootImpl extends MinimalEObjectImpl.
 	 * @generated
 	 */
 	@Override
-	public CommonFreightTransportMetamodel.localEntities.Population getPopulation() {
+	public Population getPopulation() {
 		return population;
 	}
 
@@ -168,8 +171,8 @@ public class CommonFreightTransportMetamodelRootImpl extends MinimalEObjectImpl.
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public NotificationChain basicSetPopulation(CommonFreightTransportMetamodel.localEntities.Population newPopulation, NotificationChain msgs) {
-		CommonFreightTransportMetamodel.localEntities.Population oldPopulation = population;
+	public NotificationChain basicSetPopulation(Population newPopulation, NotificationChain msgs) {
+		Population oldPopulation = population;
 		population = newPopulation;
 		if (eNotificationRequired()) {
 			ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, CouplingPackage.COMMON_FREIGHT_TRANSPORT_METAMODEL_ROOT__POPULATION, oldPopulation, newPopulation);
@@ -184,7 +187,7 @@ public class CommonFreightTransportMetamodelRootImpl extends MinimalEObjectImpl.
 	 * @generated
 	 */
 	@Override
-	public void setPopulation(CommonFreightTransportMetamodel.localEntities.Population newPopulation) {
+	public void setPopulation(Population newPopulation) {
 		if (newPopulation != population) {
 			NotificationChain msgs = null;
 			if (population != null)
@@ -389,7 +392,7 @@ public class CommonFreightTransportMetamodelRootImpl extends MinimalEObjectImpl.
 				setNetwork((Network)newValue);
 				return;
 			case CouplingPackage.COMMON_FREIGHT_TRANSPORT_METAMODEL_ROOT__POPULATION:
-				setPopulation((CommonFreightTransportMetamodel.localEntities.Population)newValue);
+				setPopulation((Population)newValue);
 				return;
 			case CouplingPackage.COMMON_FREIGHT_TRANSPORT_METAMODEL_ROOT__LOGISTIC_NETWORK:
 				setLogisticNetwork((LogisticNetwork)newValue);
@@ -416,7 +419,7 @@ public class CommonFreightTransportMetamodelRootImpl extends MinimalEObjectImpl.
 				setNetwork((Network)null);
 				return;
 			case CouplingPackage.COMMON_FREIGHT_TRANSPORT_METAMODEL_ROOT__POPULATION:
-				setPopulation((CommonFreightTransportMetamodel.localEntities.Population)null);
+				setPopulation((Population)null);
 				return;
 			case CouplingPackage.COMMON_FREIGHT_TRANSPORT_METAMODEL_ROOT__LOGISTIC_NETWORK:
 				setLogisticNetwork((LogisticNetwork)null);

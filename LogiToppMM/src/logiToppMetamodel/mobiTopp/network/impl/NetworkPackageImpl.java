@@ -55,7 +55,9 @@ import logiToppMetamodel.logiTopp.parcels.ParcelsPackage;
 import logiToppMetamodel.logiTopp.parcels.impl.ParcelsPackageImpl;
 
 import logiToppMetamodel.mobiTopp.citizens.CitizensPackage;
+
 import logiToppMetamodel.mobiTopp.citizens.impl.CitizensPackageImpl;
+
 import logiToppMetamodel.mobiTopp.network.Edge;
 import logiToppMetamodel.mobiTopp.network.Graph;
 import logiToppMetamodel.mobiTopp.network.Line;
@@ -69,6 +71,7 @@ import logiToppMetamodel.mobiTopp.network.RoadNetwork;
 import logiToppMetamodel.mobiTopp.network.Zone;
 import logiToppMetamodel.mobiTopp.network.ZoneAndLocation;
 import logiToppMetamodel.mobiTopp.network.ZoneArea;
+
 import org.eclipse.emf.ecore.EAttribute;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EPackage;

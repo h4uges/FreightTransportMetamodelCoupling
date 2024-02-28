@@ -3,9 +3,13 @@
 package CommonFreightTransportMetamodel.logisticNetwork.impl;
 
 import CommonFreightTransportMetamodel.coupling.CouplingPackage;
+
 import CommonFreightTransportMetamodel.coupling.impl.CouplingPackageImpl;
+
 import CommonFreightTransportMetamodel.localEntities.LocalEntitiesPackage;
+
 import CommonFreightTransportMetamodel.localEntities.impl.LocalEntitiesPackageImpl;
+
 import CommonFreightTransportMetamodel.logisticDemand.LogisticDemandPackage;
 
 import CommonFreightTransportMetamodel.logisticDemand.impl.LogisticDemandPackageImpl;
@@ -29,6 +33,7 @@ import CommonFreightTransportMetamodel.logisticSolution.impl.LogisticSolutionPac
 import CommonFreightTransportMetamodel.network.NetworkPackage;
 
 import CommonFreightTransportMetamodel.network.impl.NetworkPackageImpl;
+
 import CommonFreightTransportMetamodel.results.ResultsPackage;
 
 import CommonFreightTransportMetamodel.results.impl.ResultsPackageImpl;
@@ -402,8 +407,8 @@ public class LogisticNetworkPackageImpl extends EPackageImpl implements Logistic
 	 * @generated
 	 */
 	@Override
-	public EReference getVehicleDepot_Vehicles() {
-		return (EReference)vehicleDepotEClass.getEStructuralFeatures().get(2);
+	public EReference getVehicleDepot_OperationHours() {
+		return (EReference)vehicleDepotEClass.getEStructuralFeatures().get(1);
 	}
 
 	/**
@@ -412,8 +417,8 @@ public class LogisticNetworkPackageImpl extends EPackageImpl implements Logistic
 	 * @generated
 	 */
 	@Override
-	public EReference getVehicleDepot_OperationHours() {
-		return (EReference)vehicleDepotEClass.getEStructuralFeatures().get(1);
+	public EReference getVehicleDepot_Vehicles() {
+		return (EReference)vehicleDepotEClass.getEStructuralFeatures().get(2);
 	}
 
 	/**

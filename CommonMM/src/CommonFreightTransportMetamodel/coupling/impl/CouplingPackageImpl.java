@@ -7,7 +7,9 @@ import CommonFreightTransportMetamodel.coupling.CouplingFactory;
 import CommonFreightTransportMetamodel.coupling.CouplingPackage;
 
 import CommonFreightTransportMetamodel.localEntities.LocalEntitiesPackage;
+
 import CommonFreightTransportMetamodel.localEntities.impl.LocalEntitiesPackageImpl;
+
 import CommonFreightTransportMetamodel.logisticDemand.LogisticDemandPackage;
 
 import CommonFreightTransportMetamodel.logisticDemand.impl.LogisticDemandPackageImpl;
@@ -23,6 +25,7 @@ import CommonFreightTransportMetamodel.logisticSolution.impl.LogisticSolutionPac
 import CommonFreightTransportMetamodel.network.NetworkPackage;
 
 import CommonFreightTransportMetamodel.network.impl.NetworkPackageImpl;
+
 import CommonFreightTransportMetamodel.results.ResultsPackage;
 
 import CommonFreightTransportMetamodel.results.impl.ResultsPackageImpl;

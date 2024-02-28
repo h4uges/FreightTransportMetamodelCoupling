@@ -25,8 +25,7 @@ import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.InternalEObject;
 
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
-
-import org.eclipse.emf.ecore.util.EObjectContainmentEList;
+import org.eclipse.emf.ecore.util.EObjectContainmentWithInverseEList;
 import org.eclipse.emf.ecore.util.InternalEList;
 
 /**
@@ -38,10 +37,10 @@ import org.eclipse.emf.ecore.util.InternalEList;
  * </p>
  * <ul>
  *   <li>{@link CommonFreightTransportMetamodel.logisticSolution.impl.ShipmentRecordImpl#getShipment <em>Shipment</em>}</li>
- *   <li>{@link CommonFreightTransportMetamodel.logisticSolution.impl.ShipmentRecordImpl#getEntries <em>Entries</em>}</li>
  *   <li>{@link CommonFreightTransportMetamodel.logisticSolution.impl.ShipmentRecordImpl#getRepsonsibleCEPSP <em>Repsonsible CEPSP</em>}</li>
  *   <li>{@link CommonFreightTransportMetamodel.logisticSolution.impl.ShipmentRecordImpl#getEntry <em>Entry</em>}</li>
  *   <li>{@link CommonFreightTransportMetamodel.logisticSolution.impl.ShipmentRecordImpl#getExit <em>Exit</em>}</li>
+ *   <li>{@link CommonFreightTransportMetamodel.logisticSolution.impl.ShipmentRecordImpl#getEntries <em>Entries</em>}</li>
  * </ul>
  *
  * @generated
@@ -56,16 +55,6 @@ public class ShipmentRecordImpl extends HasId_Impl implements ShipmentRecord {
 	 * @ordered
 	 */
 	protected Shipment shipment;
-
-	/**
-	 * The cached value of the '{@link #getEntries() <em>Entries</em>}' containment reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #getEntries()
-	 * @generated
-	 * @ordered
-	 */
-	protected EList<ShipmentRecordEntry> entries;
 
 	/**
 	 * The cached value of the '{@link #getRepsonsibleCEPSP() <em>Repsonsible CEPSP</em>}' reference.
@@ -96,6 +85,16 @@ public class ShipmentRecordImpl extends HasId_Impl implements ShipmentRecord {
 	 * @ordered
 	 */
 	protected ShipmentExit exit;
+
+	/**
+	 * The cached value of the '{@link #getEntries() <em>Entries</em>}' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getEntries()
+	 * @generated
+	 * @ordered
+	 */
+	protected EList<ShipmentRecordEntry> entries;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -164,9 +163,24 @@ public class ShipmentRecordImpl extends HasId_Impl implements ShipmentRecord {
 	@Override
 	public EList<ShipmentRecordEntry> getEntries() {
 		if (entries == null) {
-			entries = new EObjectContainmentEList<ShipmentRecordEntry>(ShipmentRecordEntry.class, this, LogisticSolutionPackage.SHIPMENT_RECORD__ENTRIES);
+			entries = new EObjectContainmentWithInverseEList<ShipmentRecordEntry>(ShipmentRecordEntry.class, this, LogisticSolutionPackage.SHIPMENT_RECORD__ENTRIES, LogisticSolutionPackage.SHIPMENT_RECORD_ENTRY__RECORD);
 		}
 		return entries;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@SuppressWarnings("unchecked")
+	@Override
+	public NotificationChain eInverseAdd(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
+		switch (featureID) {
+			case LogisticSolutionPackage.SHIPMENT_RECORD__ENTRIES:
+				return ((InternalEList<InternalEObject>)(InternalEList<?>)getEntries()).basicAdd(otherEnd, msgs);
+		}
+		return super.eInverseAdd(otherEnd, featureID, msgs);
 	}
 
 	/**
@@ -307,12 +321,12 @@ public class ShipmentRecordImpl extends HasId_Impl implements ShipmentRecord {
 	@Override
 	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
 		switch (featureID) {
-			case LogisticSolutionPackage.SHIPMENT_RECORD__ENTRIES:
-				return ((InternalEList<?>)getEntries()).basicRemove(otherEnd, msgs);
 			case LogisticSolutionPackage.SHIPMENT_RECORD__ENTRY:
 				return basicSetEntry(null, msgs);
 			case LogisticSolutionPackage.SHIPMENT_RECORD__EXIT:
 				return basicSetExit(null, msgs);
+			case LogisticSolutionPackage.SHIPMENT_RECORD__ENTRIES:
+				return ((InternalEList<?>)getEntries()).basicRemove(otherEnd, msgs);
 		}
 		return super.eInverseRemove(otherEnd, featureID, msgs);
 	}
@@ -328,8 +342,6 @@ public class ShipmentRecordImpl extends HasId_Impl implements ShipmentRecord {
 			case LogisticSolutionPackage.SHIPMENT_RECORD__SHIPMENT:
 				if (resolve) return getShipment();
 				return basicGetShipment();
-			case LogisticSolutionPackage.SHIPMENT_RECORD__ENTRIES:
-				return getEntries();
 			case LogisticSolutionPackage.SHIPMENT_RECORD__REPSONSIBLE_CEPSP:
 				if (resolve) return getRepsonsibleCEPSP();
 				return basicGetRepsonsibleCEPSP();
@@ -337,6 +349,8 @@ public class ShipmentRecordImpl extends HasId_Impl implements ShipmentRecord {
 				return getEntry();
 			case LogisticSolutionPackage.SHIPMENT_RECORD__EXIT:
 				return getExit();
+			case LogisticSolutionPackage.SHIPMENT_RECORD__ENTRIES:
+				return getEntries();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
@@ -353,10 +367,6 @@ public class ShipmentRecordImpl extends HasId_Impl implements ShipmentRecord {
 			case LogisticSolutionPackage.SHIPMENT_RECORD__SHIPMENT:
 				setShipment((Shipment)newValue);
 				return;
-			case LogisticSolutionPackage.SHIPMENT_RECORD__ENTRIES:
-				getEntries().clear();
-				getEntries().addAll((Collection<? extends ShipmentRecordEntry>)newValue);
-				return;
 			case LogisticSolutionPackage.SHIPMENT_RECORD__REPSONSIBLE_CEPSP:
 				setRepsonsibleCEPSP((CEPSP)newValue);
 				return;
@@ -365,6 +375,10 @@ public class ShipmentRecordImpl extends HasId_Impl implements ShipmentRecord {
 				return;
 			case LogisticSolutionPackage.SHIPMENT_RECORD__EXIT:
 				setExit((ShipmentExit)newValue);
+				return;
+			case LogisticSolutionPackage.SHIPMENT_RECORD__ENTRIES:
+				getEntries().clear();
+				getEntries().addAll((Collection<? extends ShipmentRecordEntry>)newValue);
 				return;
 		}
 		super.eSet(featureID, newValue);
@@ -381,9 +395,6 @@ public class ShipmentRecordImpl extends HasId_Impl implements ShipmentRecord {
 			case LogisticSolutionPackage.SHIPMENT_RECORD__SHIPMENT:
 				setShipment((Shipment)null);
 				return;
-			case LogisticSolutionPackage.SHIPMENT_RECORD__ENTRIES:
-				getEntries().clear();
-				return;
 			case LogisticSolutionPackage.SHIPMENT_RECORD__REPSONSIBLE_CEPSP:
 				setRepsonsibleCEPSP((CEPSP)null);
 				return;
@@ -392,6 +403,9 @@ public class ShipmentRecordImpl extends HasId_Impl implements ShipmentRecord {
 				return;
 			case LogisticSolutionPackage.SHIPMENT_RECORD__EXIT:
 				setExit((ShipmentExit)null);
+				return;
+			case LogisticSolutionPackage.SHIPMENT_RECORD__ENTRIES:
+				getEntries().clear();
 				return;
 		}
 		super.eUnset(featureID);
@@ -407,14 +421,14 @@ public class ShipmentRecordImpl extends HasId_Impl implements ShipmentRecord {
 		switch (featureID) {
 			case LogisticSolutionPackage.SHIPMENT_RECORD__SHIPMENT:
 				return shipment != null;
-			case LogisticSolutionPackage.SHIPMENT_RECORD__ENTRIES:
-				return entries != null && !entries.isEmpty();
 			case LogisticSolutionPackage.SHIPMENT_RECORD__REPSONSIBLE_CEPSP:
 				return repsonsibleCEPSP != null;
 			case LogisticSolutionPackage.SHIPMENT_RECORD__ENTRY:
 				return entry != null;
 			case LogisticSolutionPackage.SHIPMENT_RECORD__EXIT:
 				return exit != null;
+			case LogisticSolutionPackage.SHIPMENT_RECORD__ENTRIES:
+				return entries != null && !entries.isEmpty();
 		}
 		return super.eIsSet(featureID);
 	}

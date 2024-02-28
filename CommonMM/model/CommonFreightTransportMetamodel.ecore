@@ -298,14 +298,14 @@
     <eClassifiers xsi:type="ecore:EClass" name="ShipmentRecord" eSuperTypes="#//utils/HasId_">
       <eStructuralFeatures xsi:type="ecore:EReference" name="shipment" lowerBound="1"
           eType="#//logisticDemand/Shipment"/>
-      <eStructuralFeatures xsi:type="ecore:EReference" name="entries" upperBound="-1"
-          eType="#//logisticSolution/ShipmentRecordEntry" containment="true"/>
       <eStructuralFeatures xsi:type="ecore:EReference" name="repsonsibleCEPSP" lowerBound="1"
           eType="#//logisticNetwork/CEPSP"/>
       <eStructuralFeatures xsi:type="ecore:EReference" name="entry" lowerBound="1"
           eType="#//logisticSolution/ShipmentEntry" containment="true"/>
       <eStructuralFeatures xsi:type="ecore:EReference" name="exit" lowerBound="1"
           eType="#//logisticSolution/ShipmentExit" containment="true"/>
+      <eStructuralFeatures xsi:type="ecore:EReference" name="entries" upperBound="-1"
+          eType="#//logisticSolution/ShipmentRecordEntry" containment="true" eOpposite="#//logisticSolution/ShipmentRecordEntry/record"/>
     </eClassifiers>
     <eClassifiers xsi:type="ecore:EClass" name="StartEndStop" eSuperTypes="#//logisticSolution/Stop">
       <eStructuralFeatures xsi:type="ecore:EReference" name="depot" lowerBound="1"
@@ -339,6 +339,8 @@
           eType="#//utils/ShipmentlLegStartEndPoint"/>
       <eStructuralFeatures xsi:type="ecore:EReference" name="tour" lowerBound="1"
           eType="#//logisticSolution/Tour"/>
+      <eStructuralFeatures xsi:type="ecore:EReference" name="record" lowerBound="1"
+          eType="#//logisticSolution/ShipmentRecord" eOpposite="#//logisticSolution/ShipmentRecord/entries"/>
     </eClassifiers>
     <eClassifiers xsi:type="ecore:EClass" name="ShipmentEntry" abstract="true">
       <eStructuralFeatures xsi:type="ecore:EReference" name="time" lowerBound="1"

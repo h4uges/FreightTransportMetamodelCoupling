@@ -5,6 +5,7 @@ package CommonFreightTransportMetamodel.logisticSolution.impl;
 import CommonFreightTransportMetamodel.logisticNetwork.CEPSP;
 
 import CommonFreightTransportMetamodel.logisticSolution.LogisticSolutionPackage;
+import CommonFreightTransportMetamodel.logisticSolution.ShipmentRecord;
 import CommonFreightTransportMetamodel.logisticSolution.ShipmentRecordEntry;
 import CommonFreightTransportMetamodel.logisticSolution.Tour;
 
@@ -22,6 +23,7 @@ import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.InternalEObject;
 
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
+import org.eclipse.emf.ecore.util.EcoreUtil;
 
 /**
  * <!-- begin-user-doc -->
@@ -39,6 +41,7 @@ import org.eclipse.emf.ecore.impl.ENotificationImpl;
  *   <li>{@link CommonFreightTransportMetamodel.logisticSolution.impl.ShipmentRecordEntryImpl#getFromSpec <em>From Spec</em>}</li>
  *   <li>{@link CommonFreightTransportMetamodel.logisticSolution.impl.ShipmentRecordEntryImpl#getToSpec <em>To Spec</em>}</li>
  *   <li>{@link CommonFreightTransportMetamodel.logisticSolution.impl.ShipmentRecordEntryImpl#getTour <em>Tour</em>}</li>
+ *   <li>{@link CommonFreightTransportMetamodel.logisticSolution.impl.ShipmentRecordEntryImpl#getRecord <em>Record</em>}</li>
  * </ul>
  *
  * @generated
@@ -477,6 +480,65 @@ public class ShipmentRecordEntryImpl extends HasId_Impl implements ShipmentRecor
 	 * @generated
 	 */
 	@Override
+	public ShipmentRecord getRecord() {
+		if (eContainerFeatureID() != LogisticSolutionPackage.SHIPMENT_RECORD_ENTRY__RECORD) return null;
+		return (ShipmentRecord)eInternalContainer();
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public NotificationChain basicSetRecord(ShipmentRecord newRecord, NotificationChain msgs) {
+		msgs = eBasicSetContainer((InternalEObject)newRecord, LogisticSolutionPackage.SHIPMENT_RECORD_ENTRY__RECORD, msgs);
+		return msgs;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public void setRecord(ShipmentRecord newRecord) {
+		if (newRecord != eInternalContainer() || (eContainerFeatureID() != LogisticSolutionPackage.SHIPMENT_RECORD_ENTRY__RECORD && newRecord != null)) {
+			if (EcoreUtil.isAncestor(this, newRecord))
+				throw new IllegalArgumentException("Recursive containment not allowed for " + toString());
+			NotificationChain msgs = null;
+			if (eInternalContainer() != null)
+				msgs = eBasicRemoveFromContainer(msgs);
+			if (newRecord != null)
+				msgs = ((InternalEObject)newRecord).eInverseAdd(this, LogisticSolutionPackage.SHIPMENT_RECORD__ENTRIES, ShipmentRecord.class, msgs);
+			msgs = basicSetRecord(newRecord, msgs);
+			if (msgs != null) msgs.dispatch();
+		}
+		else if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, LogisticSolutionPackage.SHIPMENT_RECORD_ENTRY__RECORD, newRecord, newRecord));
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public NotificationChain eInverseAdd(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
+		switch (featureID) {
+			case LogisticSolutionPackage.SHIPMENT_RECORD_ENTRY__RECORD:
+				if (eInternalContainer() != null)
+					msgs = eBasicRemoveFromContainer(msgs);
+				return basicSetRecord((ShipmentRecord)otherEnd, msgs);
+		}
+		return super.eInverseAdd(otherEnd, featureID, msgs);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
 	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
 		switch (featureID) {
 			case LogisticSolutionPackage.SHIPMENT_RECORD_ENTRY__FROM:
@@ -485,8 +547,24 @@ public class ShipmentRecordEntryImpl extends HasId_Impl implements ShipmentRecor
 				return basicSetTo(null, msgs);
 			case LogisticSolutionPackage.SHIPMENT_RECORD_ENTRY__TIME_WINDOW:
 				return basicSetTimeWindow(null, msgs);
+			case LogisticSolutionPackage.SHIPMENT_RECORD_ENTRY__RECORD:
+				return basicSetRecord(null, msgs);
 		}
 		return super.eInverseRemove(otherEnd, featureID, msgs);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public NotificationChain eBasicRemoveFromContainerFeature(NotificationChain msgs) {
+		switch (eContainerFeatureID()) {
+			case LogisticSolutionPackage.SHIPMENT_RECORD_ENTRY__RECORD:
+				return eInternalContainer().eInverseRemove(this, LogisticSolutionPackage.SHIPMENT_RECORD__ENTRIES, ShipmentRecord.class, msgs);
+		}
+		return super.eBasicRemoveFromContainerFeature(msgs);
 	}
 
 	/**
@@ -517,6 +595,8 @@ public class ShipmentRecordEntryImpl extends HasId_Impl implements ShipmentRecor
 			case LogisticSolutionPackage.SHIPMENT_RECORD_ENTRY__TOUR:
 				if (resolve) return getTour();
 				return basicGetTour();
+			case LogisticSolutionPackage.SHIPMENT_RECORD_ENTRY__RECORD:
+				return getRecord();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
@@ -552,6 +632,9 @@ public class ShipmentRecordEntryImpl extends HasId_Impl implements ShipmentRecor
 				return;
 			case LogisticSolutionPackage.SHIPMENT_RECORD_ENTRY__TOUR:
 				setTour((Tour)newValue);
+				return;
+			case LogisticSolutionPackage.SHIPMENT_RECORD_ENTRY__RECORD:
+				setRecord((ShipmentRecord)newValue);
 				return;
 		}
 		super.eSet(featureID, newValue);
@@ -589,6 +672,9 @@ public class ShipmentRecordEntryImpl extends HasId_Impl implements ShipmentRecor
 			case LogisticSolutionPackage.SHIPMENT_RECORD_ENTRY__TOUR:
 				setTour((Tour)null);
 				return;
+			case LogisticSolutionPackage.SHIPMENT_RECORD_ENTRY__RECORD:
+				setRecord((ShipmentRecord)null);
+				return;
 		}
 		super.eUnset(featureID);
 	}
@@ -617,6 +703,8 @@ public class ShipmentRecordEntryImpl extends HasId_Impl implements ShipmentRecor
 				return toSpec != null;
 			case LogisticSolutionPackage.SHIPMENT_RECORD_ENTRY__TOUR:
 				return tour != null;
+			case LogisticSolutionPackage.SHIPMENT_RECORD_ENTRY__RECORD:
+				return getRecord() != null;
 		}
 		return super.eIsSet(featureID);
 	}

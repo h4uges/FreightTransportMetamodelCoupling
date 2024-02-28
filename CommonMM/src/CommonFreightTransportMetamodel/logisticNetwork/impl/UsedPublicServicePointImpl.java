@@ -7,6 +7,7 @@ import CommonFreightTransportMetamodel.logisticNetwork.PublicServicePoint;
 import CommonFreightTransportMetamodel.logisticNetwork.UsedPublicServicePoint;
 
 import CommonFreightTransportMetamodel.utils.Dimension;
+
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.common.notify.NotificationChain;
 

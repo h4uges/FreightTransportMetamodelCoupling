@@ -226,7 +226,9 @@ public enum Branch implements Enumerator {
 	 * @generated
 	 * @ordered
 	 */
-	U(21, "U", "U"), /**
+	U(21, "U", "U"),
+
+	/**
 	 * The '<em><b>OTHER</b></em>' literal object.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->

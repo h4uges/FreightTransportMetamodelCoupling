@@ -3,6 +3,7 @@
 package CommonFreightTransportMetamodel.logisticNetwork;
 
 import CommonFreightTransportMetamodel.utils.Dimension;
+
 import org.eclipse.emf.ecore.EObject;
 
 /**

@@ -60,10 +60,13 @@ import logiToppMetamodel.logiTopp.parcels.PrivateParcel;
 import logiToppMetamodel.logiTopp.parcels.ShipmentSize;
 
 import logiToppMetamodel.mobiTopp.citizens.CitizensPackage;
+
 import logiToppMetamodel.mobiTopp.citizens.impl.CitizensPackageImpl;
+
 import logiToppMetamodel.mobiTopp.network.NetworkPackage;
 
 import logiToppMetamodel.mobiTopp.network.impl.NetworkPackageImpl;
+
 import org.eclipse.emf.ecore.EAttribute;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EEnum;

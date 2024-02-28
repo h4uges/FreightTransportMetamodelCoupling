@@ -8,9 +8,7 @@ Bundle-ClassPath: .
 Bundle-Vendor: %providerName
 Bundle-Localization: plugin
 Bundle-RequiredExecutionEnvironment: JavaSE-17
-Export-Package: CommonFreightTransportMetamodel,
- CommonFreightTransportMetamodel.impl,
- CommonFreightTransportMetamodel.coupling,
+Export-Package: CommonFreightTransportMetamodel.coupling,
  CommonFreightTransportMetamodel.coupling.impl,
  CommonFreightTransportMetamodel.coupling.util,
  CommonFreightTransportMetamodel.localEntities,
@@ -28,13 +26,9 @@ Export-Package: CommonFreightTransportMetamodel,
  CommonFreightTransportMetamodel.network,
  CommonFreightTransportMetamodel.network.impl,
  CommonFreightTransportMetamodel.network.util,
- CommonFreightTransportMetamodel.population,
- CommonFreightTransportMetamodel.population.impl,
- CommonFreightTransportMetamodel.population.util,
  CommonFreightTransportMetamodel.results,
  CommonFreightTransportMetamodel.results.impl,
  CommonFreightTransportMetamodel.results.util,
- CommonFreightTransportMetamodel.util,
  CommonFreightTransportMetamodel.utils,
  CommonFreightTransportMetamodel.utils.impl,
  CommonFreightTransportMetamodel.utils.util

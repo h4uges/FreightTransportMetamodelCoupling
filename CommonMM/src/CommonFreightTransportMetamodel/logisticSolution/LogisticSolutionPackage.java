@@ -206,22 +206,13 @@ public interface LogisticSolutionPackage extends EPackage {
 	int SHIPMENT_RECORD__SHIPMENT = UtilsPackage.HAS_ID__FEATURE_COUNT + 0;
 
 	/**
-	 * The feature id for the '<em><b>Entries</b></em>' containment reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int SHIPMENT_RECORD__ENTRIES = UtilsPackage.HAS_ID__FEATURE_COUNT + 1;
-
-	/**
 	 * The feature id for the '<em><b>Repsonsible CEPSP</b></em>' reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int SHIPMENT_RECORD__REPSONSIBLE_CEPSP = UtilsPackage.HAS_ID__FEATURE_COUNT + 2;
+	int SHIPMENT_RECORD__REPSONSIBLE_CEPSP = UtilsPackage.HAS_ID__FEATURE_COUNT + 1;
 
 	/**
 	 * The feature id for the '<em><b>Entry</b></em>' containment reference.
@@ -230,7 +221,7 @@ public interface LogisticSolutionPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int SHIPMENT_RECORD__ENTRY = UtilsPackage.HAS_ID__FEATURE_COUNT + 3;
+	int SHIPMENT_RECORD__ENTRY = UtilsPackage.HAS_ID__FEATURE_COUNT + 2;
 
 	/**
 	 * The feature id for the '<em><b>Exit</b></em>' containment reference.
@@ -239,7 +230,16 @@ public interface LogisticSolutionPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int SHIPMENT_RECORD__EXIT = UtilsPackage.HAS_ID__FEATURE_COUNT + 4;
+	int SHIPMENT_RECORD__EXIT = UtilsPackage.HAS_ID__FEATURE_COUNT + 3;
+
+	/**
+	 * The feature id for the '<em><b>Entries</b></em>' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int SHIPMENT_RECORD__ENTRIES = UtilsPackage.HAS_ID__FEATURE_COUNT + 4;
 
 	/**
 	 * The number of structural features of the '<em>Shipment Record</em>' class.
@@ -679,13 +679,22 @@ public interface LogisticSolutionPackage extends EPackage {
 	int SHIPMENT_RECORD_ENTRY__TOUR = UtilsPackage.HAS_ID__FEATURE_COUNT + 7;
 
 	/**
+	 * The feature id for the '<em><b>Record</b></em>' container reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int SHIPMENT_RECORD_ENTRY__RECORD = UtilsPackage.HAS_ID__FEATURE_COUNT + 8;
+
+	/**
 	 * The number of structural features of the '<em>Shipment Record Entry</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int SHIPMENT_RECORD_ENTRY_FEATURE_COUNT = UtilsPackage.HAS_ID__FEATURE_COUNT + 8;
+	int SHIPMENT_RECORD_ENTRY_FEATURE_COUNT = UtilsPackage.HAS_ID__FEATURE_COUNT + 9;
 
 	/**
 	 * The number of operations of the '<em>Shipment Record Entry</em>' class.
@@ -1490,6 +1499,17 @@ public interface LogisticSolutionPackage extends EPackage {
 	EReference getShipmentRecordEntry_Tour();
 
 	/**
+	 * Returns the meta object for the container reference '{@link CommonFreightTransportMetamodel.logisticSolution.ShipmentRecordEntry#getRecord <em>Record</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the container reference '<em>Record</em>'.
+	 * @see CommonFreightTransportMetamodel.logisticSolution.ShipmentRecordEntry#getRecord()
+	 * @see #getShipmentRecordEntry()
+	 * @generated
+	 */
+	EReference getShipmentRecordEntry_Record();
+
+	/**
 	 * Returns the meta object for class '{@link CommonFreightTransportMetamodel.logisticSolution.ShipmentEntry <em>Shipment Entry</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -1998,6 +2018,14 @@ public interface LogisticSolutionPackage extends EPackage {
 		 * @generated
 		 */
 		EReference SHIPMENT_RECORD_ENTRY__TOUR = eINSTANCE.getShipmentRecordEntry_Tour();
+
+		/**
+		 * The meta object literal for the '<em><b>Record</b></em>' container reference feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference SHIPMENT_RECORD_ENTRY__RECORD = eINSTANCE.getShipmentRecordEntry_Record();
 
 		/**
 		 * The meta object literal for the '{@link CommonFreightTransportMetamodel.logisticSolution.impl.ShipmentEntryImpl <em>Shipment Entry</em>}' class.

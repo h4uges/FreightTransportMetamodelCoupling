@@ -8,6 +8,7 @@ import CommonFreightTransportMetamodel.logisticDemand.Shipment;
 import CommonFreightTransportMetamodel.logisticNetwork.CEPSP;
 
 import CommonFreightTransportMetamodel.utils.Dimension;
+
 import CommonFreightTransportMetamodel.utils.impl.HasId_Impl;
 
 import org.eclipse.emf.common.notify.Notification;

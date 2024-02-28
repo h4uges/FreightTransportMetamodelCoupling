@@ -4,7 +4,6 @@ package CommonFreightTransportMetamodel.logisticSolution;
 
 import CommonFreightTransportMetamodel.logisticNetwork.CEPSP;
 
-
 /**
  * <!-- begin-user-doc -->
  * A representation of the model object '<em><b>Planned Tour</b></em>'.
@@ -22,7 +21,6 @@ import CommonFreightTransportMetamodel.logisticNetwork.CEPSP;
  * @generated
  */
 public interface PlannedTour extends Tour {
-
 	/**
 	 * Returns the value of the '<em><b>Executing CEPSP</b></em>' reference.
 	 * <!-- begin-user-doc -->
@@ -44,4 +42,5 @@ public interface PlannedTour extends Tour {
 	 * @generated
 	 */
 	void setExecutingCEPSP(CEPSP value);
+
 } // PlannedTour

@@ -3,9 +3,13 @@
 package CommonFreightTransportMetamodel.logisticSolution.impl;
 
 import CommonFreightTransportMetamodel.coupling.CouplingPackage;
+
 import CommonFreightTransportMetamodel.coupling.impl.CouplingPackageImpl;
+
 import CommonFreightTransportMetamodel.localEntities.LocalEntitiesPackage;
+
 import CommonFreightTransportMetamodel.localEntities.impl.LocalEntitiesPackageImpl;
+
 import CommonFreightTransportMetamodel.logisticDemand.LogisticDemandPackage;
 
 import CommonFreightTransportMetamodel.logisticDemand.impl.LogisticDemandPackageImpl;
@@ -39,6 +43,7 @@ import CommonFreightTransportMetamodel.logisticSolution.Tour;
 import CommonFreightTransportMetamodel.network.NetworkPackage;
 
 import CommonFreightTransportMetamodel.network.impl.NetworkPackageImpl;
+
 import CommonFreightTransportMetamodel.results.ResultsPackage;
 
 import CommonFreightTransportMetamodel.results.impl.ResultsPackageImpl;
@@ -386,7 +391,7 @@ public class LogisticSolutionPackageImpl extends EPackageImpl implements Logisti
 	 */
 	@Override
 	public EReference getShipmentRecord_Entries() {
-		return (EReference)shipmentRecordEClass.getEStructuralFeatures().get(1);
+		return (EReference)shipmentRecordEClass.getEStructuralFeatures().get(4);
 	}
 
 	/**
@@ -396,7 +401,7 @@ public class LogisticSolutionPackageImpl extends EPackageImpl implements Logisti
 	 */
 	@Override
 	public EReference getShipmentRecord_RepsonsibleCEPSP() {
-		return (EReference)shipmentRecordEClass.getEStructuralFeatures().get(2);
+		return (EReference)shipmentRecordEClass.getEStructuralFeatures().get(1);
 	}
 
 	/**
@@ -406,7 +411,7 @@ public class LogisticSolutionPackageImpl extends EPackageImpl implements Logisti
 	 */
 	@Override
 	public EReference getShipmentRecord_Entry() {
-		return (EReference)shipmentRecordEClass.getEStructuralFeatures().get(3);
+		return (EReference)shipmentRecordEClass.getEStructuralFeatures().get(2);
 	}
 
 	/**
@@ -416,7 +421,7 @@ public class LogisticSolutionPackageImpl extends EPackageImpl implements Logisti
 	 */
 	@Override
 	public EReference getShipmentRecord_Exit() {
-		return (EReference)shipmentRecordEClass.getEStructuralFeatures().get(4);
+		return (EReference)shipmentRecordEClass.getEStructuralFeatures().get(3);
 	}
 
 	/**
@@ -587,6 +592,16 @@ public class LogisticSolutionPackageImpl extends EPackageImpl implements Logisti
 	@Override
 	public EReference getShipmentRecordEntry_Tour() {
 		return (EReference)shipmentRecordEntryEClass.getEStructuralFeatures().get(7);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public EReference getShipmentRecordEntry_Record() {
+		return (EReference)shipmentRecordEntryEClass.getEStructuralFeatures().get(8);
 	}
 
 	/**
@@ -849,10 +864,10 @@ public class LogisticSolutionPackageImpl extends EPackageImpl implements Logisti
 
 		shipmentRecordEClass = createEClass(SHIPMENT_RECORD);
 		createEReference(shipmentRecordEClass, SHIPMENT_RECORD__SHIPMENT);
-		createEReference(shipmentRecordEClass, SHIPMENT_RECORD__ENTRIES);
 		createEReference(shipmentRecordEClass, SHIPMENT_RECORD__REPSONSIBLE_CEPSP);
 		createEReference(shipmentRecordEClass, SHIPMENT_RECORD__ENTRY);
 		createEReference(shipmentRecordEClass, SHIPMENT_RECORD__EXIT);
+		createEReference(shipmentRecordEClass, SHIPMENT_RECORD__ENTRIES);
 
 		startEndStopEClass = createEClass(START_END_STOP);
 		createEReference(startEndStopEClass, START_END_STOP__DEPOT);
@@ -875,6 +890,7 @@ public class LogisticSolutionPackageImpl extends EPackageImpl implements Logisti
 		createEReference(shipmentRecordEntryEClass, SHIPMENT_RECORD_ENTRY__FROM_SPEC);
 		createEReference(shipmentRecordEntryEClass, SHIPMENT_RECORD_ENTRY__TO_SPEC);
 		createEReference(shipmentRecordEntryEClass, SHIPMENT_RECORD_ENTRY__TOUR);
+		createEReference(shipmentRecordEntryEClass, SHIPMENT_RECORD_ENTRY__RECORD);
 
 		shipmentEntryEClass = createEClass(SHIPMENT_ENTRY);
 		createEReference(shipmentEntryEClass, SHIPMENT_ENTRY__TIME);
@@ -973,10 +989,10 @@ public class LogisticSolutionPackageImpl extends EPackageImpl implements Logisti
 
 		initEClass(shipmentRecordEClass, ShipmentRecord.class, "ShipmentRecord", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEReference(getShipmentRecord_Shipment(), theLogisticDemandPackage.getShipment(), null, "shipment", null, 1, 1, ShipmentRecord.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-		initEReference(getShipmentRecord_Entries(), this.getShipmentRecordEntry(), null, "entries", null, 0, -1, ShipmentRecord.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEReference(getShipmentRecord_RepsonsibleCEPSP(), theLogisticNetworkPackage.getCEPSP(), null, "repsonsibleCEPSP", null, 1, 1, ShipmentRecord.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEReference(getShipmentRecord_Entry(), this.getShipmentEntry(), null, "entry", null, 1, 1, ShipmentRecord.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEReference(getShipmentRecord_Exit(), this.getShipmentExit(), null, "exit", null, 1, 1, ShipmentRecord.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEReference(getShipmentRecord_Entries(), this.getShipmentRecordEntry(), this.getShipmentRecordEntry_Record(), "entries", null, 0, -1, ShipmentRecord.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		initEClass(startEndStopEClass, StartEndStop.class, "StartEndStop", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEReference(getStartEndStop_Depot(), theLogisticNetworkPackage.getVehicleDepot(), null, "depot", null, 1, 1, StartEndStop.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
@@ -999,6 +1015,7 @@ public class LogisticSolutionPackageImpl extends EPackageImpl implements Logisti
 		initEReference(getShipmentRecordEntry_FromSpec(), theUtilsPackage.getShipmentlLegStartEndPoint(), null, "fromSpec", null, 1, 1, ShipmentRecordEntry.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEReference(getShipmentRecordEntry_ToSpec(), theUtilsPackage.getShipmentlLegStartEndPoint(), null, "toSpec", null, 1, 1, ShipmentRecordEntry.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEReference(getShipmentRecordEntry_Tour(), this.getTour(), null, "tour", null, 1, 1, ShipmentRecordEntry.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEReference(getShipmentRecordEntry_Record(), this.getShipmentRecord(), this.getShipmentRecord_Entries(), "record", null, 1, 1, ShipmentRecordEntry.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		initEClass(shipmentEntryEClass, ShipmentEntry.class, "ShipmentEntry", IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEReference(getShipmentEntry_Time(), theUtilsPackage.getTimestamp_(), null, "time", null, 1, 1, ShipmentEntry.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);

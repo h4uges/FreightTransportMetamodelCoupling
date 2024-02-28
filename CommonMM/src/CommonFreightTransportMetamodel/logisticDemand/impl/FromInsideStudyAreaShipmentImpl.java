@@ -2,9 +2,13 @@
  */
 package CommonFreightTransportMetamodel.logisticDemand.impl;
 
+import CommonFreightTransportMetamodel.localEntities.ShipmentConsumerProducer;
+
 import CommonFreightTransportMetamodel.logisticDemand.FromInsideStudyAreaShipment;
 import CommonFreightTransportMetamodel.logisticDemand.LogisticDemandPackage;
+
 import org.eclipse.emf.common.notify.Notification;
+
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.InternalEObject;
 
@@ -32,7 +36,7 @@ public abstract class FromInsideStudyAreaShipmentImpl extends FromInsideStudyAre
 	 * @generated
 	 * @ordered
 	 */
-	protected CommonFreightTransportMetamodel.localEntities.ShipmentConsumerProducer producer;
+	protected ShipmentConsumerProducer producer;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -59,10 +63,10 @@ public abstract class FromInsideStudyAreaShipmentImpl extends FromInsideStudyAre
 	 * @generated
 	 */
 	@Override
-	public CommonFreightTransportMetamodel.localEntities.ShipmentConsumerProducer getProducer() {
+	public ShipmentConsumerProducer getProducer() {
 		if (producer != null && producer.eIsProxy()) {
 			InternalEObject oldProducer = (InternalEObject)producer;
-			producer = (CommonFreightTransportMetamodel.localEntities.ShipmentConsumerProducer)eResolveProxy(oldProducer);
+			producer = (ShipmentConsumerProducer)eResolveProxy(oldProducer);
 			if (producer != oldProducer) {
 				if (eNotificationRequired())
 					eNotify(new ENotificationImpl(this, Notification.RESOLVE, LogisticDemandPackage.FROM_INSIDE_STUDY_AREA_SHIPMENT__PRODUCER, oldProducer, producer));
@@ -76,7 +80,7 @@ public abstract class FromInsideStudyAreaShipmentImpl extends FromInsideStudyAre
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public CommonFreightTransportMetamodel.localEntities.ShipmentConsumerProducer basicGetProducer() {
+	public ShipmentConsumerProducer basicGetProducer() {
 		return producer;
 	}
 
@@ -86,8 +90,8 @@ public abstract class FromInsideStudyAreaShipmentImpl extends FromInsideStudyAre
 	 * @generated
 	 */
 	@Override
-	public void setProducer(CommonFreightTransportMetamodel.localEntities.ShipmentConsumerProducer newProducer) {
-		CommonFreightTransportMetamodel.localEntities.ShipmentConsumerProducer oldProducer = producer;
+	public void setProducer(ShipmentConsumerProducer newProducer) {
+		ShipmentConsumerProducer oldProducer = producer;
 		producer = newProducer;
 		if (eNotificationRequired())
 			eNotify(new ENotificationImpl(this, Notification.SET, LogisticDemandPackage.FROM_INSIDE_STUDY_AREA_SHIPMENT__PRODUCER, oldProducer, producer));
@@ -117,7 +121,7 @@ public abstract class FromInsideStudyAreaShipmentImpl extends FromInsideStudyAre
 	public void eSet(int featureID, Object newValue) {
 		switch (featureID) {
 			case LogisticDemandPackage.FROM_INSIDE_STUDY_AREA_SHIPMENT__PRODUCER:
-				setProducer((CommonFreightTransportMetamodel.localEntities.ShipmentConsumerProducer)newValue);
+				setProducer((ShipmentConsumerProducer)newValue);
 				return;
 		}
 		super.eSet(featureID, newValue);
@@ -132,7 +136,7 @@ public abstract class FromInsideStudyAreaShipmentImpl extends FromInsideStudyAre
 	public void eUnset(int featureID) {
 		switch (featureID) {
 			case LogisticDemandPackage.FROM_INSIDE_STUDY_AREA_SHIPMENT__PRODUCER:
-				setProducer((CommonFreightTransportMetamodel.localEntities.ShipmentConsumerProducer)null);
+				setProducer((ShipmentConsumerProducer)null);
 				return;
 		}
 		super.eUnset(featureID);

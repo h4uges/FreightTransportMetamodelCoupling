@@ -13,13 +13,13 @@ import logiToppMetamodel.logiTopp.business.BuildingType;
 import logiToppMetamodel.logiTopp.business.Business;
 import logiToppMetamodel.logiTopp.business.BusinessFactory;
 import logiToppMetamodel.logiTopp.business.OpeningHour;
+import logiToppMetamodel.mobiTopp.citizens.CitizensFactory;
+import logiToppMetamodel.mobiTopp.citizens.Employment;
+import logiToppMetamodel.mobiTopp.citizens.Gender;
+import logiToppMetamodel.mobiTopp.citizens.Household;
+import logiToppMetamodel.mobiTopp.citizens.Person;
 import logiToppMetamodel.mobiTopp.network.Location;
 import logiToppMetamodel.mobiTopp.network.Zone;
-import logiToppMetamodel.mobiTopp.population.Employment;
-import logiToppMetamodel.mobiTopp.population.Gender;
-import logiToppMetamodel.mobiTopp.population.Household;
-import logiToppMetamodel.mobiTopp.population.Person;
-import logiToppMetamodel.mobiTopp.population.PopulationFactory;
 
 public class LogiToppPopulationUtil {
 
@@ -75,7 +75,7 @@ public class LogiToppPopulationUtil {
 	}
 	
 	public static Household createHousehold(int id, Zone zone, Location location, ImmutableSet<Person> members) {
-		Household result = PopulationFactory.eINSTANCE.createHousehold();
+		Household result = CitizensFactory.eINSTANCE.createHousehold();
 		
 		result.setId(id);
 		result.setLocation(location);
@@ -86,7 +86,7 @@ public class LogiToppPopulationUtil {
 	}
 	
 	public static Person createPerson(int id, int age, Gender gender, Employment emplyment) {
-		Person result = PopulationFactory.eINSTANCE.createPerson();
+		Person result = CitizensFactory.eINSTANCE.createPerson();
 		
 		result.setId(id);
 		result.setAge(age);

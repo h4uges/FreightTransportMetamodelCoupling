@@ -8,6 +8,9 @@ import logiToppMetamodel.LogiToppMetamodelPackage;
 import logiToppMetamodel.Population;
 
 import logiToppMetamodel.logiTopp.business.Business;
+
+import logiToppMetamodel.mobiTopp.citizens.Household;
+
 import org.eclipse.emf.common.notify.NotificationChain;
 
 import org.eclipse.emf.common.util.EList;
@@ -43,7 +46,7 @@ public class PopulationImpl extends MinimalEObjectImpl.Container implements Popu
 	 * @generated
 	 * @ordered
 	 */
-	protected EList<logiToppMetamodel.mobiTopp.citizens.Household> households;
+	protected EList<Household> households;
 
 	/**
 	 * The cached value of the '{@link #getBusinesses() <em>Businesses</em>}' containment reference list.
@@ -80,9 +83,9 @@ public class PopulationImpl extends MinimalEObjectImpl.Container implements Popu
 	 * @generated
 	 */
 	@Override
-	public EList<logiToppMetamodel.mobiTopp.citizens.Household> getHouseholds() {
+	public EList<Household> getHouseholds() {
 		if (households == null) {
-			households = new EObjectContainmentEList<logiToppMetamodel.mobiTopp.citizens.Household>(logiToppMetamodel.mobiTopp.citizens.Household.class, this, LogiToppMetamodelPackage.POPULATION__HOUSEHOLDS);
+			households = new EObjectContainmentEList<Household>(Household.class, this, LogiToppMetamodelPackage.POPULATION__HOUSEHOLDS);
 		}
 		return households;
 	}
@@ -143,7 +146,7 @@ public class PopulationImpl extends MinimalEObjectImpl.Container implements Popu
 		switch (featureID) {
 			case LogiToppMetamodelPackage.POPULATION__HOUSEHOLDS:
 				getHouseholds().clear();
-				getHouseholds().addAll((Collection<? extends logiToppMetamodel.mobiTopp.citizens.Household>)newValue);
+				getHouseholds().addAll((Collection<? extends Household>)newValue);
 				return;
 			case LogiToppMetamodelPackage.POPULATION__BUSINESSES:
 				getBusinesses().clear();

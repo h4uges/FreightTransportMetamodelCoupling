@@ -228,11 +228,12 @@
       <genClasses ecoreClass="CommonFreightTransportMetamodel.ecore#//logisticSolution/ShipmentRecord">
         <genFeatures notify="false" createChild="false" propertySortChoices="true"
             ecoreFeature="ecore:EReference CommonFreightTransportMetamodel.ecore#//logisticSolution/ShipmentRecord/shipment"/>
-        <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference CommonFreightTransportMetamodel.ecore#//logisticSolution/ShipmentRecord/entries"/>
         <genFeatures notify="false" createChild="false" propertySortChoices="true"
             ecoreFeature="ecore:EReference CommonFreightTransportMetamodel.ecore#//logisticSolution/ShipmentRecord/repsonsibleCEPSP"/>
         <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference CommonFreightTransportMetamodel.ecore#//logisticSolution/ShipmentRecord/entry"/>
         <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference CommonFreightTransportMetamodel.ecore#//logisticSolution/ShipmentRecord/exit"/>
+        <genFeatures children="true" createChild="true" propertySortChoices="true"
+            ecoreFeature="ecore:EReference CommonFreightTransportMetamodel.ecore#//logisticSolution/ShipmentRecord/entries"/>
       </genClasses>
       <genClasses ecoreClass="CommonFreightTransportMetamodel.ecore#//logisticSolution/StartEndStop">
         <genFeatures notify="false" createChild="false" propertySortChoices="true"
@@ -262,6 +263,8 @@
             ecoreFeature="ecore:EReference CommonFreightTransportMetamodel.ecore#//logisticSolution/ShipmentRecordEntry/toSpec"/>
         <genFeatures notify="false" createChild="false" propertySortChoices="true"
             ecoreFeature="ecore:EReference CommonFreightTransportMetamodel.ecore#//logisticSolution/ShipmentRecordEntry/tour"/>
+        <genFeatures notify="false" createChild="false" propertySortChoices="true"
+            ecoreFeature="ecore:EReference CommonFreightTransportMetamodel.ecore#//logisticSolution/ShipmentRecordEntry/record"/>
       </genClasses>
       <genClasses image="false" ecoreClass="CommonFreightTransportMetamodel.ecore#//logisticSolution/ShipmentEntry">
         <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference CommonFreightTransportMetamodel.ecore#//logisticSolution/ShipmentEntry/time"/>

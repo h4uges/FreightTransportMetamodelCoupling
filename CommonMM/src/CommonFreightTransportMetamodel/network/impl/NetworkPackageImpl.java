@@ -3,9 +3,13 @@
 package CommonFreightTransportMetamodel.network.impl;
 
 import CommonFreightTransportMetamodel.coupling.CouplingPackage;
+
 import CommonFreightTransportMetamodel.coupling.impl.CouplingPackageImpl;
+
 import CommonFreightTransportMetamodel.localEntities.LocalEntitiesPackage;
+
 import CommonFreightTransportMetamodel.localEntities.impl.LocalEntitiesPackageImpl;
+
 import CommonFreightTransportMetamodel.logisticDemand.LogisticDemandPackage;
 
 import CommonFreightTransportMetamodel.logisticDemand.impl.LogisticDemandPackageImpl;
@@ -28,6 +32,7 @@ import CommonFreightTransportMetamodel.network.NetworkPackage;
 import CommonFreightTransportMetamodel.network.Node;
 import CommonFreightTransportMetamodel.network.NodeBasedNetworkAccess;
 import CommonFreightTransportMetamodel.network.VehicleType_;
+
 import CommonFreightTransportMetamodel.results.ResultsPackage;
 
 import CommonFreightTransportMetamodel.results.impl.ResultsPackageImpl;

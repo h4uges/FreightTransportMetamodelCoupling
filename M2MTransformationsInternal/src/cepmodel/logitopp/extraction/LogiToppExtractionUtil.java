@@ -12,7 +12,7 @@ public class LogiToppExtractionUtil {
 	public static DemandExchangeRoot createDemandExchangeRoot(RoadNetwork network, TransportInfrastructure transportInfrastructure, Population population, Demand demand) {
 		DemandExchangeRoot result = LogiToppMetamodelFactory.eINSTANCE.createDemandExchangeRoot();
 		result.setNetwork(network);
-		result.setTransportnetwork(transportInfrastructure);
+		result.setTransportNetwork(transportInfrastructure);
 		result.setPopulation(population);
 		result.setDemand(demand);
 		return result;

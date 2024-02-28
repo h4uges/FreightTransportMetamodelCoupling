@@ -3,9 +3,13 @@
 package CommonFreightTransportMetamodel.logisticDemand.impl;
 
 import CommonFreightTransportMetamodel.coupling.CouplingPackage;
+
 import CommonFreightTransportMetamodel.coupling.impl.CouplingPackageImpl;
+
 import CommonFreightTransportMetamodel.localEntities.LocalEntitiesPackage;
+
 import CommonFreightTransportMetamodel.localEntities.impl.LocalEntitiesPackageImpl;
+
 import CommonFreightTransportMetamodel.logisticDemand.Demand;
 import CommonFreightTransportMetamodel.logisticDemand.FromInsideStudyAreaShipment;
 import CommonFreightTransportMetamodel.logisticDemand.FromInsideStudyAreaShipmentBase;
@@ -32,6 +36,7 @@ import CommonFreightTransportMetamodel.logisticSolution.impl.LogisticSolutionPac
 import CommonFreightTransportMetamodel.network.NetworkPackage;
 
 import CommonFreightTransportMetamodel.network.impl.NetworkPackageImpl;
+
 import CommonFreightTransportMetamodel.results.ResultsPackage;
 
 import CommonFreightTransportMetamodel.results.impl.ResultsPackageImpl;
@@ -46,6 +51,7 @@ import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.EReference;
 
 import org.eclipse.emf.ecore.impl.EPackageImpl;
+
 import org.eclipse.emf.ecore.xml.type.XMLTypePackage;
 
 /**

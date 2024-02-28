@@ -5,6 +5,7 @@ package logiToppMetamodel.logiTopp.distribution.region.impl;
 import java.util.Collection;
 
 import logiToppMetamodel.logiTopp.distribution.DistributionCenter;
+
 import logiToppMetamodel.logiTopp.distribution.region.RegionPackage;
 import logiToppMetamodel.logiTopp.distribution.region.RegionalReach;
 import logiToppMetamodel.logiTopp.distribution.region.ServiceArea;
@@ -19,6 +20,7 @@ import org.eclipse.emf.ecore.InternalEObject;
 
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
 import org.eclipse.emf.ecore.impl.MinimalEObjectImpl;
+
 import org.eclipse.emf.ecore.util.EObjectResolvingEList;
 
 /**

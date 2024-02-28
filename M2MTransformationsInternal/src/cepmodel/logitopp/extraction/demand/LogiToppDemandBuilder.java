@@ -30,7 +30,7 @@ import logiToppMetamodel.logiTopp.parcels.ShipmentSize;
 import logiToppMetamodel.mobiTopp.network.Location;
 import logiToppMetamodel.mobiTopp.network.Zone;
 import logiToppMetamodel.mobiTopp.network.ZoneAndLocation;
-import logiToppMetamodel.mobiTopp.population.Person;
+import logiToppMetamodel.mobiTopp.citizens.Person;
 
 // TODO: share more code
 public class LogiToppDemandBuilder {
@@ -40,17 +40,18 @@ public class LogiToppDemandBuilder {
 	private final LogiToppPopulationBuilder populationBuilder;
 	private final InputFileRegistry fileRegisty;
 
-	public LogiToppDemandBuilder(InputFileRegistry fileRegisty, LogiToppNetworkBuilder networkBuilder, LogiToppPopulationBuilder populationBuilder) {
+	public LogiToppDemandBuilder(InputFileRegistry fileRegisty, LogiToppNetworkBuilder networkBuilder,
+			LogiToppPopulationBuilder populationBuilder) {
 		this.fileRegisty = fileRegisty;
 		this.networkBuilder = networkBuilder;
 		this.populationBuilder = populationBuilder;
 	}
-	
+
 	public Demand createDemand() {
 		fileRegisty.parcelOrderBusinessCSVs.forEach(file -> parseParcelOrderBusiness(file));
 		fileRegisty.parcelOrdersPrivateCSVs.forEach(file -> parseParcelOrdersPrivate(file));
 		fileRegisty.parcelProductionBusinessCSVs.forEach(file -> parseParcelProductionBusiness(file));
-		
+
 		return LogiToppDemandUtil.createDemand(ImmutableList.copyOf(parcels.values()));
 	}
 
@@ -110,7 +111,7 @@ public class LogiToppDemandBuilder {
 
 				// TODO: parcel producer (DistributionCenter - only name)
 				int consumerId = Integer.valueOf(record.get("RecipientID"));
-				
+
 				double destinationX = Double.valueOf(record.get("DestinationX"));
 				double destinationY = Double.valueOf(record.get("DestinationY"));
 				int destinationZoneId = Integer.valueOf(record.get("DestinationZone"));
@@ -133,8 +134,8 @@ public class LogiToppDemandBuilder {
 				ZoneAndLocation destination = LogiToppNetworkUtil.createZoneAndLocation(destinationZone,
 						destinationLocation);
 
-				PrivateParcel parcel = LogiToppDemandUtil.createPrivateParcel(parcelId, null, consumingPerson, destination, size,
-						destinationType, isPickup, arrivalTime);
+				PrivateParcel parcel = LogiToppDemandUtil.createPrivateParcel(parcelId, null, consumingPerson,
+						destination, size, destinationType, isPickup, arrivalTime);
 				parcels.put(parcelId, parcel);
 			}
 		} catch (IOException e) {

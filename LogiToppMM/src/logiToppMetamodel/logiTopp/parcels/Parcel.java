@@ -9,6 +9,7 @@ import logiToppMetamodel.logiTopp.ParcelConsumer;
 import logiToppMetamodel.logiTopp.ParcelProducer;
 
 import logiToppMetamodel.logiTopp.distribution.CEPServiceProvider;
+
 import logiToppMetamodel.mobiTopp.network.ZoneAndLocation;
 
 /**

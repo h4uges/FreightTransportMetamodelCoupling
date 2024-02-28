@@ -20,10 +20,10 @@ import org.eclipse.emf.common.util.EList;
  * </p>
  * <ul>
  *   <li>{@link CommonFreightTransportMetamodel.logisticSolution.ShipmentRecord#getShipment <em>Shipment</em>}</li>
- *   <li>{@link CommonFreightTransportMetamodel.logisticSolution.ShipmentRecord#getEntries <em>Entries</em>}</li>
  *   <li>{@link CommonFreightTransportMetamodel.logisticSolution.ShipmentRecord#getRepsonsibleCEPSP <em>Repsonsible CEPSP</em>}</li>
  *   <li>{@link CommonFreightTransportMetamodel.logisticSolution.ShipmentRecord#getEntry <em>Entry</em>}</li>
  *   <li>{@link CommonFreightTransportMetamodel.logisticSolution.ShipmentRecord#getExit <em>Exit</em>}</li>
+ *   <li>{@link CommonFreightTransportMetamodel.logisticSolution.ShipmentRecord#getEntries <em>Entries</em>}</li>
  * </ul>
  *
  * @see CommonFreightTransportMetamodel.logisticSolution.LogisticSolutionPackage#getShipmentRecord()
@@ -56,11 +56,13 @@ public interface ShipmentRecord extends HasId_ {
 	/**
 	 * Returns the value of the '<em><b>Entries</b></em>' containment reference list.
 	 * The list contents are of type {@link CommonFreightTransportMetamodel.logisticSolution.ShipmentRecordEntry}.
+	 * It is bidirectional and its opposite is '{@link CommonFreightTransportMetamodel.logisticSolution.ShipmentRecordEntry#getRecord <em>Record</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Entries</em>' containment reference list.
 	 * @see CommonFreightTransportMetamodel.logisticSolution.LogisticSolutionPackage#getShipmentRecord_Entries()
-	 * @model containment="true"
+	 * @see CommonFreightTransportMetamodel.logisticSolution.ShipmentRecordEntry#getRecord
+	 * @model opposite="record" containment="true"
 	 * @generated
 	 */
 	EList<ShipmentRecordEntry> getEntries();

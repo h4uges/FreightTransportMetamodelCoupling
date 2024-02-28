@@ -4,8 +4,8 @@ package CommonFreightTransportMetamodel.logisticNetwork.impl;
 
 import CommonFreightTransportMetamodel.logisticNetwork.LogisticNetworkPackage;
 import CommonFreightTransportMetamodel.logisticNetwork.Vehicle;
-
 import CommonFreightTransportMetamodel.logisticNetwork.VehicleDepot;
+
 import CommonFreightTransportMetamodel.network.VehicleType_;
 
 import CommonFreightTransportMetamodel.utils.Dimension;

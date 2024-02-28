@@ -3,6 +3,9 @@
 package logiToppMetamodel;
 
 import logiToppMetamodel.logiTopp.business.Business;
+
+import logiToppMetamodel.mobiTopp.citizens.Household;
+
 import org.eclipse.emf.common.util.EList;
 
 import org.eclipse.emf.ecore.EObject;
@@ -35,7 +38,7 @@ public interface Population extends EObject {
 	 * @model containment="true"
 	 * @generated
 	 */
-	EList<logiToppMetamodel.mobiTopp.citizens.Household> getHouseholds();
+	EList<Household> getHouseholds();
 
 	/**
 	 * Returns the value of the '<em><b>Businesses</b></em>' containment reference list.

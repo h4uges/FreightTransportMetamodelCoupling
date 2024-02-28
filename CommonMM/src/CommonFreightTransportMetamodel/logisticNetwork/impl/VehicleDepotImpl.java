@@ -144,6 +144,19 @@ public class VehicleDepotImpl extends HasId_Impl implements VehicleDepot {
 	 * @generated
 	 */
 	@Override
+	public EList<TimeWindow_> getOperationHours() {
+		if (operationHours == null) {
+			operationHours = new EObjectContainmentEList<TimeWindow_>(TimeWindow_.class, this, LogisticNetworkPackage.VEHICLE_DEPOT__OPERATION_HOURS);
+		}
+		return operationHours;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
 	public EList<Vehicle> getVehicles() {
 		if (vehicles == null) {
 			vehicles = new EObjectContainmentWithInverseEList<Vehicle>(Vehicle.class, this, LogisticNetworkPackage.VEHICLE_DEPOT__VEHICLES, LogisticNetworkPackage.VEHICLE__DEPOT);
@@ -164,19 +177,6 @@ public class VehicleDepotImpl extends HasId_Impl implements VehicleDepot {
 				return ((InternalEList<InternalEObject>)(InternalEList<?>)getVehicles()).basicAdd(otherEnd, msgs);
 		}
 		return super.eInverseAdd(otherEnd, featureID, msgs);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public EList<TimeWindow_> getOperationHours() {
-		if (operationHours == null) {
-			operationHours = new EObjectContainmentEList<TimeWindow_>(TimeWindow_.class, this, LogisticNetworkPackage.VEHICLE_DEPOT__OPERATION_HOURS);
-		}
-		return operationHours;
 	}
 
 	/**

@@ -25,10 +25,10 @@ import logiToppMetamodel.logiTopp.business.OpeningHour;
 import logiToppMetamodel.logiTopp.distribution.CEPServiceProvider;
 import logiToppMetamodel.mobiTopp.network.Location;
 import logiToppMetamodel.mobiTopp.network.Zone;
-import logiToppMetamodel.mobiTopp.population.Employment;
-import logiToppMetamodel.mobiTopp.population.Gender;
-import logiToppMetamodel.mobiTopp.population.Household;
-import logiToppMetamodel.mobiTopp.population.Person;
+import logiToppMetamodel.mobiTopp.citizens.Employment;
+import logiToppMetamodel.mobiTopp.citizens.Gender;
+import logiToppMetamodel.mobiTopp.citizens.Household;
+import logiToppMetamodel.mobiTopp.citizens.Person;
 
 public class LogiToppPopulationBuilder {
 	private final Map<Integer, Business> businesses = new HashMap<Integer, Business>();

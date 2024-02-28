@@ -717,7 +717,6 @@ public interface LogisticDemandPackage extends EPackage {
 	 */
 	int SHIPMENT_OPERATION_COUNT = UtilsPackage.HAS_ID__OPERATION_COUNT + 0;
 
-
 	/**
 	 * The meta object id for the '{@link CommonFreightTransportMetamodel.logisticDemand.impl.SplittedShipmentImpl <em>Splitted Shipment</em>}' class.
 	 * <!-- begin-user-doc -->

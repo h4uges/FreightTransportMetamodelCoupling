@@ -6,6 +6,7 @@ import logiToppMetamodel.base.RelativeTime;
 import logiToppMetamodel.base.Time;
 
 import logiToppMetamodel.logiTopp.distribution.CEPServiceProvider;
+
 import logiToppMetamodel.logiTopp.distribution.delivery.ParcelActivity;
 
 import logiToppMetamodel.logiTopp.distribution.fleet.VehicleType;
