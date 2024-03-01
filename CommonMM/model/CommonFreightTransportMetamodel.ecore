@@ -300,10 +300,6 @@
           eType="#//logisticDemand/Shipment"/>
       <eStructuralFeatures xsi:type="ecore:EReference" name="repsonsibleCEPSP" lowerBound="1"
           eType="#//logisticNetwork/CEPSP"/>
-      <eStructuralFeatures xsi:type="ecore:EReference" name="entry" lowerBound="1"
-          eType="#//logisticSolution/ShipmentEntry" containment="true"/>
-      <eStructuralFeatures xsi:type="ecore:EReference" name="exit" lowerBound="1"
-          eType="#//logisticSolution/ShipmentExit" containment="true"/>
       <eStructuralFeatures xsi:type="ecore:EReference" name="entries" upperBound="-1"
           eType="#//logisticSolution/ShipmentRecordEntry" containment="true" eOpposite="#//logisticSolution/ShipmentRecordEntry/record"/>
     </eClassifiers>

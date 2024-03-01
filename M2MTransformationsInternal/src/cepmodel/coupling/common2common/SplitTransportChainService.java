@@ -14,13 +14,8 @@ import CommonFreightTransportMetamodel.logisticDemand.Demand;
 import CommonFreightTransportMetamodel.logisticDemand.LogisticDemandFactory;
 import CommonFreightTransportMetamodel.logisticDemand.Shipment;
 import CommonFreightTransportMetamodel.logisticDemand.SplittedShipment;
-import CommonFreightTransportMetamodel.logisticNetwork.LogisticHub;
-import CommonFreightTransportMetamodel.logisticSolution.DeliveryExit;
-import CommonFreightTransportMetamodel.logisticSolution.LogisticHubEntry;
-import CommonFreightTransportMetamodel.logisticSolution.LogisticHubExit;
 import CommonFreightTransportMetamodel.logisticSolution.LogisticSolutionFactory;
 import CommonFreightTransportMetamodel.logisticSolution.PickUpDeliveryStop;
-import CommonFreightTransportMetamodel.logisticSolution.PickUpEntry;
 import CommonFreightTransportMetamodel.logisticSolution.ShipmentRecord;
 import CommonFreightTransportMetamodel.logisticSolution.ShipmentRecordEntry;
 import CommonFreightTransportMetamodel.logisticSolution.Stop;
@@ -142,34 +137,6 @@ public class SplitTransportChainService {
 		newShipmentRecordEntry.setTo(originalShipmentRecordEntry.getTo());
 		newShipmentRecordEntry.setToSpec(originalShipmentRecordEntry.getToSpec());
 		newShipmentRecordEntry.setTimeWindow(originalShipmentRecordEntry.getTimeWindow());
-		
-		// entry
-		if(LogisticHub.class.isInstance(newShipmentRecordEntry.getFromSpec())) {
-			LogisticHub hub = (LogisticHub) newShipmentRecordEntry.getFromSpec();
-			LogisticHubEntry entry = LogisticSolutionFactory.eINSTANCE.createLogisticHubEntry();
-			entry.setLogisticHub(hub);
-			entry.setTime(null); // TODO
-			newShipmentRecord.setEntry(entry);
-		} else {
-			PickUpEntry entry = LogisticSolutionFactory.eINSTANCE.createPickUpEntry();
-			entry.setPickUpLeg(newShipmentRecordEntry);
-			entry.setTime(null); // TODO
-			newShipmentRecord.setEntry(entry);
-		}
-		
-		// exit
-		if(LogisticHub.class.isInstance(newShipmentRecordEntry.getToSpec())) {
-			LogisticHub hub = (LogisticHub) newShipmentRecordEntry.getFromSpec();
-			LogisticHubExit exit = LogisticSolutionFactory.eINSTANCE.createLogisticHubExit();
-			exit.setLogisticHub(hub);
-			exit.setTime(null); // TODO
-			newShipmentRecord.setExit(exit);
-		} else {
-			DeliveryExit exit = LogisticSolutionFactory.eINSTANCE.createDeliveryExit();
-			exit.setDeliveryLeg(newShipmentRecordEntry);
-			exit.setTime(null); // TODO
-			newShipmentRecord.setExit(exit);
-		}
 		
 		return newShipmentRecord;
 	}
