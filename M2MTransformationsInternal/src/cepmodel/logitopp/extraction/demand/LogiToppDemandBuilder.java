@@ -19,10 +19,11 @@ import cepmodel.logitopp.extraction.network.LogiToppNetworkBuilder;
 import cepmodel.logitopp.extraction.network.LogiToppNetworkUtil;
 import cepmodel.logitopp.extraction.population.LogiToppPopulationBuilder;
 import cepmodel.logitopp.extraction.transportInfrastructure.LogiToppTransportInfrastructureBuilder;
-import logiToppMetamodel.Demand;
 import logiToppMetamodel.base.BaseFactory;
 import logiToppMetamodel.base.Time;
+import logiToppMetamodel.dataExchange.Demand;
 import logiToppMetamodel.logiTopp.business.Business;
+import logiToppMetamodel.logiTopp.distribution.CEPServiceProvider;
 import logiToppMetamodel.logiTopp.distribution.DistributionCenter;
 import logiToppMetamodel.logiTopp.parcels.BusinessParcel;
 import logiToppMetamodel.logiTopp.parcels.Parcel;
@@ -91,6 +92,7 @@ public class LogiToppDemandBuilder {
 
 				DistributionCenter producingDistributionCenter = transportInfrastructureBuilder
 						.getDistributionCenter(producingDcId);
+				CEPServiceProvider responsibleCEPSP = producingDistributionCenter.getCEPSP();
 				Business consumingBusiness = populationBuilder.getBusiness(consumingBusinessId);
 				Location destinationLocation = networkBuilder.createLocation(destinationX, destinationY,
 						destinationEdgeId, destinationEdgePosition);
@@ -98,8 +100,8 @@ public class LogiToppDemandBuilder {
 				ZoneAndLocation destination = LogiToppNetworkUtil.createZoneAndLocation(destinationZone,
 						destinationLocation);
 
-				BusinessParcel parcel = LogiToppDemandUtil.createBusinessParcel(parcelId, producingDistributionCenter,
-						consumingBusiness, destination, size, isPickup, arrivalAtOrigin);
+				BusinessParcel parcel = LogiToppDemandUtil.createBusinessParcel(parcelId, responsibleCEPSP,
+						producingDistributionCenter, consumingBusiness, destination, size, isPickup, arrivalAtOrigin);
 				parcels.put(parcelId, parcel);
 			}
 		} catch (IOException e) {
@@ -139,6 +141,7 @@ public class LogiToppDemandBuilder {
 
 				DistributionCenter producingDistributionCenter = transportInfrastructureBuilder
 						.getDistributionCenter(producingDcId);
+				CEPServiceProvider responsibleCEPSP = producingDistributionCenter.getCEPSP();
 				Person consumingPerson = populationBuilder.getPerson(consumerId);
 				Location destinationLocation = networkBuilder.createLocation(destinationX, destinationY,
 						destinationEdgeId, destinationEdgePosition);
@@ -146,8 +149,9 @@ public class LogiToppDemandBuilder {
 				ZoneAndLocation destination = LogiToppNetworkUtil.createZoneAndLocation(destinationZone,
 						destinationLocation);
 
-				PrivateParcel parcel = LogiToppDemandUtil.createPrivateParcel(parcelId, producingDistributionCenter,
-						consumingPerson, destination, size, destinationType, isPickup, arrivalAtOrigin);
+				PrivateParcel parcel = LogiToppDemandUtil.createPrivateParcel(parcelId, responsibleCEPSP,
+						producingDistributionCenter, consumingPerson, destination, size, destinationType, isPickup,
+						arrivalAtOrigin);
 				parcels.put(parcelId, parcel);
 			}
 		} catch (IOException e) {
@@ -187,14 +191,15 @@ public class LogiToppDemandBuilder {
 				Business producingBusiness = populationBuilder.getBusiness(producingBusinessId);
 				DistributionCenter consumingDistributionCenter = transportInfrastructureBuilder
 						.getDistributionCenter(consumingDistributionCenterId);
+				CEPServiceProvider responsibleCEPSP = consumingDistributionCenter.getCEPSP();
 				Location destinationLocation = networkBuilder.createLocation(destinationX, destinationY,
 						destinationEdgeId, destinationEdgePosition);
 				Zone destinationZone = networkBuilder.getZone(destinationZoneId);
 				ZoneAndLocation destination = LogiToppNetworkUtil.createZoneAndLocation(destinationZone,
 						destinationLocation);
 
-				BusinessParcel parcel = LogiToppDemandUtil.createBusinessParcel(parcelId, producingBusiness,
-						consumingDistributionCenter, destination, size, isPickup, arrivalAtOrigin);
+				BusinessParcel parcel = LogiToppDemandUtil.createBusinessParcel(parcelId, responsibleCEPSP,
+						producingBusiness, consumingDistributionCenter, destination, size, isPickup, arrivalAtOrigin);
 				parcels.put(parcelId, parcel);
 			}
 		} catch (IOException e) {

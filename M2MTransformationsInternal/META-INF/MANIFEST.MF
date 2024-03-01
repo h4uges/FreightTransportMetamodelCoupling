@@ -1,6 +1,6 @@
 Manifest-Version: 1.0
 Bundle-ManifestVersion: 2
-Bundle-Name: M2MTransformations_2
+Bundle-Name: M2MTransformationsInternal
 Bundle-SymbolicName: M2MTransformationsInternal
 Bundle-Version: 1.0.0.qualifier
 Automatic-Module-Name: M2MTransformations.2

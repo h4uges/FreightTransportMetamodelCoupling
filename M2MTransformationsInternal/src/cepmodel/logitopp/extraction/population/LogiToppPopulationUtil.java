@@ -3,11 +3,11 @@ package cepmodel.logitopp.extraction.population;
 import com.google.common.collect.ImmutableList;
 import com.google.common.collect.ImmutableSet;
 
-import logiToppMetamodel.LogiToppMetamodelFactory;
-import logiToppMetamodel.Population;
 import logiToppMetamodel.base.BaseFactory;
 import logiToppMetamodel.base.Time;
 import logiToppMetamodel.base.Weekday;
+import logiToppMetamodel.dataExchange.DataExchangeFactory;
+import logiToppMetamodel.dataExchange.Population;
 import logiToppMetamodel.logiTopp.business.Branch;
 import logiToppMetamodel.logiTopp.business.BuildingType;
 import logiToppMetamodel.logiTopp.business.Business;
@@ -24,7 +24,7 @@ import logiToppMetamodel.mobiTopp.network.Zone;
 public class LogiToppPopulationUtil {
 
 	public static Population createPopulation(ImmutableSet<Business> businesses, ImmutableSet<Household> households) {
-		Population population = LogiToppMetamodelFactory.eINSTANCE.createPopulation();
+		Population population = DataExchangeFactory.eINSTANCE.createPopulation();
 		
 		population.getBusinesses();
 		

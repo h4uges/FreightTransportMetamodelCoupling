@@ -2,11 +2,12 @@ package cepmodel.logitopp.extraction.demand;
 
 import com.google.common.collect.ImmutableList;
 
-import logiToppMetamodel.Demand;
-import logiToppMetamodel.LogiToppMetamodelFactory;
 import logiToppMetamodel.base.Time;
+import logiToppMetamodel.dataExchange.DataExchangeFactory;
+import logiToppMetamodel.dataExchange.Demand;
 import logiToppMetamodel.logiTopp.ParcelConsumer;
 import logiToppMetamodel.logiTopp.ParcelProducer;
+import logiToppMetamodel.logiTopp.distribution.CEPServiceProvider;
 import logiToppMetamodel.logiTopp.parcels.BusinessParcel;
 import logiToppMetamodel.logiTopp.parcels.Parcel;
 import logiToppMetamodel.logiTopp.parcels.ParcelDestinationType;
@@ -18,16 +19,17 @@ import logiToppMetamodel.mobiTopp.network.ZoneAndLocation;
 public class LogiToppDemandUtil {
 
 	public static Demand createDemand(ImmutableList<Parcel> parcels) {
-		Demand result = LogiToppMetamodelFactory.eINSTANCE.createDemand();
+		Demand result = DataExchangeFactory.eINSTANCE.createDemand();
 		result.getParcels().addAll(parcels);
 		return result;
 	}
 
-	public static BusinessParcel createBusinessParcel(String id, ParcelProducer producer, ParcelConsumer consumer,
+	public static BusinessParcel createBusinessParcel(String id, CEPServiceProvider responsibleCEPSP, ParcelProducer producer, ParcelConsumer consumer,
 			ZoneAndLocation destination, ShipmentSize shipmentSize, boolean isPickup, Time arrivalAtOrigin) {
 		BusinessParcel result = ParcelsFactory.eINSTANCE.createBusinessParcel();
 
 		result.setId(id);
+		result.setResponsibleCEPSP(responsibleCEPSP);
 
 		result.setProducer(producer);
 		result.setConsumer(consumer);
@@ -42,13 +44,14 @@ public class LogiToppDemandUtil {
 		return result;
 	}
 
-	public static PrivateParcel createPrivateParcel(String id, ParcelProducer producer, ParcelConsumer consumer,
+	public static PrivateParcel createPrivateParcel(String id, CEPServiceProvider responsibleCEPSP, ParcelProducer producer, ParcelConsumer consumer,
 			ZoneAndLocation destination, ShipmentSize shipmentSize, ParcelDestinationType destinationType,
 			boolean isPickup, Time arrivalAtOrigin) {
 		PrivateParcel result = ParcelsFactory.eINSTANCE.createPrivateParcel();
 
 		result.setId(id);
-
+		result.setResponsibleCEPSP(responsibleCEPSP);
+		
 		result.setProducer(producer);
 		result.setConsumer(consumer);
 

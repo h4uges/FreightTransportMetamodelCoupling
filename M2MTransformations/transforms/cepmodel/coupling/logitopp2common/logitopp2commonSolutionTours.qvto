@@ -6,11 +6,9 @@ import logitopp2commonNetwork;
 modeltype COMMON_MM uses CommonFreightTransportMetamodel('http://www.cep-model-coupling.com/commonFreightTransportMetamodel');
 modeltype LOGITOPP uses logiToppMetamodel('http://www.cep-model-coupling.com/logiToppMetamodel');
 
-property tourIdCounter = 0;
-
 mapping LOGITOPP::logiTopp::distribution::tours::PlannedDeliveryTour::plannedTour2PlannedTour(logisticNetwork : COMMON_MM::logisticNetwork::LogisticNetwork) : COMMON_MM::logisticSolution::PlannedTour {
-	id := createTourId();
-	executingCEPSP := self.executingCEPSP.resolveone(COMMON_MM::logisticNetwork::CEPSP);
+	id := self.id;
+	executingCEPSP := self.distributionCenter.CEPSP.resolveone(COMMON_MM::logisticNetwork::CEPSP);
 	vehicle := self.stops -> first().vehicle.resolveone(COMMON_MM::logisticNetwork::Vehicle);
 	
 	var intermediateStops := self.stops -> map parcelActivity2PickUpDeliveryStop(id, logisticNetwork);
@@ -22,12 +20,6 @@ mapping LOGITOPP::logiTopp::distribution::tours::PlannedDeliveryTour::plannedTou
 	var lastStop := new COMMON_MM::logisticSolution::StartEndStop(id, orgFirstStop.no + 1, vehicle.depot, orgFirstStop.stopTimeWindow.oclAsType(COMMON_MM::utils::MultiDayTimeWindow));
 	stops -> prepend(firstStop);
 	stops += lastStop;
-}
-
-helper createTourId() : String {
-	var id = "tour_" + tourIdCounter.toString();
-	tourIdCounter := tourIdCounter + 1;
-	return id;
 }
 
 mapping LOGITOPP::logiTopp::distribution::delivery::ParcelActivity::parcelActivity2PickUpDeliveryStop(tourId : String, logisticNetwork : COMMON_MM::logisticNetwork::LogisticNetwork) : COMMON_MM::logisticSolution::PickUpDeliveryStop 

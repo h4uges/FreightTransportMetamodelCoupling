@@ -12,7 +12,7 @@ mapping LOGITOPP::mobiTopp::network::RoadNetwork::roadNetwork2Network() : COMMON
 }
 
 mapping LOGITOPP::mobiTopp::network::Node::node2Node() : COMMON_MM::network::Node {
-	id := self.id.toString();
+	id := self.id;
 	coordinate := self.coord.map point2D2Coordinate();
 }
 
@@ -20,7 +20,6 @@ mapping LOGITOPP::mobiTopp::network::Point2D::point2D2Coordinate() : COMMON_MM::
 	x := self.x;
 	y := self.y;
 }
-
 mapping LOGITOPP::mobiTopp::network::Edge::edge2Edge() : COMMON_MM::network::Edge {
 	_from := self._from.resolveone(COMMON_MM::network::Node);
 	to := self.to.resolveone(COMMON_MM::network::Node);

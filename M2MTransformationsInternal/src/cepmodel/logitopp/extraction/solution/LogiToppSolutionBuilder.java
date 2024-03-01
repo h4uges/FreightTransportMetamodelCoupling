@@ -26,9 +26,9 @@ import cepmodel.logitopp.extraction.LogiToppExtractionUtil;
 import cepmodel.logitopp.extraction.demand.LogiToppDemandBuilder;
 import cepmodel.logitopp.extraction.network.LogiToppNetworkBuilder;
 import cepmodel.logitopp.extraction.transportInfrastructure.LogiToppTransportInfrastructureBuilder;
-import logiToppMetamodel.Solution;
 import logiToppMetamodel.base.RelativeTime;
 import logiToppMetamodel.base.Time;
+import logiToppMetamodel.dataExchange.Solution;
 import logiToppMetamodel.logiTopp.distribution.DistributionCenter;
 import logiToppMetamodel.logiTopp.distribution.delivery.ParcelActivity;
 import logiToppMetamodel.logiTopp.distribution.fleet.DeliveryVehicle;
@@ -85,7 +85,7 @@ public class LogiToppSolutionBuilder {
 				List<ParcelActivity> stops = new ArrayList<ParcelActivity>();
 
 				for (CSVRecord inputStop : inputTour) {
-					ParcelActivity stop = createIntermediateStop(firstRecord, inputStop);
+					ParcelActivity stop = createIntermediateStop(inputStop);
 					stops.add(stop);
 				}
 				ParcelActivity newFirstStop = createFirstStop(inputTour.getFirst(), plannedAt, stops);
@@ -96,7 +96,7 @@ public class LogiToppSolutionBuilder {
 				RelativeTime plannedDuration = LogiToppExtractionUtil.createRelativeTime(
 						stops.getLast().getPlannedTime().getSeconds() - stops.getFirst().getPlannedTime().getSeconds());
 
-				PlannedDeliveryTour tour = LogiToppSolutionUtil.createPlannedDeliveryTour(distributionCenterId,
+				PlannedDeliveryTour tour = LogiToppSolutionUtil.createPlannedDeliveryTour(tourId,
 						distributionCenter, vehicleType, plannedAt, plannedDuration, ImmutableList.copyOf(stops));
 				tours.put(tourId, tour);
 			}
@@ -106,14 +106,14 @@ public class LogiToppSolutionBuilder {
 		}
 	}
 
-	private ParcelActivity createIntermediateStop(CSVRecord firstRecord, CSVRecord inputStop) {
+	private ParcelActivity createIntermediateStop(CSVRecord inputStop) {
 		int stopNumber = Integer.valueOf(inputStop.get("stopNo"));
 
 		ZoneAndLocation stopZoneAndLocation = parseStopLocation(inputStop, true);
 		double distance = Double.valueOf(inputStop.get("distance"));
 		int tripDurationMinutes = Integer.valueOf(inputStop.get("tripDur"));
 		Time plannedTime = LogiToppExtractionUtil
-				.createTime(Integer.valueOf(firstRecord.get("plannedTimeSimMin")) * 60);
+				.createTime(Integer.valueOf(inputStop.get("plannedTimeSimMin")) * 60);
 		int deliveryDurationMinutes = Integer.valueOf(inputStop.get("deliveryDur"));
 		DeliveryVehicle vehicle = transportInfrastructureBuilder.getDeliveryVehicle(inputStop.get("vehicleId"));
 
@@ -133,7 +133,7 @@ public class LogiToppSolutionBuilder {
 		Set<Parcel> pickUps = stops.stream().map(stop -> stop.getParcels()).flatMap(List::stream)
 				.collect(Collectors.toSet());
 
-		return LogiToppSolutionUtil.createParcelActivity(0, stopZoneAndLocation, 0, 0, plannedAt, 0, vehicle,
+		return LogiToppSolutionUtil.createParcelActivity(0, stopZoneAndLocation, 0, 0, EcoreUtil.copy(plannedAt), 0, vehicle,
 				ImmutableSet.of(), ImmutableSet.copyOf(pickUps));
 	}
 
@@ -148,7 +148,7 @@ public class LogiToppSolutionBuilder {
 				.createTime(lastStop.getPlannedTime().getSeconds() + lastStop.getDeliveryDuration() * 60);
 
 		return LogiToppSolutionUtil.createParcelActivity(lastStop.getNo() + 1,
-				EcoreUtil.copy(lastStop.getStopLocation()), 0, 0, plannedAt, 0, firstStop.getVehicle(),
+				EcoreUtil.copy(firstStop.getStopLocation()), 0, 0, plannedAt, 0, firstStop.getVehicle(),
 				ImmutableSet.copyOf(deliveries), ImmutableSet.of());
 	}
 

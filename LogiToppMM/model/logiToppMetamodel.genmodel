@@ -5,29 +5,6 @@
     complianceLevel="17.0" copyrightFields="false" operationReflection="true" importOrganizing="true">
   <foreignModel>logiToppMetamodel.ecore</foreignModel>
   <genPackages prefix="LogiToppMetamodel" disposableProviderFactory="true" ecorePackage="logiToppMetamodel.ecore#/">
-    <genClasses ecoreClass="logiToppMetamodel.ecore#//Demand">
-      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference logiToppMetamodel.ecore#//Demand/parcels"/>
-    </genClasses>
-    <genClasses ecoreClass="logiToppMetamodel.ecore#//Population">
-      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference logiToppMetamodel.ecore#//Population/households"/>
-      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference logiToppMetamodel.ecore#//Population/businesses"/>
-    </genClasses>
-    <genClasses ecoreClass="logiToppMetamodel.ecore#//TransportInfrastructure">
-      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference logiToppMetamodel.ecore#//TransportInfrastructure/timetable"/>
-      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference logiToppMetamodel.ecore#//TransportInfrastructure/cepServiceProviders"/>
-    </genClasses>
-    <genClasses ecoreClass="logiToppMetamodel.ecore#//Solution">
-      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference logiToppMetamodel.ecore#//Solution/plannedTours"/>
-    </genClasses>
-    <genClasses ecoreClass="logiToppMetamodel.ecore#//DemandExchangeRoot">
-      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference logiToppMetamodel.ecore#//DemandExchangeRoot/demand"/>
-      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference logiToppMetamodel.ecore#//DemandExchangeRoot/population"/>
-      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference logiToppMetamodel.ecore#//DemandExchangeRoot/transportNetwork"/>
-      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference logiToppMetamodel.ecore#//DemandExchangeRoot/network"/>
-    </genClasses>
-    <genClasses ecoreClass="logiToppMetamodel.ecore#//SolutionExchangeRoot">
-      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference logiToppMetamodel.ecore#//SolutionExchangeRoot/solution"/>
-    </genClasses>
     <nestedGenPackages prefix="MobiTopp" disposableProviderFactory="true" ecorePackage="logiToppMetamodel.ecore#//mobiTopp">
       <nestedGenPackages prefix="Network" disposableProviderFactory="true" ecorePackage="logiToppMetamodel.ecore#//mobiTopp/network">
         <genClasses ecoreClass="logiToppMetamodel.ecore#//mobiTopp/network/Node">
@@ -376,6 +353,31 @@
         </genClasses>
         <genClasses ecoreClass="logiToppMetamodel.ecore#//logiTopp/parcels/BusinessParcel"/>
       </nestedGenPackages>
+    </nestedGenPackages>
+    <nestedGenPackages prefix="DataExchange" disposableProviderFactory="true" ecorePackage="logiToppMetamodel.ecore#//dataExchange">
+      <genClasses ecoreClass="logiToppMetamodel.ecore#//dataExchange/Demand">
+        <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference logiToppMetamodel.ecore#//dataExchange/Demand/parcels"/>
+      </genClasses>
+      <genClasses ecoreClass="logiToppMetamodel.ecore#//dataExchange/Population">
+        <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference logiToppMetamodel.ecore#//dataExchange/Population/households"/>
+        <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference logiToppMetamodel.ecore#//dataExchange/Population/businesses"/>
+      </genClasses>
+      <genClasses ecoreClass="logiToppMetamodel.ecore#//dataExchange/TransportInfrastructure">
+        <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference logiToppMetamodel.ecore#//dataExchange/TransportInfrastructure/timetable"/>
+        <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference logiToppMetamodel.ecore#//dataExchange/TransportInfrastructure/cepServiceProviders"/>
+      </genClasses>
+      <genClasses ecoreClass="logiToppMetamodel.ecore#//dataExchange/Solution">
+        <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference logiToppMetamodel.ecore#//dataExchange/Solution/plannedTours"/>
+      </genClasses>
+      <genClasses ecoreClass="logiToppMetamodel.ecore#//dataExchange/DemandExchangeRoot">
+        <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference logiToppMetamodel.ecore#//dataExchange/DemandExchangeRoot/demand"/>
+        <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference logiToppMetamodel.ecore#//dataExchange/DemandExchangeRoot/population"/>
+        <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference logiToppMetamodel.ecore#//dataExchange/DemandExchangeRoot/transportNetwork"/>
+        <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference logiToppMetamodel.ecore#//dataExchange/DemandExchangeRoot/network"/>
+      </genClasses>
+      <genClasses ecoreClass="logiToppMetamodel.ecore#//dataExchange/SolutionExchangeRoot">
+        <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference logiToppMetamodel.ecore#//dataExchange/SolutionExchangeRoot/solution"/>
+      </genClasses>
     </nestedGenPackages>
   </genPackages>
 </genmodel:GenModel>

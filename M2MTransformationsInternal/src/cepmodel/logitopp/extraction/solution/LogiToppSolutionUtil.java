@@ -3,10 +3,10 @@ package cepmodel.logitopp.extraction.solution;
 import com.google.common.collect.ImmutableList;
 import com.google.common.collect.ImmutableSet;
 
-import logiToppMetamodel.LogiToppMetamodelFactory;
-import logiToppMetamodel.Solution;
 import logiToppMetamodel.base.RelativeTime;
 import logiToppMetamodel.base.Time;
+import logiToppMetamodel.dataExchange.DataExchangeFactory;
+import logiToppMetamodel.dataExchange.Solution;
 import logiToppMetamodel.logiTopp.distribution.DistributionCenter;
 import logiToppMetamodel.logiTopp.distribution.delivery.DeliveryFactory;
 import logiToppMetamodel.logiTopp.distribution.delivery.ParcelActivity;
@@ -20,7 +20,7 @@ import logiToppMetamodel.mobiTopp.network.ZoneAndLocation;
 public class LogiToppSolutionUtil {
 
 	public static Solution createSolution(ImmutableList<PlannedDeliveryTour> plannedTours) {
-		Solution result = LogiToppMetamodelFactory.eINSTANCE.createSolution();
+		Solution result = DataExchangeFactory.eINSTANCE.createSolution();
 		result.getPlannedTours().addAll(plannedTours);
 		return result;
 	}

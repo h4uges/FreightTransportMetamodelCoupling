@@ -6,7 +6,7 @@ import logitopp2commonNetwork;
 modeltype COMMON_MM uses CommonFreightTransportMetamodel('http://www.cep-model-coupling.com/commonFreightTransportMetamodel');
 modeltype LOGITOPP uses logiToppMetamodel('http://www.cep-model-coupling.com/logiToppMetamodel');
 
-mapping LOGITOPP::Population::population2Population() : COMMON_MM::localEntities::Population {
+mapping LOGITOPP::dataExchange::Population::population2Population() : COMMON_MM::localEntities::Population {
 	households += self.households -> map household2Household();
 	businesses;
 }

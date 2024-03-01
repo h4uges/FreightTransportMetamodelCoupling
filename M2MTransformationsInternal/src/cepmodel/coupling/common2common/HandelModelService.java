@@ -9,7 +9,7 @@ import org.eclipse.emf.ecore.xmi.impl.XMIResourceFactoryImpl;
 
 import CommonFreightTransportMetamodel.coupling.CommonFreightTransportMetamodelRoot;
 import CommonFreightTransportMetamodel.coupling.CouplingPackage;
-import logiToppMetamodel.LogiToppMetamodelPackage;
+import logiToppMetamodel.dataExchange.DataExchangePackage;
 
 public class HandelModelService {
 
@@ -28,7 +28,7 @@ public class HandelModelService {
 	
 	public static void saveModel(EObject rootObject, String targetModelPath) {
 		CouplingPackage.eINSTANCE.eClass();
-		LogiToppMetamodelPackage.eINSTANCE.eClass();
+		DataExchangePackage.eINSTANCE.eClass();
 		Resource.Factory.Registry.INSTANCE.getExtensionToFactoryMap().put("xmi", new XMIResourceFactoryImpl());
 		
 		ResourceSet resourceSet = new ResourceSetImpl();

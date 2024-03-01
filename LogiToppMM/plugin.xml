@@ -9,14 +9,6 @@
    <extension point="org.eclipse.emf.ecore.generated_package">
       <!-- @generated logiToppMetamodel -->
       <package
-            uri="http://www.cep-model-coupling.com/logiToppMetamodel"
-            class="logiToppMetamodel.LogiToppMetamodelPackage"
-            genModel="model/logiToppMetamodel.genmodel"/>
-   </extension>
-
-   <extension point="org.eclipse.emf.ecore.generated_package">
-      <!-- @generated logiToppMetamodel -->
-      <package
             uri="http://www.cep-model-coupling.com/logiToppMetamodel/mobiTopp/network"
             class="logiToppMetamodel.mobiTopp.network.NetworkPackage"
             genModel="model/logiToppMetamodel.genmodel"/>
@@ -123,6 +115,14 @@
       <package
             uri="http://www.cep-model-coupling.com/logiToppMetamodel/logiTopp/parcels"
             class="logiToppMetamodel.logiTopp.parcels.ParcelsPackage"
+            genModel="model/logiToppMetamodel.genmodel"/>
+   </extension>
+
+   <extension point="org.eclipse.emf.ecore.generated_package">
+      <!-- @generated logiToppMetamodel -->
+      <package
+            uri="http://www.cep-model-coupling.com/logiToppMetamodel/dataExchange"
+            class="logiToppMetamodel.dataExchange.DataExchangePackage"
             genModel="model/logiToppMetamodel.genmodel"/>
    </extension>
 

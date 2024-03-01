@@ -19,10 +19,10 @@ import com.google.common.collect.ImmutableSet;
 
 import cepmodel.logitopp.extraction.LogiToppInputFileRegistry;
 import cepmodel.logitopp.extraction.network.LogiToppNetworkBuilder;
-import logiToppMetamodel.TransportInfrastructure;
 import logiToppMetamodel.base.BaseFactory;
 import logiToppMetamodel.base.RelativeTime;
 import logiToppMetamodel.base.Time;
+import logiToppMetamodel.dataExchange.TransportInfrastructure;
 import logiToppMetamodel.logiTopp.distribution.CEPServiceProvider;
 import logiToppMetamodel.logiTopp.distribution.DistributionCenter;
 import logiToppMetamodel.logiTopp.distribution.fleet.DeliveryVehicle;

@@ -2,40 +2,6 @@
 <ecore:EPackage xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
     xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore" name="logiToppMetamodel" nsURI="http://www.cep-model-coupling.com/logiToppMetamodel"
     nsPrefix="logiToppMetamodel">
-  <eClassifiers xsi:type="ecore:EClass" name="Demand">
-    <eStructuralFeatures xsi:type="ecore:EReference" name="parcels" upperBound="-1"
-        eType="#//logiTopp/parcels/Parcel" containment="true"/>
-  </eClassifiers>
-  <eClassifiers xsi:type="ecore:EClass" name="Population">
-    <eStructuralFeatures xsi:type="ecore:EReference" name="households" upperBound="-1"
-        eType="#//mobiTopp/citizens/Household" containment="true"/>
-    <eStructuralFeatures xsi:type="ecore:EReference" name="businesses" upperBound="-1"
-        eType="#//logiTopp/business/Business" containment="true"/>
-  </eClassifiers>
-  <eClassifiers xsi:type="ecore:EClass" name="TransportInfrastructure">
-    <eStructuralFeatures xsi:type="ecore:EReference" name="timetable" lowerBound="1"
-        eType="#//logiTopp/distribution/timetable/TimeTable" containment="true"/>
-    <eStructuralFeatures xsi:type="ecore:EReference" name="cepServiceProviders" upperBound="-1"
-        eType="#//logiTopp/distribution/CEPServiceProvider" containment="true"/>
-  </eClassifiers>
-  <eClassifiers xsi:type="ecore:EClass" name="Solution">
-    <eStructuralFeatures xsi:type="ecore:EReference" name="plannedTours" upperBound="-1"
-        eType="#//logiTopp/distribution/tours/PlannedDeliveryTour" containment="true"/>
-  </eClassifiers>
-  <eClassifiers xsi:type="ecore:EClass" name="DemandExchangeRoot">
-    <eStructuralFeatures xsi:type="ecore:EReference" name="demand" lowerBound="1"
-        eType="#//Demand" containment="true"/>
-    <eStructuralFeatures xsi:type="ecore:EReference" name="population" lowerBound="1"
-        eType="#//Population" containment="true"/>
-    <eStructuralFeatures xsi:type="ecore:EReference" name="transportNetwork" lowerBound="1"
-        eType="#//TransportInfrastructure" containment="true"/>
-    <eStructuralFeatures xsi:type="ecore:EReference" name="network" lowerBound="1"
-        eType="#//mobiTopp/network/RoadNetwork" containment="true"/>
-  </eClassifiers>
-  <eClassifiers xsi:type="ecore:EClass" name="SolutionExchangeRoot" eSuperTypes="#//DemandExchangeRoot">
-    <eStructuralFeatures xsi:type="ecore:EReference" name="solution" lowerBound="1"
-        eType="#//Solution" containment="true"/>
-  </eClassifiers>
   <eSubpackages name="mobiTopp" nsURI="http://www.cep-model-coupling.com/logiToppMetamodel/mobiTopp"
       nsPrefix="mobiTopp">
     <eSubpackages name="network" nsURI="http://www.cep-model-coupling.com/logiToppMetamodel/mobiTopp/network"
@@ -475,5 +441,42 @@
         <eLiterals name="PACK_STATION" value="2"/>
       </eClassifiers>
     </eSubpackages>
+  </eSubpackages>
+  <eSubpackages name="dataExchange" nsURI="http://www.cep-model-coupling.com/logiToppMetamodel/dataExchange"
+      nsPrefix="dataExchange">
+    <eClassifiers xsi:type="ecore:EClass" name="Demand">
+      <eStructuralFeatures xsi:type="ecore:EReference" name="parcels" upperBound="-1"
+          eType="#//logiTopp/parcels/Parcel" containment="true"/>
+    </eClassifiers>
+    <eClassifiers xsi:type="ecore:EClass" name="Population">
+      <eStructuralFeatures xsi:type="ecore:EReference" name="households" upperBound="-1"
+          eType="#//mobiTopp/citizens/Household" containment="true"/>
+      <eStructuralFeatures xsi:type="ecore:EReference" name="businesses" upperBound="-1"
+          eType="#//logiTopp/business/Business" containment="true"/>
+    </eClassifiers>
+    <eClassifiers xsi:type="ecore:EClass" name="TransportInfrastructure">
+      <eStructuralFeatures xsi:type="ecore:EReference" name="timetable" lowerBound="1"
+          eType="#//logiTopp/distribution/timetable/TimeTable" containment="true"/>
+      <eStructuralFeatures xsi:type="ecore:EReference" name="cepServiceProviders"
+          upperBound="-1" eType="#//logiTopp/distribution/CEPServiceProvider" containment="true"/>
+    </eClassifiers>
+    <eClassifiers xsi:type="ecore:EClass" name="Solution">
+      <eStructuralFeatures xsi:type="ecore:EReference" name="plannedTours" upperBound="-1"
+          eType="#//logiTopp/distribution/tours/PlannedDeliveryTour" containment="true"/>
+    </eClassifiers>
+    <eClassifiers xsi:type="ecore:EClass" name="DemandExchangeRoot">
+      <eStructuralFeatures xsi:type="ecore:EReference" name="demand" lowerBound="1"
+          eType="#//dataExchange/Demand" containment="true"/>
+      <eStructuralFeatures xsi:type="ecore:EReference" name="population" lowerBound="1"
+          eType="#//dataExchange/Population" containment="true"/>
+      <eStructuralFeatures xsi:type="ecore:EReference" name="transportNetwork" lowerBound="1"
+          eType="#//dataExchange/TransportInfrastructure" containment="true"/>
+      <eStructuralFeatures xsi:type="ecore:EReference" name="network" lowerBound="1"
+          eType="#//mobiTopp/network/RoadNetwork" containment="true"/>
+    </eClassifiers>
+    <eClassifiers xsi:type="ecore:EClass" name="SolutionExchangeRoot" eSuperTypes="#//dataExchange/DemandExchangeRoot">
+      <eStructuralFeatures xsi:type="ecore:EReference" name="solution" lowerBound="1"
+          eType="#//dataExchange/Solution" containment="true"/>
+    </eClassifiers>
   </eSubpackages>
 </ecore:EPackage>

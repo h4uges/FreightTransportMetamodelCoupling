@@ -3,10 +3,10 @@ package cepmodel.logitopp.extraction.transportInfrastructure;
 import com.google.common.collect.ImmutableList;
 import com.google.common.collect.ImmutableSet;
 
-import logiToppMetamodel.LogiToppMetamodelFactory;
-import logiToppMetamodel.TransportInfrastructure;
 import logiToppMetamodel.base.RelativeTime;
 import logiToppMetamodel.base.Time;
+import logiToppMetamodel.dataExchange.DataExchangeFactory;
+import logiToppMetamodel.dataExchange.TransportInfrastructure;
 import logiToppMetamodel.logiTopp.distribution.CEPServiceProvider;
 import logiToppMetamodel.logiTopp.distribution.DistributionCenter;
 import logiToppMetamodel.logiTopp.distribution.DistributionFactory;
@@ -27,7 +27,7 @@ public class LogiToppTransportInfrastructureUtil {
 
 	public static TransportInfrastructure createTransportInfrastructure(ImmutableSet<CEPServiceProvider> cepsps,
 			TimeTable timeTable) {
-		TransportInfrastructure result = LogiToppMetamodelFactory.eINSTANCE.createTransportInfrastructure();
+		TransportInfrastructure result = DataExchangeFactory.eINSTANCE.createTransportInfrastructure();
 
 		result.getCepServiceProviders().addAll(cepsps);
 		result.setTimetable(timeTable);

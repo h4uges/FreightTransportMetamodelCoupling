@@ -14,12 +14,11 @@ import cepmodel.logitopp.extraction.network.LogiToppNetworkBuilder;
 import cepmodel.logitopp.extraction.population.LogiToppPopulationBuilder;
 import cepmodel.logitopp.extraction.solution.LogiToppSolutionBuilder;
 import cepmodel.logitopp.extraction.transportInfrastructure.LogiToppTransportInfrastructureBuilder;
-import logiToppMetamodel.Demand;
-import logiToppMetamodel.DemandExchangeRoot;
-import logiToppMetamodel.Population;
-import logiToppMetamodel.Solution;
-import logiToppMetamodel.SolutionExchangeRoot;
-import logiToppMetamodel.TransportInfrastructure;
+import logiToppMetamodel.dataExchange.Demand;
+import logiToppMetamodel.dataExchange.Population;
+import logiToppMetamodel.dataExchange.Solution;
+import logiToppMetamodel.dataExchange.SolutionExchangeRoot;
+import logiToppMetamodel.dataExchange.TransportInfrastructure;
 import logiToppMetamodel.logiTopp.distribution.DistributionCenter;
 import logiToppMetamodel.logiTopp.distribution.fleet.DeliveryVehicle;
 import logiToppMetamodel.logiTopp.parcels.BusinessParcel;
@@ -32,7 +31,7 @@ public class LogiToppModelBuilder {
 		String fileRegistryPath = System.getProperty("user.dir") + "/data/rastatt/RastattInputFileRegisty.json";
 
 		LogiToppModelBuilder modelBuilder = new LogiToppModelBuilder(fileRegistryPath);
-		DemandExchangeRoot result = modelBuilder.createSolutionModel();
+		SolutionExchangeRoot result = modelBuilder.createSolutionModel();
 
 		HandelModelService.saveModel(result, System.getProperty("user.dir") + "/data/rastatt/rastatt_solution.xmi");
 	}

@@ -18,8 +18,8 @@ import com.google.common.collect.ImmutableSet;
 import cepmodel.logitopp.extraction.LogiToppInputFileRegistry;
 import cepmodel.logitopp.extraction.network.LogiToppNetworkBuilder;
 import cepmodel.logitopp.extraction.transportInfrastructure.LogiToppTransportInfrastructureBuilder;
-import logiToppMetamodel.Population;
 import logiToppMetamodel.base.Weekday;
+import logiToppMetamodel.dataExchange.Population;
 import logiToppMetamodel.logiTopp.business.Business;
 import logiToppMetamodel.logiTopp.business.OpeningHour;
 import logiToppMetamodel.logiTopp.distribution.CEPServiceProvider;
@@ -208,8 +208,8 @@ public class LogiToppPopulationBuilder {
 			for (CSVRecord record : csvParser) {
 				String personId = record.get("personOid");
 				Location location = networkBuilder.createLocationFromString(record.get("location"));
-				
-				if(record.get("activityType") == "WORK") {
+				String a = record.get("activityType");
+				if(record.get("activityType").startsWith("WORK")) {
 					person2WorkLocation.put(personId, location);
 				}
 			}

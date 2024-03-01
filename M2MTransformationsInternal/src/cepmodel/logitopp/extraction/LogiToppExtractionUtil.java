@@ -1,22 +1,22 @@
 package cepmodel.logitopp.extraction;
 
-import logiToppMetamodel.Demand;
-import logiToppMetamodel.DemandExchangeRoot;
-import logiToppMetamodel.LogiToppMetamodelFactory;
-import logiToppMetamodel.Population;
-import logiToppMetamodel.Solution;
-import logiToppMetamodel.SolutionExchangeRoot;
-import logiToppMetamodel.TransportInfrastructure;
 import logiToppMetamodel.base.BaseFactory;
 import logiToppMetamodel.base.RelativeTime;
 import logiToppMetamodel.base.Time;
+import logiToppMetamodel.dataExchange.DataExchangeFactory;
+import logiToppMetamodel.dataExchange.Demand;
+import logiToppMetamodel.dataExchange.DemandExchangeRoot;
+import logiToppMetamodel.dataExchange.Population;
+import logiToppMetamodel.dataExchange.Solution;
+import logiToppMetamodel.dataExchange.SolutionExchangeRoot;
+import logiToppMetamodel.dataExchange.TransportInfrastructure;
 import logiToppMetamodel.mobiTopp.network.RoadNetwork;
 
 public class LogiToppExtractionUtil {
 
 	public static SolutionExchangeRoot createSolutionExchangeRoot(RoadNetwork network,
 			TransportInfrastructure transportInfrastructure, Population population, Demand demand, Solution solution) {
-		SolutionExchangeRoot result = LogiToppMetamodelFactory.eINSTANCE.createSolutionExchangeRoot();
+		SolutionExchangeRoot result = DataExchangeFactory.eINSTANCE.createSolutionExchangeRoot();
 		result.setNetwork(network);
 		result.setTransportNetwork(transportInfrastructure);
 		result.setPopulation(population);
@@ -27,7 +27,7 @@ public class LogiToppExtractionUtil {
 
 	public static DemandExchangeRoot createDemandExchangeRoot(RoadNetwork network,
 			TransportInfrastructure transportInfrastructure, Population population, Demand demand) {
-		DemandExchangeRoot result = LogiToppMetamodelFactory.eINSTANCE.createDemandExchangeRoot();
+		DemandExchangeRoot result = DataExchangeFactory.eINSTANCE.createDemandExchangeRoot();
 		result.setNetwork(network);
 		result.setTransportNetwork(transportInfrastructure);
 		result.setPopulation(population);

@@ -6,7 +6,7 @@ import logitopp2commonNetwork;
 modeltype COMMON_MM uses CommonFreightTransportMetamodel('http://www.cep-model-coupling.com/commonFreightTransportMetamodel');
 modeltype LOGITOPP uses logiToppMetamodel('http://www.cep-model-coupling.com/logiToppMetamodel');
 
-mapping LOGITOPP::Demand::demand2Demand(logisticNetwork : COMMON_MM::logisticNetwork::LogisticNetwork) : COMMON_MM::logisticDemand::Demand {
+mapping LOGITOPP::dataExchange::Demand::demand2Demand(logisticNetwork : COMMON_MM::logisticNetwork::LogisticNetwork) : COMMON_MM::logisticDemand::Demand {
 	shipments += self.parcels -> map parcel2Shipment(logisticNetwork);
 }
 
@@ -30,7 +30,7 @@ when {self.oclIsKindOf(LOGITOPP::logiTopp::parcels::PrivateParcel)}
 	receiver := receiverPerson;
 	destination := determineDestination(self, receiverPerson, logisticNetwork);
 	
-	arrivalAtOriginDepot := new COMMON_MM::utils::MultiDayTimestamp(self.plannedArrivalDate);
+	arrivalAtOriginDepot := new COMMON_MM::utils::MultiDayTimestamp(self.arrivalAtOrigin);
 	arrivalAtDestinationTimeWindow := createWholeSimulationPeriodTimeWindow();
 }
 
@@ -45,7 +45,7 @@ when {self.oclIsKindOf(LOGITOPP::logiTopp::parcels::BusinessParcel) and not self
 	receiver := receiverBranch;
 	destination := receiverBranch.location;
 		
-	arrivalAtOriginDepot := new COMMON_MM::utils::MultiDayTimestamp(self.plannedArrivalDate);
+	arrivalAtOriginDepot := new COMMON_MM::utils::MultiDayTimestamp(self.arrivalAtOrigin);
 	arrivalAtDestinationTimeWindow := createWholeSimulationPeriodTimeWindow();
 }
 
@@ -59,7 +59,7 @@ when {self.oclIsKindOf(LOGITOPP::logiTopp::parcels::BusinessParcel) and self.isP
 	producer := producerBranch;
 	origin := producerBranch.location;
 	
-	arrivalAtOrigin := new COMMON_MM::utils::MultiDayTimestamp(self.plannedArrivalDate);
+	arrivalAtOrigin := new COMMON_MM::utils::MultiDayTimestamp(self.arrivalAtOrigin);
 	arrivalAtDepotTimeWindow := createWholeSimulationPeriodTimeWindow();
 }
 
