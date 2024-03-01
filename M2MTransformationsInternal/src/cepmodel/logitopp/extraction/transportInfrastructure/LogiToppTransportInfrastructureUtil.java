@@ -16,6 +16,7 @@ import logiToppMetamodel.logiTopp.distribution.fleet.FleetFactory;
 import logiToppMetamodel.logiTopp.distribution.fleet.VehicleType;
 import logiToppMetamodel.logiTopp.distribution.region.RegionFactory;
 import logiToppMetamodel.logiTopp.distribution.region.RegionalReach;
+import logiToppMetamodel.logiTopp.distribution.region.ServiceArea;
 import logiToppMetamodel.logiTopp.distribution.timetable.Connection;
 import logiToppMetamodel.logiTopp.distribution.timetable.TimeTable;
 import logiToppMetamodel.logiTopp.distribution.timetable.TimetableFactory;
@@ -23,88 +24,102 @@ import logiToppMetamodel.mobiTopp.network.Location;
 import logiToppMetamodel.mobiTopp.network.Zone;
 
 public class LogiToppTransportInfrastructureUtil {
-	
-	public static TransportInfrastructure createTransportInfrastructure(ImmutableSet<CEPServiceProvider> cepsps, TimeTable timeTable) {
+
+	public static TransportInfrastructure createTransportInfrastructure(ImmutableSet<CEPServiceProvider> cepsps,
+			TimeTable timeTable) {
 		TransportInfrastructure result = LogiToppMetamodelFactory.eINSTANCE.createTransportInfrastructure();
-		
+
 		result.getCepServiceProviders().addAll(cepsps);
 		result.setTimetable(timeTable);
-		
+
 		return result;
 	}
 
-	public static CEPServiceProvider createCEPSP(int id, String name) {
+	public static CEPServiceProvider createCEPSP(String id, String name) {
 		CEPServiceProvider result = DistributionFactory.eINSTANCE.createCEPServiceProvider();
-		
+
 		result.setId(id);
 		result.setName(name);
-		
+
 		return result;
 	}
-	
-	public static DistributionCenter createDistributionCenter(int id, String name, Location location, Zone zone, int numAttempts, Fleet fleet, RegionalReach regionalStructure) {
+
+	public static DistributionCenter createDistributionCenter(String id, String name, Location location, Zone zone,
+			int numAttempts, RegionalReach regionalStructure, Fleet fleet) {
 		DistributionCenter result = DistributionFactory.eINSTANCE.createDistributionCenter();
-		
+
 		result.setId(id);
 		result.setName(name);
-		
+
 		result.setLocation(location);
 		result.setZone(zone);
-		
+
 		result.setAttempts(numAttempts);
-		result.setFleet(fleet);
 		result.setRegionalStructure(regionalStructure);
-		
+		result.setFleet(fleet);
+
 		return result;
 	}
-	
-	public static Fleet createFleet(int vehicleType, ImmutableList<DeliveryVehicle>vehicles) {
+
+	public static Fleet createFleet(int vehicleType) {
 		Fleet result = FleetFactory.eINSTANCE.createFleet();
-		
 		result.setVehicleType(VehicleType.get(vehicleType));
-		result.getDeliveryVehicles().addAll(vehicles);
+		return result;
+	}
+
+	public static DeliveryVehicle createDeliveryVehicle(String id, int vehicleType) {
+		DeliveryVehicle result = FleetFactory.eINSTANCE.createDeliveryVehicle();
+		
+		result.setId(id);
+		result.setVehicleType(VehicleType.get(vehicleType));
+		result.setCapacity(vehicleType2Capacity(result.getVehicleType()));
+		// TODO: major : vehicle start and end times
+		result.setEarliestStartTime(null);
+		result.setLatestEndTime(null);
 		
 		return result;
 	}
 
-	public static DeliveryVehicle createDeliveryVehicle(int id, int vehicleType, int vehicleCapacity) {
-		DeliveryVehicle result = FleetFactory.eINSTANCE.createDeliveryVehicle();
-		result.setId(id);
-		result.setVehicleType(VehicleType.get(vehicleType));
-		result.setCapacity(vehicleCapacity);
-		// TODO Auto-generated method stub
-		return null;
-	}
-	
-	public static int vehicleType2Capacity(int vehicleTypeNum) {
-		VehicleType vehicleType = VehicleType.get(vehicleTypeNum);
-		
+	public static int vehicleType2Capacity(VehicleType vehicleType) {
 		switch (vehicleType) {
-		case VehicleType.OTHERS: return 0;
-		case VehicleType.BIKE: return 120*80*940;
-		case VehicleType.TRUCK: return 12*100*100*100;
-		case VehicleType.TRAM: return 0;
-		
-		
-		default: throw new IllegalArgumentException("Unexpected value: " + vehicleType);
+		case VehicleType.OTHERS:
+			return 0;
+		case VehicleType.BIKE:
+			return 120 * 80 * 940;
+		case VehicleType.TRUCK:
+			return 12 * 100 * 100 * 100;
+		case VehicleType.TRAM:
+			return 0;
+
+		default:
+			throw new IllegalArgumentException("Unexpected value: " + vehicleType);
 		}
 	}
-	
-	public static RegionalReach createRegionalReach() {
+
+	public static RegionalReach createRegionalReach(ServiceArea serviceArea) {
 		RegionalReach result = RegionFactory.eINSTANCE.createRegionalReach();
 		
-		// TODO: set values?
+		result.setServiceArea(serviceArea);
 		
 		return result;
 	}
-	
+
+	public static ServiceArea createServiceArea(ImmutableSet<Zone> zones) {
+		ServiceArea result = RegionFactory.eINSTANCE.createServiceArea();
+
+		result.getZones().addAll(zones);
+
+		return result;
+	}
+
 	public static TimeTable createTimeTable(ImmutableList<Connection> connections) {
 		TimeTable result = TimetableFactory.eINSTANCE.createTimeTable();
 		result.getConnections().addAll(connections);
 		return result;
 	}
-	
-	public static Connection createConnection(DistributionCenter fromDc, DistributionCenter toDc, Time departureTime, RelativeTime duration) {
+
+	public static Connection createConnection(DistributionCenter fromDc, DistributionCenter toDc, Time departureTime,
+			RelativeTime duration) {
 		Connection result = TimetableFactory.eINSTANCE.createConnection();
 		result.setFrom(fromDc);
 		result.setTo(toDc);
@@ -112,5 +127,5 @@ public class LogiToppTransportInfrastructureUtil {
 		result.setDuration(duration);
 		return result;
 	}
-	
+
 }

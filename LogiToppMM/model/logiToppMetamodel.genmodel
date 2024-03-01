@@ -108,6 +108,7 @@
           <genFeatures createChild="false" ecoreFeature="ecore:EAttribute logiToppMetamodel.ecore#//mobiTopp/citizens/Person/age"/>
           <genFeatures createChild="false" ecoreFeature="ecore:EAttribute logiToppMetamodel.ecore#//mobiTopp/citizens/Person/gender"/>
           <genFeatures createChild="false" ecoreFeature="ecore:EAttribute logiToppMetamodel.ecore#//mobiTopp/citizens/Person/employment"/>
+          <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference logiToppMetamodel.ecore#//mobiTopp/citizens/Person/workLocation"/>
         </genClasses>
         <genClasses ecoreClass="logiToppMetamodel.ecore#//mobiTopp/citizens/Household">
           <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference logiToppMetamodel.ecore#//mobiTopp/citizens/Household/location"/>
@@ -206,9 +207,9 @@
         </genClasses>
         <genClasses ecoreClass="logiToppMetamodel.ecore#//logiTopp/business/OpeningHour">
           <genFeatures createChild="false" ecoreFeature="ecore:EAttribute logiToppMetamodel.ecore#//logiTopp/business/OpeningHour/dayOfWeek"/>
-          <genFeatures notify="false" createChild="false" propertySortChoices="true"
+          <genFeatures children="true" createChild="true" propertySortChoices="true"
               ecoreFeature="ecore:EReference logiToppMetamodel.ecore#//logiTopp/business/OpeningHour/start"/>
-          <genFeatures notify="false" createChild="false" propertySortChoices="true"
+          <genFeatures children="true" createChild="true" propertySortChoices="true"
               ecoreFeature="ecore:EReference logiToppMetamodel.ecore#//logiTopp/business/OpeningHour/end"/>
         </genClasses>
       </nestedGenPackages>
@@ -259,7 +260,7 @@
             <genFeatures notify="false" createChild="false" propertySortChoices="true"
                 ecoreFeature="ecore:EReference logiToppMetamodel.ecore#//logiTopp/distribution/delivery/ParcelActivity/pickUps"/>
             <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference logiToppMetamodel.ecore#//logiTopp/distribution/delivery/ParcelActivity/stopLocation"/>
-            <genFeatures notify="false" createChild="false" propertySortChoices="true"
+            <genFeatures children="true" createChild="true" propertySortChoices="true"
                 ecoreFeature="ecore:EReference logiToppMetamodel.ecore#//logiTopp/distribution/delivery/ParcelActivity/plannedTime"/>
             <genFeatures createChild="false" ecoreFeature="ecore:EAttribute logiToppMetamodel.ecore#//logiTopp/distribution/delivery/ParcelActivity/distance"/>
             <genFeatures createChild="false" ecoreFeature="ecore:EAttribute logiToppMetamodel.ecore#//logiTopp/distribution/delivery/ParcelActivity/tripDuration"/>
@@ -282,9 +283,9 @@
           <genClasses ecoreClass="logiToppMetamodel.ecore#//logiTopp/distribution/fleet/DeliveryVehicle">
             <genFeatures createChild="false" ecoreFeature="ecore:EAttribute logiToppMetamodel.ecore#//logiTopp/distribution/fleet/DeliveryVehicle/vehicleType"/>
             <genFeatures createChild="false" ecoreFeature="ecore:EAttribute logiToppMetamodel.ecore#//logiTopp/distribution/fleet/DeliveryVehicle/capacity"/>
-            <genFeatures notify="false" createChild="false" propertySortChoices="true"
+            <genFeatures children="true" createChild="true" propertySortChoices="true"
                 ecoreFeature="ecore:EReference logiToppMetamodel.ecore#//logiTopp/distribution/fleet/DeliveryVehicle/earliestStartTime"/>
-            <genFeatures notify="false" createChild="false" propertySortChoices="true"
+            <genFeatures children="true" createChild="true" propertySortChoices="true"
                 ecoreFeature="ecore:EReference logiToppMetamodel.ecore#//logiTopp/distribution/fleet/DeliveryVehicle/latestEndTime"/>
           </genClasses>
         </nestedGenPackages>
@@ -320,9 +321,9 @@
                 ecoreFeature="ecore:EReference logiToppMetamodel.ecore#//logiTopp/distribution/timetable/Connection/from"/>
             <genFeatures notify="false" createChild="false" propertySortChoices="true"
                 ecoreFeature="ecore:EReference logiToppMetamodel.ecore#//logiTopp/distribution/timetable/Connection/to"/>
-            <genFeatures notify="false" createChild="false" propertySortChoices="true"
+            <genFeatures children="true" createChild="true" propertySortChoices="true"
                 ecoreFeature="ecore:EReference logiToppMetamodel.ecore#//logiTopp/distribution/timetable/Connection/departure"/>
-            <genFeatures notify="false" createChild="false" propertySortChoices="true"
+            <genFeatures children="true" createChild="true" propertySortChoices="true"
                 ecoreFeature="ecore:EReference logiToppMetamodel.ecore#//logiTopp/distribution/timetable/Connection/duration"/>
           </genClasses>
         </nestedGenPackages>
@@ -333,7 +334,7 @@
             <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference logiToppMetamodel.ecore#//logiTopp/distribution/tours/PlannedDeliveryTour/plannedDuration"/>
             <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference logiToppMetamodel.ecore#//logiTopp/distribution/tours/PlannedDeliveryTour/plannedAt"/>
             <genFeatures notify="false" createChild="false" propertySortChoices="true"
-                ecoreFeature="ecore:EReference logiToppMetamodel.ecore#//logiTopp/distribution/tours/PlannedDeliveryTour/executingCEPSP"/>
+                ecoreFeature="ecore:EReference logiToppMetamodel.ecore#//logiTopp/distribution/tours/PlannedDeliveryTour/distributionCenter"/>
           </genClasses>
         </nestedGenPackages>
       </nestedGenPackages>
@@ -358,8 +359,8 @@
           <genEnumLiterals ecoreEnumLiteral="logiToppMetamodel.ecore#//logiTopp/parcels/ParcelDestinationType/PACK_STATION"/>
         </genEnums>
         <genClasses image="false" ecoreClass="logiToppMetamodel.ecore#//logiTopp/parcels/Parcel">
-          <genFeatures notify="false" createChild="false" propertySortChoices="true"
-              ecoreFeature="ecore:EReference logiToppMetamodel.ecore#//logiTopp/parcels/Parcel/plannedArrivalDate"/>
+          <genFeatures children="true" createChild="true" propertySortChoices="true"
+              ecoreFeature="ecore:EReference logiToppMetamodel.ecore#//logiTopp/parcels/Parcel/arrivalAtOrigin"/>
           <genFeatures notify="false" createChild="false" propertySortChoices="true"
               ecoreFeature="ecore:EReference logiToppMetamodel.ecore#//logiTopp/parcels/Parcel/producer"/>
           <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference logiToppMetamodel.ecore#//logiTopp/parcels/Parcel/zoneAndLocation"/>

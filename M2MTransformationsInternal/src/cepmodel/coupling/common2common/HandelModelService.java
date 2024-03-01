@@ -1,6 +1,7 @@
 package cepmodel.coupling.common2common;
 
 import org.eclipse.emf.common.util.URI;
+import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.ecore.resource.ResourceSet;
 import org.eclipse.emf.ecore.resource.impl.ResourceSetImpl;
@@ -8,6 +9,7 @@ import org.eclipse.emf.ecore.xmi.impl.XMIResourceFactoryImpl;
 
 import CommonFreightTransportMetamodel.coupling.CommonFreightTransportMetamodelRoot;
 import CommonFreightTransportMetamodel.coupling.CouplingPackage;
+import logiToppMetamodel.LogiToppMetamodelPackage;
 
 public class HandelModelService {
 
@@ -24,13 +26,16 @@ public class HandelModelService {
 				.filter(elem -> CommonFreightTransportMetamodelRoot.class.isInstance(elem)).findFirst().get();
 	}
 	
-	public static void saveCommonModelRoot(CommonFreightTransportMetamodelRoot root, String targetModelPath) {
+	public static void saveModel(EObject rootObject, String targetModelPath) {
 		CouplingPackage.eINSTANCE.eClass();
+		LogiToppMetamodelPackage.eINSTANCE.eClass();
+		Resource.Factory.Registry.INSTANCE.getExtensionToFactoryMap().put("xmi", new XMIResourceFactoryImpl());
+		
 		ResourceSet resourceSet = new ResourceSetImpl();
 		
 		URI targetModelURI = URI.createFileURI(targetModelPath);
 		Resource targetResource = resourceSet.createResource(targetModelURI);
-		targetResource.getContents().addAll(resourceSet.getResources().get(0).getContents());
+		targetResource.getContents().add(rootObject);
 
 		try {
 			targetResource.save(null);

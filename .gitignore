@@ -11,6 +11,8 @@ LogiToppMM/src/
 LogiToppMM.edit/
 LogiToppMM.editor/
 
+data/
+
 # ---- MAC-OS ----
 .DS_Store
 

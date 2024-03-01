@@ -34,7 +34,7 @@ public class LogiToppPopulationUtil {
 		return population;
 	}
 	
-	public static Business createBusiness(int id, String businessName, Zone zone, Location location, double area,
+	public static Business createBusiness(String id, String businessName, Zone zone, Location location, double area,
 			int numEmployees, int branch, int buildingType, ImmutableList<OpeningHour> openingHours) {
 		Business business = BusinessFactory.eINSTANCE.createBusiness();
 
@@ -74,7 +74,7 @@ public class LogiToppPopulationUtil {
 		return result;
 	}
 	
-	public static Household createHousehold(int id, Zone zone, Location location, ImmutableSet<Person> members) {
+	public static Household createHousehold(String id, Zone zone, Location location, ImmutableSet<Person> members) {
 		Household result = CitizensFactory.eINSTANCE.createHousehold();
 		
 		result.setId(id);
@@ -85,7 +85,7 @@ public class LogiToppPopulationUtil {
 		return result;
 	}
 	
-	public static Person createPerson(int id, int age, Gender gender, Employment emplyment) {
+	public static Person createPerson(String id, int age, Gender gender, Employment emplyment) {
 		Person result = CitizensFactory.eINSTANCE.createPerson();
 		
 		result.setId(id);

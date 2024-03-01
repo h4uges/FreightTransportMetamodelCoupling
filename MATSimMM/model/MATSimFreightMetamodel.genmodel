@@ -8,7 +8,7 @@
     <genClasses ecoreClass="MATSimFreightMetamodel.ecore#//DataExchangeRoot">
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference MATSimFreightMetamodel.ecore#//DataExchangeRoot/carriers"/>
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference MATSimFreightMetamodel.ecore#//DataExchangeRoot/network"/>
-      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference MATSimFreightMetamodel.ecore#//DataExchangeRoot/vehicelTypes"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference MATSimFreightMetamodel.ecore#//DataExchangeRoot/vehicleTypes"/>
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference MATSimFreightMetamodel.ecore#//DataExchangeRoot/population"/>
     </genClasses>
     <nestedGenPackages prefix="FreightContrib" disposableProviderFactory="true" ecorePackage="MATSimFreightMetamodel.ecore#//freightContrib">

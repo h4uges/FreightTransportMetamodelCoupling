@@ -13,7 +13,7 @@ import logiToppMetamodel.mobiTopp.network.ZoneAndLocation;
 
 public class LogiToppNetworkUtil {
 	
-	public static Node createNode(int id, double x, double y) {
+	public static Node createNode(String id, double x, double y) {
 		Point2D coordinate = NetworkFactory.eINSTANCE.createPoint2D();
 		coordinate.setX(x);
 		coordinate.setY(y);
@@ -25,11 +25,12 @@ public class LogiToppNetworkUtil {
 		return node;
 	}
 	
-	public static Edge createEdge(int id, Node from, Node to) {
+	public static Edge createEdge(String id, Node from, Node to, double length) {
 		Edge edge = NetworkFactory.eINSTANCE.createEdge();
-		edge.setId(0);
-		edge.setFrom(null);
-		edge.setTo(null);
+		edge.setId(id);
+		edge.setFrom(from);
+		edge.setTo(to);
+		edge.setLength(length);
 		return edge;
 	}
 	
@@ -55,7 +56,7 @@ public class LogiToppNetworkUtil {
 		return location;
 	}
 	
-	public static Zone createZone(int id, String name, Location centroid) {
+	public static Zone createZone(String id, String name, Location centroid) {
 		Zone zone = NetworkFactory.eINSTANCE.createZone();
 		
 		zone.setId(id);
