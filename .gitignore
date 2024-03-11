@@ -13,6 +13,8 @@ LogiToppMM.editor/
 
 data/
 
+*.arid
+
 # ---- MAC-OS ----
 .DS_Store
 
