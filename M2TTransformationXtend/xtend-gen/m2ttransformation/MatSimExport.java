@@ -69,8 +69,8 @@ public class MatSimExport {
       URI.createFileURI(Path.of(inputFolder, (modelName + "_matsim.xmi")).toString()), true);
     boolean _isEmpty = resource.getErrors().isEmpty();
     if (_isEmpty) {
-      EObject _first = resource.getContents().getFirst();
-      return ((DataExchangeRoot) _first);
+      EObject _get = resource.getContents().get(0);
+      return ((DataExchangeRoot) _get);
     } else {
       final Function<Resource.Diagnostic, String> _function = (Resource.Diagnostic e) -> {
         return e.getMessage();

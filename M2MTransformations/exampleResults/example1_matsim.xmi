@@ -10,7 +10,7 @@
   </carriers>
   <carriers id="2">
     <plan>
-      <scheduledTours departureTime="25200.0" vehicle="//@carriers.1/@carrierCapabilities/@carrierVehicles.0">
+      <scheduledTours departureTime="25200.0" vehicle="//@carriers.1/@carrierCapabilities/@carrierVehicles.1">
         <tour id="Parcel1: UPS_OUTSIDE -> UPS_HUB_IN" start="//@carriers.1/@plan/@scheduledTours.0/@tour/@tourElements.0" end="//@carriers.1/@plan/@scheduledTours.0/@tour/@tourElements.5">
           <tourElements xsi:type="tour:Start" location="//@network/@links.18">
             <timeWindow start="25200.0" end="25200.0"/>
@@ -30,14 +30,14 @@
       <deliveryTimeWindow start="25440.0" end="25500.0"/>
     </shipments>
     <carrierCapabilities vehicleTypes="//@vehicleTypes/@vehicleTypes.0" fleetSize="FINITE">
+      <carrierVehicles id="6" type="//@vehicleTypes/@vehicleTypes.0" earliestStartTime="27000.0" latestEndTime="79200.0" location="//@network/@links.18"/>
       <carrierVehicles id="7" type="//@vehicleTypes/@vehicleTypes.0" earliestStartTime="27000.0" latestEndTime="79200.0" location="//@network/@links.18"/>
       <carrierVehicles id="5" type="//@vehicleTypes/@vehicleTypes.0" earliestStartTime="27000.0" latestEndTime="79200.0" location="//@network/@links.18"/>
-      <carrierVehicles id="6" type="//@vehicleTypes/@vehicleTypes.0" earliestStartTime="27000.0" latestEndTime="79200.0" location="//@network/@links.18"/>
     </carrierCapabilities>
   </carriers>
   <carriers id="3">
     <plan>
-      <scheduledTours departureTime="32400.0" vehicle="//@carriers.2/@carrierCapabilities/@carrierVehicles.4">
+      <scheduledTours departureTime="32400.0" vehicle="//@carriers.2/@carrierCapabilities/@carrierVehicles.0">
         <tour id="Parcel1: ALL_BIKE -> PACKSTATION" start="//@carriers.2/@plan/@scheduledTours.0/@tour/@tourElements.0" end="//@carriers.2/@plan/@scheduledTours.0/@tour/@tourElements.5">
           <tourElements xsi:type="tour:Start" location="//@network/@links.12">
             <timeWindow start="32400.0" end="32400.0"/>
@@ -56,17 +56,17 @@
       <pickupTimeWindow start="29100.0" end="86399.0"/>
       <deliveryTimeWindow end="86399.0"/>
     </shipments>
-    <carrierCapabilities vehicleTypes="//@vehicleTypes/@vehicleTypes.1 //@vehicleTypes/@vehicleTypes.2 //@vehicleTypes/@vehicleTypes.0" fleetSize="FINITE">
+    <carrierCapabilities vehicleTypes="//@vehicleTypes/@vehicleTypes.1 //@vehicleTypes/@vehicleTypes.0 //@vehicleTypes/@vehicleTypes.2" fleetSize="FINITE">
+      <carrierVehicles id="12" type="//@vehicleTypes/@vehicleTypes.2" earliestStartTime="27000.0" latestEndTime="79200.0" location="//@network/@links.12"/>
+      <carrierVehicles id="14" type="//@vehicleTypes/@vehicleTypes.2" earliestStartTime="27000.0" latestEndTime="79200.0" location="//@network/@links.12"/>
       <carrierVehicles id="10" type="//@vehicleTypes/@vehicleTypes.1" earliestStartTime="27000.0" latestEndTime="79200.0" location="//@network/@links.22"/>
       <carrierVehicles id="11" type="//@vehicleTypes/@vehicleTypes.0" earliestStartTime="27000.0" latestEndTime="79200.0" location="//@network/@links.22"/>
       <carrierVehicles id="13" type="//@vehicleTypes/@vehicleTypes.2" earliestStartTime="27000.0" latestEndTime="79200.0" location="//@network/@links.12"/>
-      <carrierVehicles id="14" type="//@vehicleTypes/@vehicleTypes.2" earliestStartTime="27000.0" latestEndTime="79200.0" location="//@network/@links.12"/>
-      <carrierVehicles id="12" type="//@vehicleTypes/@vehicleTypes.2" earliestStartTime="27000.0" latestEndTime="79200.0" location="//@network/@links.12"/>
     </carrierCapabilities>
   </carriers>
   <carriers id="4">
     <plan>
-      <scheduledTours departureTime="28800.0" vehicle="//@carriers.3/@carrierCapabilities/@carrierVehicles.1">
+      <scheduledTours departureTime="28800.0" vehicle="//@carriers.3/@carrierCapabilities/@carrierVehicles.0">
         <tour id="Parcel1: UPS_HUB_IN -> ALL_BIKE" start="//@carriers.3/@plan/@scheduledTours.0/@tour/@tourElements.0" end="//@carriers.3/@plan/@scheduledTours.0/@tour/@tourElements.5">
           <tourElements xsi:type="tour:Start" location="//@network/@links.17">
             <timeWindow start="28800.0" end="28800.0"/>
@@ -86,8 +86,8 @@
       <deliveryTimeWindow start="29040.0" end="29100.0"/>
     </shipments>
     <carrierCapabilities vehicleTypes="//@vehicleTypes/@vehicleTypes.1" fleetSize="FINITE">
-      <carrierVehicles id="8" type="//@vehicleTypes/@vehicleTypes.1" earliestStartTime="27000.0" latestEndTime="79200.0" location="//@network/@links.17"/>
       <carrierVehicles id="9" type="//@vehicleTypes/@vehicleTypes.1" earliestStartTime="27000.0" latestEndTime="79200.0" location="//@network/@links.17"/>
+      <carrierVehicles id="8" type="//@vehicleTypes/@vehicleTypes.1" earliestStartTime="27000.0" latestEndTime="79200.0" location="//@network/@links.17"/>
     </carrierCapabilities>
   </carriers>
   <network>

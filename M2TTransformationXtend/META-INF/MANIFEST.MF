@@ -10,6 +10,6 @@ Require-Bundle: org.eclipse.xtext.xbase.lib;bundle-version="2.34.0",
  org.eclipse.emf.ecore,
  org.eclipse.emf.ecore.xmi,
  MATSimMM
-Bundle-RequiredExecutionEnvironment: JavaSE-11
+Bundle-RequiredExecutionEnvironment: JavaSE-17
 Automatic-Module-Name: xtend-examples
 Export-Package: m2ttransformation

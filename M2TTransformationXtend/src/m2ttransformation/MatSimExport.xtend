@@ -58,7 +58,7 @@ class MatSimExport {
 			URI.createFileURI(Path.of(inputFolder, modelName + "_matsim.xmi").toString), true)
 
 		if (resource.errors.empty) {
-			return resource.contents.first as DataExchangeRoot
+			return resource.contents.get(0) as DataExchangeRoot
 		} else {
 			throw new IllegalArgumentException("loading model " + modelName + " caused: " + resource.errors.stream.map( e |
 				e.message

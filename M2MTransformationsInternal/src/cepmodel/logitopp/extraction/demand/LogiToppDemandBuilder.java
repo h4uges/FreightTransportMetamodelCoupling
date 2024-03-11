@@ -20,7 +20,6 @@ import cepmodel.logitopp.extraction.network.LogiToppNetworkBuilder;
 import cepmodel.logitopp.extraction.network.LogiToppNetworkUtil;
 import cepmodel.logitopp.extraction.population.LogiToppPopulationBuilder;
 import cepmodel.logitopp.extraction.transportInfrastructure.LogiToppTransportInfrastructureBuilder;
-import logiToppMetamodel.base.BaseFactory;
 import logiToppMetamodel.base.Time;
 import logiToppMetamodel.base.Weekday;
 import logiToppMetamodel.dataExchange.Demand;
