@@ -17,11 +17,13 @@ import org.apache.commons.csv.CSVRecord;
 import com.google.common.collect.ImmutableList;
 import com.google.common.collect.ImmutableSet;
 
+import cepmodel.logitopp.extraction.LogiToppExtractionUtil;
 import cepmodel.logitopp.extraction.LogiToppInputFileRegistry;
 import cepmodel.logitopp.extraction.network.LogiToppNetworkBuilder;
 import logiToppMetamodel.base.BaseFactory;
 import logiToppMetamodel.base.RelativeTime;
 import logiToppMetamodel.base.Time;
+import logiToppMetamodel.base.Weekday;
 import logiToppMetamodel.dataExchange.TransportInfrastructure;
 import logiToppMetamodel.logiTopp.distribution.CEPServiceProvider;
 import logiToppMetamodel.logiTopp.distribution.DistributionCenter;
@@ -53,6 +55,7 @@ public class LogiToppTransportInfrastructureBuilder {
 	public TransportInfrastructure createTransportInfrastructure() {
 		fileRegisty.serviceAreaCSVs.forEach(file -> parseServiceAreaCsv(file));
 		fileRegisty.distributionCenterCSVs.forEach(file -> parseDistributionCenterCsv(file));
+		fileRegisty.depotLocationCSVs.forEach(file -> parseDepotLocationCsv(file));
 		fileRegisty.fleetCSVs.forEach(file -> parseFleetCsv(file));
 		fileRegisty.depotRelationCSVs.forEach(file -> parseDepotRelationsCsv(file));
 		fileRegisty.timeTableCSVs.forEach(file -> parseTimeTableCsv(file));
@@ -88,14 +91,10 @@ public class LogiToppTransportInfrastructureBuilder {
 				String name = record.get("name");
 				String cepsp = record.get("cepsp");
 
-				double x = Double.valueOf(record.get("loc_x"));
-				double y = Double.valueOf(record.get("loc_y"));
-				String zoneId = record.get("zone");
-
 				int vehicleType = Integer.valueOf(record.get("vehicle_type"));
 				int numAttempts = Integer.valueOf(record.get("attempts"));
 
-				addDistributionCenter(cepsp, id, name, x, y, zoneId, numAttempts, vehicleType);
+				addDistributionCenter(cepsp, id, name, numAttempts, vehicleType);
 			}
 		} catch (IOException e) {
 			e.printStackTrace();
@@ -109,18 +108,13 @@ public class LogiToppTransportInfrastructureBuilder {
 		return cepsp;
 	}
 
-	private void addDistributionCenter(String cepspName, String id, String name, double x, double y, String zoneId,
-			int numAttempts, int vehicleType) {
-		// TODO: major - fix missing location data
-		Location location = networkBuilder.createLocation(x, y, "", 0);
-		Zone zone = networkBuilder.getZone(zoneId);
-
+	private void addDistributionCenter(String cepspName, String id, String name, int numAttempts, int vehicleType) {
 		ServiceArea serviceArea = createServiceArea(id);
 		RegionalReach regionalReach = LogiToppTransportInfrastructureUtil.createRegionalReach(serviceArea);
 		Fleet fleet = LogiToppTransportInfrastructureUtil.createFleet(vehicleType);
 
 		DistributionCenter distributionCenter = LogiToppTransportInfrastructureUtil.createDistributionCenter(id, name,
-				location, zone, numAttempts, regionalReach, fleet);
+				null, null, numAttempts, regionalReach, fleet);
 
 		distributionCenters.put(id, distributionCenter);
 
@@ -130,6 +124,31 @@ public class LogiToppTransportInfrastructureBuilder {
 
 		CEPServiceProvider cepsp = cepsps.get(cepspName);
 		cepsp.getDistributionCenters().add(distributionCenter);
+	}
+
+	private void parseDepotLocationCsv(String filePath) {
+		try (Reader reader = new FileReader(System.getProperty("user.dir") + "/" + filePath);
+				CSVParser csvParser = CSVFormat.DEFAULT.builder().setAllowMissingColumnNames(true).setHeader()
+						.setDelimiter(';').build().parse(reader)) {
+
+			for (CSVRecord record : csvParser) {
+				String distributionCenterId = record.get("id");
+				String zoneId = record.get("id");
+				double x = Double.valueOf(record.get("x"));
+				double y = Double.valueOf(record.get("y"));
+				String edgeId = record.get("edge");
+				double edgePos = Double.valueOf(record.get("pos"));
+
+				Zone zone = networkBuilder.getZone(zoneId);
+				Location location = networkBuilder.createLocation(x, y, edgeId, edgePos);
+
+				DistributionCenter distributionCenter = distributionCenters.get(distributionCenterId);
+				distributionCenter.setZone(zone);
+				distributionCenter.setLocation(location);
+			}
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
 	}
 
 	private ServiceArea createServiceArea(String distributionCenterId) {
@@ -157,7 +176,9 @@ public class LogiToppTransportInfrastructureBuilder {
 	}
 
 	private void addVehicle(String distributionCenterId, String vehicleId, int vehicleType) {
-		DeliveryVehicle vehicle = LogiToppTransportInfrastructureUtil.createDeliveryVehicle(vehicleId, vehicleType);
+		DeliveryVehicle vehicle = LogiToppTransportInfrastructureUtil.createDeliveryVehicle(vehicleId, vehicleType,
+				LogiToppExtractionUtil.createTime(Weekday.MONDAY, 7, 30, 0),
+				LogiToppExtractionUtil.createTime(Weekday.MONDAY, 22, 0, 0));
 		distributionCenters.get(distributionCenterId).getFleet().getDeliveryVehicles().add(vehicle);
 		deliveryVehicles.put(vehicleId, vehicle);
 	}
@@ -187,7 +208,7 @@ public class LogiToppTransportInfrastructureBuilder {
 			for (CSVRecord record : csvParser) {
 				String fromId = record.get("from_depot");
 				String toId = record.get("to_depot");
-				int departDay = Integer.valueOf(record.get("depart_day"));
+				Weekday departDay = Weekday.get(Integer.valueOf(record.get("depart_day")));
 				int departHour = Integer.valueOf(record.get("depart_hour"));
 				int departMin = Integer.valueOf(record.get("depart_min"));
 				int tripDuration = Integer.valueOf(record.get("trip_duration"));
@@ -197,8 +218,7 @@ public class LogiToppTransportInfrastructureBuilder {
 				DistributionCenter fromDc = distributionCenters.get(fromId);
 				DistributionCenter toDc = distributionCenters.get(toId);
 
-				Time departureTime = BaseFactory.eINSTANCE.createTime();
-				departureTime.setSeconds(departDay * 24 * 60 * 60 + departHour * 60 * 60 + departMin * 60);
+				Time departureTime = LogiToppExtractionUtil.createTime(departDay, departHour, departMin, 0);
 				RelativeTime duration = BaseFactory.eINSTANCE.createRelativeTime();
 				duration.setSeconds(tripDuration * 60);
 
@@ -218,7 +238,7 @@ public class LogiToppTransportInfrastructureBuilder {
 	public DistributionCenter getDistributionCenter(String distributionCenterId) {
 		return distributionCenters.get(distributionCenterId);
 	}
-	
+
 	public DeliveryVehicle getDeliveryVehicle(String deliveryVehicleId) {
 		return deliveryVehicles.get(deliveryVehicleId);
 	}

@@ -6,7 +6,7 @@
     <semanticResources>MATSimFreightMetamodel.genmodel</semanticResources>
     <ownedViews xmi:type="viewpoint:DView" uid="_VnLVsIlBEe6DTPLyeYYaig">
       <viewpoint xmi:type="description:Viewpoint" href="platform:/plugin/org.eclipse.emf.ecoretools.design/description/ecore.odesign#//@ownedViewpoints[name='Design']"/>
-      <ownedRepresentationDescriptors xmi:type="viewpoint:DRepresentationDescriptor" uid="_tJkVwI-TEe61Augx8Co9fg" name="freightContrib class diagram" repPath="#_tJjusI-TEe61Augx8Co9fg" changeId="1702567534151">
+      <ownedRepresentationDescriptors xmi:type="viewpoint:DRepresentationDescriptor" uid="_tJkVwI-TEe61Augx8Co9fg" name="freightContrib class diagram" repPath="#_tJjusI-TEe61Augx8Co9fg" changeId="1710070664288">
         <description xmi:type="description_1:DiagramDescription" href="platform:/plugin/org.eclipse.emf.ecoretools.design/description/ecore.odesign#//@ownedViewpoints[name='Design']/@ownedRepresentations[name='Entities']"/>
         <target xmi:type="ecore:EPackage" href="MATSimFreightMetamodel.ecore#//freightContrib"/>
       </ownedRepresentationDescriptors>
@@ -50,15 +50,15 @@
         <description xmi:type="description_1:DiagramDescription" href="platform:/plugin/org.eclipse.emf.ecoretools.design/description/ecore.odesign#//@ownedViewpoints[name='Design']/@ownedRepresentations[name='Entities']"/>
         <target xmi:type="ecore:EPackage" href="MATSimFreightMetamodel.ecore#/"/>
       </ownedRepresentationDescriptors>
-      <ownedRepresentationDescriptors xmi:type="viewpoint:DRepresentationDescriptor" uid="_OkTcIJqVEe6Xg8gl-iWaGQ" name="LogisticDemandView" repPath="#_OkS1EJqVEe6Xg8gl-iWaGQ" changeId="1708437885427">
+      <ownedRepresentationDescriptors xmi:type="viewpoint:DRepresentationDescriptor" uid="_OkTcIJqVEe6Xg8gl-iWaGQ" name="LogisticDemandView" repPath="#_OkS1EJqVEe6Xg8gl-iWaGQ" changeId="1710066860686">
         <description xmi:type="description_1:DiagramDescription" href="platform:/plugin/org.eclipse.emf.ecoretools.design/description/ecore.odesign#//@ownedViewpoints[name='Design']/@ownedRepresentations[name='Entities']"/>
         <target xmi:type="ecore:EPackage" href="MATSimFreightMetamodel.ecore#/"/>
       </ownedRepresentationDescriptors>
-      <ownedRepresentationDescriptors xmi:type="viewpoint:DRepresentationDescriptor" uid="_QOKV4JqVEe6Xg8gl-iWaGQ" name="LogisticSolutionView" repPath="#_QOJu0JqVEe6Xg8gl-iWaGQ" changeId="1708956728060">
+      <ownedRepresentationDescriptors xmi:type="viewpoint:DRepresentationDescriptor" uid="_QOKV4JqVEe6Xg8gl-iWaGQ" name="LogisticSolutionView" repPath="#_QOJu0JqVEe6Xg8gl-iWaGQ" changeId="1710066840565">
         <description xmi:type="description_1:DiagramDescription" href="platform:/plugin/org.eclipse.emf.ecoretools.design/description/ecore.odesign#//@ownedViewpoints[name='Design']/@ownedRepresentations[name='Entities']"/>
         <target xmi:type="ecore:EPackage" href="MATSimFreightMetamodel.ecore#/"/>
       </ownedRepresentationDescriptors>
-      <ownedRepresentationDescriptors xmi:type="viewpoint:DRepresentationDescriptor" uid="_MgulYZqWEe6Xg8gl-iWaGQ" name="ResultsView" repPath="#_Mgt-UJqWEe6Xg8gl-iWaGQ" changeId="1703685044803">
+      <ownedRepresentationDescriptors xmi:type="viewpoint:DRepresentationDescriptor" uid="_MgulYZqWEe6Xg8gl-iWaGQ" name="ResultsView" repPath="#_Mgt-UJqWEe6Xg8gl-iWaGQ" changeId="1710070613932">
         <description xmi:type="description_1:DiagramDescription" href="platform:/plugin/org.eclipse.emf.ecoretools.design/description/ecore.odesign#//@ownedViewpoints[name='Design']/@ownedRepresentations[name='Entities']"/>
         <target xmi:type="ecore:EPackage" href="MATSimFreightMetamodel.ecore#/"/>
       </ownedRepresentationDescriptors>
@@ -233,27 +233,6 @@
           <styles xmi:type="notation:ShapeStyle" xmi:id="_aGjF54-VEe61Augx8Co9fg" fontName=".AppleSystemUIFont" fontHeight="8"/>
           <layoutConstraint xmi:type="notation:Bounds" xmi:id="_aGjF6I-VEe61Augx8Co9fg" x="448" y="276" width="120" height="147"/>
         </children>
-        <children xmi:type="notation:Node" xmi:id="_GOLX0I-WEe61Augx8Co9fg" type="2003" element="_GOIUgI-WEe61Augx8Co9fg">
-          <children xmi:type="notation:Node" xmi:id="_GOLX04-WEe61Augx8Co9fg" type="5007"/>
-          <children xmi:type="notation:Node" xmi:id="_GOLX1I-WEe61Augx8Co9fg" type="7004">
-            <children xmi:type="notation:Node" xmi:id="_DwRgEI-YEe61Augx8Co9fg" type="3010" element="_DwOcyY-YEe61Augx8Co9fg">
-              <styles xmi:type="notation:FontStyle" xmi:id="_DwRgEY-YEe61Augx8Co9fg" fontName=".AppleSystemUIFont" fontHeight="8"/>
-              <layoutConstraint xmi:type="notation:Location" xmi:id="_DwRgEo-YEe61Augx8Co9fg"/>
-            </children>
-            <children xmi:type="notation:Node" xmi:id="_JHW5g4-YEe61Augx8Co9fg" type="3010" element="_JHTPJo-YEe61Augx8Co9fg">
-              <styles xmi:type="notation:FontStyle" xmi:id="_JHW5hI-YEe61Augx8Co9fg" fontName=".AppleSystemUIFont" fontHeight="8"/>
-              <layoutConstraint xmi:type="notation:Location" xmi:id="_JHW5hY-YEe61Augx8Co9fg"/>
-            </children>
-            <children xmi:type="notation:Node" xmi:id="_J8ysvI-YEe61Augx8Co9fg" type="3010" element="_J8wQdI-YEe61Augx8Co9fg">
-              <styles xmi:type="notation:FontStyle" xmi:id="_J8ysvY-YEe61Augx8Co9fg" fontName=".AppleSystemUIFont" fontHeight="8"/>
-              <layoutConstraint xmi:type="notation:Location" xmi:id="_J8ysvo-YEe61Augx8Co9fg"/>
-            </children>
-            <styles xmi:type="notation:SortingStyle" xmi:id="_GOLX1Y-WEe61Augx8Co9fg"/>
-            <styles xmi:type="notation:FilteringStyle" xmi:id="_GOLX1o-WEe61Augx8Co9fg"/>
-          </children>
-          <styles xmi:type="notation:ShapeStyle" xmi:id="_GOLX0Y-WEe61Augx8Co9fg" fontName=".AppleSystemUIFont" fontHeight="8"/>
-          <layoutConstraint xmi:type="notation:Bounds" xmi:id="_GOLX0o-WEe61Augx8Co9fg" x="200" y="588"/>
-        </children>
         <children xmi:type="notation:Node" xmi:id="_4qMRkI-ZEe61Augx8Co9fg" type="2003" element="_4qJ1UI-ZEe61Augx8Co9fg">
           <children xmi:type="notation:Node" xmi:id="_4qMRk4-ZEe61Augx8Co9fg" type="5007"/>
           <children xmi:type="notation:Node" xmi:id="_4qMRlI-ZEe61Augx8Co9fg" type="7004">
@@ -294,14 +273,6 @@
               <styles xmi:type="notation:FontStyle" xmi:id="_naoL0ZApEe6ZyZaibAXz1g" fontName=".AppleSystemUIFont" fontHeight="8" bold="true"/>
               <layoutConstraint xmi:type="notation:Location" xmi:id="_naoL0pApEe6ZyZaibAXz1g"/>
             </children>
-            <children xmi:type="notation:Node" xmi:id="_6S-x4JApEe6ZyZaibAXz1g" type="3010" element="_6S7ul5ApEe6ZyZaibAXz1g">
-              <styles xmi:type="notation:FontStyle" xmi:id="_6S-x4ZApEe6ZyZaibAXz1g" fontColor="2697711" fontName=".AppleSystemUIFont" fontHeight="8"/>
-              <layoutConstraint xmi:type="notation:Location" xmi:id="_6S-x4pApEe6ZyZaibAXz1g"/>
-            </children>
-            <children xmi:type="notation:Node" xmi:id="_8MFokJApEe6ZyZaibAXz1g" type="3010" element="_8MAwI5ApEe6ZyZaibAXz1g">
-              <styles xmi:type="notation:FontStyle" xmi:id="_8MFokZApEe6ZyZaibAXz1g" fontColor="2697711" fontName=".AppleSystemUIFont" fontHeight="8" bold="true"/>
-              <layoutConstraint xmi:type="notation:Location" xmi:id="_8MFokpApEe6ZyZaibAXz1g"/>
-            </children>
             <children xmi:type="notation:Node" xmi:id="_9fYccJApEe6ZyZaibAXz1g" type="3010" element="_9fVZKpApEe6ZyZaibAXz1g">
               <styles xmi:type="notation:FontStyle" xmi:id="_9fYccZApEe6ZyZaibAXz1g" fontColor="2697711" fontName=".AppleSystemUIFont" fontHeight="8"/>
               <layoutConstraint xmi:type="notation:Location" xmi:id="_9fYccpApEe6ZyZaibAXz1g"/>
@@ -320,23 +291,28 @@
           <styles xmi:type="notation:ShapeStyle" xmi:id="_tH3EkY-eEe61Augx8Co9fg" fontName=".AppleSystemUIFont" fontHeight="8"/>
           <layoutConstraint xmi:type="notation:Bounds" xmi:id="_tH3Eko-eEe61Augx8Co9fg" x="616" y="302" width="128" height="95"/>
         </children>
+        <children xmi:type="notation:Node" xmi:id="_l00GUN7SEe6GaNxSEC-DXA" type="2003" element="_l0mq8N7SEe6GaNxSEC-DXA">
+          <children xmi:type="notation:Node" xmi:id="_l00tYN7SEe6GaNxSEC-DXA" type="5007"/>
+          <children xmi:type="notation:Node" xmi:id="_l00tYd7SEe6GaNxSEC-DXA" type="7004">
+            <children xmi:type="notation:Node" xmi:id="_l01UcN7SEe6GaNxSEC-DXA" type="3010" element="_l0umyN7SEe6GaNxSEC-DXA">
+              <styles xmi:type="notation:FontStyle" xmi:id="_l01Ucd7SEe6GaNxSEC-DXA" fontName=".AppleSystemUIFont" fontHeight="8" bold="true"/>
+              <layoutConstraint xmi:type="notation:Location" xmi:id="_l01Uct7SEe6GaNxSEC-DXA"/>
+            </children>
+            <children xmi:type="notation:Node" xmi:id="_l01Uc97SEe6GaNxSEC-DXA" type="3010" element="_l0vN0d7SEe6GaNxSEC-DXA">
+              <styles xmi:type="notation:FontStyle" xmi:id="_l01UdN7SEe6GaNxSEC-DXA" fontName=".AppleSystemUIFont" fontHeight="8" bold="true"/>
+              <layoutConstraint xmi:type="notation:Location" xmi:id="_l01Udd7SEe6GaNxSEC-DXA"/>
+            </children>
+            <children xmi:type="notation:Node" xmi:id="_l017gN7SEe6GaNxSEC-DXA" type="3010" element="_l0vN097SEe6GaNxSEC-DXA">
+              <styles xmi:type="notation:FontStyle" xmi:id="_l017gd7SEe6GaNxSEC-DXA" fontName=".AppleSystemUIFont" fontHeight="8" bold="true"/>
+              <layoutConstraint xmi:type="notation:Location" xmi:id="_l017gt7SEe6GaNxSEC-DXA"/>
+            </children>
+            <styles xmi:type="notation:SortingStyle" xmi:id="_l00tYt7SEe6GaNxSEC-DXA"/>
+            <styles xmi:type="notation:FilteringStyle" xmi:id="_l00tY97SEe6GaNxSEC-DXA"/>
+          </children>
+          <styles xmi:type="notation:ShapeStyle" xmi:id="_l00GUd7SEe6GaNxSEC-DXA" fontName=".AppleSystemUIFont" fontHeight="8"/>
+          <layoutConstraint xmi:type="notation:Bounds" xmi:id="_l00GUt7SEe6GaNxSEC-DXA" x="4" y="432"/>
+        </children>
         <styles xmi:type="notation:DiagramStyle" xmi:id="_tJkVxI-TEe61Augx8Co9fg"/>
-        <edges xmi:type="notation:Edge" xmi:id="_-LLnMI-UEe61Augx8Co9fg" type="4001" element="_-LH80I-UEe61Augx8Co9fg" source="_twHYYI-TEe61Augx8Co9fg" target="_FGqBAI-UEe61Augx8Co9fg">
-          <children xmi:type="notation:Node" xmi:id="_-LLnNI-UEe61Augx8Co9fg" type="6001">
-            <layoutConstraint xmi:type="notation:Bounds" xmi:id="_-LLnNY-UEe61Augx8Co9fg" x="-2" y="38"/>
-          </children>
-          <children xmi:type="notation:Node" xmi:id="_-LLnNo-UEe61Augx8Co9fg" type="6002">
-            <layoutConstraint xmi:type="notation:Bounds" xmi:id="_-LLnN4-UEe61Augx8Co9fg" y="10"/>
-          </children>
-          <children xmi:type="notation:Node" xmi:id="_-LLnOI-UEe61Augx8Co9fg" type="6003">
-            <layoutConstraint xmi:type="notation:Bounds" xmi:id="_-LLnOY-UEe61Augx8Co9fg" y="10"/>
-          </children>
-          <styles xmi:type="notation:ConnectorStyle" xmi:id="_-LLnMY-UEe61Augx8Co9fg" routing="Rectilinear"/>
-          <styles xmi:type="notation:FontStyle" xmi:id="_-LLnMo-UEe61Augx8Co9fg" fontColor="7490599" fontName=".AppleSystemUIFont" fontHeight="8"/>
-          <bendpoints xmi:type="notation:RelativeBendpoints" xmi:id="_-LLnM4-UEe61Augx8Co9fg" points="[0, 0, 0, -90]$[0, 90, 0, 0]"/>
-          <sourceAnchor xmi:type="notation:IdentityAnchor" xmi:id="_-LMOQI-UEe61Augx8Co9fg" id="(0.3050847457627119,1.0)"/>
-          <targetAnchor xmi:type="notation:IdentityAnchor" xmi:id="_-LMOQY-UEe61Augx8Co9fg" id="(0.3050847457627119,0.0)"/>
-        </edges>
         <edges xmi:type="notation:Edge" xmi:id="_AQpe4I-VEe61Augx8Co9fg" type="4001" element="_AQmbkI-VEe61Augx8Co9fg" source="_twHYYI-TEe61Augx8Co9fg" target="_FGqBAI-UEe61Augx8Co9fg">
           <children xmi:type="notation:Node" xmi:id="_AQpe5I-VEe61Augx8Co9fg" type="6001">
             <layoutConstraint xmi:type="notation:Bounds" xmi:id="_AQpe5Y-VEe61Augx8Co9fg" x="-2" y="-45"/>
@@ -449,22 +425,6 @@
           <sourceAnchor xmi:type="notation:IdentityAnchor" xmi:id="_3sCkGo-VEe61Augx8Co9fg" id="(1.0,0.5714285714285714)"/>
           <targetAnchor xmi:type="notation:IdentityAnchor" xmi:id="_3sCkG4-VEe61Augx8Co9fg" id="(0.0,0.4689655172413793)"/>
         </edges>
-        <edges xmi:type="notation:Edge" xmi:id="_Hues8I-WEe61Augx8Co9fg" type="4001" element="_HubCxo-WEe61Augx8Co9fg" source="_koa-oI-UEe61Augx8Co9fg" target="_GOLX0I-WEe61Augx8Co9fg">
-          <children xmi:type="notation:Node" xmi:id="_Hues9I-WEe61Augx8Co9fg" type="6001">
-            <layoutConstraint xmi:type="notation:Bounds" xmi:id="_Hues9Y-WEe61Augx8Co9fg" x="-2" y="-27"/>
-          </children>
-          <children xmi:type="notation:Node" xmi:id="_Hues9o-WEe61Augx8Co9fg" type="6002">
-            <layoutConstraint xmi:type="notation:Bounds" xmi:id="_Hues94-WEe61Augx8Co9fg" x="16" y="10"/>
-          </children>
-          <children xmi:type="notation:Node" xmi:id="_Hues-I-WEe61Augx8Co9fg" type="6003">
-            <layoutConstraint xmi:type="notation:Bounds" xmi:id="_Hues-Y-WEe61Augx8Co9fg" x="10"/>
-          </children>
-          <styles xmi:type="notation:ConnectorStyle" xmi:id="_Hues8Y-WEe61Augx8Co9fg" routing="Rectilinear"/>
-          <styles xmi:type="notation:FontStyle" xmi:id="_Hues8o-WEe61Augx8Co9fg" fontColor="7490599" fontName=".AppleSystemUIFont" fontHeight="8"/>
-          <bendpoints xmi:type="notation:RelativeBendpoints" xmi:id="_Hues84-WEe61Augx8Co9fg" points="[42, 0, 0, -58]$[42, 58, 0, 0]"/>
-          <sourceAnchor xmi:type="notation:IdentityAnchor" xmi:id="_Hues-o-WEe61Augx8Co9fg" id="(0.13559322033898305,1.0)"/>
-          <targetAnchor xmi:type="notation:IdentityAnchor" xmi:id="_Hues-4-WEe61Augx8Co9fg" id="(0.5,0.0)"/>
-        </edges>
         <edges xmi:type="notation:Edge" xmi:id="_A3UggI-ZEe61Augx8Co9fg" type="4001" element="_A3Q2So-ZEe61Augx8Co9fg" source="_OPsCEI-UEe61Augx8Co9fg" target="_m0a8II-UEe61Augx8Co9fg">
           <children xmi:type="notation:Node" xmi:id="_A3UghI-ZEe61Augx8Co9fg" type="6001">
             <layoutConstraint xmi:type="notation:Bounds" xmi:id="_A3UghY-ZEe61Augx8Co9fg" x="30" y="7"/>
@@ -545,21 +505,21 @@
           <sourceAnchor xmi:type="notation:IdentityAnchor" xmi:id="_tH3EoY-eEe61Augx8Co9fg" id="(0.5,0.5)"/>
           <targetAnchor xmi:type="notation:IdentityAnchor" xmi:id="_tH3Eoo-eEe61Augx8Co9fg" id="(0.9642857142857143,1.0161290322580645)"/>
         </edges>
-        <edges xmi:type="notation:Edge" xmi:id="_tH3rp4-eEe61Augx8Co9fg" type="4001" element="_tH2dqY-eEe61Augx8Co9fg" source="_aGjF5o-VEe61Augx8Co9fg" target="_tH3EkI-eEe61Augx8Co9fg">
-          <children xmi:type="notation:Node" xmi:id="_tH3rq4-eEe61Augx8Co9fg" type="6001">
-            <layoutConstraint xmi:type="notation:Bounds" xmi:id="_tH3rrI-eEe61Augx8Co9fg" x="1" y="10"/>
+        <edges xmi:type="notation:Edge" xmi:id="_l017g97SEe6GaNxSEC-DXA" type="4001" element="_l0yRJt7SEe6GaNxSEC-DXA" source="_koa-oI-UEe61Augx8Co9fg" target="_l00GUN7SEe6GaNxSEC-DXA">
+          <children xmi:type="notation:Node" xmi:id="_l017h97SEe6GaNxSEC-DXA" type="6001">
+            <layoutConstraint xmi:type="notation:Bounds" xmi:id="_l017iN7SEe6GaNxSEC-DXA" x="-38" y="-14"/>
           </children>
-          <children xmi:type="notation:Node" xmi:id="_tH3rrY-eEe61Augx8Co9fg" type="6002">
-            <layoutConstraint xmi:type="notation:Bounds" xmi:id="_tH3rro-eEe61Augx8Co9fg" x="-1" y="10"/>
+          <children xmi:type="notation:Node" xmi:id="_l02ikN7SEe6GaNxSEC-DXA" type="6002">
+            <layoutConstraint xmi:type="notation:Bounds" xmi:id="_l02ikd7SEe6GaNxSEC-DXA" x="-2" y="-10"/>
           </children>
-          <children xmi:type="notation:Node" xmi:id="_tH3rr4-eEe61Augx8Co9fg" type="6003">
-            <layoutConstraint xmi:type="notation:Bounds" xmi:id="_tH3rsI-eEe61Augx8Co9fg" x="1" y="10"/>
+          <children xmi:type="notation:Node" xmi:id="_l02ikt7SEe6GaNxSEC-DXA" type="6003">
+            <layoutConstraint xmi:type="notation:Bounds" xmi:id="_l02ik97SEe6GaNxSEC-DXA" x="-10" y="-10"/>
           </children>
-          <styles xmi:type="notation:ConnectorStyle" xmi:id="_tH3rqI-eEe61Augx8Co9fg" routing="Rectilinear"/>
-          <styles xmi:type="notation:FontStyle" xmi:id="_tH3rqY-eEe61Augx8Co9fg" fontColor="7490599" fontName=".AppleSystemUIFont" fontHeight="8"/>
-          <bendpoints xmi:type="notation:RelativeBendpoints" xmi:id="_tH3rqo-eEe61Augx8Co9fg" points="[59, -1, -171, -49]$[84, -1, -146, -49]$[84, 27, -146, -21]$[109, 27, -121, -21]"/>
-          <sourceAnchor xmi:type="notation:IdentityAnchor" xmi:id="_tH3rsY-eEe61Augx8Co9fg" id="(0.5,0.5)"/>
-          <targetAnchor xmi:type="notation:IdentityAnchor" xmi:id="_tH3rso-eEe61Augx8Co9fg" id="(0.9642857142857143,1.0161290322580645)"/>
+          <styles xmi:type="notation:ConnectorStyle" xmi:id="_l017hN7SEe6GaNxSEC-DXA" routing="Rectilinear"/>
+          <styles xmi:type="notation:FontStyle" xmi:id="_l017hd7SEe6GaNxSEC-DXA" fontColor="7490599" fontName=".AppleSystemUIFont" fontHeight="8"/>
+          <bendpoints xmi:type="notation:RelativeBendpoints" xmi:id="_l017ht7SEe6GaNxSEC-DXA" points="[-59, -5, 138, -5]$[-122, -5, 75, -5]"/>
+          <sourceAnchor xmi:type="notation:IdentityAnchor" xmi:id="_l03wsN7SEe6GaNxSEC-DXA" id="(0.5,0.5)"/>
+          <targetAnchor xmi:type="notation:IdentityAnchor" xmi:id="_l03wsd7SEe6GaNxSEC-DXA" id="(0.5,0.5)"/>
         </edges>
       </data>
     </ownedAnnotationEntries>
@@ -606,18 +566,6 @@
           <labelColor xmi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='black']"/>
           <color xmi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='blue']"/>
         </computedStyleDescriptions>
-        <computedStyleDescriptions xmi:type="style:FlatContainerStyleDescription" xmi:id="_4SGXKo-YEe61Augx8Co9fg" arcWidth="8" arcHeight="8" borderSizeComputationExpression="1" tooltipExpression="service:renderTooltip" roundedCorner="true" widthComputationExpression="12" heightComputationExpression="10" backgroundStyle="Liquid">
-          <borderColor xmi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='red']"/>
-          <labelColor xmi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='red']"/>
-          <backgroundColor xmi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='white']"/>
-          <foregroundColor xmi:type="description:UserFixedColor" href="platform:/plugin/org.eclipse.emf.ecoretools.design/description/ecore.odesign#//@userColorsPalettes[name='Ecore%20Palette']/@entries[name='EClass']"/>
-        </computedStyleDescriptions>
-        <computedStyleDescriptions xmi:type="style:BundledImageDescription" xmi:id="_5aC2s4-YEe61Augx8Co9fg" labelExpression="service:render" labelAlignment="LEFT" tooltipExpression="service:renderTooltip" sizeComputationExpression="1">
-          <borderColor xmi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='red']"/>
-          <labelFormat>bold</labelFormat>
-          <labelColor xmi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='red']"/>
-          <color xmi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='black']"/>
-        </computedStyleDescriptions>
         <computedStyleDescriptions xmi:type="style:BundledImageDescription" xmi:id="_JJmXI5K3Ee6ZyZaibAXz1g" labelExpression="service:renderAsNode" labelAlignment="LEFT" tooltipExpression="service:renderTooltip" sizeComputationExpression="1">
           <borderColor xmi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='black']"/>
           <labelFormat>bold</labelFormat>
@@ -626,7 +574,7 @@
         </computedStyleDescriptions>
       </data>
     </ownedAnnotationEntries>
-    <ownedDiagramElements xmi:type="diagram:DNodeList" uid="_twE8II-TEe61Augx8Co9fg" name="Carrier" tooltipText="" outgoingEdges="_-LH80I-UEe61Augx8Co9fg _AQmbkI-VEe61Augx8Co9fg _GuByBo-VEe61Augx8Co9fg _HYGCsI-VEe61Augx8Co9fg _Oz67Io-VEe61Augx8Co9fg" incomingEdges="_uPR1KI-dEe61Augx8Co9fg" width="12" height="10">
+    <ownedDiagramElements xmi:type="diagram:DNodeList" uid="_twE8II-TEe61Augx8Co9fg" name="Carrier" tooltipText="" outgoingEdges="_AQmbkI-VEe61Augx8Co9fg _GuByBo-VEe61Augx8Co9fg _HYGCsI-VEe61Augx8Co9fg _Oz67Io-VEe61Augx8Co9fg" incomingEdges="_uPR1KI-dEe61Augx8Co9fg" width="12" height="10">
       <target xmi:type="ecore:EClass" href="MATSimFreightMetamodel.ecore#//freightContrib/Carrier"/>
       <semanticElements xmi:type="ecore:EClass" href="MATSimFreightMetamodel.ecore#//freightContrib/Carrier"/>
       <arrangeConstraints>KEEP_LOCATION</arrangeConstraints>
@@ -656,7 +604,7 @@
         <actualMapping xmi:type="description_1:NodeMapping" href="platform:/plugin/org.eclipse.emf.ecoretools.design/description/ecore.odesign#//@ownedViewpoints[name='Design']/@ownedRepresentations[name='Entities']/@defaultLayer/@containerMappings[name='EC%20EClass']/@subNodeMappings[name='EC%20EAttribute']"/>
       </ownedElements>
     </ownedDiagramElements>
-    <ownedDiagramElements xmi:type="diagram:DNodeList" uid="_FGm9sI-UEe61Augx8Co9fg" name="CarrierPlan" tooltipText="" outgoingEdges="_t1ofvo-VEe61Augx8Co9fg" incomingEdges="_-LH80I-UEe61Augx8Co9fg _AQmbkI-VEe61Augx8Co9fg" width="12" height="10">
+    <ownedDiagramElements xmi:type="diagram:DNodeList" uid="_FGm9sI-UEe61Augx8Co9fg" name="CarrierPlan" tooltipText="" outgoingEdges="_t1ofvo-VEe61Augx8Co9fg" incomingEdges="_AQmbkI-VEe61Augx8Co9fg" width="12" height="10">
       <target xmi:type="ecore:EClass" href="MATSimFreightMetamodel.ecore#//freightContrib/CarrierPlan"/>
       <semanticElements xmi:type="ecore:EClass" href="MATSimFreightMetamodel.ecore#//freightContrib/CarrierPlan"/>
       <arrangeConstraints>KEEP_LOCATION</arrangeConstraints>
@@ -712,7 +660,7 @@
         </ownedStyle>
         <actualMapping xmi:type="description_1:NodeMapping" href="platform:/plugin/org.eclipse.emf.ecoretools.design/description/ecore.odesign#//@ownedViewpoints[name='Design']/@ownedRepresentations[name='Entities']/@defaultLayer/@containerMappings[name='EC%20EClass']/@subNodeMappings[name='EC%20EAttribute']"/>
       </ownedElements>
-      <ownedElements xmi:type="diagram:DNodeListElement" uid="_xe5vkI-ZEe61Augx8Co9fg" name="service : Int" tooltipText="">
+      <ownedElements xmi:type="diagram:DNodeListElement" uid="_xe5vkI-ZEe61Augx8Co9fg" name="capacityDemand : Int" tooltipText="">
         <target xmi:type="ecore:EAttribute" href="MATSimFreightMetamodel.ecore#//freightContrib/CarrierService/capacityDemand"/>
         <semanticElements xmi:type="ecore:EAttribute" href="MATSimFreightMetamodel.ecore#//freightContrib/CarrierService/capacityDemand"/>
         <ownedStyle xmi:type="diagram:BundledImage" uid="_y9EWvo-ZEe61Augx8Co9fg" labelAlignment="LEFT" description="_316HMY-UEe61Augx8Co9fg">
@@ -777,7 +725,7 @@
         <actualMapping xmi:type="description_1:NodeMapping" href="platform:/plugin/org.eclipse.emf.ecoretools.design/description/ecore.odesign#//@ownedViewpoints[name='Design']/@ownedRepresentations[name='Entities']/@defaultLayer/@containerMappings[name='EC%20EClass']/@subNodeMappings[name='EC%20EReferenceNode']"/>
       </ownedElements>
     </ownedDiagramElements>
-    <ownedDiagramElements xmi:type="diagram:DNodeList" uid="_koXUQI-UEe61Augx8Co9fg" name="ScheduledTour" tooltipText="" outgoingEdges="_3r_g8I-VEe61Augx8Co9fg _HubCxo-WEe61Augx8Co9fg" incomingEdges="_t1ofvo-VEe61Augx8Co9fg" width="12" height="10">
+    <ownedDiagramElements xmi:type="diagram:DNodeList" uid="_koXUQI-UEe61Augx8Co9fg" name="ScheduledTour" tooltipText="" outgoingEdges="_3r_g8I-VEe61Augx8Co9fg _l0yRJt7SEe6GaNxSEC-DXA" incomingEdges="_t1ofvo-VEe61Augx8Co9fg" width="12" height="10">
       <target xmi:type="ecore:EClass" href="MATSimFreightMetamodel.ecore#//freightContrib/ScheduledTour"/>
       <semanticElements xmi:type="ecore:EClass" href="MATSimFreightMetamodel.ecore#//freightContrib/ScheduledTour"/>
       <arrangeConstraints>KEEP_LOCATION</arrangeConstraints>
@@ -823,21 +771,12 @@
         <actualMapping xmi:type="description_1:NodeMapping" href="platform:/plugin/org.eclipse.emf.ecoretools.design/description/ecore.odesign#//@ownedViewpoints[name='Design']/@ownedRepresentations[name='Entities']/@defaultLayer/@containerMappings[name='EC%20EClass']/@subNodeMappings[name='EC%20EAttribute']"/>
       </ownedElements>
     </ownedDiagramElements>
-    <ownedDiagramElements xmi:type="diagram:DEdge" uid="_-LH80I-UEe61Augx8Co9fg" name="[0..*] plans" sourceNode="_twE8II-TEe61Augx8Co9fg" targetNode="_FGm9sI-UEe61Augx8Co9fg">
-      <ownedStyle xmi:type="diagram:EdgeStyle" uid="_D0L3FI-VEe61Augx8Co9fg" description="_D0L3EY-VEe61Augx8Co9fg" sourceArrow="FillDiamond" routingStyle="manhattan" strokeColor="0,0,0">
-        <centerLabelStyle xmi:type="diagram:CenterLabelStyle" uid="_D0L3Fo-VEe61Augx8Co9fg" showIcon="false"/>
-        <endLabelStyle xmi:type="diagram:EndLabelStyle" uid="_D0L3FY-VEe61Augx8Co9fg" labelSize="6" showIcon="false" labelColor="39,76,114"/>
-      </ownedStyle>
-      <actualMapping xmi:type="description_1:EdgeMapping" href="platform:/plugin/org.eclipse.emf.ecoretools.design/description/ecore.odesign#//@ownedViewpoints[name='Design']/@ownedRepresentations[name='Entities']/@defaultLayer/@edgeMappings[name='EC_EReference']"/>
-    </ownedDiagramElements>
-    <ownedDiagramElements xmi:type="diagram:DEdge" uid="_AQmbkI-VEe61Augx8Co9fg" name="[1..1] selectedPlan" sourceNode="_twE8II-TEe61Augx8Co9fg" targetNode="_FGm9sI-UEe61Augx8Co9fg">
+    <ownedDiagramElements xmi:type="diagram:DEdge" uid="_AQmbkI-VEe61Augx8Co9fg" name="[0..1] plan" sourceNode="_twE8II-TEe61Augx8Co9fg" targetNode="_FGm9sI-UEe61Augx8Co9fg">
       <target xmi:type="ecore:EReference" href="MATSimFreightMetamodel.ecore#//freightContrib/Carrier/plan"/>
       <semanticElements xmi:type="ecore:EReference" href="MATSimFreightMetamodel.ecore#//freightContrib/Carrier/plan"/>
-      <ownedStyle xmi:type="diagram:EdgeStyle" uid="_C8YFU4-VEe61Augx8Co9fg" description="_C8YFUI-VEe61Augx8Co9fg" routingStyle="manhattan" strokeColor="0,0,0">
-        <centerLabelStyle xmi:type="diagram:CenterLabelStyle" uid="_C8YFVY-VEe61Augx8Co9fg" showIcon="false">
-          <labelFormat>bold</labelFormat>
-        </centerLabelStyle>
-        <endLabelStyle xmi:type="diagram:EndLabelStyle" uid="_C8YFVI-VEe61Augx8Co9fg" labelSize="6" showIcon="false" labelColor="39,76,114"/>
+      <ownedStyle xmi:type="diagram:EdgeStyle" uid="_kDHfMN7SEe6GaNxSEC-DXA" description="_D0L3EY-VEe61Augx8Co9fg" sourceArrow="FillDiamond" routingStyle="manhattan" strokeColor="0,0,0">
+        <centerLabelStyle xmi:type="diagram:CenterLabelStyle" uid="_kDHfMt7SEe6GaNxSEC-DXA" showIcon="false"/>
+        <endLabelStyle xmi:type="diagram:EndLabelStyle" uid="_kDHfMd7SEe6GaNxSEC-DXA" labelSize="6" showIcon="false" labelColor="39,76,114"/>
       </ownedStyle>
       <actualMapping xmi:type="description_1:EdgeMapping" href="platform:/plugin/org.eclipse.emf.ecoretools.design/description/ecore.odesign#//@ownedViewpoints[name='Design']/@ownedRepresentations[name='Entities']/@defaultLayer/@edgeMappings[name='EC_EReference']"/>
     </ownedDiagramElements>
@@ -870,7 +809,7 @@
       </ownedStyle>
       <actualMapping xmi:type="description_1:EdgeMapping" href="platform:/plugin/org.eclipse.emf.ecoretools.design/description/ecore.odesign#//@ownedViewpoints[name='Design']/@ownedRepresentations[name='Entities']/@defaultLayer/@edgeMappings[name='EC_EReference']"/>
     </ownedDiagramElements>
-    <ownedDiagramElements xmi:type="diagram:DNodeList" uid="_aGgCkI-VEe61Augx8Co9fg" name="CarrierVehicle" tooltipText="" outgoingEdges="_tH2dqY-eEe61Augx8Co9fg" incomingEdges="_ezpHJo-VEe61Augx8Co9fg _3r_g8I-VEe61Augx8Co9fg" width="12" height="10">
+    <ownedDiagramElements xmi:type="diagram:DNodeList" uid="_aGgCkI-VEe61Augx8Co9fg" name="CarrierVehicle" tooltipText="" incomingEdges="_ezpHJo-VEe61Augx8Co9fg _3r_g8I-VEe61Augx8Co9fg" width="12" height="10">
       <target xmi:type="ecore:EClass" href="MATSimFreightMetamodel.ecore#//freightContrib/CarrierVehicle"/>
       <semanticElements xmi:type="ecore:EClass" href="MATSimFreightMetamodel.ecore#//freightContrib/CarrierVehicle"/>
       <arrangeConstraints>KEEP_LOCATION</arrangeConstraints>
@@ -939,55 +878,6 @@
           <labelFormat>bold</labelFormat>
         </centerLabelStyle>
         <endLabelStyle xmi:type="diagram:EndLabelStyle" uid="_4nBlrY-VEe61Augx8Co9fg" labelSize="6" showIcon="false" labelColor="39,76,114"/>
-      </ownedStyle>
-      <actualMapping xmi:type="description_1:EdgeMapping" href="platform:/plugin/org.eclipse.emf.ecoretools.design/description/ecore.odesign#//@ownedViewpoints[name='Design']/@ownedRepresentations[name='Entities']/@defaultLayer/@edgeMappings[name='EC_EReference']"/>
-    </ownedDiagramElements>
-    <ownedDiagramElements xmi:type="diagram:DNodeList" uid="_GOIUgI-WEe61Augx8Co9fg" name="Tour" tooltipText="" incomingEdges="_HubCxo-WEe61Augx8Co9fg" width="12" height="10">
-      <target xmi:type="ecore:EClass" href="MATSimFreightMetamodel.ecore#//freightContrib/Tour/Tour"/>
-      <semanticElements xmi:type="ecore:EClass" href="MATSimFreightMetamodel.ecore#//freightContrib/Tour/Tour"/>
-      <decorations xmi:type="viewpoint:Decoration" uid="_GOIUgo-WEe61Augx8Co9fg">
-        <description xmi:type="description:SemanticBasedDecoration" href="platform:/plugin/org.eclipse.emf.ecoretools.design/description/ecore.odesign#//@ownedViewpoints[name='Design']/@ownedRepresentations[name='Entities']/@defaultLayer/@decorationDescriptionsSet/@decorationDescriptions[name='External']"/>
-      </decorations>
-      <arrangeConstraints>KEEP_LOCATION</arrangeConstraints>
-      <arrangeConstraints>KEEP_SIZE</arrangeConstraints>
-      <arrangeConstraints>KEEP_RATIO</arrangeConstraints>
-      <ownedStyle xmi:type="diagram:FlatContainerStyle" uid="_P9VS2Y-YEe61Augx8Co9fg" borderSize="1" borderSizeComputationExpression="1" backgroundStyle="Liquid" foregroundColor="255,252,216">
-        <description xmi:type="style:FlatContainerStyleDescription" href="platform:/plugin/org.eclipse.emf.ecoretools.design/description/ecore.odesign#//@ownedViewpoints[name='Design']/@ownedRepresentations[name='Entities']/@defaultLayer/@containerMappings[name='EC%20EClass']/@style"/>
-      </ownedStyle>
-      <actualMapping xmi:type="description_1:ContainerMapping" href="platform:/plugin/org.eclipse.emf.ecoretools.design/description/ecore.odesign#//@ownedViewpoints[name='Design']/@ownedRepresentations[name='Entities']/@defaultLayer/@containerMappings[name='EC%20EClass']"/>
-      <ownedElements xmi:type="diagram:DNodeListElement" uid="_DwOcyY-YEe61Augx8Co9fg" name=" tourElements : TourElement" tooltipText="">
-        <target xmi:type="ecore:EReference" href="MATSimFreightMetamodel.ecore#//freightContrib/Tour/Tour/tourElements"/>
-        <semanticElements xmi:type="ecore:EReference" href="MATSimFreightMetamodel.ecore#//freightContrib/Tour/Tour/tourElements"/>
-        <ownedStyle xmi:type="diagram:BundledImage" uid="_NpTavI-YEe61Augx8Co9fg" labelAlignment="LEFT" description="_NpTauo-YEe61Augx8Co9fg" color="114,159,207">
-          <labelFormat>bold</labelFormat>
-        </ownedStyle>
-        <actualMapping xmi:type="description_1:NodeMapping" href="platform:/plugin/org.eclipse.emf.ecoretools.design/description/ecore.odesign#//@ownedViewpoints[name='Design']/@ownedRepresentations[name='Entities']/@defaultLayer/@containerMappings[name='EC%20EClass']/@subNodeMappings[name='EC%20EReferenceNode']"/>
-      </ownedElements>
-      <ownedElements xmi:type="diagram:DNodeListElement" uid="_JHTPJo-YEe61Augx8Co9fg" name=" start : Start" tooltipText="">
-        <target xmi:type="ecore:EReference" href="MATSimFreightMetamodel.ecore#//freightContrib/Tour/Tour/start"/>
-        <semanticElements xmi:type="ecore:EReference" href="MATSimFreightMetamodel.ecore#//freightContrib/Tour/Tour/start"/>
-        <ownedStyle xmi:type="diagram:BundledImage" uid="_O2XqyI-YEe61Augx8Co9fg" labelAlignment="LEFT" description="_NpTauo-YEe61Augx8Co9fg" color="114,159,207">
-          <labelFormat>bold</labelFormat>
-        </ownedStyle>
-        <actualMapping xmi:type="description_1:NodeMapping" href="platform:/plugin/org.eclipse.emf.ecoretools.design/description/ecore.odesign#//@ownedViewpoints[name='Design']/@ownedRepresentations[name='Entities']/@defaultLayer/@containerMappings[name='EC%20EClass']/@subNodeMappings[name='EC%20EReferenceNode']"/>
-      </ownedElements>
-      <ownedElements xmi:type="diagram:DNodeListElement" uid="_J8wQdI-YEe61Augx8Co9fg" name=" end : End" tooltipText="">
-        <target xmi:type="ecore:EReference" href="MATSimFreightMetamodel.ecore#//freightContrib/Tour/Tour/end"/>
-        <semanticElements xmi:type="ecore:EReference" href="MATSimFreightMetamodel.ecore#//freightContrib/Tour/Tour/end"/>
-        <ownedStyle xmi:type="diagram:BundledImage" uid="_OeCDU4-YEe61Augx8Co9fg" labelAlignment="LEFT" description="_NpTauo-YEe61Augx8Co9fg" color="114,159,207">
-          <labelFormat>bold</labelFormat>
-        </ownedStyle>
-        <actualMapping xmi:type="description_1:NodeMapping" href="platform:/plugin/org.eclipse.emf.ecoretools.design/description/ecore.odesign#//@ownedViewpoints[name='Design']/@ownedRepresentations[name='Entities']/@defaultLayer/@containerMappings[name='EC%20EClass']/@subNodeMappings[name='EC%20EReferenceNode']"/>
-      </ownedElements>
-    </ownedDiagramElements>
-    <ownedDiagramElements xmi:type="diagram:DEdge" uid="_HubCxo-WEe61Augx8Co9fg" name="[1..1] tour" sourceNode="_koXUQI-UEe61Augx8Co9fg" targetNode="_GOIUgI-WEe61Augx8Co9fg">
-      <target xmi:type="ecore:EReference" href="MATSimFreightMetamodel.ecore#//freightContrib/ScheduledTour/tour"/>
-      <semanticElements xmi:type="ecore:EReference" href="MATSimFreightMetamodel.ecore#//freightContrib/ScheduledTour/tour"/>
-      <ownedStyle xmi:type="diagram:EdgeStyle" uid="_IWtxvo-WEe61Augx8Co9fg" description="_PTJ00o-VEe61Augx8Co9fg" sourceArrow="FillDiamond" routingStyle="manhattan" strokeColor="0,0,0">
-        <centerLabelStyle xmi:type="diagram:CenterLabelStyle" uid="_IWtxwI-WEe61Augx8Co9fg" showIcon="false">
-          <labelFormat>bold</labelFormat>
-        </centerLabelStyle>
-        <endLabelStyle xmi:type="diagram:EndLabelStyle" uid="_IWtxv4-WEe61Augx8Co9fg" labelSize="6" showIcon="false" labelColor="39,76,114"/>
       </ownedStyle>
       <actualMapping xmi:type="description_1:EdgeMapping" href="platform:/plugin/org.eclipse.emf.ecoretools.design/description/ecore.odesign#//@ownedViewpoints[name='Design']/@ownedRepresentations[name='Entities']/@defaultLayer/@edgeMappings[name='EC_EReference']"/>
     </ownedDiagramElements>
@@ -1060,7 +950,7 @@
       </ownedStyle>
       <actualMapping xmi:type="description_1:EdgeMapping" href="platform:/plugin/org.eclipse.emf.ecoretools.design/description/ecore.odesign#//@ownedViewpoints[name='Design']/@ownedRepresentations[name='Entities']/@defaultLayer/@edgeMappings[name='EC_EReference']"/>
     </ownedDiagramElements>
-    <ownedDiagramElements xmi:type="diagram:DNodeList" uid="_tH0BQI-eEe61Augx8Co9fg" name="VehicleType" tooltipText="&#xA;ERROR : The default value literal 'Double.POSITIVE_INFINITY' must be a valid literal of the attribute's type&#xA;ERROR : The required feature 'eReferenceType' of 'EReference{platform:/resource/FreightTransportMetamodels/model/MATSimFreightMetamodel.ecore#//matsim/vehicles/VehicleType/vehicletype}' must be set&#xA;ERROR : The typed element must have a type&#xA;ERROR : The required feature 'eAttributeType' of 'EAttribute{platform:/resource/FreightTransportMetamodels/model/MATSimFreightMetamodel.ecore#//matsim/vehicles/VehicleType/endgineInformation}' must be set&#xA;ERROR : The typed element must have a type&#xA;ERROR : The required feature 'eAttributeType' of 'EAttribute{platform:/resource/FreightTransportMetamodels/model/MATSimFreightMetamodel.ecore#//matsim/vehicles/VehicleType/costInformation}' must be set&#xA;ERROR : The typed element must have a type" incomingEdges="_tH2dm4-eEe61Augx8Co9fg _tH2dqY-eEe61Augx8Co9fg" width="12" height="10">
+    <ownedDiagramElements xmi:type="diagram:DNodeList" uid="_tH0BQI-eEe61Augx8Co9fg" name="VehicleType" tooltipText="" incomingEdges="_tH2dm4-eEe61Augx8Co9fg" width="12" height="10">
       <target xmi:type="ecore:EClass" href="MATSimFreightMetamodel.ecore#//matsim/vehicles/VehicleType"/>
       <semanticElements xmi:type="ecore:EClass" href="MATSimFreightMetamodel.ecore#//matsim/vehicles/VehicleType"/>
       <decorations xmi:type="viewpoint:Decoration" uid="_tH0BQo-eEe61Augx8Co9fg">
@@ -1069,7 +959,9 @@
       <arrangeConstraints>KEEP_LOCATION</arrangeConstraints>
       <arrangeConstraints>KEEP_SIZE</arrangeConstraints>
       <arrangeConstraints>KEEP_RATIO</arrangeConstraints>
-      <ownedStyle xmi:type="diagram:FlatContainerStyle" uid="_mQy18ZApEe6ZyZaibAXz1g" labelColor="239,41,41" description="_4SGXKo-YEe61Augx8Co9fg" borderSize="1" borderSizeComputationExpression="1" borderColor="239,41,41" backgroundStyle="Liquid" foregroundColor="255,252,216"/>
+      <ownedStyle xmi:type="diagram:FlatContainerStyle" uid="_kC5cwd7SEe6GaNxSEC-DXA" borderSize="1" borderSizeComputationExpression="1" backgroundStyle="Liquid" foregroundColor="255,252,216">
+        <description xmi:type="style:FlatContainerStyleDescription" href="platform:/plugin/org.eclipse.emf.ecoretools.design/description/ecore.odesign#//@ownedViewpoints[name='Design']/@ownedRepresentations[name='Entities']/@defaultLayer/@containerMappings[name='EC%20EClass']/@style"/>
+      </ownedStyle>
       <actualMapping xmi:type="description_1:ContainerMapping" href="platform:/plugin/org.eclipse.emf.ecoretools.design/description/ecore.odesign#//@ownedViewpoints[name='Design']/@ownedRepresentations[name='Entities']/@defaultLayer/@containerMappings[name='EC%20EClass']"/>
       <ownedElements xmi:type="diagram:DNodeListElement" uid="_jHcfY5ApEe6ZyZaibAXz1g" name="width : Double = 1" tooltipText="">
         <target xmi:type="ecore:EAttribute" href="MATSimFreightMetamodel.ecore#//matsim/vehicles/VehicleType/width"/>
@@ -1079,10 +971,10 @@
         </ownedStyle>
         <actualMapping xmi:type="description_1:NodeMapping" href="platform:/plugin/org.eclipse.emf.ecoretools.design/description/ecore.odesign#//@ownedViewpoints[name='Design']/@ownedRepresentations[name='Entities']/@defaultLayer/@containerMappings[name='EC%20EClass']/@subNodeMappings[name='EC%20EAttribute']"/>
       </ownedElements>
-      <ownedElements xmi:type="diagram:DNodeListElement" uid="_mQ1SNJApEe6ZyZaibAXz1g" name="maxVelocity : Double = Double.POSITIVE_INFINITY" tooltipText="&#xA;ERROR : The default value literal 'Double.POSITIVE_INFINITY' must be a valid literal of the attribute's type">
+      <ownedElements xmi:type="diagram:DNodeListElement" uid="_mQ1SNJApEe6ZyZaibAXz1g" name="maxVelocity : Double = 9999" tooltipText="">
         <target xmi:type="ecore:EAttribute" href="MATSimFreightMetamodel.ecore#//matsim/vehicles/VehicleType/maxVelocity"/>
         <semanticElements xmi:type="ecore:EAttribute" href="MATSimFreightMetamodel.ecore#//matsim/vehicles/VehicleType/maxVelocity"/>
-        <ownedStyle xmi:type="diagram:BundledImage" uid="_wlCs85ApEe6ZyZaibAXz1g" labelColor="239,41,41" labelAlignment="LEFT" description="_5aC2s4-YEe61Augx8Co9fg" borderColor="239,41,41">
+        <ownedStyle xmi:type="diagram:BundledImage" uid="_kC-8Ut7SEe6GaNxSEC-DXA" labelAlignment="LEFT" description="_316HMY-UEe61Augx8Co9fg">
           <labelFormat>bold</labelFormat>
         </ownedStyle>
         <actualMapping xmi:type="description_1:NodeMapping" href="platform:/plugin/org.eclipse.emf.ecoretools.design/description/ecore.odesign#//@ownedViewpoints[name='Design']/@ownedRepresentations[name='Entities']/@defaultLayer/@containerMappings[name='EC%20EClass']/@subNodeMappings[name='EC%20EAttribute']"/>
@@ -1107,18 +999,6 @@
         <target xmi:type="ecore:EAttribute" href="MATSimFreightMetamodel.ecore#//matsim/vehicles/VehicleType/flowEfficiencyFactor"/>
         <semanticElements xmi:type="ecore:EAttribute" href="MATSimFreightMetamodel.ecore#//matsim/vehicles/VehicleType/flowEfficiencyFactor"/>
         <ownedStyle xmi:type="diagram:BundledImage" uid="_nakhc5ApEe6ZyZaibAXz1g" labelAlignment="LEFT" description="_316HMY-UEe61Augx8Co9fg">
-          <labelFormat>bold</labelFormat>
-        </ownedStyle>
-        <actualMapping xmi:type="description_1:NodeMapping" href="platform:/plugin/org.eclipse.emf.ecoretools.design/description/ecore.odesign#//@ownedViewpoints[name='Design']/@ownedRepresentations[name='Entities']/@defaultLayer/@containerMappings[name='EC%20EClass']/@subNodeMappings[name='EC%20EAttribute']"/>
-      </ownedElements>
-      <ownedElements xmi:type="diagram:DNodeListElement" uid="_6S7ul5ApEe6ZyZaibAXz1g" name="endgineInformation" tooltipText="&#xA;ERROR : The required feature 'eAttributeType' of 'EAttribute{platform:/resource/FreightTransportMetamodels/model/MATSimFreightMetamodel.ecore#//matsim/vehicles/VehicleType/endgineInformation}' must be set&#xA;ERROR : The typed element must have a type">
-        <ownedStyle xmi:type="diagram:BundledImage" uid="_7qmsMpApEe6ZyZaibAXz1g" labelColor="239,41,41" labelAlignment="LEFT" description="_5aC2s4-YEe61Augx8Co9fg" borderColor="239,41,41">
-          <labelFormat>bold</labelFormat>
-        </ownedStyle>
-        <actualMapping xmi:type="description_1:NodeMapping" href="platform:/plugin/org.eclipse.emf.ecoretools.design/description/ecore.odesign#//@ownedViewpoints[name='Design']/@ownedRepresentations[name='Entities']/@defaultLayer/@containerMappings[name='EC%20EClass']/@subNodeMappings[name='EC%20EAttribute']"/>
-      </ownedElements>
-      <ownedElements xmi:type="diagram:DNodeListElement" uid="_8MAwI5ApEe6ZyZaibAXz1g" name="costInformation" tooltipText="&#xA;ERROR : The required feature 'eAttributeType' of 'EAttribute{platform:/resource/FreightTransportMetamodels/model/MATSimFreightMetamodel.ecore#//matsim/vehicles/VehicleType/costInformation}' must be set&#xA;ERROR : The typed element must have a type">
-        <ownedStyle xmi:type="diagram:BundledImage" uid="_8MBXIJApEe6ZyZaibAXz1g" labelColor="239,41,41" labelAlignment="LEFT" description="_5aC2s4-YEe61Augx8Co9fg" borderColor="239,41,41">
           <labelFormat>bold</labelFormat>
         </ownedStyle>
         <actualMapping xmi:type="description_1:NodeMapping" href="platform:/plugin/org.eclipse.emf.ecoretools.design/description/ecore.odesign#//@ownedViewpoints[name='Design']/@ownedRepresentations[name='Entities']/@defaultLayer/@containerMappings[name='EC%20EClass']/@subNodeMappings[name='EC%20EAttribute']"/>
@@ -1158,12 +1038,50 @@
       </ownedStyle>
       <actualMapping xmi:type="description_1:EdgeMapping" href="platform:/plugin/org.eclipse.emf.ecoretools.design/description/ecore.odesign#//@ownedViewpoints[name='Design']/@ownedRepresentations[name='Entities']/@defaultLayer/@edgeMappings[name='EC_EReference']"/>
     </ownedDiagramElements>
-    <ownedDiagramElements xmi:type="diagram:DEdge" uid="_tH2dqY-eEe61Augx8Co9fg" name="[1..1] vehicleType" sourceNode="_aGgCkI-VEe61Augx8Co9fg" targetNode="_tH0BQI-eEe61Augx8Co9fg">
-      <ownedStyle xmi:type="diagram:EdgeStyle" uid="_tH2dqo-eEe61Augx8Co9fg" description="_C8YFUI-VEe61Augx8Co9fg" routingStyle="manhattan" strokeColor="0,0,0">
-        <centerLabelStyle xmi:type="diagram:CenterLabelStyle" uid="_tH2drI-eEe61Augx8Co9fg" showIcon="false">
+    <ownedDiagramElements xmi:type="diagram:DNodeList" uid="_l0mq8N7SEe6GaNxSEC-DXA" name="Tour" tooltipText="" incomingEdges="_l0yRJt7SEe6GaNxSEC-DXA" width="12" height="10">
+      <target xmi:type="ecore:EClass" href="MATSimFreightMetamodel.ecore#//freightContrib/tour/Tour"/>
+      <semanticElements xmi:type="ecore:EClass" href="MATSimFreightMetamodel.ecore#//freightContrib/tour/Tour"/>
+      <decorations xmi:type="viewpoint:Decoration" uid="_l0n5Ed7SEe6GaNxSEC-DXA">
+        <description xmi:type="description:SemanticBasedDecoration" href="platform:/plugin/org.eclipse.emf.ecoretools.design/description/ecore.odesign#//@ownedViewpoints[name='Design']/@ownedRepresentations[name='Entities']/@defaultLayer/@decorationDescriptionsSet/@decorationDescriptions[name='External']"/>
+      </decorations>
+      <arrangeConstraints>KEEP_LOCATION</arrangeConstraints>
+      <arrangeConstraints>KEEP_SIZE</arrangeConstraints>
+      <arrangeConstraints>KEEP_RATIO</arrangeConstraints>
+      <ownedStyle xmi:type="diagram:FlatContainerStyle" uid="_l0n5EN7SEe6GaNxSEC-DXA" borderSize="1" borderSizeComputationExpression="1" backgroundStyle="Liquid" foregroundColor="255,252,216">
+        <description xmi:type="style:FlatContainerStyleDescription" href="platform:/plugin/org.eclipse.emf.ecoretools.design/description/ecore.odesign#//@ownedViewpoints[name='Design']/@ownedRepresentations[name='Entities']/@defaultLayer/@containerMappings[name='EC%20EClass']/@style"/>
+      </ownedStyle>
+      <actualMapping xmi:type="description_1:ContainerMapping" href="platform:/plugin/org.eclipse.emf.ecoretools.design/description/ecore.odesign#//@ownedViewpoints[name='Design']/@ownedRepresentations[name='Entities']/@defaultLayer/@containerMappings[name='EC%20EClass']"/>
+      <ownedElements xmi:type="diagram:DNodeListElement" uid="_l0umyN7SEe6GaNxSEC-DXA" name=" tourElements : TourElement" tooltipText="">
+        <target xmi:type="ecore:EReference" href="MATSimFreightMetamodel.ecore#//freightContrib/tour/Tour/tourElements"/>
+        <semanticElements xmi:type="ecore:EReference" href="MATSimFreightMetamodel.ecore#//freightContrib/tour/Tour/tourElements"/>
+        <ownedStyle xmi:type="diagram:BundledImage" uid="_l0vN0N7SEe6GaNxSEC-DXA" labelAlignment="LEFT" description="_NpTauo-YEe61Augx8Co9fg" color="114,159,207">
           <labelFormat>bold</labelFormat>
-        </centerLabelStyle>
-        <endLabelStyle xmi:type="diagram:EndLabelStyle" uid="_tH2dq4-eEe61Augx8Co9fg" labelSize="6" showIcon="false" labelColor="39,76,114"/>
+        </ownedStyle>
+        <actualMapping xmi:type="description_1:NodeMapping" href="platform:/plugin/org.eclipse.emf.ecoretools.design/description/ecore.odesign#//@ownedViewpoints[name='Design']/@ownedRepresentations[name='Entities']/@defaultLayer/@containerMappings[name='EC%20EClass']/@subNodeMappings[name='EC%20EReferenceNode']"/>
+      </ownedElements>
+      <ownedElements xmi:type="diagram:DNodeListElement" uid="_l0vN0d7SEe6GaNxSEC-DXA" name=" start : Start" tooltipText="">
+        <target xmi:type="ecore:EReference" href="MATSimFreightMetamodel.ecore#//freightContrib/tour/Tour/start"/>
+        <semanticElements xmi:type="ecore:EReference" href="MATSimFreightMetamodel.ecore#//freightContrib/tour/Tour/start"/>
+        <ownedStyle xmi:type="diagram:BundledImage" uid="_l0vN0t7SEe6GaNxSEC-DXA" labelAlignment="LEFT" description="_NpTauo-YEe61Augx8Co9fg" color="114,159,207">
+          <labelFormat>bold</labelFormat>
+        </ownedStyle>
+        <actualMapping xmi:type="description_1:NodeMapping" href="platform:/plugin/org.eclipse.emf.ecoretools.design/description/ecore.odesign#//@ownedViewpoints[name='Design']/@ownedRepresentations[name='Entities']/@defaultLayer/@containerMappings[name='EC%20EClass']/@subNodeMappings[name='EC%20EReferenceNode']"/>
+      </ownedElements>
+      <ownedElements xmi:type="diagram:DNodeListElement" uid="_l0vN097SEe6GaNxSEC-DXA" name=" end : End" tooltipText="">
+        <target xmi:type="ecore:EReference" href="MATSimFreightMetamodel.ecore#//freightContrib/tour/Tour/end"/>
+        <semanticElements xmi:type="ecore:EReference" href="MATSimFreightMetamodel.ecore#//freightContrib/tour/Tour/end"/>
+        <ownedStyle xmi:type="diagram:BundledImage" uid="_l0vN1N7SEe6GaNxSEC-DXA" labelAlignment="LEFT" description="_NpTauo-YEe61Augx8Co9fg" color="114,159,207">
+          <labelFormat>bold</labelFormat>
+        </ownedStyle>
+        <actualMapping xmi:type="description_1:NodeMapping" href="platform:/plugin/org.eclipse.emf.ecoretools.design/description/ecore.odesign#//@ownedViewpoints[name='Design']/@ownedRepresentations[name='Entities']/@defaultLayer/@containerMappings[name='EC%20EClass']/@subNodeMappings[name='EC%20EReferenceNode']"/>
+      </ownedElements>
+    </ownedDiagramElements>
+    <ownedDiagramElements xmi:type="diagram:DEdge" uid="_l0yRJt7SEe6GaNxSEC-DXA" name="[1..1] tour" sourceNode="_koXUQI-UEe61Augx8Co9fg" targetNode="_l0mq8N7SEe6GaNxSEC-DXA">
+      <target xmi:type="ecore:EReference" href="MATSimFreightMetamodel.ecore#//freightContrib/ScheduledTour/tour"/>
+      <semanticElements xmi:type="ecore:EReference" href="MATSimFreightMetamodel.ecore#//freightContrib/ScheduledTour/tour"/>
+      <ownedStyle xmi:type="diagram:EdgeStyle" uid="_l0y4MN7SEe6GaNxSEC-DXA" description="_PTJ00o-VEe61Augx8Co9fg" sourceArrow="FillDiamond" routingStyle="manhattan" strokeColor="0,0,0">
+        <centerLabelStyle xmi:type="diagram:CenterLabelStyle" uid="_l0y4Mt7SEe6GaNxSEC-DXA" showIcon="false"/>
+        <endLabelStyle xmi:type="diagram:EndLabelStyle" uid="_l0y4Md7SEe6GaNxSEC-DXA" showIcon="false" labelColor="39,76,114"/>
       </ownedStyle>
       <actualMapping xmi:type="description_1:EdgeMapping" href="platform:/plugin/org.eclipse.emf.ecoretools.design/description/ecore.odesign#//@ownedViewpoints[name='Design']/@ownedRepresentations[name='Entities']/@defaultLayer/@edgeMappings[name='EC_EReference']"/>
     </ownedDiagramElements>
@@ -6974,9 +6892,9 @@
               <styles xmi:type="notation:FontStyle" xmi:id="_PV1Vcc_4Ee6RTuvsI5b97w" fontName=".AppleSystemUIFont" fontHeight="8"/>
               <layoutConstraint xmi:type="notation:Location" xmi:id="_PV1Vcs_4Ee6RTuvsI5b97w"/>
             </children>
-            <children xmi:type="notation:Node" xmi:id="_WFVTU8_4Ee6RTuvsI5b97w" type="3010" element="_WFMwf8_4Ee6RTuvsI5b97w">
-              <styles xmi:type="notation:FontStyle" xmi:id="_WFVTVM_4Ee6RTuvsI5b97w" fontName=".AppleSystemUIFont" fontHeight="8"/>
-              <layoutConstraint xmi:type="notation:Location" xmi:id="_WFVTVc_4Ee6RTuvsI5b97w"/>
+            <children xmi:type="notation:Node" xmi:id="_wTy8wN7JEe6GaNxSEC-DXA" type="3010" element="_wTxHkd7JEe6GaNxSEC-DXA">
+              <styles xmi:type="notation:FontStyle" xmi:id="_wTy8wd7JEe6GaNxSEC-DXA" fontName=".AppleSystemUIFont" fontHeight="8" bold="true"/>
+              <layoutConstraint xmi:type="notation:Location" xmi:id="_wTy8wt7JEe6GaNxSEC-DXA"/>
             </children>
             <children xmi:type="notation:Node" xmi:id="_Xi8g0M_4Ee6RTuvsI5b97w" type="3010" element="_Xiw6pM_4Ee6RTuvsI5b97w">
               <styles xmi:type="notation:FontStyle" xmi:id="_Xi8g0c_4Ee6RTuvsI5b97w" fontName=".AppleSystemUIFont" fontHeight="8"/>
@@ -7351,10 +7269,10 @@
         </ownedStyle>
         <actualMapping xmi:type="description_1:NodeMapping" href="platform:/plugin/org.eclipse.emf.ecoretools.design/description/ecore.odesign#//@ownedViewpoints[name='Design']/@ownedRepresentations[name='Entities']/@defaultLayer/@containerMappings[name='EC%20EClass']/@subNodeMappings[name='EC%20EReferenceNode']"/>
       </ownedElements>
-      <ownedElements xmi:type="diagram:DNodeListElement" uid="_WFMwf8_4Ee6RTuvsI5b97w" name=" vehicelTypes : VehicleTypes" tooltipText="">
-        <target xmi:type="ecore:EReference" href="MATSimFreightMetamodel.ecore#//DataExchangeRoot/vehicelTypes"/>
-        <semanticElements xmi:type="ecore:EReference" href="MATSimFreightMetamodel.ecore#//DataExchangeRoot/vehicelTypes"/>
-        <ownedStyle xmi:type="diagram:BundledImage" uid="_Wg3Ywc_4Ee6RTuvsI5b97w" labelAlignment="LEFT" description="_BR7KoZqWEe6Xg8gl-iWaGQ" color="114,159,207">
+      <ownedElements xmi:type="diagram:DNodeListElement" uid="_wTxHkd7JEe6GaNxSEC-DXA" name=" vehicleTypes : VehicleTypes" tooltipText="">
+        <target xmi:type="ecore:EReference" href="MATSimFreightMetamodel.ecore#//DataExchangeRoot/vehicleTypes"/>
+        <semanticElements xmi:type="ecore:EReference" href="MATSimFreightMetamodel.ecore#//DataExchangeRoot/vehicleTypes"/>
+        <ownedStyle xmi:type="diagram:BundledImage" uid="_wTxHkt7JEe6GaNxSEC-DXA" labelAlignment="LEFT" description="_BR7KoZqWEe6Xg8gl-iWaGQ" color="114,159,207">
           <labelFormat>bold</labelFormat>
         </ownedStyle>
         <actualMapping xmi:type="description_1:NodeMapping" href="platform:/plugin/org.eclipse.emf.ecoretools.design/description/ecore.odesign#//@ownedViewpoints[name='Design']/@ownedRepresentations[name='Entities']/@defaultLayer/@containerMappings[name='EC%20EClass']/@subNodeMappings[name='EC%20EReferenceNode']"/>
@@ -7430,6 +7348,10 @@
               <styles xmi:type="notation:FontStyle" xmi:id="_oY9DNNSvEe6emqdROVEQUw" fontName=".AppleSystemUIFont" fontHeight="8" bold="true"/>
               <layoutConstraint xmi:type="notation:Location" xmi:id="_oY9DNdSvEe6emqdROVEQUw"/>
             </children>
+            <children xmi:type="notation:Node" xmi:id="_tT42EN7JEe6GaNxSEC-DXA" type="3010" element="_tTxhU97JEe6GaNxSEC-DXA">
+              <styles xmi:type="notation:FontStyle" xmi:id="_tT42Ed7JEe6GaNxSEC-DXA" fontName=".AppleSystemUIFont" fontHeight="8" bold="true"/>
+              <layoutConstraint xmi:type="notation:Location" xmi:id="_tT42Et7JEe6GaNxSEC-DXA"/>
+            </children>
             <styles xmi:type="notation:SortingStyle" xmi:id="_oY3jrNSvEe6emqdROVEQUw"/>
             <styles xmi:type="notation:FilteringStyle" xmi:id="_oY3jrdSvEe6emqdROVEQUw"/>
           </children>
@@ -7480,6 +7402,10 @@
             <children xmi:type="notation:Node" xmi:id="_oY9DRdSvEe6emqdROVEQUw" type="3010" element="_oYzSOtSvEe6emqdROVEQUw">
               <styles xmi:type="notation:FontStyle" xmi:id="_oY9DRtSvEe6emqdROVEQUw" fontName=".AppleSystemUIFont" fontHeight="8" bold="true"/>
               <layoutConstraint xmi:type="notation:Location" xmi:id="_oY9DR9SvEe6emqdROVEQUw"/>
+            </children>
+            <children xmi:type="notation:Node" xmi:id="_tT6EMN7JEe6GaNxSEC-DXA" type="3010" element="_tT1LtN7JEe6GaNxSEC-DXA">
+              <styles xmi:type="notation:FontStyle" xmi:id="_tT6EMd7JEe6GaNxSEC-DXA" fontName=".AppleSystemUIFont" fontHeight="8" bold="true"/>
+              <layoutConstraint xmi:type="notation:Location" xmi:id="_tT6EMt7JEe6GaNxSEC-DXA"/>
             </children>
             <styles xmi:type="notation:SortingStyle" xmi:id="_oY3jwdSvEe6emqdROVEQUw"/>
             <styles xmi:type="notation:FilteringStyle" xmi:id="_oY3jwtSvEe6emqdROVEQUw"/>
@@ -7644,45 +7570,10 @@
           <labelColor xmi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='black']"/>
           <color xmi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='blue']"/>
         </computedStyleDescriptions>
-        <computedStyleDescriptions xmi:type="style:EdgeStyleDescription" xmi:id="_SNSVAJqVEe6Xg8gl-iWaGQ" sourceArrow="FillDiamond" routingStyle="manhattan">
-          <strokeColor xmi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='black']"/>
-          <centerLabelStyleDescription xmi:type="style:CenterLabelStyleDescription" xmi:id="_SNSVAZqVEe6Xg8gl-iWaGQ" showIcon="false" labelExpression="service:render">
-            <labelColor xmi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='black']"/>
-          </centerLabelStyleDescription>
-          <endLabelStyleDescription xmi:type="style:EndLabelStyleDescription" xmi:id="_SNSVApqVEe6Xg8gl-iWaGQ" labelSize="6" showIcon="false" labelExpression="service:eKeysLabel">
-            <labelColor xmi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='dark_blue']"/>
-          </endLabelStyleDescription>
-        </computedStyleDescriptions>
-        <computedStyleDescriptions xmi:type="style:EdgeStyleDescription" xmi:id="_SNSVCpqVEe6Xg8gl-iWaGQ" routingStyle="manhattan">
-          <strokeColor xmi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='black']"/>
-          <centerLabelStyleDescription xmi:type="style:CenterLabelStyleDescription" xmi:id="_SNSVC5qVEe6Xg8gl-iWaGQ" showIcon="false" labelExpression="service:render">
-            <labelFormat>bold</labelFormat>
-            <labelColor xmi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='black']"/>
-          </centerLabelStyleDescription>
-          <endLabelStyleDescription xmi:type="style:EndLabelStyleDescription" xmi:id="_SNSVDJqVEe6Xg8gl-iWaGQ" labelSize="6" showIcon="false" labelExpression="service:eKeysLabel">
-            <labelColor xmi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='dark_blue']"/>
-          </endLabelStyleDescription>
-        </computedStyleDescriptions>
         <computedStyleDescriptions xmi:type="style:BundledImageDescription" xmi:id="_UMyHlZqVEe6Xg8gl-iWaGQ" labelExpression="service:render" labelAlignment="LEFT" tooltipExpression="service:renderTooltip" sizeComputationExpression="1">
           <borderColor xmi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='black']"/>
           <labelFormat>bold</labelFormat>
           <labelColor xmi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='black']"/>
-          <color xmi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='black']"/>
-        </computedStyleDescriptions>
-        <computedStyleDescriptions xmi:type="style:EdgeStyleDescription" xmi:id="_aujyk5qVEe6Xg8gl-iWaGQ" sourceArrow="FillDiamond" routingStyle="manhattan">
-          <strokeColor xmi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='black']"/>
-          <centerLabelStyleDescription xmi:type="style:CenterLabelStyleDescription" xmi:id="_aujylJqVEe6Xg8gl-iWaGQ" showIcon="false" labelExpression="service:render">
-            <labelFormat>bold</labelFormat>
-            <labelColor xmi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='black']"/>
-          </centerLabelStyleDescription>
-          <endLabelStyleDescription xmi:type="style:EndLabelStyleDescription" xmi:id="_aujylZqVEe6Xg8gl-iWaGQ" labelSize="6" showIcon="false" labelExpression="service:eKeysLabel">
-            <labelColor xmi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='dark_blue']"/>
-          </endLabelStyleDescription>
-        </computedStyleDescriptions>
-        <computedStyleDescriptions xmi:type="style:BundledImageDescription" xmi:id="_cCNLs5qVEe6Xg8gl-iWaGQ" labelExpression="service:renderAsNode" labelAlignment="LEFT" tooltipExpression="service:renderTooltip" sizeComputationExpression="1">
-          <borderColor xmi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='black']"/>
-          <labelFormat>bold</labelFormat>
-          <labelColor xmi:type="description:UserFixedColor" href="platform:/plugin/org.eclipse.emf.ecoretools.design/description/ecore.odesign#//@userColorsPalettes[name='Ecore%20Palette']/@entries[name='Inherited']"/>
           <color xmi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='black']"/>
         </computedStyleDescriptions>
       </data>
@@ -7755,6 +7646,14 @@
           <labelFormat>bold</labelFormat>
         </ownedStyle>
         <actualMapping xmi:type="description_1:NodeMapping" href="platform:/plugin/org.eclipse.emf.ecoretools.design/description/ecore.odesign#//@ownedViewpoints[name='Design']/@ownedRepresentations[name='Entities']/@defaultLayer/@containerMappings[name='EC%20EClass']/@subNodeMappings[name='EC%20EAttribute']"/>
+      </ownedElements>
+      <ownedElements xmi:type="diagram:DNodeListElement" uid="_tTxhU97JEe6GaNxSEC-DXA" name=" service : CarrierService" tooltipText="">
+        <target xmi:type="ecore:EReference" href="MATSimFreightMetamodel.ecore#//freightContrib/tour/ServiceActivity/service"/>
+        <semanticElements xmi:type="ecore:EReference" href="MATSimFreightMetamodel.ecore#//freightContrib/tour/ServiceActivity/service"/>
+        <ownedStyle xmi:type="diagram:BundledImage" uid="_tTz9kN7JEe6GaNxSEC-DXA" labelAlignment="LEFT" description="_R5PXopqVEe6Xg8gl-iWaGQ" color="114,159,207">
+          <labelFormat>bold</labelFormat>
+        </ownedStyle>
+        <actualMapping xmi:type="description_1:NodeMapping" href="platform:/plugin/org.eclipse.emf.ecoretools.design/description/ecore.odesign#//@ownedViewpoints[name='Design']/@ownedRepresentations[name='Entities']/@defaultLayer/@containerMappings[name='EC%20EClass']/@subNodeMappings[name='EC%20EReferenceNode']"/>
       </ownedElements>
     </ownedDiagramElements>
     <ownedDiagramElements xmi:type="diagram:DNodeList" uid="_oYtypdSvEe6emqdROVEQUw" name="Start" tooltipText="" outgoingEdges="_oY1uiNSvEe6emqdROVEQUw" width="12" height="10">
@@ -7840,6 +7739,14 @@
           <labelFormat>bold</labelFormat>
         </ownedStyle>
         <actualMapping xmi:type="description_1:NodeMapping" href="platform:/plugin/org.eclipse.emf.ecoretools.design/description/ecore.odesign#//@ownedViewpoints[name='Design']/@ownedRepresentations[name='Entities']/@defaultLayer/@containerMappings[name='EC%20EClass']/@subNodeMappings[name='EC%20EAttribute']"/>
+      </ownedElements>
+      <ownedElements xmi:type="diagram:DNodeListElement" uid="_tT1LtN7JEe6GaNxSEC-DXA" name=" shipment : CarrierShipment" tooltipText="">
+        <target xmi:type="ecore:EReference" href="MATSimFreightMetamodel.ecore#//freightContrib/tour/ShipmentBasedActivity/shipment"/>
+        <semanticElements xmi:type="ecore:EReference" href="MATSimFreightMetamodel.ecore#//freightContrib/tour/ShipmentBasedActivity/shipment"/>
+        <ownedStyle xmi:type="diagram:BundledImage" uid="_tT1ywN7JEe6GaNxSEC-DXA" labelAlignment="LEFT" description="_R5PXopqVEe6Xg8gl-iWaGQ" color="114,159,207">
+          <labelFormat>bold</labelFormat>
+        </ownedStyle>
+        <actualMapping xmi:type="description_1:NodeMapping" href="platform:/plugin/org.eclipse.emf.ecoretools.design/description/ecore.odesign#//@ownedViewpoints[name='Design']/@ownedRepresentations[name='Entities']/@defaultLayer/@containerMappings[name='EC%20EClass']/@subNodeMappings[name='EC%20EReferenceNode']"/>
       </ownedElements>
     </ownedDiagramElements>
     <ownedDiagramElements xmi:type="diagram:DNodeList" uid="_oYuZtNSvEe6emqdROVEQUw" name="Pickup" tooltipText="" outgoingEdges="_oY2VkNSvEe6emqdROVEQUw" width="12" height="10">
@@ -8014,324 +7921,7 @@
           <styles xmi:type="notation:ShapeStyle" xmi:id="_eJqjQZqcEe6Xg8gl-iWaGQ" fontName=".AppleSystemUIFont" fontHeight="8" italic="true"/>
           <layoutConstraint xmi:type="notation:Bounds" xmi:id="_eJqjQpqcEe6Xg8gl-iWaGQ" x="812" y="-176"/>
         </children>
-        <children xmi:type="notation:Node" xmi:id="_gWMFMJqcEe6Xg8gl-iWaGQ" type="2003" element="_gWHMsJqcEe6Xg8gl-iWaGQ">
-          <children xmi:type="notation:Node" xmi:id="_gWMFM5qcEe6Xg8gl-iWaGQ" type="5007"/>
-          <children xmi:type="notation:Node" xmi:id="_gWMFNJqcEe6Xg8gl-iWaGQ" type="7004">
-            <children xmi:type="notation:Node" xmi:id="_gWMsRJqcEe6Xg8gl-iWaGQ" type="3010" element="_gWJpBZqcEe6Xg8gl-iWaGQ">
-              <styles xmi:type="notation:FontStyle" xmi:id="_gWMsRZqcEe6Xg8gl-iWaGQ" fontName=".AppleSystemUIFont" fontHeight="8" bold="true"/>
-              <layoutConstraint xmi:type="notation:Location" xmi:id="_gWMsRpqcEe6Xg8gl-iWaGQ"/>
-            </children>
-            <children xmi:type="notation:Node" xmi:id="_gWMsR5qcEe6Xg8gl-iWaGQ" type="3010" element="_gWKQAJqcEe6Xg8gl-iWaGQ">
-              <styles xmi:type="notation:FontStyle" xmi:id="_gWMsSJqcEe6Xg8gl-iWaGQ" fontName=".AppleSystemUIFont" fontHeight="8" bold="true"/>
-              <layoutConstraint xmi:type="notation:Location" xmi:id="_gWMsSZqcEe6Xg8gl-iWaGQ"/>
-            </children>
-            <children xmi:type="notation:Node" xmi:id="_gWMsSpqcEe6Xg8gl-iWaGQ" type="3010" element="_gWKQApqcEe6Xg8gl-iWaGQ">
-              <styles xmi:type="notation:FontStyle" xmi:id="_gWMsS5qcEe6Xg8gl-iWaGQ" fontName=".AppleSystemUIFont" fontHeight="8" bold="true"/>
-              <layoutConstraint xmi:type="notation:Location" xmi:id="_gWMsTJqcEe6Xg8gl-iWaGQ"/>
-            </children>
-            <styles xmi:type="notation:SortingStyle" xmi:id="_gWMFNZqcEe6Xg8gl-iWaGQ"/>
-            <styles xmi:type="notation:FilteringStyle" xmi:id="_gWMFNpqcEe6Xg8gl-iWaGQ"/>
-          </children>
-          <styles xmi:type="notation:ShapeStyle" xmi:id="_gWMFMZqcEe6Xg8gl-iWaGQ" fontName=".AppleSystemUIFont" fontHeight="8" italic="true"/>
-          <layoutConstraint xmi:type="notation:Bounds" xmi:id="_gWMFMpqcEe6Xg8gl-iWaGQ" x="792"/>
-        </children>
-        <children xmi:type="notation:Node" xmi:id="_gWMFN5qcEe6Xg8gl-iWaGQ" type="2003" element="_gWHzw5qcEe6Xg8gl-iWaGQ">
-          <children xmi:type="notation:Node" xmi:id="_gWMFOpqcEe6Xg8gl-iWaGQ" type="5007"/>
-          <children xmi:type="notation:Node" xmi:id="_gWMFO5qcEe6Xg8gl-iWaGQ" type="7004">
-            <children xmi:type="notation:Node" xmi:id="_gWMsTZqcEe6Xg8gl-iWaGQ" type="3010" element="_gWKQBJqcEe6Xg8gl-iWaGQ">
-              <styles xmi:type="notation:FontStyle" xmi:id="_gWMsTpqcEe6Xg8gl-iWaGQ" fontName=".AppleSystemUIFont" fontHeight="8" bold="true"/>
-              <layoutConstraint xmi:type="notation:Location" xmi:id="_gWMsT5qcEe6Xg8gl-iWaGQ"/>
-            </children>
-            <children xmi:type="notation:Node" xmi:id="_gWMsUJqcEe6Xg8gl-iWaGQ" type="3010" element="_gWKQBpqcEe6Xg8gl-iWaGQ">
-              <styles xmi:type="notation:FontStyle" xmi:id="_gWMsUZqcEe6Xg8gl-iWaGQ" fontName=".AppleSystemUIFont" fontHeight="8" bold="true"/>
-              <layoutConstraint xmi:type="notation:Location" xmi:id="_gWMsUpqcEe6Xg8gl-iWaGQ"/>
-            </children>
-            <children xmi:type="notation:Node" xmi:id="_gWMsU5qcEe6Xg8gl-iWaGQ" type="3010" element="_gWKQCJqcEe6Xg8gl-iWaGQ">
-              <styles xmi:type="notation:FontStyle" xmi:id="_gWMsVJqcEe6Xg8gl-iWaGQ" fontName=".AppleSystemUIFont" fontHeight="8" bold="true"/>
-              <layoutConstraint xmi:type="notation:Location" xmi:id="_gWMsVZqcEe6Xg8gl-iWaGQ"/>
-            </children>
-            <styles xmi:type="notation:SortingStyle" xmi:id="_gWMFPJqcEe6Xg8gl-iWaGQ"/>
-            <styles xmi:type="notation:FilteringStyle" xmi:id="_gWMFPZqcEe6Xg8gl-iWaGQ"/>
-          </children>
-          <styles xmi:type="notation:ShapeStyle" xmi:id="_gWMFOJqcEe6Xg8gl-iWaGQ" fontName=".AppleSystemUIFont" fontHeight="8"/>
-          <layoutConstraint xmi:type="notation:Bounds" xmi:id="_gWMFOZqcEe6Xg8gl-iWaGQ" x="929" y="160"/>
-        </children>
-        <children xmi:type="notation:Node" xmi:id="_gWMFPpqcEe6Xg8gl-iWaGQ" type="2003" element="_gWHzx5qcEe6Xg8gl-iWaGQ">
-          <children xmi:type="notation:Node" xmi:id="_gWMFQZqcEe6Xg8gl-iWaGQ" type="5007"/>
-          <children xmi:type="notation:Node" xmi:id="_gWMFQpqcEe6Xg8gl-iWaGQ" type="7004">
-            <children xmi:type="notation:Node" xmi:id="_gWMsVpqcEe6Xg8gl-iWaGQ" type="3010" element="_gWKQCpqcEe6Xg8gl-iWaGQ">
-              <styles xmi:type="notation:FontStyle" xmi:id="_gWMsV5qcEe6Xg8gl-iWaGQ" fontName=".AppleSystemUIFont" fontHeight="8" bold="true"/>
-              <layoutConstraint xmi:type="notation:Location" xmi:id="_gWMsWJqcEe6Xg8gl-iWaGQ"/>
-            </children>
-            <children xmi:type="notation:Node" xmi:id="_gWMsWZqcEe6Xg8gl-iWaGQ" type="3010" element="_gWKQDJqcEe6Xg8gl-iWaGQ">
-              <styles xmi:type="notation:FontStyle" xmi:id="_gWMsWpqcEe6Xg8gl-iWaGQ" fontName=".AppleSystemUIFont" fontHeight="8" bold="true"/>
-              <layoutConstraint xmi:type="notation:Location" xmi:id="_gWMsW5qcEe6Xg8gl-iWaGQ"/>
-            </children>
-            <children xmi:type="notation:Node" xmi:id="_gWMsXJqcEe6Xg8gl-iWaGQ" type="3010" element="_gWKQDpqcEe6Xg8gl-iWaGQ">
-              <styles xmi:type="notation:FontStyle" xmi:id="_gWMsXZqcEe6Xg8gl-iWaGQ" fontName=".AppleSystemUIFont" fontHeight="8" bold="true"/>
-              <layoutConstraint xmi:type="notation:Location" xmi:id="_gWMsXpqcEe6Xg8gl-iWaGQ"/>
-            </children>
-            <styles xmi:type="notation:SortingStyle" xmi:id="_gWMFQ5qcEe6Xg8gl-iWaGQ"/>
-            <styles xmi:type="notation:FilteringStyle" xmi:id="_gWMFRJqcEe6Xg8gl-iWaGQ"/>
-          </children>
-          <styles xmi:type="notation:ShapeStyle" xmi:id="_gWMFP5qcEe6Xg8gl-iWaGQ" fontName=".AppleSystemUIFont" fontHeight="8"/>
-          <layoutConstraint xmi:type="notation:Bounds" xmi:id="_gWMFQJqcEe6Xg8gl-iWaGQ" x="1117" y="160"/>
-        </children>
-        <children xmi:type="notation:Node" xmi:id="_gWMFRZqcEe6Xg8gl-iWaGQ" type="2003" element="_gWIa0JqcEe6Xg8gl-iWaGQ">
-          <children xmi:type="notation:Node" xmi:id="_gWMFSJqcEe6Xg8gl-iWaGQ" type="5007"/>
-          <children xmi:type="notation:Node" xmi:id="_gWMFSZqcEe6Xg8gl-iWaGQ" type="7004">
-            <children xmi:type="notation:Node" xmi:id="_gWMsX5qcEe6Xg8gl-iWaGQ" type="3010" element="_gWKQEJqcEe6Xg8gl-iWaGQ">
-              <styles xmi:type="notation:FontStyle" xmi:id="_gWMsYJqcEe6Xg8gl-iWaGQ" fontName=".AppleSystemUIFont" fontHeight="8" bold="true"/>
-              <layoutConstraint xmi:type="notation:Location" xmi:id="_gWMsYZqcEe6Xg8gl-iWaGQ"/>
-            </children>
-            <children xmi:type="notation:Node" xmi:id="_gWMsYpqcEe6Xg8gl-iWaGQ" type="3010" element="_gWKQEpqcEe6Xg8gl-iWaGQ">
-              <styles xmi:type="notation:FontStyle" xmi:id="_gWMsY5qcEe6Xg8gl-iWaGQ" fontName=".AppleSystemUIFont" fontHeight="8" bold="true"/>
-              <layoutConstraint xmi:type="notation:Location" xmi:id="_gWMsZJqcEe6Xg8gl-iWaGQ"/>
-            </children>
-            <children xmi:type="notation:Node" xmi:id="_gWMsZZqcEe6Xg8gl-iWaGQ" type="3010" element="_gWKQFJqcEe6Xg8gl-iWaGQ">
-              <styles xmi:type="notation:FontStyle" xmi:id="_gWMsZpqcEe6Xg8gl-iWaGQ" fontName=".AppleSystemUIFont" fontHeight="8" bold="true"/>
-              <layoutConstraint xmi:type="notation:Location" xmi:id="_gWMsZ5qcEe6Xg8gl-iWaGQ"/>
-            </children>
-            <styles xmi:type="notation:SortingStyle" xmi:id="_gWMFSpqcEe6Xg8gl-iWaGQ"/>
-            <styles xmi:type="notation:FilteringStyle" xmi:id="_gWMFS5qcEe6Xg8gl-iWaGQ"/>
-          </children>
-          <styles xmi:type="notation:ShapeStyle" xmi:id="_gWMFRpqcEe6Xg8gl-iWaGQ" fontName=".AppleSystemUIFont" fontHeight="8"/>
-          <layoutConstraint xmi:type="notation:Bounds" xmi:id="_gWMFR5qcEe6Xg8gl-iWaGQ" x="136" y="160"/>
-        </children>
-        <children xmi:type="notation:Node" xmi:id="_gWMFTJqcEe6Xg8gl-iWaGQ" type="2003" element="_gWIa1JqcEe6Xg8gl-iWaGQ">
-          <children xmi:type="notation:Node" xmi:id="_gWMFT5qcEe6Xg8gl-iWaGQ" type="5007"/>
-          <children xmi:type="notation:Node" xmi:id="_gWMFUJqcEe6Xg8gl-iWaGQ" type="7004">
-            <children xmi:type="notation:Node" xmi:id="_gWMsaJqcEe6Xg8gl-iWaGQ" type="3010" element="_gWKQFpqcEe6Xg8gl-iWaGQ">
-              <styles xmi:type="notation:FontStyle" xmi:id="_gWMsaZqcEe6Xg8gl-iWaGQ" fontName=".AppleSystemUIFont" fontHeight="8" bold="true"/>
-              <layoutConstraint xmi:type="notation:Location" xmi:id="_gWMsapqcEe6Xg8gl-iWaGQ"/>
-            </children>
-            <children xmi:type="notation:Node" xmi:id="_gWMsa5qcEe6Xg8gl-iWaGQ" type="3010" element="_gWK3EZqcEe6Xg8gl-iWaGQ">
-              <styles xmi:type="notation:FontStyle" xmi:id="_gWMsbJqcEe6Xg8gl-iWaGQ" fontName=".AppleSystemUIFont" fontHeight="8" bold="true"/>
-              <layoutConstraint xmi:type="notation:Location" xmi:id="_gWMsbZqcEe6Xg8gl-iWaGQ"/>
-            </children>
-            <children xmi:type="notation:Node" xmi:id="_gWMsbpqcEe6Xg8gl-iWaGQ" type="3010" element="_gWK3E5qcEe6Xg8gl-iWaGQ">
-              <styles xmi:type="notation:FontStyle" xmi:id="_gWMsb5qcEe6Xg8gl-iWaGQ" fontName=".AppleSystemUIFont" fontHeight="8" bold="true"/>
-              <layoutConstraint xmi:type="notation:Location" xmi:id="_gWMscJqcEe6Xg8gl-iWaGQ"/>
-            </children>
-            <styles xmi:type="notation:SortingStyle" xmi:id="_gWMFUZqcEe6Xg8gl-iWaGQ"/>
-            <styles xmi:type="notation:FilteringStyle" xmi:id="_gWMFUpqcEe6Xg8gl-iWaGQ"/>
-          </children>
-          <styles xmi:type="notation:ShapeStyle" xmi:id="_gWMFTZqcEe6Xg8gl-iWaGQ" fontName=".AppleSystemUIFont" fontHeight="8"/>
-          <layoutConstraint xmi:type="notation:Bounds" xmi:id="_gWMFTpqcEe6Xg8gl-iWaGQ" x="304" y="160"/>
-        </children>
-        <children xmi:type="notation:Node" xmi:id="_gWMFU5qcEe6Xg8gl-iWaGQ" type="2003" element="_gWIa2JqcEe6Xg8gl-iWaGQ">
-          <children xmi:type="notation:Node" xmi:id="_gWMFVpqcEe6Xg8gl-iWaGQ" type="5007"/>
-          <children xmi:type="notation:Node" xmi:id="_gWMFV5qcEe6Xg8gl-iWaGQ" type="7004">
-            <children xmi:type="notation:Node" xmi:id="_gWMscZqcEe6Xg8gl-iWaGQ" type="3010" element="_gWK3FZqcEe6Xg8gl-iWaGQ">
-              <styles xmi:type="notation:FontStyle" xmi:id="_gWMscpqcEe6Xg8gl-iWaGQ" fontName=".AppleSystemUIFont" fontHeight="8" bold="true"/>
-              <layoutConstraint xmi:type="notation:Location" xmi:id="_gWMsc5qcEe6Xg8gl-iWaGQ"/>
-            </children>
-            <styles xmi:type="notation:SortingStyle" xmi:id="_gWMFWJqcEe6Xg8gl-iWaGQ"/>
-            <styles xmi:type="notation:FilteringStyle" xmi:id="_gWMFWZqcEe6Xg8gl-iWaGQ"/>
-          </children>
-          <styles xmi:type="notation:ShapeStyle" xmi:id="_gWMFVJqcEe6Xg8gl-iWaGQ" fontName=".AppleSystemUIFont" fontHeight="8"/>
-          <layoutConstraint xmi:type="notation:Bounds" xmi:id="_gWMFVZqcEe6Xg8gl-iWaGQ" x="1316" y="160"/>
-        </children>
-        <children xmi:type="notation:Node" xmi:id="_gWMFWpqcEe6Xg8gl-iWaGQ" type="2003" element="_gWIa3JqcEe6Xg8gl-iWaGQ">
-          <children xmi:type="notation:Node" xmi:id="_gWMFXZqcEe6Xg8gl-iWaGQ" type="5007"/>
-          <children xmi:type="notation:Node" xmi:id="_gWMFXpqcEe6Xg8gl-iWaGQ" type="7004">
-            <children xmi:type="notation:Node" xmi:id="_gWMsdJqcEe6Xg8gl-iWaGQ" type="3010" element="_gWK3F5qcEe6Xg8gl-iWaGQ">
-              <styles xmi:type="notation:FontStyle" xmi:id="_gWMsdZqcEe6Xg8gl-iWaGQ" fontName=".AppleSystemUIFont" fontHeight="8" bold="true"/>
-              <layoutConstraint xmi:type="notation:Location" xmi:id="_gWMsdpqcEe6Xg8gl-iWaGQ"/>
-            </children>
-            <styles xmi:type="notation:SortingStyle" xmi:id="_gWMFX5qcEe6Xg8gl-iWaGQ"/>
-            <styles xmi:type="notation:FilteringStyle" xmi:id="_gWMFYJqcEe6Xg8gl-iWaGQ"/>
-          </children>
-          <styles xmi:type="notation:ShapeStyle" xmi:id="_gWMFW5qcEe6Xg8gl-iWaGQ" fontName=".AppleSystemUIFont" fontHeight="8"/>
-          <layoutConstraint xmi:type="notation:Bounds" xmi:id="_gWMFXJqcEe6Xg8gl-iWaGQ" x="1440" y="160"/>
-        </children>
-        <children xmi:type="notation:Node" xmi:id="_gWMFYZqcEe6Xg8gl-iWaGQ" type="2003" element="_gWIa4JqcEe6Xg8gl-iWaGQ">
-          <children xmi:type="notation:Node" xmi:id="_gWMFZJqcEe6Xg8gl-iWaGQ" type="5007"/>
-          <children xmi:type="notation:Node" xmi:id="_gWMFZZqcEe6Xg8gl-iWaGQ" type="7004">
-            <children xmi:type="notation:Node" xmi:id="_gWMsd5qcEe6Xg8gl-iWaGQ" type="3010" element="_gWK3GZqcEe6Xg8gl-iWaGQ">
-              <styles xmi:type="notation:FontStyle" xmi:id="_gWMseJqcEe6Xg8gl-iWaGQ" fontName=".AppleSystemUIFont" fontHeight="8" bold="true"/>
-              <layoutConstraint xmi:type="notation:Location" xmi:id="_gWMseZqcEe6Xg8gl-iWaGQ"/>
-            </children>
-            <children xmi:type="notation:Node" xmi:id="_gWMsepqcEe6Xg8gl-iWaGQ" type="3010" element="_gWK3G5qcEe6Xg8gl-iWaGQ">
-              <styles xmi:type="notation:FontStyle" xmi:id="_gWMse5qcEe6Xg8gl-iWaGQ" fontName=".AppleSystemUIFont" fontHeight="8" bold="true"/>
-              <layoutConstraint xmi:type="notation:Location" xmi:id="_gWMsfJqcEe6Xg8gl-iWaGQ"/>
-            </children>
-            <children xmi:type="notation:Node" xmi:id="_gWMsfZqcEe6Xg8gl-iWaGQ" type="3010" element="_gWK3HZqcEe6Xg8gl-iWaGQ">
-              <styles xmi:type="notation:FontStyle" xmi:id="_gWMsfpqcEe6Xg8gl-iWaGQ" fontName=".AppleSystemUIFont" fontHeight="8" bold="true"/>
-              <layoutConstraint xmi:type="notation:Location" xmi:id="_gWMsf5qcEe6Xg8gl-iWaGQ"/>
-            </children>
-            <styles xmi:type="notation:SortingStyle" xmi:id="_gWMFZpqcEe6Xg8gl-iWaGQ"/>
-            <styles xmi:type="notation:FilteringStyle" xmi:id="_gWMFZ5qcEe6Xg8gl-iWaGQ"/>
-          </children>
-          <styles xmi:type="notation:ShapeStyle" xmi:id="_gWMFYpqcEe6Xg8gl-iWaGQ" fontName=".AppleSystemUIFont" fontHeight="8"/>
-          <layoutConstraint xmi:type="notation:Bounds" xmi:id="_gWMFY5qcEe6Xg8gl-iWaGQ" x="520" y="160"/>
-        </children>
-        <children xmi:type="notation:Node" xmi:id="_gWMFaJqcEe6Xg8gl-iWaGQ" type="2003" element="_gWIa5JqcEe6Xg8gl-iWaGQ">
-          <children xmi:type="notation:Node" xmi:id="_gWMsQJqcEe6Xg8gl-iWaGQ" type="5007"/>
-          <children xmi:type="notation:Node" xmi:id="_gWMsQZqcEe6Xg8gl-iWaGQ" type="7004">
-            <children xmi:type="notation:Node" xmi:id="_gWMsgJqcEe6Xg8gl-iWaGQ" type="3010" element="_gWK3H5qcEe6Xg8gl-iWaGQ">
-              <styles xmi:type="notation:FontStyle" xmi:id="_gWMsgZqcEe6Xg8gl-iWaGQ" fontName=".AppleSystemUIFont" fontHeight="8" bold="true"/>
-              <layoutConstraint xmi:type="notation:Location" xmi:id="_gWMsgpqcEe6Xg8gl-iWaGQ"/>
-            </children>
-            <children xmi:type="notation:Node" xmi:id="_gWMsg5qcEe6Xg8gl-iWaGQ" type="3010" element="_gWK3IZqcEe6Xg8gl-iWaGQ">
-              <styles xmi:type="notation:FontStyle" xmi:id="_gWMshJqcEe6Xg8gl-iWaGQ" fontName=".AppleSystemUIFont" fontHeight="8" bold="true"/>
-              <layoutConstraint xmi:type="notation:Location" xmi:id="_gWMshZqcEe6Xg8gl-iWaGQ"/>
-            </children>
-            <children xmi:type="notation:Node" xmi:id="_gWMshpqcEe6Xg8gl-iWaGQ" type="3010" element="_gWK3I5qcEe6Xg8gl-iWaGQ">
-              <styles xmi:type="notation:FontStyle" xmi:id="_gWMsh5qcEe6Xg8gl-iWaGQ" fontName=".AppleSystemUIFont" fontHeight="8" bold="true"/>
-              <layoutConstraint xmi:type="notation:Location" xmi:id="_gWMsiJqcEe6Xg8gl-iWaGQ"/>
-            </children>
-            <styles xmi:type="notation:SortingStyle" xmi:id="_gWMsQpqcEe6Xg8gl-iWaGQ"/>
-            <styles xmi:type="notation:FilteringStyle" xmi:id="_gWMsQ5qcEe6Xg8gl-iWaGQ"/>
-          </children>
-          <styles xmi:type="notation:ShapeStyle" xmi:id="_gWMFaZqcEe6Xg8gl-iWaGQ" fontName=".AppleSystemUIFont" fontHeight="8"/>
-          <layoutConstraint xmi:type="notation:Bounds" xmi:id="_gWMFapqcEe6Xg8gl-iWaGQ" x="704" y="160"/>
-        </children>
         <styles xmi:type="notation:DiagramStyle" xmi:id="_MgvMc5qWEe6Xg8gl-iWaGQ"/>
-        <edges xmi:type="notation:Edge" xmi:id="_gWMsiZqcEe6Xg8gl-iWaGQ" type="4001" element="_gWK3JZqcEe6Xg8gl-iWaGQ" source="_gWMFMJqcEe6Xg8gl-iWaGQ" target="_eJqjQJqcEe6Xg8gl-iWaGQ">
-          <children xmi:type="notation:Node" xmi:id="_gWNTUJqcEe6Xg8gl-iWaGQ" type="6001">
-            <layoutConstraint xmi:type="notation:Bounds" xmi:id="_gWNTUZqcEe6Xg8gl-iWaGQ" y="-10"/>
-          </children>
-          <children xmi:type="notation:Node" xmi:id="_gWNTUpqcEe6Xg8gl-iWaGQ" type="6002">
-            <layoutConstraint xmi:type="notation:Bounds" xmi:id="_gWNTU5qcEe6Xg8gl-iWaGQ" y="10"/>
-          </children>
-          <children xmi:type="notation:Node" xmi:id="_gWNTVJqcEe6Xg8gl-iWaGQ" type="6003">
-            <layoutConstraint xmi:type="notation:Bounds" xmi:id="_gWNTVZqcEe6Xg8gl-iWaGQ" y="10"/>
-          </children>
-          <styles xmi:type="notation:ConnectorStyle" xmi:id="_gWMsipqcEe6Xg8gl-iWaGQ" routing="Tree"/>
-          <styles xmi:type="notation:FontStyle" xmi:id="_gWMsi5qcEe6Xg8gl-iWaGQ" fontName=".AppleSystemUIFont" fontHeight="8"/>
-          <bendpoints xmi:type="notation:RelativeBendpoints" xmi:id="_gWMsjJqcEe6Xg8gl-iWaGQ" points="[-1, 0, -1, 60]$[-1, -60, -1, 0]"/>
-          <sourceAnchor xmi:type="notation:IdentityAnchor" xmi:id="_gWNTVpqcEe6Xg8gl-iWaGQ" id="(0.5063291139240507,0.0)"/>
-          <targetAnchor xmi:type="notation:IdentityAnchor" xmi:id="_gWNTV5qcEe6Xg8gl-iWaGQ" id="(0.5084745762711864,1.0)"/>
-        </edges>
-        <edges xmi:type="notation:Edge" xmi:id="_gWNTWJqcEe6Xg8gl-iWaGQ" type="4001" element="_gWLeJ5qcEe6Xg8gl-iWaGQ" source="_gWMFN5qcEe6Xg8gl-iWaGQ" target="_gWMFMJqcEe6Xg8gl-iWaGQ">
-          <children xmi:type="notation:Node" xmi:id="_gWNTXJqcEe6Xg8gl-iWaGQ" type="6001">
-            <layoutConstraint xmi:type="notation:Bounds" xmi:id="_gWNTXZqcEe6Xg8gl-iWaGQ" y="-10"/>
-          </children>
-          <children xmi:type="notation:Node" xmi:id="_gWNTXpqcEe6Xg8gl-iWaGQ" type="6002">
-            <layoutConstraint xmi:type="notation:Bounds" xmi:id="_gWNTX5qcEe6Xg8gl-iWaGQ" y="10"/>
-          </children>
-          <children xmi:type="notation:Node" xmi:id="_gWNTYJqcEe6Xg8gl-iWaGQ" type="6003">
-            <layoutConstraint xmi:type="notation:Bounds" xmi:id="_gWNTYZqcEe6Xg8gl-iWaGQ" y="10"/>
-          </children>
-          <styles xmi:type="notation:ConnectorStyle" xmi:id="_gWNTWZqcEe6Xg8gl-iWaGQ" routing="Tree"/>
-          <styles xmi:type="notation:FontStyle" xmi:id="_gWNTWpqcEe6Xg8gl-iWaGQ" fontName=".AppleSystemUIFont" fontHeight="8"/>
-          <bendpoints xmi:type="notation:RelativeBendpoints" xmi:id="_gWNTW5qcEe6Xg8gl-iWaGQ" points="[-1, 0, 325, 60]$[-327, -60, -1, 0]"/>
-          <sourceAnchor xmi:type="notation:IdentityAnchor" xmi:id="_gWNTYpqcEe6Xg8gl-iWaGQ" id="(0.5056179775280899,0.0)"/>
-          <targetAnchor xmi:type="notation:IdentityAnchor" xmi:id="_gWNTY5qcEe6Xg8gl-iWaGQ" id="(0.5063291139240507,1.0)"/>
-        </edges>
-        <edges xmi:type="notation:Edge" xmi:id="_gWNTZJqcEe6Xg8gl-iWaGQ" type="4001" element="_gWLeL5qcEe6Xg8gl-iWaGQ" source="_gWMFPpqcEe6Xg8gl-iWaGQ" target="_gWMFMJqcEe6Xg8gl-iWaGQ">
-          <children xmi:type="notation:Node" xmi:id="_gWNTaJqcEe6Xg8gl-iWaGQ" type="6001">
-            <layoutConstraint xmi:type="notation:Bounds" xmi:id="_gWNTaZqcEe6Xg8gl-iWaGQ" y="-10"/>
-          </children>
-          <children xmi:type="notation:Node" xmi:id="_gWNTapqcEe6Xg8gl-iWaGQ" type="6002">
-            <layoutConstraint xmi:type="notation:Bounds" xmi:id="_gWNTa5qcEe6Xg8gl-iWaGQ" y="10"/>
-          </children>
-          <children xmi:type="notation:Node" xmi:id="_gWNTbJqcEe6Xg8gl-iWaGQ" type="6003">
-            <layoutConstraint xmi:type="notation:Bounds" xmi:id="_gWNTbZqcEe6Xg8gl-iWaGQ" y="10"/>
-          </children>
-          <styles xmi:type="notation:ConnectorStyle" xmi:id="_gWNTZZqcEe6Xg8gl-iWaGQ" routing="Tree"/>
-          <styles xmi:type="notation:FontStyle" xmi:id="_gWNTZpqcEe6Xg8gl-iWaGQ" fontName=".AppleSystemUIFont" fontHeight="8"/>
-          <bendpoints xmi:type="notation:RelativeBendpoints" xmi:id="_gWNTZ5qcEe6Xg8gl-iWaGQ" points="[-1, 0, -335, 60]$[333, -60, -1, 0]"/>
-          <sourceAnchor xmi:type="notation:IdentityAnchor" xmi:id="_gWNTbpqcEe6Xg8gl-iWaGQ" id="(0.5056179775280899,0.0)"/>
-          <targetAnchor xmi:type="notation:IdentityAnchor" xmi:id="_gWNTb5qcEe6Xg8gl-iWaGQ" id="(0.5063291139240507,1.0)"/>
-        </edges>
-        <edges xmi:type="notation:Edge" xmi:id="_gWNTcJqcEe6Xg8gl-iWaGQ" type="4001" element="_gWLeN5qcEe6Xg8gl-iWaGQ" source="_gWMFRZqcEe6Xg8gl-iWaGQ" target="_gWMFMJqcEe6Xg8gl-iWaGQ">
-          <children xmi:type="notation:Node" xmi:id="_gWNTdJqcEe6Xg8gl-iWaGQ" type="6001">
-            <layoutConstraint xmi:type="notation:Bounds" xmi:id="_gWNTdZqcEe6Xg8gl-iWaGQ" y="-10"/>
-          </children>
-          <children xmi:type="notation:Node" xmi:id="_gWNTdpqcEe6Xg8gl-iWaGQ" type="6002">
-            <layoutConstraint xmi:type="notation:Bounds" xmi:id="_gWNTd5qcEe6Xg8gl-iWaGQ" y="10"/>
-          </children>
-          <children xmi:type="notation:Node" xmi:id="_gWNTeJqcEe6Xg8gl-iWaGQ" type="6003">
-            <layoutConstraint xmi:type="notation:Bounds" xmi:id="_gWNTeZqcEe6Xg8gl-iWaGQ" y="10"/>
-          </children>
-          <styles xmi:type="notation:ConnectorStyle" xmi:id="_gWNTcZqcEe6Xg8gl-iWaGQ" routing="Tree"/>
-          <styles xmi:type="notation:FontStyle" xmi:id="_gWNTcpqcEe6Xg8gl-iWaGQ" fontName=".AppleSystemUIFont" fontHeight="8"/>
-          <bendpoints xmi:type="notation:RelativeBendpoints" xmi:id="_gWNTc5qcEe6Xg8gl-iWaGQ" points="[-1, 0, -567, 60]$[565, -60, -1, 0]"/>
-          <sourceAnchor xmi:type="notation:IdentityAnchor" xmi:id="_gWNTepqcEe6Xg8gl-iWaGQ" id="(0.5031055900621118,0.0)"/>
-          <targetAnchor xmi:type="notation:IdentityAnchor" xmi:id="_gWNTe5qcEe6Xg8gl-iWaGQ" id="(0.5063291139240507,1.0)"/>
-        </edges>
-        <edges xmi:type="notation:Edge" xmi:id="_gWNTfJqcEe6Xg8gl-iWaGQ" type="4001" element="_gWLeP5qcEe6Xg8gl-iWaGQ" source="_gWMFTJqcEe6Xg8gl-iWaGQ" target="_gWMFMJqcEe6Xg8gl-iWaGQ">
-          <children xmi:type="notation:Node" xmi:id="_gWNTgJqcEe6Xg8gl-iWaGQ" type="6001">
-            <layoutConstraint xmi:type="notation:Bounds" xmi:id="_gWNTgZqcEe6Xg8gl-iWaGQ" y="-10"/>
-          </children>
-          <children xmi:type="notation:Node" xmi:id="_gWNTgpqcEe6Xg8gl-iWaGQ" type="6002">
-            <layoutConstraint xmi:type="notation:Bounds" xmi:id="_gWNTg5qcEe6Xg8gl-iWaGQ" y="10"/>
-          </children>
-          <children xmi:type="notation:Node" xmi:id="_gWNThJqcEe6Xg8gl-iWaGQ" type="6003">
-            <layoutConstraint xmi:type="notation:Bounds" xmi:id="_gWNThZqcEe6Xg8gl-iWaGQ" y="10"/>
-          </children>
-          <styles xmi:type="notation:ConnectorStyle" xmi:id="_gWNTfZqcEe6Xg8gl-iWaGQ" routing="Tree"/>
-          <styles xmi:type="notation:FontStyle" xmi:id="_gWNTfpqcEe6Xg8gl-iWaGQ" fontName=".AppleSystemUIFont" fontHeight="8"/>
-          <bendpoints xmi:type="notation:RelativeBendpoints" xmi:id="_gWNTf5qcEe6Xg8gl-iWaGQ" points="[-1, 0, -790, 60]$[788, -60, -1, 0]"/>
-          <sourceAnchor xmi:type="notation:IdentityAnchor" xmi:id="_gWN6YJqcEe6Xg8gl-iWaGQ" id="(0.5031055900621118,0.0)"/>
-          <targetAnchor xmi:type="notation:IdentityAnchor" xmi:id="_gWN6YZqcEe6Xg8gl-iWaGQ" id="(0.5063291139240507,1.0)"/>
-        </edges>
-        <edges xmi:type="notation:Edge" xmi:id="_gWN6YpqcEe6Xg8gl-iWaGQ" type="4001" element="_gWLeR5qcEe6Xg8gl-iWaGQ" source="_gWMFU5qcEe6Xg8gl-iWaGQ" target="_gWMFMJqcEe6Xg8gl-iWaGQ">
-          <children xmi:type="notation:Node" xmi:id="_gWN6ZpqcEe6Xg8gl-iWaGQ" type="6001">
-            <layoutConstraint xmi:type="notation:Bounds" xmi:id="_gWN6Z5qcEe6Xg8gl-iWaGQ" y="-10"/>
-          </children>
-          <children xmi:type="notation:Node" xmi:id="_gWN6aJqcEe6Xg8gl-iWaGQ" type="6002">
-            <layoutConstraint xmi:type="notation:Bounds" xmi:id="_gWN6aZqcEe6Xg8gl-iWaGQ" y="10"/>
-          </children>
-          <children xmi:type="notation:Node" xmi:id="_gWN6apqcEe6Xg8gl-iWaGQ" type="6003">
-            <layoutConstraint xmi:type="notation:Bounds" xmi:id="_gWN6a5qcEe6Xg8gl-iWaGQ" y="10"/>
-          </children>
-          <styles xmi:type="notation:ConnectorStyle" xmi:id="_gWN6Y5qcEe6Xg8gl-iWaGQ" routing="Tree"/>
-          <styles xmi:type="notation:FontStyle" xmi:id="_gWN6ZJqcEe6Xg8gl-iWaGQ" fontName=".AppleSystemUIFont" fontHeight="8"/>
-          <bendpoints xmi:type="notation:RelativeBendpoints" xmi:id="_gWN6ZZqcEe6Xg8gl-iWaGQ" points="[-1, 0, 775, 60]$[-777, -60, -1, 0]"/>
-          <sourceAnchor xmi:type="notation:IdentityAnchor" xmi:id="_gWN6bJqcEe6Xg8gl-iWaGQ" id="(0.5084745762711864,0.0)"/>
-          <targetAnchor xmi:type="notation:IdentityAnchor" xmi:id="_gWN6bZqcEe6Xg8gl-iWaGQ" id="(0.5063291139240507,1.0)"/>
-        </edges>
-        <edges xmi:type="notation:Edge" xmi:id="_gWN6bpqcEe6Xg8gl-iWaGQ" type="4001" element="_gWLeT5qcEe6Xg8gl-iWaGQ" source="_gWMFWpqcEe6Xg8gl-iWaGQ" target="_gWMFMJqcEe6Xg8gl-iWaGQ">
-          <children xmi:type="notation:Node" xmi:id="_gWN6cpqcEe6Xg8gl-iWaGQ" type="6001">
-            <layoutConstraint xmi:type="notation:Bounds" xmi:id="_gWN6c5qcEe6Xg8gl-iWaGQ" y="-10"/>
-          </children>
-          <children xmi:type="notation:Node" xmi:id="_gWN6dJqcEe6Xg8gl-iWaGQ" type="6002">
-            <layoutConstraint xmi:type="notation:Bounds" xmi:id="_gWN6dZqcEe6Xg8gl-iWaGQ" y="10"/>
-          </children>
-          <children xmi:type="notation:Node" xmi:id="_gWN6dpqcEe6Xg8gl-iWaGQ" type="6003">
-            <layoutConstraint xmi:type="notation:Bounds" xmi:id="_gWN6d5qcEe6Xg8gl-iWaGQ" y="10"/>
-          </children>
-          <styles xmi:type="notation:ConnectorStyle" xmi:id="_gWN6b5qcEe6Xg8gl-iWaGQ" routing="Tree"/>
-          <styles xmi:type="notation:FontStyle" xmi:id="_gWN6cJqcEe6Xg8gl-iWaGQ" fontName=".AppleSystemUIFont" fontHeight="8"/>
-          <bendpoints xmi:type="notation:RelativeBendpoints" xmi:id="_gWN6cZqcEe6Xg8gl-iWaGQ" points="[-1, 0, 115, 60]$[-117, -60, -1, 0]"/>
-          <sourceAnchor xmi:type="notation:IdentityAnchor" xmi:id="_gWN6eJqcEe6Xg8gl-iWaGQ" id="(0.5084745762711864,0.0)"/>
-          <targetAnchor xmi:type="notation:IdentityAnchor" xmi:id="_gWN6eZqcEe6Xg8gl-iWaGQ" id="(0.5063291139240507,1.0)"/>
-        </edges>
-        <edges xmi:type="notation:Edge" xmi:id="_gWN6epqcEe6Xg8gl-iWaGQ" type="4001" element="_gWLeV5qcEe6Xg8gl-iWaGQ" source="_gWMFYZqcEe6Xg8gl-iWaGQ" target="_gWMFMJqcEe6Xg8gl-iWaGQ">
-          <children xmi:type="notation:Node" xmi:id="_gWN6fpqcEe6Xg8gl-iWaGQ" type="6001">
-            <layoutConstraint xmi:type="notation:Bounds" xmi:id="_gWN6f5qcEe6Xg8gl-iWaGQ" y="-10"/>
-          </children>
-          <children xmi:type="notation:Node" xmi:id="_gWN6gJqcEe6Xg8gl-iWaGQ" type="6002">
-            <layoutConstraint xmi:type="notation:Bounds" xmi:id="_gWN6gZqcEe6Xg8gl-iWaGQ" y="10"/>
-          </children>
-          <children xmi:type="notation:Node" xmi:id="_gWN6gpqcEe6Xg8gl-iWaGQ" type="6003">
-            <layoutConstraint xmi:type="notation:Bounds" xmi:id="_gWN6g5qcEe6Xg8gl-iWaGQ" y="10"/>
-          </children>
-          <styles xmi:type="notation:ConnectorStyle" xmi:id="_gWN6e5qcEe6Xg8gl-iWaGQ" routing="Tree"/>
-          <styles xmi:type="notation:FontStyle" xmi:id="_gWN6fJqcEe6Xg8gl-iWaGQ" fontName=".AppleSystemUIFont" fontHeight="8"/>
-          <bendpoints xmi:type="notation:RelativeBendpoints" xmi:id="_gWN6fZqcEe6Xg8gl-iWaGQ" points="[-1, 0, 565, 60]$[-567, -60, -1, 0]"/>
-          <sourceAnchor xmi:type="notation:IdentityAnchor" xmi:id="_gWN6hJqcEe6Xg8gl-iWaGQ" id="(0.5056179775280899,0.0)"/>
-          <targetAnchor xmi:type="notation:IdentityAnchor" xmi:id="_gWN6hZqcEe6Xg8gl-iWaGQ" id="(0.5063291139240507,1.0)"/>
-        </edges>
-        <edges xmi:type="notation:Edge" xmi:id="_gWN6hpqcEe6Xg8gl-iWaGQ" type="4001" element="_gWLeX5qcEe6Xg8gl-iWaGQ" source="_gWMFaJqcEe6Xg8gl-iWaGQ" target="_gWMFMJqcEe6Xg8gl-iWaGQ">
-          <children xmi:type="notation:Node" xmi:id="_gWN6ipqcEe6Xg8gl-iWaGQ" type="6001">
-            <layoutConstraint xmi:type="notation:Bounds" xmi:id="_gWN6i5qcEe6Xg8gl-iWaGQ" y="-10"/>
-          </children>
-          <children xmi:type="notation:Node" xmi:id="_gWN6jJqcEe6Xg8gl-iWaGQ" type="6002">
-            <layoutConstraint xmi:type="notation:Bounds" xmi:id="_gWN6jZqcEe6Xg8gl-iWaGQ" y="10"/>
-          </children>
-          <children xmi:type="notation:Node" xmi:id="_gWN6jpqcEe6Xg8gl-iWaGQ" type="6003">
-            <layoutConstraint xmi:type="notation:Bounds" xmi:id="_gWN6j5qcEe6Xg8gl-iWaGQ" y="10"/>
-          </children>
-          <styles xmi:type="notation:ConnectorStyle" xmi:id="_gWN6h5qcEe6Xg8gl-iWaGQ" routing="Tree"/>
-          <styles xmi:type="notation:FontStyle" xmi:id="_gWN6iJqcEe6Xg8gl-iWaGQ" fontName=".AppleSystemUIFont" fontHeight="8"/>
-          <bendpoints xmi:type="notation:RelativeBendpoints" xmi:id="_gWN6iZqcEe6Xg8gl-iWaGQ" points="[-1, 0, -95, 60]$[93, -60, -1, 0]"/>
-          <sourceAnchor xmi:type="notation:IdentityAnchor" xmi:id="_gWN6kJqcEe6Xg8gl-iWaGQ" id="(0.5056179775280899,0.0)"/>
-          <targetAnchor xmi:type="notation:IdentityAnchor" xmi:id="_gWN6kZqcEe6Xg8gl-iWaGQ" id="(0.5063291139240507,1.0)"/>
-        </edges>
       </data>
     </ownedAnnotationEntries>
     <ownedAnnotationEntries xmi:type="description:AnnotationEntry" uid="_MgvzgJqWEe6Xg8gl-iWaGQ" source="DANNOTATION_CUSTOMIZATION_KEY">
@@ -8342,15 +7932,9 @@
           <labelColor xmi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='black']"/>
           <color xmi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='black']"/>
         </computedStyleDescriptions>
-        <computedStyleDescriptions xmi:type="style:BundledImageDescription" xmi:id="_gWJpBpqcEe6Xg8gl-iWaGQ" labelExpression="service:renderAsNode" labelAlignment="LEFT" tooltipExpression="service:renderTooltip" sizeComputationExpression="1">
-          <borderColor xmi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='black']"/>
-          <labelFormat>bold</labelFormat>
-          <labelColor xmi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='black']"/>
-          <color xmi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='blue']"/>
-        </computedStyleDescriptions>
       </data>
     </ownedAnnotationEntries>
-    <ownedDiagramElements xmi:type="diagram:DNodeList" uid="_eJnf8JqcEe6Xg8gl-iWaGQ" name="Event" tooltipText="" incomingEdges="_gWK3JZqcEe6Xg8gl-iWaGQ" width="12" height="10">
+    <ownedDiagramElements xmi:type="diagram:DNodeList" uid="_eJnf8JqcEe6Xg8gl-iWaGQ" name="Event" tooltipText="" width="12" height="10">
       <target xmi:type="ecore:EClass" href="MATSimFreightMetamodel.ecore#//matsim/core/Event"/>
       <semanticElements xmi:type="ecore:EClass" href="MATSimFreightMetamodel.ecore#//matsim/core/Event"/>
       <decorations xmi:type="viewpoint:Decoration" uid="_eJoHAZqcEe6Xg8gl-iWaGQ">
@@ -8372,449 +7956,6 @@
         </ownedStyle>
         <actualMapping xmi:type="description_1:NodeMapping" href="platform:/plugin/org.eclipse.emf.ecoretools.design/description/ecore.odesign#//@ownedViewpoints[name='Design']/@ownedRepresentations[name='Entities']/@defaultLayer/@containerMappings[name='EC%20EClass']/@subNodeMappings[name='EC%20EAttribute']"/>
       </ownedElements>
-    </ownedDiagramElements>
-    <ownedDiagramElements xmi:type="diagram:DNodeList" uid="_gWHMsJqcEe6Xg8gl-iWaGQ" name="CarrierEvent" tooltipText="" outgoingEdges="_gWK3JZqcEe6Xg8gl-iWaGQ" incomingEdges="_gWLeJ5qcEe6Xg8gl-iWaGQ _gWLeL5qcEe6Xg8gl-iWaGQ _gWLeN5qcEe6Xg8gl-iWaGQ _gWLeP5qcEe6Xg8gl-iWaGQ _gWLeR5qcEe6Xg8gl-iWaGQ _gWLeT5qcEe6Xg8gl-iWaGQ _gWLeV5qcEe6Xg8gl-iWaGQ _gWLeX5qcEe6Xg8gl-iWaGQ" width="12" height="10">
-      <target xmi:type="ecore:EClass" href="MATSimFreightMetamodel.ecore#//freightContrib/Events/CarrierEvent"/>
-      <semanticElements xmi:type="ecore:EClass" href="MATSimFreightMetamodel.ecore#//freightContrib/Events/CarrierEvent"/>
-      <decorations xmi:type="viewpoint:Decoration" uid="_gWHzwZqcEe6Xg8gl-iWaGQ">
-        <description xmi:type="description:SemanticBasedDecoration" href="platform:/plugin/org.eclipse.emf.ecoretools.design/description/ecore.odesign#//@ownedViewpoints[name='Design']/@ownedRepresentations[name='Entities']/@defaultLayer/@decorationDescriptionsSet/@decorationDescriptions[name='External']"/>
-      </decorations>
-      <ownedStyle xmi:type="diagram:FlatContainerStyle" uid="_gWHzwJqcEe6Xg8gl-iWaGQ" iconPath="/org.eclipse.emf.ecoretools.design/icons/full/obj16/EClass_abstract.gif" borderSize="1" borderSizeComputationExpression="1" borderColor="125,125,125" backgroundStyle="Liquid" foregroundColor="228,228,228">
-        <labelFormat>italic</labelFormat>
-        <description xmi:type="style:FlatContainerStyleDescription" href="platform:/plugin/org.eclipse.emf.ecoretools.design/description/ecore.odesign#//@ownedViewpoints[name='Design']/@ownedRepresentations[name='Entities']/@defaultLayer/@containerMappings[name='EC%20EClass']/@conditionnalStyles.1/@style"/>
-      </ownedStyle>
-      <actualMapping xmi:type="description_1:ContainerMapping" href="platform:/plugin/org.eclipse.emf.ecoretools.design/description/ecore.odesign#//@ownedViewpoints[name='Design']/@ownedRepresentations[name='Entities']/@defaultLayer/@containerMappings[name='EC%20EClass']"/>
-      <ownedElements xmi:type="diagram:DNodeListElement" uid="_gWJpBZqcEe6Xg8gl-iWaGQ" name=" carrier : Carrier" tooltipText="">
-        <target xmi:type="ecore:EReference" href="MATSimFreightMetamodel.ecore#//freightContrib/Events/CarrierEvent/carrier"/>
-        <semanticElements xmi:type="ecore:EReference" href="MATSimFreightMetamodel.ecore#//freightContrib/Events/CarrierEvent/carrier"/>
-        <ownedStyle xmi:type="diagram:BundledImage" uid="_gWJpB5qcEe6Xg8gl-iWaGQ" labelAlignment="LEFT" description="_gWJpBpqcEe6Xg8gl-iWaGQ" color="114,159,207">
-          <labelFormat>bold</labelFormat>
-        </ownedStyle>
-        <actualMapping xmi:type="description_1:NodeMapping" href="platform:/plugin/org.eclipse.emf.ecoretools.design/description/ecore.odesign#//@ownedViewpoints[name='Design']/@ownedRepresentations[name='Entities']/@defaultLayer/@containerMappings[name='EC%20EClass']/@subNodeMappings[name='EC%20EReferenceNode']"/>
-      </ownedElements>
-      <ownedElements xmi:type="diagram:DNodeListElement" uid="_gWKQAJqcEe6Xg8gl-iWaGQ" name=" link : Link" tooltipText="">
-        <target xmi:type="ecore:EReference" href="MATSimFreightMetamodel.ecore#//freightContrib/Events/CarrierEvent/link"/>
-        <semanticElements xmi:type="ecore:EReference" href="MATSimFreightMetamodel.ecore#//freightContrib/Events/CarrierEvent/link"/>
-        <ownedStyle xmi:type="diagram:BundledImage" uid="_gWKQAZqcEe6Xg8gl-iWaGQ" labelAlignment="LEFT" description="_gWJpBpqcEe6Xg8gl-iWaGQ" color="114,159,207">
-          <labelFormat>bold</labelFormat>
-        </ownedStyle>
-        <actualMapping xmi:type="description_1:NodeMapping" href="platform:/plugin/org.eclipse.emf.ecoretools.design/description/ecore.odesign#//@ownedViewpoints[name='Design']/@ownedRepresentations[name='Entities']/@defaultLayer/@containerMappings[name='EC%20EClass']/@subNodeMappings[name='EC%20EReferenceNode']"/>
-      </ownedElements>
-      <ownedElements xmi:type="diagram:DNodeListElement" uid="_gWKQApqcEe6Xg8gl-iWaGQ" name=" carriervehicle : CarrierVehicle" tooltipText="">
-        <target xmi:type="ecore:EReference" href="MATSimFreightMetamodel.ecore#//freightContrib/Events/CarrierEvent/carriervehicle"/>
-        <semanticElements xmi:type="ecore:EReference" href="MATSimFreightMetamodel.ecore#//freightContrib/Events/CarrierEvent/carriervehicle"/>
-        <ownedStyle xmi:type="diagram:BundledImage" uid="_gWKQA5qcEe6Xg8gl-iWaGQ" labelAlignment="LEFT" description="_gWJpBpqcEe6Xg8gl-iWaGQ" color="114,159,207">
-          <labelFormat>bold</labelFormat>
-        </ownedStyle>
-        <actualMapping xmi:type="description_1:NodeMapping" href="platform:/plugin/org.eclipse.emf.ecoretools.design/description/ecore.odesign#//@ownedViewpoints[name='Design']/@ownedRepresentations[name='Entities']/@defaultLayer/@containerMappings[name='EC%20EClass']/@subNodeMappings[name='EC%20EReferenceNode']"/>
-      </ownedElements>
-    </ownedDiagramElements>
-    <ownedDiagramElements xmi:type="diagram:DNodeList" uid="_gWHzw5qcEe6Xg8gl-iWaGQ" name="CarrierShipmentDeliveryStartEvent" tooltipText="" outgoingEdges="_gWLeJ5qcEe6Xg8gl-iWaGQ" width="12" height="10">
-      <target xmi:type="ecore:EClass" href="MATSimFreightMetamodel.ecore#//freightContrib/Events/CarrierShipmentDeliveryStartEvent"/>
-      <semanticElements xmi:type="ecore:EClass" href="MATSimFreightMetamodel.ecore#//freightContrib/Events/CarrierShipmentDeliveryStartEvent"/>
-      <decorations xmi:type="viewpoint:Decoration" uid="_gWHzxZqcEe6Xg8gl-iWaGQ">
-        <description xmi:type="description:SemanticBasedDecoration" href="platform:/plugin/org.eclipse.emf.ecoretools.design/description/ecore.odesign#//@ownedViewpoints[name='Design']/@ownedRepresentations[name='Entities']/@defaultLayer/@decorationDescriptionsSet/@decorationDescriptions[name='External']"/>
-      </decorations>
-      <arrangeConstraints>KEEP_LOCATION</arrangeConstraints>
-      <arrangeConstraints>KEEP_SIZE</arrangeConstraints>
-      <arrangeConstraints>KEEP_RATIO</arrangeConstraints>
-      <ownedStyle xmi:type="diagram:FlatContainerStyle" uid="_gWHzxJqcEe6Xg8gl-iWaGQ" borderSize="1" borderSizeComputationExpression="1" backgroundStyle="Liquid" foregroundColor="255,252,216">
-        <description xmi:type="style:FlatContainerStyleDescription" href="platform:/plugin/org.eclipse.emf.ecoretools.design/description/ecore.odesign#//@ownedViewpoints[name='Design']/@ownedRepresentations[name='Entities']/@defaultLayer/@containerMappings[name='EC%20EClass']/@style"/>
-      </ownedStyle>
-      <actualMapping xmi:type="description_1:ContainerMapping" href="platform:/plugin/org.eclipse.emf.ecoretools.design/description/ecore.odesign#//@ownedViewpoints[name='Design']/@ownedRepresentations[name='Entities']/@defaultLayer/@containerMappings[name='EC%20EClass']"/>
-      <ownedElements xmi:type="diagram:DNodeListElement" uid="_gWKQBJqcEe6Xg8gl-iWaGQ" name="deliveryDuration : Double = 0.0" tooltipText="">
-        <target xmi:type="ecore:EAttribute" href="MATSimFreightMetamodel.ecore#//freightContrib/Events/CarrierShipmentDeliveryStartEvent/deliveryDuration"/>
-        <semanticElements xmi:type="ecore:EAttribute" href="MATSimFreightMetamodel.ecore#//freightContrib/Events/CarrierShipmentDeliveryStartEvent/deliveryDuration"/>
-        <ownedStyle xmi:type="diagram:BundledImage" uid="_gWKQBZqcEe6Xg8gl-iWaGQ" labelAlignment="LEFT" description="_eJp8M5qcEe6Xg8gl-iWaGQ">
-          <labelFormat>bold</labelFormat>
-        </ownedStyle>
-        <actualMapping xmi:type="description_1:NodeMapping" href="platform:/plugin/org.eclipse.emf.ecoretools.design/description/ecore.odesign#//@ownedViewpoints[name='Design']/@ownedRepresentations[name='Entities']/@defaultLayer/@containerMappings[name='EC%20EClass']/@subNodeMappings[name='EC%20EAttribute']"/>
-      </ownedElements>
-      <ownedElements xmi:type="diagram:DNodeListElement" uid="_gWKQBpqcEe6Xg8gl-iWaGQ" name="capacityDemand : Int" tooltipText="">
-        <target xmi:type="ecore:EAttribute" href="MATSimFreightMetamodel.ecore#//freightContrib/Events/CarrierShipmentDeliveryStartEvent/capacityDemand"/>
-        <semanticElements xmi:type="ecore:EAttribute" href="MATSimFreightMetamodel.ecore#//freightContrib/Events/CarrierShipmentDeliveryStartEvent/capacityDemand"/>
-        <ownedStyle xmi:type="diagram:BundledImage" uid="_gWKQB5qcEe6Xg8gl-iWaGQ" labelAlignment="LEFT" description="_eJp8M5qcEe6Xg8gl-iWaGQ">
-          <labelFormat>bold</labelFormat>
-        </ownedStyle>
-        <actualMapping xmi:type="description_1:NodeMapping" href="platform:/plugin/org.eclipse.emf.ecoretools.design/description/ecore.odesign#//@ownedViewpoints[name='Design']/@ownedRepresentations[name='Entities']/@defaultLayer/@containerMappings[name='EC%20EClass']/@subNodeMappings[name='EC%20EAttribute']"/>
-      </ownedElements>
-      <ownedElements xmi:type="diagram:DNodeListElement" uid="_gWKQCJqcEe6Xg8gl-iWaGQ" name=" carrierShipment : CarrierShipment" tooltipText="">
-        <target xmi:type="ecore:EReference" href="MATSimFreightMetamodel.ecore#//freightContrib/Events/CarrierShipmentDeliveryStartEvent/carrierShipment"/>
-        <semanticElements xmi:type="ecore:EReference" href="MATSimFreightMetamodel.ecore#//freightContrib/Events/CarrierShipmentDeliveryStartEvent/carrierShipment"/>
-        <ownedStyle xmi:type="diagram:BundledImage" uid="_gWKQCZqcEe6Xg8gl-iWaGQ" labelAlignment="LEFT" description="_gWJpBpqcEe6Xg8gl-iWaGQ" color="114,159,207">
-          <labelFormat>bold</labelFormat>
-        </ownedStyle>
-        <actualMapping xmi:type="description_1:NodeMapping" href="platform:/plugin/org.eclipse.emf.ecoretools.design/description/ecore.odesign#//@ownedViewpoints[name='Design']/@ownedRepresentations[name='Entities']/@defaultLayer/@containerMappings[name='EC%20EClass']/@subNodeMappings[name='EC%20EReferenceNode']"/>
-      </ownedElements>
-    </ownedDiagramElements>
-    <ownedDiagramElements xmi:type="diagram:DNodeList" uid="_gWHzx5qcEe6Xg8gl-iWaGQ" name="CarrierShipmentDeliveryEndEvent" tooltipText="" outgoingEdges="_gWLeL5qcEe6Xg8gl-iWaGQ" width="12" height="10">
-      <target xmi:type="ecore:EClass" href="MATSimFreightMetamodel.ecore#//freightContrib/Events/CarrierShipmentDeliveryEndEvent"/>
-      <semanticElements xmi:type="ecore:EClass" href="MATSimFreightMetamodel.ecore#//freightContrib/Events/CarrierShipmentDeliveryEndEvent"/>
-      <decorations xmi:type="viewpoint:Decoration" uid="_gWHzyZqcEe6Xg8gl-iWaGQ">
-        <description xmi:type="description:SemanticBasedDecoration" href="platform:/plugin/org.eclipse.emf.ecoretools.design/description/ecore.odesign#//@ownedViewpoints[name='Design']/@ownedRepresentations[name='Entities']/@defaultLayer/@decorationDescriptionsSet/@decorationDescriptions[name='External']"/>
-      </decorations>
-      <arrangeConstraints>KEEP_LOCATION</arrangeConstraints>
-      <arrangeConstraints>KEEP_SIZE</arrangeConstraints>
-      <arrangeConstraints>KEEP_RATIO</arrangeConstraints>
-      <ownedStyle xmi:type="diagram:FlatContainerStyle" uid="_gWHzyJqcEe6Xg8gl-iWaGQ" borderSize="1" borderSizeComputationExpression="1" backgroundStyle="Liquid" foregroundColor="255,252,216">
-        <description xmi:type="style:FlatContainerStyleDescription" href="platform:/plugin/org.eclipse.emf.ecoretools.design/description/ecore.odesign#//@ownedViewpoints[name='Design']/@ownedRepresentations[name='Entities']/@defaultLayer/@containerMappings[name='EC%20EClass']/@style"/>
-      </ownedStyle>
-      <actualMapping xmi:type="description_1:ContainerMapping" href="platform:/plugin/org.eclipse.emf.ecoretools.design/description/ecore.odesign#//@ownedViewpoints[name='Design']/@ownedRepresentations[name='Entities']/@defaultLayer/@containerMappings[name='EC%20EClass']"/>
-      <ownedElements xmi:type="diagram:DNodeListElement" uid="_gWKQCpqcEe6Xg8gl-iWaGQ" name="deliveryDuration : Double = 0.0" tooltipText="">
-        <target xmi:type="ecore:EAttribute" href="MATSimFreightMetamodel.ecore#//freightContrib/Events/CarrierShipmentDeliveryEndEvent/deliveryDuration"/>
-        <semanticElements xmi:type="ecore:EAttribute" href="MATSimFreightMetamodel.ecore#//freightContrib/Events/CarrierShipmentDeliveryEndEvent/deliveryDuration"/>
-        <ownedStyle xmi:type="diagram:BundledImage" uid="_gWKQC5qcEe6Xg8gl-iWaGQ" labelAlignment="LEFT" description="_eJp8M5qcEe6Xg8gl-iWaGQ">
-          <labelFormat>bold</labelFormat>
-        </ownedStyle>
-        <actualMapping xmi:type="description_1:NodeMapping" href="platform:/plugin/org.eclipse.emf.ecoretools.design/description/ecore.odesign#//@ownedViewpoints[name='Design']/@ownedRepresentations[name='Entities']/@defaultLayer/@containerMappings[name='EC%20EClass']/@subNodeMappings[name='EC%20EAttribute']"/>
-      </ownedElements>
-      <ownedElements xmi:type="diagram:DNodeListElement" uid="_gWKQDJqcEe6Xg8gl-iWaGQ" name="capacityDemand : Int" tooltipText="">
-        <target xmi:type="ecore:EAttribute" href="MATSimFreightMetamodel.ecore#//freightContrib/Events/CarrierShipmentDeliveryEndEvent/capacityDemand"/>
-        <semanticElements xmi:type="ecore:EAttribute" href="MATSimFreightMetamodel.ecore#//freightContrib/Events/CarrierShipmentDeliveryEndEvent/capacityDemand"/>
-        <ownedStyle xmi:type="diagram:BundledImage" uid="_gWKQDZqcEe6Xg8gl-iWaGQ" labelAlignment="LEFT" description="_eJp8M5qcEe6Xg8gl-iWaGQ">
-          <labelFormat>bold</labelFormat>
-        </ownedStyle>
-        <actualMapping xmi:type="description_1:NodeMapping" href="platform:/plugin/org.eclipse.emf.ecoretools.design/description/ecore.odesign#//@ownedViewpoints[name='Design']/@ownedRepresentations[name='Entities']/@defaultLayer/@containerMappings[name='EC%20EClass']/@subNodeMappings[name='EC%20EAttribute']"/>
-      </ownedElements>
-      <ownedElements xmi:type="diagram:DNodeListElement" uid="_gWKQDpqcEe6Xg8gl-iWaGQ" name=" carrierShipment : CarrierShipment" tooltipText="">
-        <target xmi:type="ecore:EReference" href="MATSimFreightMetamodel.ecore#//freightContrib/Events/CarrierShipmentDeliveryEndEvent/carrierShipment"/>
-        <semanticElements xmi:type="ecore:EReference" href="MATSimFreightMetamodel.ecore#//freightContrib/Events/CarrierShipmentDeliveryEndEvent/carrierShipment"/>
-        <ownedStyle xmi:type="diagram:BundledImage" uid="_gWKQD5qcEe6Xg8gl-iWaGQ" labelAlignment="LEFT" description="_gWJpBpqcEe6Xg8gl-iWaGQ" color="114,159,207">
-          <labelFormat>bold</labelFormat>
-        </ownedStyle>
-        <actualMapping xmi:type="description_1:NodeMapping" href="platform:/plugin/org.eclipse.emf.ecoretools.design/description/ecore.odesign#//@ownedViewpoints[name='Design']/@ownedRepresentations[name='Entities']/@defaultLayer/@containerMappings[name='EC%20EClass']/@subNodeMappings[name='EC%20EReferenceNode']"/>
-      </ownedElements>
-    </ownedDiagramElements>
-    <ownedDiagramElements xmi:type="diagram:DNodeList" uid="_gWIa0JqcEe6Xg8gl-iWaGQ" name="CarrierServieStartEvent" tooltipText="" outgoingEdges="_gWLeN5qcEe6Xg8gl-iWaGQ" width="12" height="10">
-      <target xmi:type="ecore:EClass" href="MATSimFreightMetamodel.ecore#//freightContrib/Events/CarrierServieStartEvent"/>
-      <semanticElements xmi:type="ecore:EClass" href="MATSimFreightMetamodel.ecore#//freightContrib/Events/CarrierServieStartEvent"/>
-      <decorations xmi:type="viewpoint:Decoration" uid="_gWIa0pqcEe6Xg8gl-iWaGQ">
-        <description xmi:type="description:SemanticBasedDecoration" href="platform:/plugin/org.eclipse.emf.ecoretools.design/description/ecore.odesign#//@ownedViewpoints[name='Design']/@ownedRepresentations[name='Entities']/@defaultLayer/@decorationDescriptionsSet/@decorationDescriptions[name='External']"/>
-      </decorations>
-      <arrangeConstraints>KEEP_LOCATION</arrangeConstraints>
-      <arrangeConstraints>KEEP_SIZE</arrangeConstraints>
-      <arrangeConstraints>KEEP_RATIO</arrangeConstraints>
-      <ownedStyle xmi:type="diagram:FlatContainerStyle" uid="_gWIa0ZqcEe6Xg8gl-iWaGQ" borderSize="1" borderSizeComputationExpression="1" backgroundStyle="Liquid" foregroundColor="255,252,216">
-        <description xmi:type="style:FlatContainerStyleDescription" href="platform:/plugin/org.eclipse.emf.ecoretools.design/description/ecore.odesign#//@ownedViewpoints[name='Design']/@ownedRepresentations[name='Entities']/@defaultLayer/@containerMappings[name='EC%20EClass']/@style"/>
-      </ownedStyle>
-      <actualMapping xmi:type="description_1:ContainerMapping" href="platform:/plugin/org.eclipse.emf.ecoretools.design/description/ecore.odesign#//@ownedViewpoints[name='Design']/@ownedRepresentations[name='Entities']/@defaultLayer/@containerMappings[name='EC%20EClass']"/>
-      <ownedElements xmi:type="diagram:DNodeListElement" uid="_gWKQEJqcEe6Xg8gl-iWaGQ" name="serviceDuration : Double = 0.0" tooltipText="">
-        <target xmi:type="ecore:EAttribute" href="MATSimFreightMetamodel.ecore#//freightContrib/Events/CarrierServieStartEvent/serviceDuration"/>
-        <semanticElements xmi:type="ecore:EAttribute" href="MATSimFreightMetamodel.ecore#//freightContrib/Events/CarrierServieStartEvent/serviceDuration"/>
-        <ownedStyle xmi:type="diagram:BundledImage" uid="_gWKQEZqcEe6Xg8gl-iWaGQ" labelAlignment="LEFT" description="_eJp8M5qcEe6Xg8gl-iWaGQ">
-          <labelFormat>bold</labelFormat>
-        </ownedStyle>
-        <actualMapping xmi:type="description_1:NodeMapping" href="platform:/plugin/org.eclipse.emf.ecoretools.design/description/ecore.odesign#//@ownedViewpoints[name='Design']/@ownedRepresentations[name='Entities']/@defaultLayer/@containerMappings[name='EC%20EClass']/@subNodeMappings[name='EC%20EAttribute']"/>
-      </ownedElements>
-      <ownedElements xmi:type="diagram:DNodeListElement" uid="_gWKQEpqcEe6Xg8gl-iWaGQ" name="capacityDemand : Int" tooltipText="">
-        <target xmi:type="ecore:EAttribute" href="MATSimFreightMetamodel.ecore#//freightContrib/Events/CarrierServieStartEvent/capacityDemand"/>
-        <semanticElements xmi:type="ecore:EAttribute" href="MATSimFreightMetamodel.ecore#//freightContrib/Events/CarrierServieStartEvent/capacityDemand"/>
-        <ownedStyle xmi:type="diagram:BundledImage" uid="_gWKQE5qcEe6Xg8gl-iWaGQ" labelAlignment="LEFT" description="_eJp8M5qcEe6Xg8gl-iWaGQ">
-          <labelFormat>bold</labelFormat>
-        </ownedStyle>
-        <actualMapping xmi:type="description_1:NodeMapping" href="platform:/plugin/org.eclipse.emf.ecoretools.design/description/ecore.odesign#//@ownedViewpoints[name='Design']/@ownedRepresentations[name='Entities']/@defaultLayer/@containerMappings[name='EC%20EClass']/@subNodeMappings[name='EC%20EAttribute']"/>
-      </ownedElements>
-      <ownedElements xmi:type="diagram:DNodeListElement" uid="_gWKQFJqcEe6Xg8gl-iWaGQ" name=" carrierService : CarrierService" tooltipText="">
-        <target xmi:type="ecore:EReference" href="MATSimFreightMetamodel.ecore#//freightContrib/Events/CarrierServieStartEvent/carrierService"/>
-        <semanticElements xmi:type="ecore:EReference" href="MATSimFreightMetamodel.ecore#//freightContrib/Events/CarrierServieStartEvent/carrierService"/>
-        <ownedStyle xmi:type="diagram:BundledImage" uid="_gWKQFZqcEe6Xg8gl-iWaGQ" labelAlignment="LEFT" description="_gWJpBpqcEe6Xg8gl-iWaGQ" color="114,159,207">
-          <labelFormat>bold</labelFormat>
-        </ownedStyle>
-        <actualMapping xmi:type="description_1:NodeMapping" href="platform:/plugin/org.eclipse.emf.ecoretools.design/description/ecore.odesign#//@ownedViewpoints[name='Design']/@ownedRepresentations[name='Entities']/@defaultLayer/@containerMappings[name='EC%20EClass']/@subNodeMappings[name='EC%20EReferenceNode']"/>
-      </ownedElements>
-    </ownedDiagramElements>
-    <ownedDiagramElements xmi:type="diagram:DNodeList" uid="_gWIa1JqcEe6Xg8gl-iWaGQ" name="CarrierServiceEndEvent" tooltipText="" outgoingEdges="_gWLeP5qcEe6Xg8gl-iWaGQ" width="12" height="10">
-      <target xmi:type="ecore:EClass" href="MATSimFreightMetamodel.ecore#//freightContrib/Events/CarrierServiceEndEvent"/>
-      <semanticElements xmi:type="ecore:EClass" href="MATSimFreightMetamodel.ecore#//freightContrib/Events/CarrierServiceEndEvent"/>
-      <decorations xmi:type="viewpoint:Decoration" uid="_gWIa1pqcEe6Xg8gl-iWaGQ">
-        <description xmi:type="description:SemanticBasedDecoration" href="platform:/plugin/org.eclipse.emf.ecoretools.design/description/ecore.odesign#//@ownedViewpoints[name='Design']/@ownedRepresentations[name='Entities']/@defaultLayer/@decorationDescriptionsSet/@decorationDescriptions[name='External']"/>
-      </decorations>
-      <arrangeConstraints>KEEP_LOCATION</arrangeConstraints>
-      <arrangeConstraints>KEEP_SIZE</arrangeConstraints>
-      <arrangeConstraints>KEEP_RATIO</arrangeConstraints>
-      <ownedStyle xmi:type="diagram:FlatContainerStyle" uid="_gWIa1ZqcEe6Xg8gl-iWaGQ" borderSize="1" borderSizeComputationExpression="1" backgroundStyle="Liquid" foregroundColor="255,252,216">
-        <description xmi:type="style:FlatContainerStyleDescription" href="platform:/plugin/org.eclipse.emf.ecoretools.design/description/ecore.odesign#//@ownedViewpoints[name='Design']/@ownedRepresentations[name='Entities']/@defaultLayer/@containerMappings[name='EC%20EClass']/@style"/>
-      </ownedStyle>
-      <actualMapping xmi:type="description_1:ContainerMapping" href="platform:/plugin/org.eclipse.emf.ecoretools.design/description/ecore.odesign#//@ownedViewpoints[name='Design']/@ownedRepresentations[name='Entities']/@defaultLayer/@containerMappings[name='EC%20EClass']"/>
-      <ownedElements xmi:type="diagram:DNodeListElement" uid="_gWKQFpqcEe6Xg8gl-iWaGQ" name="capacityDemand : Int" tooltipText="">
-        <target xmi:type="ecore:EAttribute" href="MATSimFreightMetamodel.ecore#//freightContrib/Events/CarrierServiceEndEvent/capacityDemand"/>
-        <semanticElements xmi:type="ecore:EAttribute" href="MATSimFreightMetamodel.ecore#//freightContrib/Events/CarrierServiceEndEvent/capacityDemand"/>
-        <ownedStyle xmi:type="diagram:BundledImage" uid="_gWK3EJqcEe6Xg8gl-iWaGQ" labelAlignment="LEFT" description="_eJp8M5qcEe6Xg8gl-iWaGQ">
-          <labelFormat>bold</labelFormat>
-        </ownedStyle>
-        <actualMapping xmi:type="description_1:NodeMapping" href="platform:/plugin/org.eclipse.emf.ecoretools.design/description/ecore.odesign#//@ownedViewpoints[name='Design']/@ownedRepresentations[name='Entities']/@defaultLayer/@containerMappings[name='EC%20EClass']/@subNodeMappings[name='EC%20EAttribute']"/>
-      </ownedElements>
-      <ownedElements xmi:type="diagram:DNodeListElement" uid="_gWK3EZqcEe6Xg8gl-iWaGQ" name="serviceDuration : Double = 0.0" tooltipText="">
-        <target xmi:type="ecore:EAttribute" href="MATSimFreightMetamodel.ecore#//freightContrib/Events/CarrierServiceEndEvent/serviceDuration"/>
-        <semanticElements xmi:type="ecore:EAttribute" href="MATSimFreightMetamodel.ecore#//freightContrib/Events/CarrierServiceEndEvent/serviceDuration"/>
-        <ownedStyle xmi:type="diagram:BundledImage" uid="_gWK3EpqcEe6Xg8gl-iWaGQ" labelAlignment="LEFT" description="_eJp8M5qcEe6Xg8gl-iWaGQ">
-          <labelFormat>bold</labelFormat>
-        </ownedStyle>
-        <actualMapping xmi:type="description_1:NodeMapping" href="platform:/plugin/org.eclipse.emf.ecoretools.design/description/ecore.odesign#//@ownedViewpoints[name='Design']/@ownedRepresentations[name='Entities']/@defaultLayer/@containerMappings[name='EC%20EClass']/@subNodeMappings[name='EC%20EAttribute']"/>
-      </ownedElements>
-      <ownedElements xmi:type="diagram:DNodeListElement" uid="_gWK3E5qcEe6Xg8gl-iWaGQ" name=" carrierService : CarrierService" tooltipText="">
-        <target xmi:type="ecore:EReference" href="MATSimFreightMetamodel.ecore#//freightContrib/Events/CarrierServiceEndEvent/carrierService"/>
-        <semanticElements xmi:type="ecore:EReference" href="MATSimFreightMetamodel.ecore#//freightContrib/Events/CarrierServiceEndEvent/carrierService"/>
-        <ownedStyle xmi:type="diagram:BundledImage" uid="_gWK3FJqcEe6Xg8gl-iWaGQ" labelAlignment="LEFT" description="_gWJpBpqcEe6Xg8gl-iWaGQ" color="114,159,207">
-          <labelFormat>bold</labelFormat>
-        </ownedStyle>
-        <actualMapping xmi:type="description_1:NodeMapping" href="platform:/plugin/org.eclipse.emf.ecoretools.design/description/ecore.odesign#//@ownedViewpoints[name='Design']/@ownedRepresentations[name='Entities']/@defaultLayer/@containerMappings[name='EC%20EClass']/@subNodeMappings[name='EC%20EReferenceNode']"/>
-      </ownedElements>
-    </ownedDiagramElements>
-    <ownedDiagramElements xmi:type="diagram:DNodeList" uid="_gWIa2JqcEe6Xg8gl-iWaGQ" name="CarrierTourStartEvent" tooltipText="" outgoingEdges="_gWLeR5qcEe6Xg8gl-iWaGQ" width="12" height="10">
-      <target xmi:type="ecore:EClass" href="MATSimFreightMetamodel.ecore#//freightContrib/Events/CarrierTourStartEvent"/>
-      <semanticElements xmi:type="ecore:EClass" href="MATSimFreightMetamodel.ecore#//freightContrib/Events/CarrierTourStartEvent"/>
-      <decorations xmi:type="viewpoint:Decoration" uid="_gWIa2pqcEe6Xg8gl-iWaGQ">
-        <description xmi:type="description:SemanticBasedDecoration" href="platform:/plugin/org.eclipse.emf.ecoretools.design/description/ecore.odesign#//@ownedViewpoints[name='Design']/@ownedRepresentations[name='Entities']/@defaultLayer/@decorationDescriptionsSet/@decorationDescriptions[name='External']"/>
-      </decorations>
-      <arrangeConstraints>KEEP_LOCATION</arrangeConstraints>
-      <arrangeConstraints>KEEP_SIZE</arrangeConstraints>
-      <arrangeConstraints>KEEP_RATIO</arrangeConstraints>
-      <ownedStyle xmi:type="diagram:FlatContainerStyle" uid="_gWIa2ZqcEe6Xg8gl-iWaGQ" borderSize="1" borderSizeComputationExpression="1" backgroundStyle="Liquid" foregroundColor="255,252,216">
-        <description xmi:type="style:FlatContainerStyleDescription" href="platform:/plugin/org.eclipse.emf.ecoretools.design/description/ecore.odesign#//@ownedViewpoints[name='Design']/@ownedRepresentations[name='Entities']/@defaultLayer/@containerMappings[name='EC%20EClass']/@style"/>
-      </ownedStyle>
-      <actualMapping xmi:type="description_1:ContainerMapping" href="platform:/plugin/org.eclipse.emf.ecoretools.design/description/ecore.odesign#//@ownedViewpoints[name='Design']/@ownedRepresentations[name='Entities']/@defaultLayer/@containerMappings[name='EC%20EClass']"/>
-      <ownedElements xmi:type="diagram:DNodeListElement" uid="_gWK3FZqcEe6Xg8gl-iWaGQ" name=" tour : Tour" tooltipText="">
-        <target xmi:type="ecore:EReference" href="MATSimFreightMetamodel.ecore#//freightContrib/Events/CarrierTourStartEvent/tour"/>
-        <semanticElements xmi:type="ecore:EReference" href="MATSimFreightMetamodel.ecore#//freightContrib/Events/CarrierTourStartEvent/tour"/>
-        <ownedStyle xmi:type="diagram:BundledImage" uid="_gWK3FpqcEe6Xg8gl-iWaGQ" labelAlignment="LEFT" description="_gWJpBpqcEe6Xg8gl-iWaGQ" color="114,159,207">
-          <labelFormat>bold</labelFormat>
-        </ownedStyle>
-        <actualMapping xmi:type="description_1:NodeMapping" href="platform:/plugin/org.eclipse.emf.ecoretools.design/description/ecore.odesign#//@ownedViewpoints[name='Design']/@ownedRepresentations[name='Entities']/@defaultLayer/@containerMappings[name='EC%20EClass']/@subNodeMappings[name='EC%20EReferenceNode']"/>
-      </ownedElements>
-    </ownedDiagramElements>
-    <ownedDiagramElements xmi:type="diagram:DNodeList" uid="_gWIa3JqcEe6Xg8gl-iWaGQ" name="CarrierTourEndEvent" tooltipText="" outgoingEdges="_gWLeT5qcEe6Xg8gl-iWaGQ" width="12" height="10">
-      <target xmi:type="ecore:EClass" href="MATSimFreightMetamodel.ecore#//freightContrib/Events/CarrierTourEndEvent"/>
-      <semanticElements xmi:type="ecore:EClass" href="MATSimFreightMetamodel.ecore#//freightContrib/Events/CarrierTourEndEvent"/>
-      <decorations xmi:type="viewpoint:Decoration" uid="_gWIa3pqcEe6Xg8gl-iWaGQ">
-        <description xmi:type="description:SemanticBasedDecoration" href="platform:/plugin/org.eclipse.emf.ecoretools.design/description/ecore.odesign#//@ownedViewpoints[name='Design']/@ownedRepresentations[name='Entities']/@defaultLayer/@decorationDescriptionsSet/@decorationDescriptions[name='External']"/>
-      </decorations>
-      <arrangeConstraints>KEEP_LOCATION</arrangeConstraints>
-      <arrangeConstraints>KEEP_SIZE</arrangeConstraints>
-      <arrangeConstraints>KEEP_RATIO</arrangeConstraints>
-      <ownedStyle xmi:type="diagram:FlatContainerStyle" uid="_gWIa3ZqcEe6Xg8gl-iWaGQ" borderSize="1" borderSizeComputationExpression="1" backgroundStyle="Liquid" foregroundColor="255,252,216">
-        <description xmi:type="style:FlatContainerStyleDescription" href="platform:/plugin/org.eclipse.emf.ecoretools.design/description/ecore.odesign#//@ownedViewpoints[name='Design']/@ownedRepresentations[name='Entities']/@defaultLayer/@containerMappings[name='EC%20EClass']/@style"/>
-      </ownedStyle>
-      <actualMapping xmi:type="description_1:ContainerMapping" href="platform:/plugin/org.eclipse.emf.ecoretools.design/description/ecore.odesign#//@ownedViewpoints[name='Design']/@ownedRepresentations[name='Entities']/@defaultLayer/@containerMappings[name='EC%20EClass']"/>
-      <ownedElements xmi:type="diagram:DNodeListElement" uid="_gWK3F5qcEe6Xg8gl-iWaGQ" name=" tour : Tour" tooltipText="">
-        <target xmi:type="ecore:EReference" href="MATSimFreightMetamodel.ecore#//freightContrib/Events/CarrierTourEndEvent/tour"/>
-        <semanticElements xmi:type="ecore:EReference" href="MATSimFreightMetamodel.ecore#//freightContrib/Events/CarrierTourEndEvent/tour"/>
-        <ownedStyle xmi:type="diagram:BundledImage" uid="_gWK3GJqcEe6Xg8gl-iWaGQ" labelAlignment="LEFT" description="_gWJpBpqcEe6Xg8gl-iWaGQ" color="114,159,207">
-          <labelFormat>bold</labelFormat>
-        </ownedStyle>
-        <actualMapping xmi:type="description_1:NodeMapping" href="platform:/plugin/org.eclipse.emf.ecoretools.design/description/ecore.odesign#//@ownedViewpoints[name='Design']/@ownedRepresentations[name='Entities']/@defaultLayer/@containerMappings[name='EC%20EClass']/@subNodeMappings[name='EC%20EReferenceNode']"/>
-      </ownedElements>
-    </ownedDiagramElements>
-    <ownedDiagramElements xmi:type="diagram:DNodeList" uid="_gWIa4JqcEe6Xg8gl-iWaGQ" name="CarrierShipmentPickupStartEvent" tooltipText="" outgoingEdges="_gWLeV5qcEe6Xg8gl-iWaGQ" width="12" height="10">
-      <target xmi:type="ecore:EClass" href="MATSimFreightMetamodel.ecore#//freightContrib/Events/CarrierShipmentPickupStartEvent"/>
-      <semanticElements xmi:type="ecore:EClass" href="MATSimFreightMetamodel.ecore#//freightContrib/Events/CarrierShipmentPickupStartEvent"/>
-      <decorations xmi:type="viewpoint:Decoration" uid="_gWIa4pqcEe6Xg8gl-iWaGQ">
-        <description xmi:type="description:SemanticBasedDecoration" href="platform:/plugin/org.eclipse.emf.ecoretools.design/description/ecore.odesign#//@ownedViewpoints[name='Design']/@ownedRepresentations[name='Entities']/@defaultLayer/@decorationDescriptionsSet/@decorationDescriptions[name='External']"/>
-      </decorations>
-      <arrangeConstraints>KEEP_LOCATION</arrangeConstraints>
-      <arrangeConstraints>KEEP_SIZE</arrangeConstraints>
-      <arrangeConstraints>KEEP_RATIO</arrangeConstraints>
-      <ownedStyle xmi:type="diagram:FlatContainerStyle" uid="_gWIa4ZqcEe6Xg8gl-iWaGQ" borderSize="1" borderSizeComputationExpression="1" backgroundStyle="Liquid" foregroundColor="255,252,216">
-        <description xmi:type="style:FlatContainerStyleDescription" href="platform:/plugin/org.eclipse.emf.ecoretools.design/description/ecore.odesign#//@ownedViewpoints[name='Design']/@ownedRepresentations[name='Entities']/@defaultLayer/@containerMappings[name='EC%20EClass']/@style"/>
-      </ownedStyle>
-      <actualMapping xmi:type="description_1:ContainerMapping" href="platform:/plugin/org.eclipse.emf.ecoretools.design/description/ecore.odesign#//@ownedViewpoints[name='Design']/@ownedRepresentations[name='Entities']/@defaultLayer/@containerMappings[name='EC%20EClass']"/>
-      <ownedElements xmi:type="diagram:DNodeListElement" uid="_gWK3GZqcEe6Xg8gl-iWaGQ" name="pickupDuration : Double = 0.0" tooltipText="">
-        <target xmi:type="ecore:EAttribute" href="MATSimFreightMetamodel.ecore#//freightContrib/Events/CarrierShipmentPickupStartEvent/pickupDuration"/>
-        <semanticElements xmi:type="ecore:EAttribute" href="MATSimFreightMetamodel.ecore#//freightContrib/Events/CarrierShipmentPickupStartEvent/pickupDuration"/>
-        <ownedStyle xmi:type="diagram:BundledImage" uid="_gWK3GpqcEe6Xg8gl-iWaGQ" labelAlignment="LEFT" description="_eJp8M5qcEe6Xg8gl-iWaGQ">
-          <labelFormat>bold</labelFormat>
-        </ownedStyle>
-        <actualMapping xmi:type="description_1:NodeMapping" href="platform:/plugin/org.eclipse.emf.ecoretools.design/description/ecore.odesign#//@ownedViewpoints[name='Design']/@ownedRepresentations[name='Entities']/@defaultLayer/@containerMappings[name='EC%20EClass']/@subNodeMappings[name='EC%20EAttribute']"/>
-      </ownedElements>
-      <ownedElements xmi:type="diagram:DNodeListElement" uid="_gWK3G5qcEe6Xg8gl-iWaGQ" name="capacityDemand : Int" tooltipText="">
-        <target xmi:type="ecore:EAttribute" href="MATSimFreightMetamodel.ecore#//freightContrib/Events/CarrierShipmentPickupStartEvent/capacityDemand"/>
-        <semanticElements xmi:type="ecore:EAttribute" href="MATSimFreightMetamodel.ecore#//freightContrib/Events/CarrierShipmentPickupStartEvent/capacityDemand"/>
-        <ownedStyle xmi:type="diagram:BundledImage" uid="_gWK3HJqcEe6Xg8gl-iWaGQ" labelAlignment="LEFT" description="_eJp8M5qcEe6Xg8gl-iWaGQ">
-          <labelFormat>bold</labelFormat>
-        </ownedStyle>
-        <actualMapping xmi:type="description_1:NodeMapping" href="platform:/plugin/org.eclipse.emf.ecoretools.design/description/ecore.odesign#//@ownedViewpoints[name='Design']/@ownedRepresentations[name='Entities']/@defaultLayer/@containerMappings[name='EC%20EClass']/@subNodeMappings[name='EC%20EAttribute']"/>
-      </ownedElements>
-      <ownedElements xmi:type="diagram:DNodeListElement" uid="_gWK3HZqcEe6Xg8gl-iWaGQ" name=" carrierShipment : CarrierShipment" tooltipText="">
-        <target xmi:type="ecore:EReference" href="MATSimFreightMetamodel.ecore#//freightContrib/Events/CarrierShipmentPickupStartEvent/carrierShipment"/>
-        <semanticElements xmi:type="ecore:EReference" href="MATSimFreightMetamodel.ecore#//freightContrib/Events/CarrierShipmentPickupStartEvent/carrierShipment"/>
-        <ownedStyle xmi:type="diagram:BundledImage" uid="_gWK3HpqcEe6Xg8gl-iWaGQ" labelAlignment="LEFT" description="_gWJpBpqcEe6Xg8gl-iWaGQ" color="114,159,207">
-          <labelFormat>bold</labelFormat>
-        </ownedStyle>
-        <actualMapping xmi:type="description_1:NodeMapping" href="platform:/plugin/org.eclipse.emf.ecoretools.design/description/ecore.odesign#//@ownedViewpoints[name='Design']/@ownedRepresentations[name='Entities']/@defaultLayer/@containerMappings[name='EC%20EClass']/@subNodeMappings[name='EC%20EReferenceNode']"/>
-      </ownedElements>
-    </ownedDiagramElements>
-    <ownedDiagramElements xmi:type="diagram:DNodeList" uid="_gWIa5JqcEe6Xg8gl-iWaGQ" name="CarrierShipmentPickupEndEvent" tooltipText="" outgoingEdges="_gWLeX5qcEe6Xg8gl-iWaGQ" width="12" height="10">
-      <target xmi:type="ecore:EClass" href="MATSimFreightMetamodel.ecore#//freightContrib/Events/CarrierShipmentPickupEndEvent"/>
-      <semanticElements xmi:type="ecore:EClass" href="MATSimFreightMetamodel.ecore#//freightContrib/Events/CarrierShipmentPickupEndEvent"/>
-      <decorations xmi:type="viewpoint:Decoration" uid="_gWJB4ZqcEe6Xg8gl-iWaGQ">
-        <description xmi:type="description:SemanticBasedDecoration" href="platform:/plugin/org.eclipse.emf.ecoretools.design/description/ecore.odesign#//@ownedViewpoints[name='Design']/@ownedRepresentations[name='Entities']/@defaultLayer/@decorationDescriptionsSet/@decorationDescriptions[name='External']"/>
-      </decorations>
-      <arrangeConstraints>KEEP_LOCATION</arrangeConstraints>
-      <arrangeConstraints>KEEP_SIZE</arrangeConstraints>
-      <arrangeConstraints>KEEP_RATIO</arrangeConstraints>
-      <ownedStyle xmi:type="diagram:FlatContainerStyle" uid="_gWJB4JqcEe6Xg8gl-iWaGQ" borderSize="1" borderSizeComputationExpression="1" backgroundStyle="Liquid" foregroundColor="255,252,216">
-        <description xmi:type="style:FlatContainerStyleDescription" href="platform:/plugin/org.eclipse.emf.ecoretools.design/description/ecore.odesign#//@ownedViewpoints[name='Design']/@ownedRepresentations[name='Entities']/@defaultLayer/@containerMappings[name='EC%20EClass']/@style"/>
-      </ownedStyle>
-      <actualMapping xmi:type="description_1:ContainerMapping" href="platform:/plugin/org.eclipse.emf.ecoretools.design/description/ecore.odesign#//@ownedViewpoints[name='Design']/@ownedRepresentations[name='Entities']/@defaultLayer/@containerMappings[name='EC%20EClass']"/>
-      <ownedElements xmi:type="diagram:DNodeListElement" uid="_gWK3H5qcEe6Xg8gl-iWaGQ" name="capacityDemand : Int" tooltipText="">
-        <target xmi:type="ecore:EAttribute" href="MATSimFreightMetamodel.ecore#//freightContrib/Events/CarrierShipmentPickupEndEvent/capacityDemand"/>
-        <semanticElements xmi:type="ecore:EAttribute" href="MATSimFreightMetamodel.ecore#//freightContrib/Events/CarrierShipmentPickupEndEvent/capacityDemand"/>
-        <ownedStyle xmi:type="diagram:BundledImage" uid="_gWK3IJqcEe6Xg8gl-iWaGQ" labelAlignment="LEFT" description="_eJp8M5qcEe6Xg8gl-iWaGQ">
-          <labelFormat>bold</labelFormat>
-        </ownedStyle>
-        <actualMapping xmi:type="description_1:NodeMapping" href="platform:/plugin/org.eclipse.emf.ecoretools.design/description/ecore.odesign#//@ownedViewpoints[name='Design']/@ownedRepresentations[name='Entities']/@defaultLayer/@containerMappings[name='EC%20EClass']/@subNodeMappings[name='EC%20EAttribute']"/>
-      </ownedElements>
-      <ownedElements xmi:type="diagram:DNodeListElement" uid="_gWK3IZqcEe6Xg8gl-iWaGQ" name="pickupDuration : Double = 0.0" tooltipText="">
-        <target xmi:type="ecore:EAttribute" href="MATSimFreightMetamodel.ecore#//freightContrib/Events/CarrierShipmentPickupEndEvent/pickupDuration"/>
-        <semanticElements xmi:type="ecore:EAttribute" href="MATSimFreightMetamodel.ecore#//freightContrib/Events/CarrierShipmentPickupEndEvent/pickupDuration"/>
-        <ownedStyle xmi:type="diagram:BundledImage" uid="_gWK3IpqcEe6Xg8gl-iWaGQ" labelAlignment="LEFT" description="_eJp8M5qcEe6Xg8gl-iWaGQ">
-          <labelFormat>bold</labelFormat>
-        </ownedStyle>
-        <actualMapping xmi:type="description_1:NodeMapping" href="platform:/plugin/org.eclipse.emf.ecoretools.design/description/ecore.odesign#//@ownedViewpoints[name='Design']/@ownedRepresentations[name='Entities']/@defaultLayer/@containerMappings[name='EC%20EClass']/@subNodeMappings[name='EC%20EAttribute']"/>
-      </ownedElements>
-      <ownedElements xmi:type="diagram:DNodeListElement" uid="_gWK3I5qcEe6Xg8gl-iWaGQ" name=" carrierShipment : CarrierShipment" tooltipText="">
-        <target xmi:type="ecore:EReference" href="MATSimFreightMetamodel.ecore#//freightContrib/Events/CarrierShipmentPickupEndEvent/carrierShipment"/>
-        <semanticElements xmi:type="ecore:EReference" href="MATSimFreightMetamodel.ecore#//freightContrib/Events/CarrierShipmentPickupEndEvent/carrierShipment"/>
-        <ownedStyle xmi:type="diagram:BundledImage" uid="_gWK3JJqcEe6Xg8gl-iWaGQ" labelAlignment="LEFT" description="_gWJpBpqcEe6Xg8gl-iWaGQ" color="114,159,207">
-          <labelFormat>bold</labelFormat>
-        </ownedStyle>
-        <actualMapping xmi:type="description_1:NodeMapping" href="platform:/plugin/org.eclipse.emf.ecoretools.design/description/ecore.odesign#//@ownedViewpoints[name='Design']/@ownedRepresentations[name='Entities']/@defaultLayer/@containerMappings[name='EC%20EClass']/@subNodeMappings[name='EC%20EReferenceNode']"/>
-      </ownedElements>
-    </ownedDiagramElements>
-    <ownedDiagramElements xmi:type="diagram:DEdge" uid="_gWK3JZqcEe6Xg8gl-iWaGQ" sourceNode="_gWHMsJqcEe6Xg8gl-iWaGQ" targetNode="_eJnf8JqcEe6Xg8gl-iWaGQ">
-      <target xmi:type="ecore:EClass" href="MATSimFreightMetamodel.ecore#//freightContrib/Events/CarrierEvent"/>
-      <semanticElements xmi:type="ecore:EClass" href="MATSimFreightMetamodel.ecore#//freightContrib/Events/CarrierEvent"/>
-      <decorations xmi:type="viewpoint:Decoration" uid="_gWLeJpqcEe6Xg8gl-iWaGQ">
-        <description xmi:type="description:SemanticBasedDecoration" href="platform:/plugin/org.eclipse.emf.ecoretools.design/description/ecore.odesign#//@ownedViewpoints[name='Design']/@ownedRepresentations[name='Entities']/@defaultLayer/@decorationDescriptionsSet/@decorationDescriptions[name='External']"/>
-      </decorations>
-      <ownedStyle xmi:type="diagram:EdgeStyle" uid="_gWLeIJqcEe6Xg8gl-iWaGQ" targetArrow="InputClosedArrow" routingStyle="tree">
-        <description xmi:type="style:EdgeStyleDescription" href="platform:/plugin/org.eclipse.emf.ecoretools.design/description/ecore.odesign#//@ownedViewpoints[name='Design']/@ownedRepresentations[name='Entities']/@defaultLayer/@edgeMappings[name='EC%20ESupertypes']/@style"/>
-        <beginLabelStyle xmi:type="diagram:BeginLabelStyle" uid="_gWLeIZqcEe6Xg8gl-iWaGQ" showIcon="false">
-          <labelFormat>italic</labelFormat>
-        </beginLabelStyle>
-        <centerLabelStyle xmi:type="diagram:CenterLabelStyle" uid="_gWLeIpqcEe6Xg8gl-iWaGQ" showIcon="false"/>
-      </ownedStyle>
-      <actualMapping xmi:type="description_1:EdgeMapping" href="platform:/plugin/org.eclipse.emf.ecoretools.design/description/ecore.odesign#//@ownedViewpoints[name='Design']/@ownedRepresentations[name='Entities']/@defaultLayer/@edgeMappings[name='EC%20ESupertypes']"/>
-    </ownedDiagramElements>
-    <ownedDiagramElements xmi:type="diagram:DEdge" uid="_gWLeJ5qcEe6Xg8gl-iWaGQ" sourceNode="_gWHzw5qcEe6Xg8gl-iWaGQ" targetNode="_gWHMsJqcEe6Xg8gl-iWaGQ">
-      <target xmi:type="ecore:EClass" href="MATSimFreightMetamodel.ecore#//freightContrib/Events/CarrierShipmentDeliveryStartEvent"/>
-      <semanticElements xmi:type="ecore:EClass" href="MATSimFreightMetamodel.ecore#//freightContrib/Events/CarrierShipmentDeliveryStartEvent"/>
-      <decorations xmi:type="viewpoint:Decoration" uid="_gWLeLpqcEe6Xg8gl-iWaGQ">
-        <description xmi:type="description:SemanticBasedDecoration" href="platform:/plugin/org.eclipse.emf.ecoretools.design/description/ecore.odesign#//@ownedViewpoints[name='Design']/@ownedRepresentations[name='Entities']/@defaultLayer/@decorationDescriptionsSet/@decorationDescriptions[name='External']"/>
-      </decorations>
-      <ownedStyle xmi:type="diagram:EdgeStyle" uid="_gWLeKJqcEe6Xg8gl-iWaGQ" targetArrow="InputClosedArrow" routingStyle="tree">
-        <description xmi:type="style:EdgeStyleDescription" href="platform:/plugin/org.eclipse.emf.ecoretools.design/description/ecore.odesign#//@ownedViewpoints[name='Design']/@ownedRepresentations[name='Entities']/@defaultLayer/@edgeMappings[name='EC%20ESupertypes']/@style"/>
-        <beginLabelStyle xmi:type="diagram:BeginLabelStyle" uid="_gWLeKZqcEe6Xg8gl-iWaGQ" showIcon="false">
-          <labelFormat>italic</labelFormat>
-        </beginLabelStyle>
-        <centerLabelStyle xmi:type="diagram:CenterLabelStyle" uid="_gWLeKpqcEe6Xg8gl-iWaGQ" showIcon="false"/>
-      </ownedStyle>
-      <actualMapping xmi:type="description_1:EdgeMapping" href="platform:/plugin/org.eclipse.emf.ecoretools.design/description/ecore.odesign#//@ownedViewpoints[name='Design']/@ownedRepresentations[name='Entities']/@defaultLayer/@edgeMappings[name='EC%20ESupertypes']"/>
-    </ownedDiagramElements>
-    <ownedDiagramElements xmi:type="diagram:DEdge" uid="_gWLeL5qcEe6Xg8gl-iWaGQ" sourceNode="_gWHzx5qcEe6Xg8gl-iWaGQ" targetNode="_gWHMsJqcEe6Xg8gl-iWaGQ">
-      <target xmi:type="ecore:EClass" href="MATSimFreightMetamodel.ecore#//freightContrib/Events/CarrierShipmentDeliveryEndEvent"/>
-      <semanticElements xmi:type="ecore:EClass" href="MATSimFreightMetamodel.ecore#//freightContrib/Events/CarrierShipmentDeliveryEndEvent"/>
-      <decorations xmi:type="viewpoint:Decoration" uid="_gWLeNpqcEe6Xg8gl-iWaGQ">
-        <description xmi:type="description:SemanticBasedDecoration" href="platform:/plugin/org.eclipse.emf.ecoretools.design/description/ecore.odesign#//@ownedViewpoints[name='Design']/@ownedRepresentations[name='Entities']/@defaultLayer/@decorationDescriptionsSet/@decorationDescriptions[name='External']"/>
-      </decorations>
-      <ownedStyle xmi:type="diagram:EdgeStyle" uid="_gWLeMJqcEe6Xg8gl-iWaGQ" targetArrow="InputClosedArrow" routingStyle="tree">
-        <description xmi:type="style:EdgeStyleDescription" href="platform:/plugin/org.eclipse.emf.ecoretools.design/description/ecore.odesign#//@ownedViewpoints[name='Design']/@ownedRepresentations[name='Entities']/@defaultLayer/@edgeMappings[name='EC%20ESupertypes']/@style"/>
-        <beginLabelStyle xmi:type="diagram:BeginLabelStyle" uid="_gWLeMZqcEe6Xg8gl-iWaGQ" showIcon="false">
-          <labelFormat>italic</labelFormat>
-        </beginLabelStyle>
-        <centerLabelStyle xmi:type="diagram:CenterLabelStyle" uid="_gWLeMpqcEe6Xg8gl-iWaGQ" showIcon="false"/>
-      </ownedStyle>
-      <actualMapping xmi:type="description_1:EdgeMapping" href="platform:/plugin/org.eclipse.emf.ecoretools.design/description/ecore.odesign#//@ownedViewpoints[name='Design']/@ownedRepresentations[name='Entities']/@defaultLayer/@edgeMappings[name='EC%20ESupertypes']"/>
-    </ownedDiagramElements>
-    <ownedDiagramElements xmi:type="diagram:DEdge" uid="_gWLeN5qcEe6Xg8gl-iWaGQ" sourceNode="_gWIa0JqcEe6Xg8gl-iWaGQ" targetNode="_gWHMsJqcEe6Xg8gl-iWaGQ">
-      <target xmi:type="ecore:EClass" href="MATSimFreightMetamodel.ecore#//freightContrib/Events/CarrierServieStartEvent"/>
-      <semanticElements xmi:type="ecore:EClass" href="MATSimFreightMetamodel.ecore#//freightContrib/Events/CarrierServieStartEvent"/>
-      <decorations xmi:type="viewpoint:Decoration" uid="_gWLePpqcEe6Xg8gl-iWaGQ">
-        <description xmi:type="description:SemanticBasedDecoration" href="platform:/plugin/org.eclipse.emf.ecoretools.design/description/ecore.odesign#//@ownedViewpoints[name='Design']/@ownedRepresentations[name='Entities']/@defaultLayer/@decorationDescriptionsSet/@decorationDescriptions[name='External']"/>
-      </decorations>
-      <ownedStyle xmi:type="diagram:EdgeStyle" uid="_gWLeOJqcEe6Xg8gl-iWaGQ" targetArrow="InputClosedArrow" routingStyle="tree">
-        <description xmi:type="style:EdgeStyleDescription" href="platform:/plugin/org.eclipse.emf.ecoretools.design/description/ecore.odesign#//@ownedViewpoints[name='Design']/@ownedRepresentations[name='Entities']/@defaultLayer/@edgeMappings[name='EC%20ESupertypes']/@style"/>
-        <beginLabelStyle xmi:type="diagram:BeginLabelStyle" uid="_gWLeOZqcEe6Xg8gl-iWaGQ" showIcon="false">
-          <labelFormat>italic</labelFormat>
-        </beginLabelStyle>
-        <centerLabelStyle xmi:type="diagram:CenterLabelStyle" uid="_gWLeOpqcEe6Xg8gl-iWaGQ" showIcon="false"/>
-      </ownedStyle>
-      <actualMapping xmi:type="description_1:EdgeMapping" href="platform:/plugin/org.eclipse.emf.ecoretools.design/description/ecore.odesign#//@ownedViewpoints[name='Design']/@ownedRepresentations[name='Entities']/@defaultLayer/@edgeMappings[name='EC%20ESupertypes']"/>
-    </ownedDiagramElements>
-    <ownedDiagramElements xmi:type="diagram:DEdge" uid="_gWLeP5qcEe6Xg8gl-iWaGQ" sourceNode="_gWIa1JqcEe6Xg8gl-iWaGQ" targetNode="_gWHMsJqcEe6Xg8gl-iWaGQ">
-      <target xmi:type="ecore:EClass" href="MATSimFreightMetamodel.ecore#//freightContrib/Events/CarrierServiceEndEvent"/>
-      <semanticElements xmi:type="ecore:EClass" href="MATSimFreightMetamodel.ecore#//freightContrib/Events/CarrierServiceEndEvent"/>
-      <decorations xmi:type="viewpoint:Decoration" uid="_gWLeRpqcEe6Xg8gl-iWaGQ">
-        <description xmi:type="description:SemanticBasedDecoration" href="platform:/plugin/org.eclipse.emf.ecoretools.design/description/ecore.odesign#//@ownedViewpoints[name='Design']/@ownedRepresentations[name='Entities']/@defaultLayer/@decorationDescriptionsSet/@decorationDescriptions[name='External']"/>
-      </decorations>
-      <ownedStyle xmi:type="diagram:EdgeStyle" uid="_gWLeQJqcEe6Xg8gl-iWaGQ" targetArrow="InputClosedArrow" routingStyle="tree">
-        <description xmi:type="style:EdgeStyleDescription" href="platform:/plugin/org.eclipse.emf.ecoretools.design/description/ecore.odesign#//@ownedViewpoints[name='Design']/@ownedRepresentations[name='Entities']/@defaultLayer/@edgeMappings[name='EC%20ESupertypes']/@style"/>
-        <beginLabelStyle xmi:type="diagram:BeginLabelStyle" uid="_gWLeQZqcEe6Xg8gl-iWaGQ" showIcon="false">
-          <labelFormat>italic</labelFormat>
-        </beginLabelStyle>
-        <centerLabelStyle xmi:type="diagram:CenterLabelStyle" uid="_gWLeQpqcEe6Xg8gl-iWaGQ" showIcon="false"/>
-      </ownedStyle>
-      <actualMapping xmi:type="description_1:EdgeMapping" href="platform:/plugin/org.eclipse.emf.ecoretools.design/description/ecore.odesign#//@ownedViewpoints[name='Design']/@ownedRepresentations[name='Entities']/@defaultLayer/@edgeMappings[name='EC%20ESupertypes']"/>
-    </ownedDiagramElements>
-    <ownedDiagramElements xmi:type="diagram:DEdge" uid="_gWLeR5qcEe6Xg8gl-iWaGQ" sourceNode="_gWIa2JqcEe6Xg8gl-iWaGQ" targetNode="_gWHMsJqcEe6Xg8gl-iWaGQ">
-      <target xmi:type="ecore:EClass" href="MATSimFreightMetamodel.ecore#//freightContrib/Events/CarrierTourStartEvent"/>
-      <semanticElements xmi:type="ecore:EClass" href="MATSimFreightMetamodel.ecore#//freightContrib/Events/CarrierTourStartEvent"/>
-      <decorations xmi:type="viewpoint:Decoration" uid="_gWLeTpqcEe6Xg8gl-iWaGQ">
-        <description xmi:type="description:SemanticBasedDecoration" href="platform:/plugin/org.eclipse.emf.ecoretools.design/description/ecore.odesign#//@ownedViewpoints[name='Design']/@ownedRepresentations[name='Entities']/@defaultLayer/@decorationDescriptionsSet/@decorationDescriptions[name='External']"/>
-      </decorations>
-      <ownedStyle xmi:type="diagram:EdgeStyle" uid="_gWLeSJqcEe6Xg8gl-iWaGQ" targetArrow="InputClosedArrow" routingStyle="tree">
-        <description xmi:type="style:EdgeStyleDescription" href="platform:/plugin/org.eclipse.emf.ecoretools.design/description/ecore.odesign#//@ownedViewpoints[name='Design']/@ownedRepresentations[name='Entities']/@defaultLayer/@edgeMappings[name='EC%20ESupertypes']/@style"/>
-        <beginLabelStyle xmi:type="diagram:BeginLabelStyle" uid="_gWLeSZqcEe6Xg8gl-iWaGQ" showIcon="false">
-          <labelFormat>italic</labelFormat>
-        </beginLabelStyle>
-        <centerLabelStyle xmi:type="diagram:CenterLabelStyle" uid="_gWLeSpqcEe6Xg8gl-iWaGQ" showIcon="false"/>
-      </ownedStyle>
-      <actualMapping xmi:type="description_1:EdgeMapping" href="platform:/plugin/org.eclipse.emf.ecoretools.design/description/ecore.odesign#//@ownedViewpoints[name='Design']/@ownedRepresentations[name='Entities']/@defaultLayer/@edgeMappings[name='EC%20ESupertypes']"/>
-    </ownedDiagramElements>
-    <ownedDiagramElements xmi:type="diagram:DEdge" uid="_gWLeT5qcEe6Xg8gl-iWaGQ" sourceNode="_gWIa3JqcEe6Xg8gl-iWaGQ" targetNode="_gWHMsJqcEe6Xg8gl-iWaGQ">
-      <target xmi:type="ecore:EClass" href="MATSimFreightMetamodel.ecore#//freightContrib/Events/CarrierTourEndEvent"/>
-      <semanticElements xmi:type="ecore:EClass" href="MATSimFreightMetamodel.ecore#//freightContrib/Events/CarrierTourEndEvent"/>
-      <decorations xmi:type="viewpoint:Decoration" uid="_gWLeVpqcEe6Xg8gl-iWaGQ">
-        <description xmi:type="description:SemanticBasedDecoration" href="platform:/plugin/org.eclipse.emf.ecoretools.design/description/ecore.odesign#//@ownedViewpoints[name='Design']/@ownedRepresentations[name='Entities']/@defaultLayer/@decorationDescriptionsSet/@decorationDescriptions[name='External']"/>
-      </decorations>
-      <ownedStyle xmi:type="diagram:EdgeStyle" uid="_gWLeUJqcEe6Xg8gl-iWaGQ" targetArrow="InputClosedArrow" routingStyle="tree">
-        <description xmi:type="style:EdgeStyleDescription" href="platform:/plugin/org.eclipse.emf.ecoretools.design/description/ecore.odesign#//@ownedViewpoints[name='Design']/@ownedRepresentations[name='Entities']/@defaultLayer/@edgeMappings[name='EC%20ESupertypes']/@style"/>
-        <beginLabelStyle xmi:type="diagram:BeginLabelStyle" uid="_gWLeUZqcEe6Xg8gl-iWaGQ" showIcon="false">
-          <labelFormat>italic</labelFormat>
-        </beginLabelStyle>
-        <centerLabelStyle xmi:type="diagram:CenterLabelStyle" uid="_gWLeUpqcEe6Xg8gl-iWaGQ" showIcon="false"/>
-      </ownedStyle>
-      <actualMapping xmi:type="description_1:EdgeMapping" href="platform:/plugin/org.eclipse.emf.ecoretools.design/description/ecore.odesign#//@ownedViewpoints[name='Design']/@ownedRepresentations[name='Entities']/@defaultLayer/@edgeMappings[name='EC%20ESupertypes']"/>
-    </ownedDiagramElements>
-    <ownedDiagramElements xmi:type="diagram:DEdge" uid="_gWLeV5qcEe6Xg8gl-iWaGQ" sourceNode="_gWIa4JqcEe6Xg8gl-iWaGQ" targetNode="_gWHMsJqcEe6Xg8gl-iWaGQ">
-      <target xmi:type="ecore:EClass" href="MATSimFreightMetamodel.ecore#//freightContrib/Events/CarrierShipmentPickupStartEvent"/>
-      <semanticElements xmi:type="ecore:EClass" href="MATSimFreightMetamodel.ecore#//freightContrib/Events/CarrierShipmentPickupStartEvent"/>
-      <decorations xmi:type="viewpoint:Decoration" uid="_gWLeXpqcEe6Xg8gl-iWaGQ">
-        <description xmi:type="description:SemanticBasedDecoration" href="platform:/plugin/org.eclipse.emf.ecoretools.design/description/ecore.odesign#//@ownedViewpoints[name='Design']/@ownedRepresentations[name='Entities']/@defaultLayer/@decorationDescriptionsSet/@decorationDescriptions[name='External']"/>
-      </decorations>
-      <ownedStyle xmi:type="diagram:EdgeStyle" uid="_gWLeWJqcEe6Xg8gl-iWaGQ" targetArrow="InputClosedArrow" routingStyle="tree">
-        <description xmi:type="style:EdgeStyleDescription" href="platform:/plugin/org.eclipse.emf.ecoretools.design/description/ecore.odesign#//@ownedViewpoints[name='Design']/@ownedRepresentations[name='Entities']/@defaultLayer/@edgeMappings[name='EC%20ESupertypes']/@style"/>
-        <beginLabelStyle xmi:type="diagram:BeginLabelStyle" uid="_gWLeWZqcEe6Xg8gl-iWaGQ" showIcon="false">
-          <labelFormat>italic</labelFormat>
-        </beginLabelStyle>
-        <centerLabelStyle xmi:type="diagram:CenterLabelStyle" uid="_gWLeWpqcEe6Xg8gl-iWaGQ" showIcon="false"/>
-      </ownedStyle>
-      <actualMapping xmi:type="description_1:EdgeMapping" href="platform:/plugin/org.eclipse.emf.ecoretools.design/description/ecore.odesign#//@ownedViewpoints[name='Design']/@ownedRepresentations[name='Entities']/@defaultLayer/@edgeMappings[name='EC%20ESupertypes']"/>
-    </ownedDiagramElements>
-    <ownedDiagramElements xmi:type="diagram:DEdge" uid="_gWLeX5qcEe6Xg8gl-iWaGQ" sourceNode="_gWIa5JqcEe6Xg8gl-iWaGQ" targetNode="_gWHMsJqcEe6Xg8gl-iWaGQ">
-      <target xmi:type="ecore:EClass" href="MATSimFreightMetamodel.ecore#//freightContrib/Events/CarrierShipmentPickupEndEvent"/>
-      <semanticElements xmi:type="ecore:EClass" href="MATSimFreightMetamodel.ecore#//freightContrib/Events/CarrierShipmentPickupEndEvent"/>
-      <decorations xmi:type="viewpoint:Decoration" uid="_gWLeZpqcEe6Xg8gl-iWaGQ">
-        <description xmi:type="description:SemanticBasedDecoration" href="platform:/plugin/org.eclipse.emf.ecoretools.design/description/ecore.odesign#//@ownedViewpoints[name='Design']/@ownedRepresentations[name='Entities']/@defaultLayer/@decorationDescriptionsSet/@decorationDescriptions[name='External']"/>
-      </decorations>
-      <ownedStyle xmi:type="diagram:EdgeStyle" uid="_gWLeYJqcEe6Xg8gl-iWaGQ" targetArrow="InputClosedArrow" routingStyle="tree">
-        <description xmi:type="style:EdgeStyleDescription" href="platform:/plugin/org.eclipse.emf.ecoretools.design/description/ecore.odesign#//@ownedViewpoints[name='Design']/@ownedRepresentations[name='Entities']/@defaultLayer/@edgeMappings[name='EC%20ESupertypes']/@style"/>
-        <beginLabelStyle xmi:type="diagram:BeginLabelStyle" uid="_gWLeYZqcEe6Xg8gl-iWaGQ" showIcon="false">
-          <labelFormat>italic</labelFormat>
-        </beginLabelStyle>
-        <centerLabelStyle xmi:type="diagram:CenterLabelStyle" uid="_gWLeYpqcEe6Xg8gl-iWaGQ" showIcon="false"/>
-      </ownedStyle>
-      <actualMapping xmi:type="description_1:EdgeMapping" href="platform:/plugin/org.eclipse.emf.ecoretools.design/description/ecore.odesign#//@ownedViewpoints[name='Design']/@ownedRepresentations[name='Entities']/@defaultLayer/@edgeMappings[name='EC%20ESupertypes']"/>
     </ownedDiagramElements>
     <description xmi:type="description_1:DiagramDescription" href="platform:/plugin/org.eclipse.emf.ecoretools.design/description/ecore.odesign#//@ownedViewpoints[name='Design']/@ownedRepresentations[name='Entities']"/>
     <filterVariableHistory xmi:type="diagram:FilterVariableHistory" uid="_MgulYJqWEe6Xg8gl-iWaGQ"/>

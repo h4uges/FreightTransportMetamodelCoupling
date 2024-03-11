@@ -17,8 +17,8 @@ mapping LOGITOPP::logiTopp::distribution::tours::PlannedDeliveryTour::plannedTou
 	var orgLastStop := intermediateStops -> last();
 	
 	var firstStop := new COMMON_MM::logisticSolution::StartEndStop(id, orgFirstStop.no - 1, vehicle.depot, orgFirstStop.stopTimeWindow.oclAsType(COMMON_MM::utils::MultiDayTimeWindow));
-	var lastStop := new COMMON_MM::logisticSolution::StartEndStop(id, orgFirstStop.no + 1, vehicle.depot, orgFirstStop.stopTimeWindow.oclAsType(COMMON_MM::utils::MultiDayTimeWindow));
-	stops -> prepend(firstStop);
+	var lastStop := new COMMON_MM::logisticSolution::StartEndStop(id, orgLastStop.no + 1, vehicle.depot, orgLastStop.stopTimeWindow.oclAsType(COMMON_MM::utils::MultiDayTimeWindow));
+	stops := stops -> prepend(firstStop);
 	stops += lastStop;
 }
 
@@ -56,7 +56,7 @@ mapping LOGITOPP::logiTopp::distribution::delivery::ParcelActivity::parcelActivi
 	no := self.no; // TODO: correct?
 	id := tourId + "_" + no.toString();
 	
-	stopLocation := new COMMON_MM::logisticSolution::CustomStopLocation(self.stopLocation.location.map location2Location());
+	stopLocation := new COMMON_MM::logisticSolution::CustomStopLocation(location2Location(self.stopLocation.location, "costum stop"));
 	stopTimeWindow := createStopTimeWindow(self.plannedTime, self.deliveryDuration);
 	
 	unloadedShipments +=  self.parcels -> collect(parcel | parcel.resolveone(COMMON_MM::logisticDemand::Shipment));
@@ -64,7 +64,7 @@ mapping LOGITOPP::logiTopp::distribution::delivery::ParcelActivity::parcelActivi
 }
 
 query findLogisticFacility(stopLocation_ : LOGITOPP::mobiTopp::network::Location, logisticNetwork : COMMON_MM::logisticNetwork::LogisticNetwork) : COMMON_MM::logisticNetwork::LogisticFacility {
-	var stopLocation := stopLocation_.map location2Location();
+	var stopLocation := location2Location(stopLocation_, "null");
 
 	var foundPackstation := 
 		logisticNetwork.publicServicePoints 
@@ -100,9 +100,9 @@ helper createStopTimeWindow(time : LOGITOPP::base::Time, minutes: Integer) : COM
 }
 
 constructor COMMON_MM::logisticSolution::StartEndStop::StartEndStop(tourId : String, stopNo : Integer, depot_ : COMMON_MM::logisticNetwork::VehicleDepot, stopTimeWindow_ : COMMON_MM::utils::MultiDayTimeWindow) {
-	id := tourId + "_" + no.toString();
+	id := tourId + "_" + stopNo.toString();
 	no := stopNo;
 	depot := depot_;
-	stopLocation := new COMMON_MM::logisticSolution::ReferenceStopLocation(depot.location);
-	stopTimeWindow := stopTimeWindow_.clone();
+	stopLocation := new COMMON_MM::logisticSolution::ReferenceStopLocation(depot_.location);
+	stopTimeWindow := stopTimeWindow_.deepclone();
 }

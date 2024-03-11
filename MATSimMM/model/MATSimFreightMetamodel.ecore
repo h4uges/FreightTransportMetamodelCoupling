@@ -1,18 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <ecore:EPackage xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-    xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore" name="MATSimFreightMetamodel" nsURI="http://www.cep-model-coupling.com/MATSimFreightMetamodel"
-    nsPrefix="MATSimFreightMetamodel">
-  <eClassifiers xsi:type="ecore:EClass" name="DataExchangeRoot">
-    <eStructuralFeatures xsi:type="ecore:EReference" name="carriers" upperBound="-1"
-        eType="#//freightContrib/Carrier" containment="true"/>
-    <eStructuralFeatures xsi:type="ecore:EReference" name="network" lowerBound="1"
-        eType="#//matsim/core/network/Network" containment="true"/>
-    <eStructuralFeatures xsi:type="ecore:EReference" name="vehicleTypes" lowerBound="1"
-        eType="#//matsim/vehicles/VehicleTypes" containment="true"/>
-    <eStructuralFeatures xsi:type="ecore:EReference" name="population" lowerBound="1"
-        eType="#//matsim/households/Population" containment="true"/>
-  </eClassifiers>
-  <eSubpackages name="freightContrib" nsURI="http://www.cep-model-coupling.com/MATSimFreightMetamodel/freightContrib"
+    xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore" name="MATSimFreightMetamodel" nsURI="http://www.cep-model-coupling.com/matSimFreightMetamodel"
+    nsPrefix="matSimFreightMetamodel">
+  <eSubpackages name="freightContrib" nsURI="http://www.cep-model-coupling.com/matSimFreightMetamodel/freightContrib"
       nsPrefix="freightContrib">
     <eClassifiers xsi:type="ecore:EClass" name="Carrier" eSuperTypes="#//base/Entity">
       <eStructuralFeatures xsi:type="ecore:EReference" name="plan" eType="#//freightContrib/CarrierPlan"
@@ -93,7 +83,7 @@
       <eLiterals name="INFINITE"/>
       <eLiterals name="FINITE" value="1"/>
     </eClassifiers>
-    <eSubpackages name="tour" nsURI="http://www.cep-model-coupling.com/MATSimFreightMetamodel/freightContrib/tour"
+    <eSubpackages name="tour" nsURI="http://www.cep-model-coupling.com/matSimFreightMetamodel/freightContrib/tour"
         nsPrefix="tour">
       <eClassifiers xsi:type="ecore:EClass" name="Tour" eSuperTypes="#//base/Entity">
         <eStructuralFeatures xsi:type="ecore:EReference" name="tourElements" lowerBound="3"
@@ -125,7 +115,7 @@
         <eStructuralFeatures xsi:type="ecore:EReference" name="timeWindow" lowerBound="1"
             eType="#//freightContrib/TimeWindow" containment="true"/>
         <eStructuralFeatures xsi:type="ecore:EReference" name="location" lowerBound="1"
-            eType="#//matsim/core/network/Link" containment="true"/>
+            eType="#//matsim/core/network/Link"/>
       </eClassifiers>
       <eClassifiers xsi:type="ecore:EClass" name="End" eSuperTypes="#//freightContrib/tour/TourActivity">
         <eStructuralFeatures xsi:type="ecore:EReference" name="timeWindow" lowerBound="1"
@@ -137,7 +127,7 @@
           </eAnnotations>
         </eStructuralFeatures>
         <eStructuralFeatures xsi:type="ecore:EReference" name="location" lowerBound="1"
-            eType="#//matsim/core/network/Link" containment="true"/>
+            eType="#//matsim/core/network/Link"/>
       </eClassifiers>
       <eClassifiers xsi:type="ecore:EClass" name="ShipmentBasedActivity" abstract="true"
           eSuperTypes="#//freightContrib/tour/TourActivity">
@@ -149,7 +139,7 @@
       <eClassifiers xsi:type="ecore:EClass" name="Pickup" eSuperTypes="#//freightContrib/tour/ShipmentBasedActivity"/>
       <eClassifiers xsi:type="ecore:EClass" name="Delivery" eSuperTypes="#//freightContrib/tour/ShipmentBasedActivity"/>
     </eSubpackages>
-    <eSubpackages name="events" nsURI="http://www.cep-model-coupling.com/MATSimFreightMetamodel/freightContrib/events"
+    <eSubpackages name="events" nsURI="http://www.cep-model-coupling.com/matSimFreightMetamodel/freightContrib/events"
         nsPrefix="events">
       <eClassifiers xsi:type="ecore:EClass" name="CarrierEvent" abstract="true" eSuperTypes="#//matsim/core/Event">
         <eStructuralFeatures xsi:type="ecore:EReference" name="carrier" lowerBound="1"
@@ -220,13 +210,13 @@
       </eClassifiers>
     </eSubpackages>
   </eSubpackages>
-  <eSubpackages name="base" nsURI="http://www.cep-model-coupling.com/MATSimFreightMetamodel/base"
+  <eSubpackages name="base" nsURI="http://www.cep-model-coupling.com/matSimFreightMetamodel/base"
       nsPrefix="base">
     <eClassifiers xsi:type="ecore:EClass" name="Entity" abstract="true">
       <eStructuralFeatures xsi:type="ecore:EAttribute" name="id" lowerBound="1" eType="ecore:EDataType http://www.eclipse.org/emf/2003/XMLType#//String"/>
     </eClassifiers>
   </eSubpackages>
-  <eSubpackages name="matsim" nsURI="http://www.cep-model-coupling.com/MATSimFreightMetamodel/matsim"
+  <eSubpackages name="matsim" nsURI="http://www.cep-model-coupling.com/matSimFreightMetamodel/matsim"
       nsPrefix="matsim">
     <eClassifiers xsi:type="ecore:EEnum" name="TransportMode">
       <eLiterals name="car"/>
@@ -245,7 +235,7 @@
       <eLiterals name="non_network_walk" value="13"/>
       <eLiterals name="other" value="14"/>
     </eClassifiers>
-    <eSubpackages name="vehicles" nsURI="http://www.cep-model-coupling.com/MATSimFreightMetamodel/matsim/vehicles"
+    <eSubpackages name="vehicles" nsURI="http://www.cep-model-coupling.com/matSimFreightMetamodel/matsim/vehicles"
         nsPrefix="vehicles">
       <eClassifiers xsi:type="ecore:EClass" name="VehicleType" eSuperTypes="#//base/Entity">
         <eStructuralFeatures xsi:type="ecore:EAttribute" name="width" lowerBound="1"
@@ -304,7 +294,7 @@
       </eClassifiers>
       <eClassifiers xsi:type="ecore:EClass" name="PersonVehicle" eSuperTypes="#//matsim/vehicles/Vehicle"/>
     </eSubpackages>
-    <eSubpackages name="core" nsURI="http://www.cep-model-coupling.com/MATSimFreightMetamodel/matsim/core"
+    <eSubpackages name="core" nsURI="http://www.cep-model-coupling.com/matSimFreightMetamodel/matsim/core"
         nsPrefix="core">
       <eClassifiers xsi:type="ecore:EClass" name="Coord">
         <eStructuralFeatures xsi:type="ecore:EAttribute" name="x" lowerBound="1" eType="ecore:EDataType http://www.eclipse.org/emf/2003/XMLType#//Double"
@@ -318,7 +308,7 @@
         <eStructuralFeatures xsi:type="ecore:EAttribute" name="time" lowerBound="1"
             eType="ecore:EDataType http://www.eclipse.org/emf/2003/XMLType#//Double"/>
       </eClassifiers>
-      <eSubpackages name="network" nsURI="http://www.cep-model-coupling.com/MATSimFreightMetamodel/matsim/core/network"
+      <eSubpackages name="network" nsURI="http://www.cep-model-coupling.com/matSimFreightMetamodel/matsim/core/network"
           nsPrefix="network">
         <eClassifiers xsi:type="ecore:EClass" name="Network">
           <eStructuralFeatures xsi:type="ecore:EReference" name="nodes" upperBound="-1"
@@ -360,7 +350,7 @@
               eType="#//matsim/TransportMode"/>
         </eClassifiers>
       </eSubpackages>
-      <eSubpackages name="population" nsURI="http://www.cep-model-coupling.com/MATSimFreightMetamodel/matsim/core/population"
+      <eSubpackages name="population" nsURI="http://www.cep-model-coupling.com/matSimFreightMetamodel/matsim/core/population"
           nsPrefix="population">
         <eClassifiers xsi:type="ecore:EClass" name="Person" eSuperTypes="#//base/Entity"/>
       </eSubpackages>
@@ -404,7 +394,7 @@
       </eClassifiers>
     </eSubpackages>
   </eSubpackages>
-  <eSubpackages name="freightReceiver" nsURI="http://www.cep-model-coupling.com/MATSimFreightMetamodel/reightReceiver"
+  <eSubpackages name="freightReceiver" nsURI="http://www.cep-model-coupling.com/matSimFreightMetamodel/reightReceiver"
       nsPrefix="freightReceiver">
     <eClassifiers xsi:type="ecore:EClass" name="Receivers">
       <eStructuralFeatures xsi:type="ecore:EReference" name="receivers" upperBound="-1"
@@ -473,6 +463,19 @@
       <eStructuralFeatures xsi:type="ecore:EAttribute" name="numberOfWeekleyDeliveries"
           lowerBound="1" eType="ecore:EDataType http://www.eclipse.org/emf/2003/XMLType#//Double"
           defaultValueLiteral="5"/>
+    </eClassifiers>
+  </eSubpackages>
+  <eSubpackages name="dataExchange" nsURI="http://www.cep-model-coupling.com/matSimFreightMetamodel/dataExchange"
+      nsPrefix="dataExchange">
+    <eClassifiers xsi:type="ecore:EClass" name="DataExchangeRoot">
+      <eStructuralFeatures xsi:type="ecore:EReference" name="carriers" upperBound="-1"
+          eType="#//freightContrib/Carrier" containment="true"/>
+      <eStructuralFeatures xsi:type="ecore:EReference" name="network" lowerBound="1"
+          eType="#//matsim/core/network/Network" containment="true"/>
+      <eStructuralFeatures xsi:type="ecore:EReference" name="vehicleTypes" lowerBound="1"
+          eType="#//matsim/vehicles/VehicleTypes" containment="true"/>
+      <eStructuralFeatures xsi:type="ecore:EReference" name="population" lowerBound="1"
+          eType="#//matsim/households/Population" containment="true"/>
     </eClassifiers>
   </eSubpackages>
 </ecore:EPackage>

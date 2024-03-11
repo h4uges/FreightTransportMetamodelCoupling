@@ -1,5 +1,7 @@
 library common2matsimCarrierSolution;
 
+import common2matsimBaseMappings;
+
 modeltype COMMON_MM uses CommonFreightTransportMetamodel('http://www.cep-model-coupling.com/commonFreightTransportMetamodel');
 modeltype MATSIM uses MATSimFreightMetamodel('http://www.cep-model-coupling.com/MATSimFreightMetamodel');
 
@@ -21,56 +23,190 @@ constructor MATSIM::freightContrib::CarrierPlan::CarrierPlan() {
 }
 
 mapping COMMON_MM::logisticSolution::PlannedTour::plannedTour2ScheduledTour() : MATSIM::freightContrib::ScheduledTour {
-	vehicle := self.vehicle.resolveone(MATSIM::freightContrib::CarrierVehicle);
 	var tourElements := createTourElements(self.stops);
-	tour := new MATSIM::freightContrib::tour::Tour(tourElements);
+	tour := new MATSIM::freightContrib::tour::Tour(self.id, tourElements);
+	vehicle := self.vehicle.resolveone(MATSIM::freightContrib::CarrierVehicle);
+	
 	departureTime := tour.start.timeWindow.start;
 }
 
-constructor MATSIM::freightContrib::tour::Tour::Tour(tourElements_ : List(MATSIM::freightContrib::tour::TourElement)) {
+constructor MATSIM::freightContrib::tour::Tour::Tour(id_: String, tourElements_ : List(MATSIM::freightContrib::tour::TourElement)) {
+	id := id_;
 	tourElements += tourElements_;
 	start := tourElements_ -> first().oclAsType(MATSIM::freightContrib::tour::Start);
 	_end := tourElements_ -> last().oclAsType(MATSIM::freightContrib::tour::End);
 }
 
 helper createTourElements(commonStops : OrderedSet(COMMON_MM::logisticSolution::Stop)) : List(MATSIM::freightContrib::tour::TourElement) {
-	// create all stops
 	var stopTourElements := List{};
 	
-	//commonStops -> forEach(commonStop) {
-		// start (StartEndStop, num = 1)
-		// end (StartEndStop, num != 1)
-		// pickupDeliveryStop
-			// unloadedShipments - foreach
-				// isShipment? -> Delivery
-				// isService? : isNormalStop? -> ServiceStop, isLogisticFalciltyStop -> ???
-			// loadedShipments - foreach
-				// isShipment? -> Pickup
-				// isService? : isNormalStop? -> ServiceStop, isLogisticFalciltyStop -> ???
-				
-				// (we need to enforce a stop that doesn't references a shipment/service, only if no stop was created -> Start/End combination? -> split tours)
-				// does a tour need to start/end at vehicle depot?
-				
-		//* isShipment: inside-inside or splitted
-		//* isService: fromInside, toOutside
-		
-		//?: stopTimes? - split equally
-	//}
-	
-	
-	// add legs between stops
-	// needed for every leg pair?
-	var tourElements := List{};
+	var allStops = commonStops -> collect(stop | createStopsFromStop(stop));
+	var tourElements := createTourWithLegs(allStops);
 	return tourElements
 }
 
+helper createStopsFromStop(commonStop : COMMON_MM::logisticSolution::Stop) : List(MATSIM::freightContrib::tour::TourActivity) {
+	if(commonStop.oclIsKindOf(COMMON_MM::logisticSolution::StartEndStop)) then {
+		return List{createStartEndStop(commonStop.oclAsType(COMMON_MM::logisticSolution::StartEndStop))}
+	} elif (commonStop.oclIsKindOf(COMMON_MM::logisticSolution::PickUpDeliveryStop)) then {
+		return createStopsFromPickUpDeliveryStop(commonStop.oclAsType(COMMON_MM::logisticSolution::PickUpDeliveryStop))
+	} else {
+		assert(false);
+		return List{};
+	} endif;
+	
+	return List{};
+}
+
+helper createStartEndStop(startEndStop : COMMON_MM::logisticSolution::StartEndStop) : MATSIM::freightContrib::tour::TourActivity {
+	if(startEndStop.no = 0) then {
+		return startEndStop.map startEndStop2Start();
+	} else {
+		return startEndStop.map startEndStop2End();
+	} endif;
+}
 
 mapping COMMON_MM::logisticSolution::StartEndStop::startEndStop2Start() : MATSIM::freightContrib::tour::Start {
-	timeWindow;
-	location;
+	timeWindow := mapTimeWindow(self.stopTimeWindow);
+	location := stopLocationToLink(self.stopLocation);
 }
 
 mapping COMMON_MM::logisticSolution::StartEndStop::startEndStop2End() : MATSIM::freightContrib::tour::End {
-	timeWindow;
-	location;
+	timeWindow := mapTimeWindow(self.stopTimeWindow);
+	expectedArrivalTime := timeWindow.start;
+	location := stopLocationToLink(self.stopLocation);
+}
+
+helper createStopsFromPickUpDeliveryStop(pickUpDeliveryStop : COMMON_MM::logisticSolution::PickUpDeliveryStop) : List(MATSIM::freightContrib::tour::TourActivity) {	
+	var numberOfHandledShipments = pickUpDeliveryStop.unloadedShipments -> size() + pickUpDeliveryStop.loadedShipments -> size();
+	var stopTimeWindow = mapTimeWindow(pickUpDeliveryStop.stopTimeWindow);
+	var stopTimeInSeconds = (stopTimeWindow._end - stopTimeWindow.start).round();
+	var singleShipmentHandlingTime = stopTimeInSeconds.div(numberOfHandledShipments);
+	
+	var shipmentNo := 0;
+	var activites : List(MATSIM::freightContrib::tour::TourActivity) = List{};
+	
+	pickUpDeliveryStop.unloadedShipments -> forEach (unloadedShipment) {
+		activites += pickUpDeliveryStop.map createPickupTourActivity(unloadedShipment, singleShipmentHandlingTime, shipmentNo);
+		shipmentNo := shipmentNo + 1;
+	};
+	pickUpDeliveryStop.loadedShipments -> forEach (loadedShipment) {
+		activites += pickUpDeliveryStop.map createDeliveryTourActivity(loadedShipment, singleShipmentHandlingTime, shipmentNo);
+		shipmentNo := shipmentNo + 1;
+	};
+	
+	return activites;
+}
+
+mapping COMMON_MM::logisticSolution::PickUpDeliveryStop::createDeliveryTourActivity(commonShipment : COMMON_MM::logisticDemand::Shipment, singleShipmentHandlingTime : Integer, shipmentNo : Integer) : MATSIM::freightContrib::tour::Pickup {
+	var matSimShipment = commonShipment.resolveone(MATSIM::freightContrib::CarrierShipment);
+	assert(matSimShipment <> null); // assume we only have shipments (see DemandWithSolution)
+	
+	expectedArrivalTime := mapTimeWindow(self.stopTimeWindow).start + shipmentNo * singleShipmentHandlingTime;
+	shipment := matSimShipment;
+}
+
+mapping COMMON_MM::logisticSolution::PickUpDeliveryStop::createPickupTourActivity(commonShipment : COMMON_MM::logisticDemand::Shipment, singleShipmentHandlingTime : Integer, shipmentNo : Integer) : MATSIM::freightContrib::tour::Delivery {
+	var matSimShipment = commonShipment.resolveone(MATSIM::freightContrib::CarrierShipment);
+	assert(matSimShipment <> null); // assume we only have shipments (see DemandWithSolution)
+	
+	expectedArrivalTime := mapTimeWindow(self.stopTimeWindow).start + shipmentNo * singleShipmentHandlingTime;
+	shipment := matSimShipment;
+}
+
+helper createTourWithLegs(stopList : Sequence(MATSIM::freightContrib::tour::TourActivity)) : List(MATSIM::freightContrib::tour::TourElement) {
+	var tourWithLegs : List(MATSIM::freightContrib::tour::TourElement) = List{};
+	
+	stopList -> forEach(stop) {
+		tourWithLegs += stop;
+		
+		var currentIndex := stopList -> indexOf(stop);
+		if (currentIndex < (stopList -> size() - 1)) then {
+			var previousStop := stopList -> at(currentIndex);
+			var nextStop := stopList -> at(currentIndex + 1);
+			
+			tourWithLegs += new MATSIM::freightContrib::tour::Leg(previousStop, nextStop);
+		} endif;
+	};
+	
+	return tourWithLegs;
+}
+
+constructor MATSIM::freightContrib::tour::Leg::Leg(previousStop: MATSIM::freightContrib::tour::TourActivity, nextStop : MATSIM::freightContrib::tour::TourActivity) {
+	expectedDepartureTime := getExpectedDepartureTime(previousStop);
+	expectedTransportTime := getExpectedArrivalTime(nextStop) - expectedDepartureTime;
+}
+
+helper getExpectedDepartureTime(tourActivity : MATSIM::freightContrib::tour::TourActivity) : Real {
+	switch
+	{
+		case (tourActivity.oclIsKindOf(MATSIM::freightContrib::tour::ServiceActivity)) 
+			{
+				var serviceActivity = tourActivity.oclAsType(MATSIM::freightContrib::tour::ServiceActivity);
+				return serviceActivity.arrivalTime + serviceActivity.service.serviceDuration;
+			};
+		case (tourActivity.oclIsKindOf(MATSIM::freightContrib::tour::Pickup)) 
+			{
+				var pickup = tourActivity.oclAsType(MATSIM::freightContrib::tour::Pickup);
+				return pickup.expectedArrivalTime + pickup.shipment.pickupServiceTime;
+			};
+		case (tourActivity.oclIsKindOf(MATSIM::freightContrib::tour::Delivery)) 
+			{
+				var delivery = tourActivity.oclAsType(MATSIM::freightContrib::tour::Delivery);
+				return delivery.expectedArrivalTime + delivery.shipment.deliveryServiceTime;
+			};
+		case (tourActivity.oclIsKindOf(MATSIM::freightContrib::tour::Start)) 
+			{
+				var start = tourActivity.oclAsType(MATSIM::freightContrib::tour::Start);
+				return start.timeWindow._end;
+			};	
+		case (tourActivity.oclIsKindOf(MATSIM::freightContrib::tour::End)) 
+			{
+				var end_ = tourActivity.oclAsType(MATSIM::freightContrib::tour::End);
+				return end_.timeWindow._end;
+			};
+		else 
+			{
+		 		assert(false);
+		 		return null;
+	 		};
+	};
+	return null;
+}
+
+helper getExpectedArrivalTime(tourActivity : MATSIM::freightContrib::tour::TourActivity) : Real {
+	switch
+	{
+		case (tourActivity.oclIsKindOf(MATSIM::freightContrib::tour::ServiceActivity)) 
+			{
+				var serviceActivity = tourActivity.oclAsType(MATSIM::freightContrib::tour::ServiceActivity);
+				return serviceActivity.arrivalTime;
+			};
+		case (tourActivity.oclIsKindOf(MATSIM::freightContrib::tour::Pickup)) 
+			{
+				var pickup = tourActivity.oclAsType(MATSIM::freightContrib::tour::Pickup);
+				return pickup.expectedArrivalTime;
+			};
+		case (tourActivity.oclIsKindOf(MATSIM::freightContrib::tour::Delivery)) 
+			{
+				var delivery = tourActivity.oclAsType(MATSIM::freightContrib::tour::Delivery);
+				return delivery.expectedArrivalTime;
+			};
+		case (tourActivity.oclIsKindOf(MATSIM::freightContrib::tour::Start)) 
+			{
+				var start = tourActivity.oclAsType(MATSIM::freightContrib::tour::Start);
+				return start.timeWindow.start;
+			};	
+		case (tourActivity.oclIsKindOf(MATSIM::freightContrib::tour::End)) 
+			{
+				var end_ = tourActivity.oclAsType(MATSIM::freightContrib::tour::End);
+				return end_.timeWindow.start;
+			};
+		else 
+			{
+		 		assert(false);
+		 		return null;
+	 		};
+	};
+	return null;
 }

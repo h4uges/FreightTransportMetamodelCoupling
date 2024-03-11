@@ -14,6 +14,7 @@ import org.apache.commons.csv.CSVRecord;
 
 import com.google.common.collect.ImmutableList;
 
+import cepmodel.logitopp.extraction.LogiToppExtractionUtil;
 import cepmodel.logitopp.extraction.LogiToppInputFileRegistry;
 import cepmodel.logitopp.extraction.network.LogiToppNetworkBuilder;
 import cepmodel.logitopp.extraction.network.LogiToppNetworkUtil;
@@ -21,6 +22,7 @@ import cepmodel.logitopp.extraction.population.LogiToppPopulationBuilder;
 import cepmodel.logitopp.extraction.transportInfrastructure.LogiToppTransportInfrastructureBuilder;
 import logiToppMetamodel.base.BaseFactory;
 import logiToppMetamodel.base.Time;
+import logiToppMetamodel.base.Weekday;
 import logiToppMetamodel.dataExchange.Demand;
 import logiToppMetamodel.logiTopp.business.Business;
 import logiToppMetamodel.logiTopp.distribution.CEPServiceProvider;
@@ -83,12 +85,10 @@ public class LogiToppDemandBuilder {
 
 				// TODO: MA - change semantic of arrivalDate in MA
 				String arrivalAtOriginTimeString = record.get("ArrivalTime").substring(8);
-				int arrivalAtOriginDay = Integer.valueOf(record.get("ArrivalDay"));
+				Weekday arrivalAtOriginDay = Weekday.get(Integer.valueOf(record.get("ArrivalDay")));
 				DateTimeFormatter formatter = DateTimeFormatter.ofPattern("HH:mm:ss");
 				LocalTime localTime = LocalTime.parse(arrivalAtOriginTimeString, formatter);
-				Time arrivalAtOrigin = BaseFactory.eINSTANCE.createTime();
-				arrivalAtOrigin.setSeconds(24 * 60 * 60 * (arrivalAtOriginDay) + 60 * 60 * localTime.getHour()
-						+ 60 * localTime.getMinute() + localTime.getSecond());
+				Time arrivalAtOrigin = LogiToppExtractionUtil.createTime(arrivalAtOriginDay, localTime.getHour(),localTime.getMinute(), localTime.getSecond());
 
 				DistributionCenter producingDistributionCenter = transportInfrastructureBuilder
 						.getDistributionCenter(producingDcId);
@@ -132,12 +132,10 @@ public class LogiToppDemandBuilder {
 
 				// TODO: MA - change semantic of arrivalDate in MA
 				String arrivalAtOriginTimeString = record.get("ArrivalTime").substring(8);
-				int arrivalAtOriginDay = Integer.valueOf(record.get("ArrivalDay"));
+				Weekday arrivalAtOriginDay = Weekday.get(Integer.valueOf(record.get("ArrivalDay")));
 				DateTimeFormatter formatter = DateTimeFormatter.ofPattern("HH:mm:ss");
 				LocalTime localTime = LocalTime.parse(arrivalAtOriginTimeString, formatter);
-				Time arrivalAtOrigin = BaseFactory.eINSTANCE.createTime();
-				arrivalAtOrigin.setSeconds(24 * 60 * 60 * (arrivalAtOriginDay) + 60 * 60 * localTime.getHour()
-						+ 60 * localTime.getMinute() + localTime.getSecond());
+				Time arrivalAtOrigin = LogiToppExtractionUtil.createTime(arrivalAtOriginDay, localTime.getHour(),localTime.getMinute(), localTime.getSecond());
 
 				DistributionCenter producingDistributionCenter = transportInfrastructureBuilder
 						.getDistributionCenter(producingDcId);
@@ -181,12 +179,10 @@ public class LogiToppDemandBuilder {
 
 				// TODO: MA - change semantic of arrivalDate in MA
 				String arrivalAtOriginTimeString = record.get("ArrivalTime").substring(8);
-				int arrivalAtOriginDay = Integer.valueOf(record.get("ArrivalDay"));
+				Weekday arrivalAtOriginDay = Weekday.get(Integer.valueOf(record.get("ArrivalDay")));
 				DateTimeFormatter formatter = DateTimeFormatter.ofPattern("HH:mm:ss");
 				LocalTime localTime = LocalTime.parse(arrivalAtOriginTimeString, formatter);
-				Time arrivalAtOrigin = BaseFactory.eINSTANCE.createTime();
-				arrivalAtOrigin.setSeconds(24 * 60 * 60 * (arrivalAtOriginDay) + 60 * 60 * localTime.getHour()
-						+ 60 * localTime.getMinute() + localTime.getSecond());
+				Time arrivalAtOrigin = LogiToppExtractionUtil.createTime(arrivalAtOriginDay, localTime.getHour(),localTime.getMinute(), localTime.getSecond());
 
 				Business producingBusiness = populationBuilder.getBusiness(producingBusinessId);
 				DistributionCenter consumingDistributionCenter = transportInfrastructureBuilder

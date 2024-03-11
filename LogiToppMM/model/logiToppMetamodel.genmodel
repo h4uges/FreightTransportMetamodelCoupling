@@ -112,10 +112,16 @@
         <genFeatures createChild="false" ecoreFeature="ecore:EAttribute logiToppMetamodel.ecore#//base/NamedEntity/name"/>
       </genClasses>
       <genClasses ecoreClass="logiToppMetamodel.ecore#//base/Time">
-        <genFeatures createChild="false" ecoreFeature="ecore:EAttribute logiToppMetamodel.ecore#//base/Time/seconds"/>
+        <genFeatures createChild="false" ecoreFeature="ecore:EAttribute logiToppMetamodel.ecore#//base/Time/second"/>
+        <genFeatures createChild="false" ecoreFeature="ecore:EAttribute logiToppMetamodel.ecore#//base/Time/minute"/>
+        <genFeatures createChild="false" ecoreFeature="ecore:EAttribute logiToppMetamodel.ecore#//base/Time/hour"/>
+        <genFeatures createChild="false" ecoreFeature="ecore:EAttribute logiToppMetamodel.ecore#//base/Time/day"/>
       </genClasses>
       <genClasses ecoreClass="logiToppMetamodel.ecore#//base/RelativeTime">
         <genFeatures createChild="false" ecoreFeature="ecore:EAttribute logiToppMetamodel.ecore#//base/RelativeTime/seconds"/>
+        <genFeatures createChild="false" ecoreFeature="ecore:EAttribute logiToppMetamodel.ecore#//base/RelativeTime/minutes"/>
+        <genFeatures createChild="false" ecoreFeature="ecore:EAttribute logiToppMetamodel.ecore#//base/RelativeTime/hours"/>
+        <genFeatures createChild="false" ecoreFeature="ecore:EAttribute logiToppMetamodel.ecore#//base/RelativeTime/days"/>
       </genClasses>
     </nestedGenPackages>
     <nestedGenPackages prefix="LogiTopp" disposableProviderFactory="true" ecorePackage="logiToppMetamodel.ecore#//logiTopp">
@@ -183,7 +189,6 @@
           <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference logiToppMetamodel.ecore#//logiTopp/business/Business/openingHours"/>
         </genClasses>
         <genClasses ecoreClass="logiToppMetamodel.ecore#//logiTopp/business/OpeningHour">
-          <genFeatures createChild="false" ecoreFeature="ecore:EAttribute logiToppMetamodel.ecore#//logiTopp/business/OpeningHour/dayOfWeek"/>
           <genFeatures children="true" createChild="true" propertySortChoices="true"
               ecoreFeature="ecore:EReference logiToppMetamodel.ecore#//logiTopp/business/OpeningHour/start"/>
           <genFeatures children="true" createChild="true" propertySortChoices="true"

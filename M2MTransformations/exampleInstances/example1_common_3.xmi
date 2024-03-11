@@ -1,0 +1,516 @@
+<?xml version="1.0" encoding="ASCII"?>
+<coupling:CommonFreightTransportMetamodelRoot xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
+xmlns:coupling="platform:/resource/CommonMM/model/CommonFreightTransportMetamodel.ecore#//coupling" 
+xmlns:logisticDemand="platform:/resource/CommonMM/model/CommonFreightTransportMetamodel.ecore#//logisticDemand" 
+xmlns:logisticNetwork="platform:/resource/CommonMM/model/CommonFreightTransportMetamodel.ecore#//logisticNetwork" 
+xmlns:logisticSolution="platform:/resource/CommonMM/model/CommonFreightTransportMetamodel.ecore#//logisticSolution" 
+xmlns:network="platform:/resource/CommonMM/model/CommonFreightTransportMetamodel.ecore#//network" 
+xmlns:utils="platform:/resource/CommonMM/model/CommonFreightTransportMetamodel.ecore#//utils">
+  <network>
+    <nodes id="1">
+      <coordinate y="1.0"/>
+    </nodes>
+    <nodes id="2">
+      <coordinate x="1.0" y="1.0"/>
+    </nodes>
+    <nodes id="3">
+      <coordinate x="2.0" y="1.0"/>
+    </nodes>
+    <nodes id="4">
+      <coordinate x="3.0" y="1.0"/>
+    </nodes>
+    <nodes id="5">
+      <coordinate y="3.0"/>
+    </nodes>
+    <nodes id="6">
+      <coordinate x="1.0" y="2.0"/>
+    </nodes>
+    <nodes id="7">
+      <coordinate x="2.0" y="2.0"/>
+    </nodes>
+    <nodes id="8">
+      <coordinate x="3.0" y="2.0"/>
+    </nodes>
+    <nodes id="9">
+      <coordinate x="1.0"/>
+    </nodes>
+    <nodes id="10">
+      <coordinate x="2.0"/>
+    </nodes>
+    <nodes id="11">
+      <coordinate x="1.0" y="3.0"/>
+    </nodes>
+    <nodes id="12">
+      <coordinate x="2.0" y="3.0"/>
+    </nodes>
+    <edges from="//@network/@nodes.0" to="//@network/@nodes.4" length="1.2"/>
+    <edges from="//@network/@nodes.4" to="//@network/@nodes.0" length="1.2"/>
+    <edges from="//@network/@nodes.0" to="//@network/@nodes.1" length="1.2"/>
+    <edges from="//@network/@nodes.1" to="//@network/@nodes.0" length="1.2"/>
+    <edges from="//@network/@nodes.1" to="//@network/@nodes.2" length="1.2"/>
+    <edges from="//@network/@nodes.2" to="//@network/@nodes.1" length="1.2"/>
+    <edges from="//@network/@nodes.2" to="//@network/@nodes.3" length="1.2"/>
+    <edges from="//@network/@nodes.3" to="//@network/@nodes.2" length="1.2"/>
+    <edges from="//@network/@nodes.3" to="//@network/@nodes.7" length="2.2"/>
+    <edges from="//@network/@nodes.6" to="//@network/@nodes.7" length="1.2"/>
+    <edges from="//@network/@nodes.7" to="//@network/@nodes.6" length="1.2"/>
+    <edges from="//@network/@nodes.5" to="//@network/@nodes.6" length="1.2"/>
+    <edges from="//@network/@nodes.6" to="//@network/@nodes.5" length="1.2"/>
+    <edges from="//@network/@nodes.1" to="//@network/@nodes.5" length="1.2"/>
+    <edges from="//@network/@nodes.5" to="//@network/@nodes.1" length="1.2"/>
+    <edges from="//@network/@nodes.2" to="//@network/@nodes.9" length="1.2"/>
+    <edges from="//@network/@nodes.9" to="//@network/@nodes.2" length="1.2"/>
+    <edges from="//@network/@nodes.8" to="//@network/@nodes.9" length="1.2"/>
+    <edges from="//@network/@nodes.9" to="//@network/@nodes.8" length="1.2"/>
+    <edges from="//@network/@nodes.5" to="//@network/@nodes.10" length="1.2"/>
+    <edges from="//@network/@nodes.10" to="//@network/@nodes.5" length="1.2"/>
+    <edges from="//@network/@nodes.10" to="//@network/@nodes.11" length="1.2"/>
+    <edges from="//@network/@nodes.11" to="//@network/@nodes.10" length="1.2"/>
+  </network>
+  <population>
+    <households id="1">
+      <location id="loc_0_household_1">
+        <coordinate x="0.25" y="1.0"/>
+        <networkAccess xsi:type="network:EdgeBasedNetworkAccess" edge="//@network/@edges.3" edgePosition="0.75"/>
+      </location>
+      <member id="1"/>
+      <member id="2"/>
+    </households>
+    <households id="2">
+      <location id="loc_1_household_2">
+        <coordinate x="1.25" y="1.0"/>
+        <networkAccess xsi:type="network:EdgeBasedNetworkAccess" edge="//@network/@edges.5" edgePosition="0.75"/>
+      </location>
+      <member id="3"/>
+    </households>
+    <households id="3">
+      <location id="loc_2_household_3">
+        <coordinate x="1.25" y="1.0"/>
+        <networkAccess xsi:type="network:EdgeBasedNetworkAccess" edge="//@network/@edges.4" edgePosition="0.25"/>
+      </location>
+      <member id="4"/>
+    </households>
+    <businesses id="1">
+      <branches id="branch_1">
+        <location id="loc_3_businessBranch_1">
+          <coordinate x="2.25" y="2.0"/>
+          <networkAccess xsi:type="network:EdgeBasedNetworkAccess" edge="//@network/@edges.9" edgePosition="0.25"/>
+        </location>
+        <openingHours xsi:type="utils:SingleDayTimeWindow">
+          <from hour="10"/>
+          <to hour="12"/>
+        </openingHours>
+      </branches>
+    </businesses>
+    <businesses id="2">
+      <branches id="branch_2">
+        <location id="loc_4_businessBranch_2">
+          <coordinate x="3.0" y="1.75"/>
+          <networkAccess xsi:type="network:EdgeBasedNetworkAccess" edge="//@network/@edges.8" edgePosition="0.75"/>
+        </location>
+        <openingHours xsi:type="utils:SingleDayTimeWindow">
+          <from hour="10"/>
+          <to hour="12"/>
+        </openingHours>
+      </branches>
+    </businesses>
+  </population>
+  <logisticNetwork>
+    <CEPSPs id="1" name="DHL" deliveryPartners="//@logisticNetwork/@CEPSPs.2">
+      <vehicleDepots id="depot_1">
+        <location id="loc_6_depot_1">
+          <coordinate x="1.75" y="3.0"/>
+          <networkAccess xsi:type="network:EdgeBasedNetworkAccess" edge="//@network/@edges.22" edgePosition="0.25"/>
+        </location>
+        <operationHours xsi:type="utils:SingleDayTimeWindow"/>
+        <vehicles id="1">
+          <storageCapacity xsi:type="utils:FiniteVolumeDimension" volumeCubicMetre="0.01"/>
+          <operationHours xsi:type="utils:SingleDayTimeWindow">
+            <from hour="7" minute="30"/>
+            <to hour="22"/>
+          </operationHours>
+        </vehicles>
+        <vehicles id="2">
+          <storageCapacity xsi:type="utils:FiniteVolumeDimension" volumeCubicMetre="0.01"/>
+          <operationHours xsi:type="utils:SingleDayTimeWindow">
+            <from hour="7" minute="30"/>
+            <to hour="22"/>
+          </operationHours>
+        </vehicles>
+      </vehicleDepots>
+      <vehicleDepots id="depot_2">
+        <location id="loc_7_depot_2">
+          <coordinate x="2.75" y="2.0"/>
+          <networkAccess xsi:type="network:EdgeBasedNetworkAccess" edge="//@network/@edges.10" edgePosition="0.25"/>
+        </location>
+        <operationHours xsi:type="utils:SingleDayTimeWindow"/>
+        <vehicles id="3">
+          <storageCapacity xsi:type="utils:FiniteVolumeDimension" volumeCubicMetre="0.01"/>
+          <operationHours xsi:type="utils:SingleDayTimeWindow">
+            <from hour="7" minute="30"/>
+            <to hour="22"/>
+          </operationHours>
+        </vehicles>
+        <vehicles id="4">
+          <storageCapacity xsi:type="utils:FiniteVolumeDimension" volumeCubicMetre="0.01"/>
+          <operationHours xsi:type="utils:SingleDayTimeWindow">
+            <from hour="7" minute="30"/>
+            <to hour="22"/>
+          </operationHours>
+        </vehicles>
+      </vehicleDepots>
+      <logisticHubs id="hub_1" isExit="true" isEntry="true">
+        <storageCapacity xsi:type="utils:InfiniteVolumeDimension"/>
+        <location id="loc_8_hub_1">
+          <coordinate x="1.75" y="3.0"/>
+          <networkAccess xsi:type="network:EdgeBasedNetworkAccess" edge="//@network/@edges.22" edgePosition="0.25"/>
+        </location>
+        <operationHours xsi:type="utils:SingleDayTimeWindow"/>
+        <acceptedVehicleTypes>TRUCK</acceptedVehicleTypes>
+        <acceptedVehicleTypes>TRAM</acceptedVehicleTypes>
+        <acceptedVehicleTypes>CAR</acceptedVehicleTypes>
+        <acceptedVehicleTypes>BIKE</acceptedVehicleTypes>
+        <acceptedVehicleTypes>WALKING</acceptedVehicleTypes>
+        <acceptedVehicleTypes>DELIVERY_VEHICLE</acceptedVehicleTypes>
+        <acceptedVehicleTypes>OTHER</acceptedVehicleTypes>
+        <minimumTranshipmentTime/>
+      </logisticHubs>
+      <logisticHubs id="hub_2" isExit="true" isEntry="true">
+        <storageCapacity xsi:type="utils:InfiniteVolumeDimension"/>
+        <location id="loc_9_hub_2">
+          <coordinate x="2.75" y="2.0"/>
+          <networkAccess xsi:type="network:EdgeBasedNetworkAccess" edge="//@network/@edges.10" edgePosition="0.25"/>
+        </location>
+        <operationHours xsi:type="utils:SingleDayTimeWindow"/>
+        <acceptedVehicleTypes>TRUCK</acceptedVehicleTypes>
+        <acceptedVehicleTypes>TRAM</acceptedVehicleTypes>
+        <acceptedVehicleTypes>CAR</acceptedVehicleTypes>
+        <acceptedVehicleTypes>BIKE</acceptedVehicleTypes>
+        <acceptedVehicleTypes>WALKING</acceptedVehicleTypes>
+        <acceptedVehicleTypes>DELIVERY_VEHICLE</acceptedVehicleTypes>
+        <acceptedVehicleTypes>OTHER</acceptedVehicleTypes>
+        <minimumTranshipmentTime/>
+      </logisticHubs>
+    </CEPSPs>
+    <CEPSPs id="2" name="UPS" deliveryPartners="//@logisticNetwork/@CEPSPs.3">
+      <vehicleDepots id="depot_3">
+        <location id="loc_10_depot_3">
+          <coordinate x="1.25"/>
+          <networkAccess xsi:type="network:EdgeBasedNetworkAccess" edge="//@network/@edges.18" edgePosition="2.5"/>
+        </location>
+        <operationHours xsi:type="utils:SingleDayTimeWindow"/>
+        <vehicles id="5">
+          <storageCapacity xsi:type="utils:FiniteVolumeDimension" volumeCubicMetre="0.01"/>
+          <operationHours xsi:type="utils:SingleDayTimeWindow">
+            <from hour="7" minute="30"/>
+            <to hour="22"/>
+          </operationHours>
+        </vehicles>
+        <vehicles id="6">
+          <storageCapacity xsi:type="utils:FiniteVolumeDimension" volumeCubicMetre="0.01"/>
+          <operationHours xsi:type="utils:SingleDayTimeWindow">
+            <from hour="7" minute="30"/>
+            <to hour="22"/>
+          </operationHours>
+        </vehicles>
+        <vehicles id="7">
+          <storageCapacity xsi:type="utils:FiniteVolumeDimension" volumeCubicMetre="0.01"/>
+          <operationHours xsi:type="utils:SingleDayTimeWindow">
+            <from hour="7" minute="30"/>
+            <to hour="22"/>
+          </operationHours>
+        </vehicles>
+      </vehicleDepots>
+      <logisticHubs id="hub_3" isExit="true" isEntry="true">
+        <storageCapacity xsi:type="utils:InfiniteVolumeDimension"/>
+        <location id="loc_11_hub_3">
+          <coordinate x="1.25"/>
+          <networkAccess xsi:type="network:EdgeBasedNetworkAccess" edge="//@network/@edges.18" edgePosition="2.5"/>
+        </location>
+        <operationHours xsi:type="utils:SingleDayTimeWindow"/>
+        <acceptedVehicleTypes>TRUCK</acceptedVehicleTypes>
+        <acceptedVehicleTypes>TRAM</acceptedVehicleTypes>
+        <acceptedVehicleTypes>CAR</acceptedVehicleTypes>
+        <acceptedVehicleTypes>BIKE</acceptedVehicleTypes>
+        <acceptedVehicleTypes>WALKING</acceptedVehicleTypes>
+        <acceptedVehicleTypes>DELIVERY_VEHICLE</acceptedVehicleTypes>
+        <acceptedVehicleTypes>OTHER</acceptedVehicleTypes>
+        <minimumTranshipmentTime/>
+      </logisticHubs>
+      <usedPublicServicePoints publicServicePoint="//@logisticNetwork/@publicServicePoints.0">
+        <grantedStorageCapacity xsi:type="utils:InfiniteVolumeDimension"/>
+      </usedPublicServicePoints>
+    </CEPSPs>
+    <CEPSPs id="3" name="ALL_ALL" pickUpPartners="//@logisticNetwork/@CEPSPs.0 //@logisticNetwork/@CEPSPs.3">
+      <vehicleDepots id="depot_4">
+        <location id="loc_13_depot_4">
+          <coordinate x="1.25" y="3.0"/>
+          <networkAccess xsi:type="network:EdgeBasedNetworkAccess" edge="//@network/@edges.22" edgePosition="0.75"/>
+        </location>
+        <operationHours xsi:type="utils:SingleDayTimeWindow"/>
+        <vehicles id="10" type="TRAM">
+          <storageCapacity xsi:type="utils:FiniteVolumeDimension" volumeCubicMetre="0.01"/>
+          <operationHours xsi:type="utils:SingleDayTimeWindow">
+            <from hour="7" minute="30"/>
+            <to hour="22"/>
+          </operationHours>
+        </vehicles>
+        <vehicles id="11">
+          <storageCapacity xsi:type="utils:FiniteVolumeDimension" volumeCubicMetre="0.01"/>
+          <operationHours xsi:type="utils:SingleDayTimeWindow">
+            <from hour="7" minute="30"/>
+            <to hour="22"/>
+          </operationHours>
+        </vehicles>
+      </vehicleDepots>
+      <vehicleDepots id="depot_5">
+        <location id="loc_14_depot_5">
+          <coordinate x="1.75" y="2.0"/>
+          <networkAccess xsi:type="network:EdgeBasedNetworkAccess" edge="//@network/@edges.12" edgePosition="0.25"/>
+        </location>
+        <operationHours xsi:type="utils:SingleDayTimeWindow"/>
+        <vehicles id="12" type="BIKE">
+          <storageCapacity xsi:type="utils:FiniteVolumeDimension" volumeCubicMetre="0.0042"/>
+          <operationHours xsi:type="utils:SingleDayTimeWindow">
+            <from hour="7" minute="30"/>
+            <to hour="22"/>
+          </operationHours>
+        </vehicles>
+        <vehicles id="13" type="BIKE">
+          <storageCapacity xsi:type="utils:FiniteVolumeDimension" volumeCubicMetre="0.0042"/>
+          <operationHours xsi:type="utils:SingleDayTimeWindow">
+            <from hour="7" minute="30"/>
+            <to hour="22"/>
+          </operationHours>
+        </vehicles>
+        <vehicles id="14" type="BIKE">
+          <storageCapacity xsi:type="utils:FiniteVolumeDimension" volumeCubicMetre="0.0042"/>
+          <operationHours xsi:type="utils:SingleDayTimeWindow">
+            <from hour="7" minute="30"/>
+            <to hour="22"/>
+          </operationHours>
+        </vehicles>
+      </vehicleDepots>
+      <logisticHubs id="hub_4" isExit="true" isEntry="true">
+        <storageCapacity xsi:type="utils:InfiniteVolumeDimension"/>
+        <location id="loc_15_hub_4">
+          <coordinate x="1.25" y="3.0"/>
+          <networkAccess xsi:type="network:EdgeBasedNetworkAccess" edge="//@network/@edges.22" edgePosition="0.75"/>
+        </location>
+        <operationHours xsi:type="utils:SingleDayTimeWindow"/>
+        <acceptedVehicleTypes>TRUCK</acceptedVehicleTypes>
+        <acceptedVehicleTypes>TRAM</acceptedVehicleTypes>
+        <acceptedVehicleTypes>CAR</acceptedVehicleTypes>
+        <acceptedVehicleTypes>BIKE</acceptedVehicleTypes>
+        <acceptedVehicleTypes>WALKING</acceptedVehicleTypes>
+        <acceptedVehicleTypes>DELIVERY_VEHICLE</acceptedVehicleTypes>
+        <acceptedVehicleTypes>OTHER</acceptedVehicleTypes>
+        <minimumTranshipmentTime/>
+      </logisticHubs>
+      <logisticHubs id="hub_5" isExit="true" isEntry="true">
+        <storageCapacity xsi:type="utils:InfiniteVolumeDimension"/>
+        <location id="loc_16_hub_5">
+          <coordinate x="1.75" y="2.0"/>
+          <networkAccess xsi:type="network:EdgeBasedNetworkAccess" edge="//@network/@edges.12" edgePosition="0.25"/>
+        </location>
+        <operationHours xsi:type="utils:SingleDayTimeWindow"/>
+        <acceptedVehicleTypes>TRUCK</acceptedVehicleTypes>
+        <acceptedVehicleTypes>TRAM</acceptedVehicleTypes>
+        <acceptedVehicleTypes>CAR</acceptedVehicleTypes>
+        <acceptedVehicleTypes>BIKE</acceptedVehicleTypes>
+        <acceptedVehicleTypes>WALKING</acceptedVehicleTypes>
+        <acceptedVehicleTypes>DELIVERY_VEHICLE</acceptedVehicleTypes>
+        <acceptedVehicleTypes>OTHER</acceptedVehicleTypes>
+        <minimumTranshipmentTime/>
+      </logisticHubs>
+    </CEPSPs>
+    <CEPSPs id="4" name="ALL_UPS" deliveryPartners="//@logisticNetwork/@CEPSPs.2" pickUpPartners="//@logisticNetwork/@CEPSPs.1">
+      <vehicleDepots id="depot_6">
+        <location id="loc_17_depot_6">
+          <coordinate x="1.75"/>
+          <networkAccess xsi:type="network:EdgeBasedNetworkAccess" edge="//@network/@edges.17" edgePosition="0.75"/>
+        </location>
+        <operationHours xsi:type="utils:SingleDayTimeWindow"/>
+        <vehicles id="8" type="TRAM">
+          <storageCapacity xsi:type="utils:FiniteVolumeDimension" volumeCubicMetre="0.01"/>
+          <operationHours xsi:type="utils:SingleDayTimeWindow">
+            <from hour="7" minute="30"/>
+            <to hour="22"/>
+          </operationHours>
+        </vehicles>
+        <vehicles id="9" type="TRAM">
+          <storageCapacity xsi:type="utils:FiniteVolumeDimension" volumeCubicMetre="0.01"/>
+          <operationHours xsi:type="utils:SingleDayTimeWindow">
+            <from hour="7" minute="30"/>
+            <to hour="22"/>
+          </operationHours>
+        </vehicles>
+      </vehicleDepots>
+      <logisticHubs id="hub_6" isExit="true" isEntry="true">
+        <storageCapacity xsi:type="utils:InfiniteVolumeDimension"/>
+        <location id="loc_18_hub_6">
+          <coordinate x="1.75"/>
+          <networkAccess xsi:type="network:EdgeBasedNetworkAccess" edge="//@network/@edges.17" edgePosition="0.75"/>
+        </location>
+        <operationHours xsi:type="utils:SingleDayTimeWindow"/>
+        <acceptedVehicleTypes>TRUCK</acceptedVehicleTypes>
+        <acceptedVehicleTypes>TRAM</acceptedVehicleTypes>
+        <acceptedVehicleTypes>CAR</acceptedVehicleTypes>
+        <acceptedVehicleTypes>BIKE</acceptedVehicleTypes>
+        <acceptedVehicleTypes>WALKING</acceptedVehicleTypes>
+        <acceptedVehicleTypes>DELIVERY_VEHICLE</acceptedVehicleTypes>
+        <acceptedVehicleTypes>OTHER</acceptedVehicleTypes>
+        <minimumTranshipmentTime/>
+      </logisticHubs>
+    </CEPSPs>
+    <publicServicePoints xsi:type="logisticNetwork:Packstation" id="packstation_0">
+      <location id="loc_5_packstation_0">
+        <coordinate x="2.25" y="2.0"/>
+        <networkAccess xsi:type="network:EdgeBasedNetworkAccess" edge="//@network/@edges.10" edgePosition="0.75"/>
+      </location>
+      <storageCapacity xsi:type="utils:InfiniteVolumeDimension"/>
+    </publicServicePoints>
+  </logisticNetwork>
+  <demand>
+    <shipments xsi:type="logisticDemand:SplittedShipment" id="1_0" responsibleCEPSP="//@logisticNetwork/@CEPSPs.1" destination="//@logisticNetwork/@CEPSPs.3/@logisticHubs.0/@location" origin="//@logisticNetwork/@CEPSPs.1/@logisticHubs.0/@location">
+      <size xsi:type="utils:FiniteVolumeDimension" volumeCubicMetre="0.00933"/>
+      <arrivalAtDestinationTimeWindow xsi:type="utils:SingleDayTimeWindow">
+        <from hour="7" minute="4"/>
+        <to hour="7" minute="5"/>
+      </arrivalAtDestinationTimeWindow>
+      <arrivalAtOrigin xsi:type="utils:SingleDayTimestamp" hour="6"/>
+      <originalShipmentReference originalID="1"/>
+    </shipments>
+    <shipments xsi:type="logisticDemand:SplittedShipment" id="1_1" responsibleCEPSP="//@logisticNetwork/@CEPSPs.3" destination="//@logisticNetwork/@CEPSPs.2/@logisticHubs.1/@location" origin="//@logisticNetwork/@CEPSPs.3/@logisticHubs.0/@location">
+      <size xsi:type="utils:FiniteVolumeDimension" volumeCubicMetre="0.00933"/>
+      <arrivalAtDestinationTimeWindow xsi:type="utils:SingleDayTimeWindow">
+        <from hour="8" minute="4"/>
+        <to hour="8" minute="5"/>
+      </arrivalAtDestinationTimeWindow>
+      <arrivalAtOrigin xsi:type="utils:SingleDayTimestamp" hour="7" minute="5"/>
+      <originalShipmentReference originalID="1"/>
+    </shipments>
+    <shipments xsi:type="logisticDemand:SplittedShipment" id="1_2" responsibleCEPSP="//@logisticNetwork/@CEPSPs.2" destination="//@logisticNetwork/@publicServicePoints.0/@location" origin="//@logisticNetwork/@CEPSPs.2/@logisticHubs.1/@location">
+      <size xsi:type="utils:FiniteVolumeDimension" volumeCubicMetre="0.00933"/>
+      <arrivalAtDestinationTimeWindow xsi:type="utils:SingleDayTimeWindow"/>
+      <arrivalAtOrigin xsi:type="utils:SingleDayTimestamp" hour="8" minute="5"/>
+      <originalShipmentReference originalID="1"/>
+    </shipments>
+  </demand>
+  <logisticSolution>
+    <shipmentRecords id="1_0_record" shipment="//@demand/@shipments.0" repsonsibleCEPSP="//@logisticNetwork/@CEPSPs.1">
+      <entries id="1_0_record_0" executingCEPSP="//@logisticNetwork/@CEPSPs.1" fromSpec="//@logisticNetwork/@CEPSPs.1/@logisticHubs.0" toSpec="//@logisticNetwork/@CEPSPs.3/@logisticHubs.0" tour="//@logisticSolution/@tours.2" pickUpStop="//@logisticSolution/@tours.2/@stops.1" deliveryStop="//@logisticSolution/@tours.2/@stops.2">
+        <timeWindow xsi:type="utils:SingleDayTimeWindow">
+          <from hour="7"/>
+          <to hour="7" minute="5"/>
+        </timeWindow>
+      </entries>
+    </shipmentRecords>
+    <shipmentRecords id="1_1_record" shipment="//@demand/@shipments.1" repsonsibleCEPSP="//@logisticNetwork/@CEPSPs.3">
+      <entries id="1_1_record_0" executingCEPSP="//@logisticNetwork/@CEPSPs.3" fromSpec="//@logisticNetwork/@CEPSPs.3/@logisticHubs.0" toSpec="//@logisticNetwork/@CEPSPs.2/@logisticHubs.1" tour="//@logisticSolution/@tours.1" pickUpStop="//@logisticSolution/@tours.1/@stops.1" deliveryStop="//@logisticSolution/@tours.1/@stops.2">
+        <timeWindow xsi:type="utils:SingleDayTimeWindow">
+          <from hour="8"/>
+          <to hour="8" minute="5"/>
+        </timeWindow>
+      </entries>
+    </shipmentRecords>
+    <shipmentRecords id="1_2_record" shipment="//@demand/@shipments.2" repsonsibleCEPSP="//@logisticNetwork/@CEPSPs.2">
+      <entries id="1_2_record_0" executingCEPSP="//@logisticNetwork/@CEPSPs.2" fromSpec="//@logisticNetwork/@CEPSPs.2/@logisticHubs.1" toSpec="//@logisticNetwork/@publicServicePoints.0" tour="//@logisticSolution/@tours.0" pickUpStop="//@logisticSolution/@tours.0/@stops.1" deliveryStop="//@logisticSolution/@tours.0/@stops.2">
+        <timeWindow xsi:type="utils:SingleDayTimeWindow">
+          <from hour="9"/>
+          <to hour="9" minute="5"/>
+        </timeWindow>
+      </entries>
+    </shipmentRecords>
+    <tours id="Parcel1: ALL_BIKE -> PACKSTATION" vehicle="//@logisticNetwork/@CEPSPs.2/@vehicleDepots.1/@vehicles.0" executingCEPSP="//@logisticNetwork/@CEPSPs.2">
+      <stops xsi:type="logisticSolution:StartEndStop" id="Parcel1: ALL_BIKE -> PACKSTATION_0" depot="//@logisticNetwork/@CEPSPs.2/@vehicleDepots.1">
+        <stopTimeWindow xsi:type="utils:SingleDayTimeWindow">
+          <from hour="9"/>
+          <to hour="9"/>
+        </stopTimeWindow>
+        <stopLocation xsi:type="logisticSolution:ReferenceStopLocation" location="//@logisticNetwork/@CEPSPs.2/@vehicleDepots.1/@location"/>
+      </stops>
+      <stops xsi:type="logisticSolution:LogisticFacilityStop" id="Parcel1: ALL_BIKE -> PACKSTATION_1" no="1" loadedShipments="//@demand/@shipments.2" logisticFacility="//@logisticNetwork/@CEPSPs.2/@logisticHubs.1">
+        <stopTimeWindow xsi:type="utils:SingleDayTimeWindow">
+          <from hour="9"/>
+          <to hour="9"/>
+        </stopTimeWindow>
+        <stopLocation xsi:type="logisticSolution:ReferenceStopLocation" location="//@logisticNetwork/@CEPSPs.2/@logisticHubs.1/@location"/>
+      </stops>
+      <stops xsi:type="logisticSolution:LogisticFacilityStop" id="Parcel1: ALL_BIKE -> PACKSTATION_2" no="2" unloadedShipments="//@demand/@shipments.2" logisticFacility="//@logisticNetwork/@publicServicePoints.0">
+        <stopTimeWindow xsi:type="utils:SingleDayTimeWindow">
+          <from hour="9" minute="4"/>
+          <to hour="9" minute="5"/>
+        </stopTimeWindow>
+        <stopLocation xsi:type="logisticSolution:ReferenceStopLocation" location="//@logisticNetwork/@publicServicePoints.0/@location"/>
+      </stops>
+      <stops xsi:type="logisticSolution:StartEndStop" id="Parcel1: ALL_BIKE -> PACKSTATION_3" no="3" depot="//@logisticNetwork/@CEPSPs.2/@vehicleDepots.1">
+        <stopTimeWindow xsi:type="utils:SingleDayTimeWindow">
+          <from hour="9" minute="10"/>
+          <to hour="9" minute="10"/>
+        </stopTimeWindow>
+        <stopLocation xsi:type="logisticSolution:ReferenceStopLocation" location="//@logisticNetwork/@CEPSPs.2/@vehicleDepots.1/@location"/>
+      </stops>
+    </tours>
+    <tours id="Parcel1: UPS_HUB_IN -> ALL_BIKE" vehicle="//@logisticNetwork/@CEPSPs.3/@vehicleDepots.0/@vehicles.1" executingCEPSP="//@logisticNetwork/@CEPSPs.3">
+      <stops xsi:type="logisticSolution:StartEndStop" id="Parcel1: UPS_HUB_IN -> ALL_BIKE_0" depot="//@logisticNetwork/@CEPSPs.3/@vehicleDepots.0">
+        <stopTimeWindow xsi:type="utils:SingleDayTimeWindow">
+          <from hour="8"/>
+          <to hour="8"/>
+        </stopTimeWindow>
+        <stopLocation xsi:type="logisticSolution:ReferenceStopLocation" location="//@logisticNetwork/@CEPSPs.3/@vehicleDepots.0/@location"/>
+      </stops>
+      <stops xsi:type="logisticSolution:LogisticFacilityStop" id="Parcel1: UPS_HUB_IN -> ALL_BIKE_1" no="1" loadedShipments="//@demand/@shipments.1" logisticFacility="//@logisticNetwork/@CEPSPs.3/@logisticHubs.0">
+        <stopTimeWindow xsi:type="utils:SingleDayTimeWindow">
+          <from hour="8"/>
+          <to hour="8"/>
+        </stopTimeWindow>
+        <stopLocation xsi:type="logisticSolution:ReferenceStopLocation" location="//@logisticNetwork/@CEPSPs.3/@logisticHubs.0/@location"/>
+      </stops>
+      <stops xsi:type="logisticSolution:LogisticFacilityStop" id="Parcel1: UPS_HUB_IN -> ALL_BIKE_2" no="2" unloadedShipments="//@demand/@shipments.1" logisticFacility="//@logisticNetwork/@CEPSPs.2/@logisticHubs.1">
+        <stopTimeWindow xsi:type="utils:SingleDayTimeWindow">
+          <from hour="8" minute="4"/>
+          <to hour="8" minute="5"/>
+        </stopTimeWindow>
+        <stopLocation xsi:type="logisticSolution:ReferenceStopLocation" location="//@logisticNetwork/@CEPSPs.2/@logisticHubs.1/@location"/>
+      </stops>
+      <stops xsi:type="logisticSolution:StartEndStop" id="Parcel1: UPS_HUB_IN -> ALL_BIKE_3" no="3" depot="//@logisticNetwork/@CEPSPs.3/@vehicleDepots.0">
+        <stopTimeWindow xsi:type="utils:SingleDayTimeWindow">
+          <from hour="8" minute="10"/>
+          <to hour="8" minute="10"/>
+        </stopTimeWindow>
+        <stopLocation xsi:type="logisticSolution:ReferenceStopLocation" location="//@logisticNetwork/@CEPSPs.3/@vehicleDepots.0/@location"/>
+      </stops>
+    </tours>
+    <tours id="Parcel1: UPS_OUTSIDE -> UPS_HUB_IN" vehicle="//@logisticNetwork/@CEPSPs.1/@vehicleDepots.0/@vehicles.2" executingCEPSP="//@logisticNetwork/@CEPSPs.1">
+      <stops xsi:type="logisticSolution:StartEndStop" id="Parcel1: UPS_OUTSIDE -> UPS_HUB_IN_0" depot="//@logisticNetwork/@CEPSPs.1/@vehicleDepots.0">
+        <stopTimeWindow xsi:type="utils:SingleDayTimeWindow">
+          <from hour="7"/>
+          <to hour="7"/>
+        </stopTimeWindow>
+        <stopLocation xsi:type="logisticSolution:ReferenceStopLocation" location="//@logisticNetwork/@CEPSPs.1/@vehicleDepots.0/@location"/>
+      </stops>
+      <stops xsi:type="logisticSolution:LogisticFacilityStop" id="Parcel1: UPS_OUTSIDE -> UPS_HUB_IN_1" no="1" loadedShipments="//@demand/@shipments.0" logisticFacility="//@logisticNetwork/@CEPSPs.1/@logisticHubs.0">
+        <stopTimeWindow xsi:type="utils:SingleDayTimeWindow">
+          <from hour="7"/>
+          <to hour="7"/>
+        </stopTimeWindow>
+        <stopLocation xsi:type="logisticSolution:ReferenceStopLocation" location="//@logisticNetwork/@CEPSPs.1/@logisticHubs.0/@location"/>
+      </stops>
+      <stops xsi:type="logisticSolution:LogisticFacilityStop" id="Parcel1: UPS_OUTSIDE -> UPS_HUB_IN_2" no="2" unloadedShipments="//@demand/@shipments.0" logisticFacility="//@logisticNetwork/@CEPSPs.3/@logisticHubs.0">
+        <stopTimeWindow xsi:type="utils:SingleDayTimeWindow">
+          <from hour="7" minute="4"/>
+          <to hour="7" minute="5"/>
+        </stopTimeWindow>
+        <stopLocation xsi:type="logisticSolution:ReferenceStopLocation" location="//@logisticNetwork/@CEPSPs.3/@logisticHubs.0/@location"/>
+      </stops>
+      <stops xsi:type="logisticSolution:StartEndStop" id="Parcel1: UPS_OUTSIDE -> UPS_HUB_IN_3" no="3" depot="//@logisticNetwork/@CEPSPs.1/@vehicleDepots.0">
+        <stopTimeWindow xsi:type="utils:SingleDayTimeWindow">
+          <from hour="7" minute="10"/>
+          <to hour="7" minute="10"/>
+        </stopTimeWindow>
+        <stopLocation xsi:type="logisticSolution:ReferenceStopLocation" location="//@logisticNetwork/@CEPSPs.1/@vehicleDepots.0/@location"/>
+      </stops>
+    </tours>
+  </logisticSolution>
+</coupling:CommonFreightTransportMetamodelRoot>

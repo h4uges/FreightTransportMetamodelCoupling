@@ -5,7 +5,6 @@ modeltype LOGITOPP uses logiToppMetamodel('http://www.cep-model-coupling.com/log
 
 // ---- MAPPING ----
 
-// TODO: review
 helper weekdayToSimulationDay(weekday : LOGITOPP::base::Weekday) : Integer {
 	switch {
 		case (weekday = LOGITOPP::base::Weekday::MONDAY) {return 0};
@@ -29,8 +28,6 @@ helper mapVehicleType(logiToppVehicleType : LOGITOPP::logiTopp::distribution::fl
 	};
 }
 
-
-// TODO: discuss
 helper size2Volume(parcelSize : LOGITOPP::logiTopp::parcels::ShipmentSize) : COMMON_MM::utils::FiniteVolumeDimension {
 	switch {
 		case (parcelSize = LOGITOPP::logiTopp::parcels::ShipmentSize::SMALL) {return new COMMON_MM::utils::FiniteVolumeDimension(420 + (18240 - 420).div(2));}
@@ -58,6 +55,13 @@ helper createWholeSimulationPeriodTimeWindow() : COMMON_MM::utils::MultiDayTimeW
 
 // ---- MultiDayTimestamp ----
 
+constructor COMMON_MM::utils::MultiDayTimestamp::MultiDayTimestamp(timestamp : LOGITOPP::base::Time) {
+	simulationDay := weekdayToSimulationDay(timestamp.day);
+	hour := timestamp.hour;
+	minute := timestamp.minute;
+	second := timestamp.second
+}
+
 constructor COMMON_MM::utils::MultiDayTimestamp::MultiDayTimestamp(simulationDay_ : Integer, hour_ : Integer, minute_ : Integer, second_ : Integer) {
 	simulationDay := simulationDay_;
 	hour := hour_;
@@ -65,25 +69,11 @@ constructor COMMON_MM::utils::MultiDayTimestamp::MultiDayTimestamp(simulationDay
 	second := second_;
 }
 
-constructor COMMON_MM::utils::MultiDayTimestamp::MultiDayTimestamp(simulationDay_ : Integer, timeWithinDay : LOGITOPP::base::Time) {
+constructor COMMON_MM::utils::MultiDayTimestamp::MultiDayTimestamp(simulationDay_ : Integer, interDayTimeStamp : LOGITOPP::base::Time) {
 	simulationDay := simulationDay_;
-	hour := timeWithinDay.seconds.div(60).div(60).mod(24);
-	minute := timeWithinDay.seconds.div(60).mod(60); 
-	second := timeWithinDay.seconds.mod(60);
-}
-
-constructor COMMON_MM::utils::MultiDayTimestamp::MultiDayTimestamp(weekday : LOGITOPP::base::Weekday, time : LOGITOPP::base::Time) {
-	simulationDay := weekdayToSimulationDay(weekday);
-	hour := time.seconds.div(60).div(60).mod(24);
-	minute := time.seconds.div(60).mod(60); 
-	second := time.seconds.mod(60);
-}
-
-constructor COMMON_MM::utils::MultiDayTimestamp::MultiDayTimestamp(timestamp : LOGITOPP::base::Time) {
-	simulationDay := timestamp.seconds.div(24).div(60).div(60);
-	hour := timestamp.seconds.div(60).div(60).mod(24);
-	minute := timestamp.seconds.div(60).mod(60);
-	second := timestamp.seconds.mod(60);
+	hour := interDayTimeStamp.hour;
+	minute := interDayTimeStamp.minute;
+	second := interDayTimeStamp.second;
 }
 
 // ---- Duration ----
@@ -112,7 +102,7 @@ helper addMinutes(timeStamp : COMMON_MM::utils::MultiDayTimestamp, minutes : Int
 constructor COMMON_MM::utils::InfiniteVolumeDimension::InfiniteVolumeDimension() {}
 
 constructor COMMON_MM::utils::FiniteVolumeDimension::FiniteVolumeDimension(volumeCubicCentimeter : Real) {
-	volumeCubicMetre := volumeCubicCentimeter / 10000000;
+	volumeCubicMetre := volumeCubicCentimeter / 1000000;
 }
 
 // ---- MISC ----

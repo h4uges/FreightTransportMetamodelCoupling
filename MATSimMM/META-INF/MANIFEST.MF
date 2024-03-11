@@ -8,10 +8,12 @@ Bundle-ClassPath: .
 Bundle-Vendor: %providerName
 Bundle-Localization: plugin
 Bundle-RequiredExecutionEnvironment: JavaSE-17
-Export-Package: MATSimFreightMetamodel,
- MATSimFreightMetamodel.base,
+Export-Package: MATSimFreightMetamodel.base,
  MATSimFreightMetamodel.base.impl,
  MATSimFreightMetamodel.base.util,
+ MATSimFreightMetamodel.dataExchange,
+ MATSimFreightMetamodel.dataExchange.impl,
+ MATSimFreightMetamodel.dataExchange.util,
  MATSimFreightMetamodel.freightContrib,
  MATSimFreightMetamodel.freightContrib.events,
  MATSimFreightMetamodel.freightContrib.events.impl,
@@ -24,7 +26,6 @@ Export-Package: MATSimFreightMetamodel,
  MATSimFreightMetamodel.freightReceiver,
  MATSimFreightMetamodel.freightReceiver.impl,
  MATSimFreightMetamodel.freightReceiver.util,
- MATSimFreightMetamodel.impl,
  MATSimFreightMetamodel.matsim,
  MATSimFreightMetamodel.matsim.core,
  MATSimFreightMetamodel.matsim.core.impl,
@@ -41,8 +42,7 @@ Export-Package: MATSimFreightMetamodel,
  MATSimFreightMetamodel.matsim.impl,
  MATSimFreightMetamodel.matsim.vehicles,
  MATSimFreightMetamodel.matsim.vehicles.impl,
- MATSimFreightMetamodel.matsim.vehicles.util,
- MATSimFreightMetamodel.util
+ MATSimFreightMetamodel.matsim.vehicles.util
 Require-Bundle: org.eclipse.emf.ecore;visibility:=reexport,
  org.eclipse.core.runtime
 Bundle-ActivationPolicy: lazy

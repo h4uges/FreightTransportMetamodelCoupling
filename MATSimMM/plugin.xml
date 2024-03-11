@@ -9,15 +9,7 @@
    <extension point="org.eclipse.emf.ecore.generated_package">
       <!-- @generated MATSimFreightMetamodel -->
       <package
-            uri="http://www.cep-model-coupling.com/MATSimFreightMetamodel"
-            class="MATSimFreightMetamodel.MATSimFreightMetamodelPackage"
-            genModel="model/MATSimFreightMetamodel.genmodel"/>
-   </extension>
-
-   <extension point="org.eclipse.emf.ecore.generated_package">
-      <!-- @generated MATSimFreightMetamodel -->
-      <package
-            uri="http://www.cep-model-coupling.com/MATSimFreightMetamodel/freightContrib"
+            uri="http://www.cep-model-coupling.com/matSimFreightMetamodel/freightContrib"
             class="MATSimFreightMetamodel.freightContrib.FreightContribPackage"
             genModel="model/MATSimFreightMetamodel.genmodel"/>
    </extension>
@@ -25,7 +17,7 @@
    <extension point="org.eclipse.emf.ecore.generated_package">
       <!-- @generated MATSimFreightMetamodel -->
       <package
-            uri="http://www.cep-model-coupling.com/MATSimFreightMetamodel/freightContrib/tour"
+            uri="http://www.cep-model-coupling.com/matSimFreightMetamodel/freightContrib/tour"
             class="MATSimFreightMetamodel.freightContrib.tour.TourPackage"
             genModel="model/MATSimFreightMetamodel.genmodel"/>
    </extension>
@@ -33,7 +25,7 @@
    <extension point="org.eclipse.emf.ecore.generated_package">
       <!-- @generated MATSimFreightMetamodel -->
       <package
-            uri="http://www.cep-model-coupling.com/MATSimFreightMetamodel/freightContrib/events"
+            uri="http://www.cep-model-coupling.com/matSimFreightMetamodel/freightContrib/events"
             class="MATSimFreightMetamodel.freightContrib.events.EventsPackage"
             genModel="model/MATSimFreightMetamodel.genmodel"/>
    </extension>
@@ -41,7 +33,7 @@
    <extension point="org.eclipse.emf.ecore.generated_package">
       <!-- @generated MATSimFreightMetamodel -->
       <package
-            uri="http://www.cep-model-coupling.com/MATSimFreightMetamodel/base"
+            uri="http://www.cep-model-coupling.com/matSimFreightMetamodel/base"
             class="MATSimFreightMetamodel.base.BasePackage"
             genModel="model/MATSimFreightMetamodel.genmodel"/>
    </extension>
@@ -49,7 +41,7 @@
    <extension point="org.eclipse.emf.ecore.generated_package">
       <!-- @generated MATSimFreightMetamodel -->
       <package
-            uri="http://www.cep-model-coupling.com/MATSimFreightMetamodel/matsim"
+            uri="http://www.cep-model-coupling.com/matSimFreightMetamodel/matsim"
             class="MATSimFreightMetamodel.matsim.MatsimPackage"
             genModel="model/MATSimFreightMetamodel.genmodel"/>
    </extension>
@@ -57,7 +49,7 @@
    <extension point="org.eclipse.emf.ecore.generated_package">
       <!-- @generated MATSimFreightMetamodel -->
       <package
-            uri="http://www.cep-model-coupling.com/MATSimFreightMetamodel/matsim/vehicles"
+            uri="http://www.cep-model-coupling.com/matSimFreightMetamodel/matsim/vehicles"
             class="MATSimFreightMetamodel.matsim.vehicles.VehiclesPackage"
             genModel="model/MATSimFreightMetamodel.genmodel"/>
    </extension>
@@ -65,7 +57,7 @@
    <extension point="org.eclipse.emf.ecore.generated_package">
       <!-- @generated MATSimFreightMetamodel -->
       <package
-            uri="http://www.cep-model-coupling.com/MATSimFreightMetamodel/matsim/core"
+            uri="http://www.cep-model-coupling.com/matSimFreightMetamodel/matsim/core"
             class="MATSimFreightMetamodel.matsim.core.CorePackage"
             genModel="model/MATSimFreightMetamodel.genmodel"/>
    </extension>
@@ -73,7 +65,7 @@
    <extension point="org.eclipse.emf.ecore.generated_package">
       <!-- @generated MATSimFreightMetamodel -->
       <package
-            uri="http://www.cep-model-coupling.com/MATSimFreightMetamodel/matsim/core/network"
+            uri="http://www.cep-model-coupling.com/matSimFreightMetamodel/matsim/core/network"
             class="MATSimFreightMetamodel.matsim.core.network.NetworkPackage"
             genModel="model/MATSimFreightMetamodel.genmodel"/>
    </extension>
@@ -81,7 +73,7 @@
    <extension point="org.eclipse.emf.ecore.generated_package">
       <!-- @generated MATSimFreightMetamodel -->
       <package
-            uri="http://www.cep-model-coupling.com/MATSimFreightMetamodel/matsim/core/population"
+            uri="http://www.cep-model-coupling.com/matSimFreightMetamodel/matsim/core/population"
             class="MATSimFreightMetamodel.matsim.core.population.PopulationPackage"
             genModel="model/MATSimFreightMetamodel.genmodel"/>
    </extension>
@@ -97,8 +89,16 @@
    <extension point="org.eclipse.emf.ecore.generated_package">
       <!-- @generated MATSimFreightMetamodel -->
       <package
-            uri="http://www.cep-model-coupling.com/MATSimFreightMetamodel/reightReceiver"
+            uri="http://www.cep-model-coupling.com/matSimFreightMetamodel/reightReceiver"
             class="MATSimFreightMetamodel.freightReceiver.FreightReceiverPackage"
+            genModel="model/MATSimFreightMetamodel.genmodel"/>
+   </extension>
+
+   <extension point="org.eclipse.emf.ecore.generated_package">
+      <!-- @generated MATSimFreightMetamodel -->
+      <package
+            uri="http://www.cep-model-coupling.com/matSimFreightMetamodel/dataExchange"
+            class="MATSimFreightMetamodel.dataExchange.DataExchangePackage"
             genModel="model/MATSimFreightMetamodel.genmodel"/>
    </extension>
 

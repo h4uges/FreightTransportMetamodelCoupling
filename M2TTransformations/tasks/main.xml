@@ -34,7 +34,7 @@
         <pathelement location="${ECLIPSE_HOME}/plugins/org.eclipse.acceleo.engine_3.7.15.202402190857.jar"/>
         <pathelement location="${ECLIPSE_HOME}/plugins/org.eclipse.emf.codegen.ecore_2.36.0.v20231002-1035.jar"/>
         <pathelement location="${ECLIPSE_HOME}/plugins/org.eclipse.emf.codegen_2.23.0.v20230211-1150.jar"/>
-        <pathelement location="${ECLIPSE_HOME}/plugins/com.google.guava_32.1.3.jre.jar"/>
+        <pathelement location="${ECLIPSE_HOME}/plugins/com.google.guava_33.0.0.jre.jar"/>
     </path>
 
     <path id="M2TTransformations.classpath">

@@ -93,8 +93,8 @@
             eType="#//mobiTopp/citizens/Gender"/>
         <eStructuralFeatures xsi:type="ecore:EAttribute" name="employment" lowerBound="1"
             eType="#//mobiTopp/citizens/Employment"/>
-        <eStructuralFeatures xsi:type="ecore:EReference" name="workLocation" lowerBound="1"
-            eType="#//mobiTopp/network/Location" containment="true"/>
+        <eStructuralFeatures xsi:type="ecore:EReference" name="workLocation" eType="#//mobiTopp/network/Location"
+            containment="true"/>
       </eClassifiers>
       <eClassifiers xsi:type="ecore:EEnum" name="Employment">
         <eLiterals name="UNKNOWN" value="-1"/>
@@ -140,11 +140,22 @@
           eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
     </eClassifiers>
     <eClassifiers xsi:type="ecore:EClass" name="Time">
-      <eStructuralFeatures xsi:type="ecore:EAttribute" name="seconds" lowerBound="1"
+      <eStructuralFeatures xsi:type="ecore:EAttribute" name="second" lowerBound="1"
           eType="ecore:EDataType http://www.eclipse.org/emf/2003/XMLType#//Int"/>
+      <eStructuralFeatures xsi:type="ecore:EAttribute" name="minute" lowerBound="1"
+          eType="ecore:EDataType http://www.eclipse.org/emf/2003/XMLType#//Int"/>
+      <eStructuralFeatures xsi:type="ecore:EAttribute" name="hour" lowerBound="1"
+          eType="ecore:EDataType http://www.eclipse.org/emf/2003/XMLType#//Int"/>
+      <eStructuralFeatures xsi:type="ecore:EAttribute" name="day" lowerBound="1" eType="#//base/Weekday"/>
     </eClassifiers>
     <eClassifiers xsi:type="ecore:EClass" name="RelativeTime">
       <eStructuralFeatures xsi:type="ecore:EAttribute" name="seconds" lowerBound="1"
+          eType="ecore:EDataType http://www.eclipse.org/emf/2003/XMLType#//Int"/>
+      <eStructuralFeatures xsi:type="ecore:EAttribute" name="minutes" lowerBound="1"
+          eType="ecore:EDataType http://www.eclipse.org/emf/2003/XMLType#//Int"/>
+      <eStructuralFeatures xsi:type="ecore:EAttribute" name="hours" lowerBound="1"
+          eType="ecore:EDataType http://www.eclipse.org/emf/2003/XMLType#//Int"/>
+      <eStructuralFeatures xsi:type="ecore:EAttribute" name="days" lowerBound="1"
           eType="ecore:EDataType http://www.eclipse.org/emf/2003/XMLType#//Int"/>
     </eClassifiers>
     <eClassifiers xsi:type="ecore:EEnum" name="Weekday">
@@ -230,8 +241,6 @@
         <eLiterals name="OTHER" value="6"/>
       </eClassifiers>
       <eClassifiers xsi:type="ecore:EClass" name="OpeningHour">
-        <eStructuralFeatures xsi:type="ecore:EAttribute" name="dayOfWeek" lowerBound="1"
-            eType="#//base/Weekday"/>
         <eStructuralFeatures xsi:type="ecore:EReference" name="start" lowerBound="1"
             eType="#//base/Time" containment="true"/>
         <eStructuralFeatures xsi:type="ecore:EReference" name="end" lowerBound="1"

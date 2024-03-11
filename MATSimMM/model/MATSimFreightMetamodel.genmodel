@@ -5,12 +5,6 @@
     complianceLevel="17.0" copyrightFields="false" operationReflection="true" importOrganizing="true">
   <foreignModel>MATSimFreightMetamodel.ecore</foreignModel>
   <genPackages prefix="MATSimFreightMetamodel" disposableProviderFactory="true" ecorePackage="MATSimFreightMetamodel.ecore#/">
-    <genClasses ecoreClass="MATSimFreightMetamodel.ecore#//DataExchangeRoot">
-      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference MATSimFreightMetamodel.ecore#//DataExchangeRoot/carriers"/>
-      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference MATSimFreightMetamodel.ecore#//DataExchangeRoot/network"/>
-      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference MATSimFreightMetamodel.ecore#//DataExchangeRoot/vehicleTypes"/>
-      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference MATSimFreightMetamodel.ecore#//DataExchangeRoot/population"/>
-    </genClasses>
     <nestedGenPackages prefix="FreightContrib" disposableProviderFactory="true" ecorePackage="MATSimFreightMetamodel.ecore#//freightContrib">
       <genEnums typeSafeEnumCompatible="false" ecoreEnum="MATSimFreightMetamodel.ecore#//freightContrib/FleetSize">
         <genEnumLiterals ecoreEnumLiteral="MATSimFreightMetamodel.ecore#//freightContrib/FleetSize/INFINITE"/>
@@ -91,12 +85,12 @@
         </genClasses>
         <genClasses ecoreClass="MATSimFreightMetamodel.ecore#//freightContrib/tour/Start">
           <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference MATSimFreightMetamodel.ecore#//freightContrib/tour/Start/timeWindow"/>
-          <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference MATSimFreightMetamodel.ecore#//freightContrib/tour/Start/location"/>
+          <genFeatures property="None" notify="false" createChild="false" ecoreFeature="ecore:EReference MATSimFreightMetamodel.ecore#//freightContrib/tour/Start/location"/>
         </genClasses>
         <genClasses ecoreClass="MATSimFreightMetamodel.ecore#//freightContrib/tour/End">
           <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference MATSimFreightMetamodel.ecore#//freightContrib/tour/End/timeWindow"/>
           <genFeatures createChild="false" ecoreFeature="ecore:EAttribute MATSimFreightMetamodel.ecore#//freightContrib/tour/End/expectedArrivalTime"/>
-          <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference MATSimFreightMetamodel.ecore#//freightContrib/tour/End/location"/>
+          <genFeatures property="None" notify="false" createChild="false" ecoreFeature="ecore:EReference MATSimFreightMetamodel.ecore#//freightContrib/tour/End/location"/>
         </genClasses>
         <genClasses image="false" ecoreClass="MATSimFreightMetamodel.ecore#//freightContrib/tour/ShipmentBasedActivity">
           <genFeatures notify="false" createChild="false" propertySortChoices="true"
@@ -326,6 +320,14 @@
         <genFeatures createChild="false" ecoreFeature="ecore:EAttribute MATSimFreightMetamodel.ecore#//freightReceiver/Order/dailyOrderQuantity"/>
         <genFeatures createChild="false" ecoreFeature="ecore:EAttribute MATSimFreightMetamodel.ecore#//freightReceiver/Order/serviceTime"/>
         <genFeatures createChild="false" ecoreFeature="ecore:EAttribute MATSimFreightMetamodel.ecore#//freightReceiver/Order/numberOfWeekleyDeliveries"/>
+      </genClasses>
+    </nestedGenPackages>
+    <nestedGenPackages prefix="DataExchange" disposableProviderFactory="true" ecorePackage="MATSimFreightMetamodel.ecore#//dataExchange">
+      <genClasses ecoreClass="MATSimFreightMetamodel.ecore#//dataExchange/DataExchangeRoot">
+        <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference MATSimFreightMetamodel.ecore#//dataExchange/DataExchangeRoot/carriers"/>
+        <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference MATSimFreightMetamodel.ecore#//dataExchange/DataExchangeRoot/network"/>
+        <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference MATSimFreightMetamodel.ecore#//dataExchange/DataExchangeRoot/vehicleTypes"/>
+        <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference MATSimFreightMetamodel.ecore#//dataExchange/DataExchangeRoot/population"/>
       </genClasses>
     </nestedGenPackages>
   </genPackages>

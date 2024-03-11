@@ -1,11 +1,27 @@
 [comment encoding = UTF-8 /]
-[module main('')/]
+[module main('http://www.cep-model-coupling.com/matSimFreightMetamodel')/]
 
-[template public main(element : OclAny)]
-	
-	[comment @main /]
-	[file (element.name.concat('.java'), false, 'UTF-8')]
-		
-	[/file]
-	
+[comment import M2TTransformations::MATSimVehicleTypes /]
+[comment import M2TTransformations::MATSimNetwork /]
+[comment import M2TTransformations::MATSimCarriers /]
+
+[template public main(root : DataExchangeRoot)]
+[comment @main /]
+	[test(network)/]
+	[comment generateMATSimNetwork(root)/]
+	[comment generateMATSimVehicleTypes(root)/]
+[/template]
+
+[template public test(network : Network)]
+[file ('test.txt', false, 'UTF-8')]
+	XY: [network.eContents().toString()/]
+	[for (node : Node | network.nodes)]
+		Node: [node.toString()/]
+	[/for]
+
+	Test: [nodes /]
+	Test: [network.nodes /]
+	Test: [effectiveLaneWidht.toString() /]
+	Test: [network.effectiveLaneWidht.toString() /]
+[/file]
 [/template]

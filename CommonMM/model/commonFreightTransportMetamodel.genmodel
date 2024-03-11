@@ -8,6 +8,7 @@
       fileExtensions="cftpm" ecorePackage="CommonFreightTransportMetamodel.ecore#/">
     <nestedGenPackages prefix="LogisticDemand" disposableProviderFactory="true" ecorePackage="CommonFreightTransportMetamodel.ecore#//logisticDemand">
       <genClasses ecoreClass="CommonFreightTransportMetamodel.ecore#//logisticDemand/Demand">
+        <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference CommonFreightTransportMetamodel.ecore#//logisticDemand/Demand/workLocations"/>
         <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference CommonFreightTransportMetamodel.ecore#//logisticDemand/Demand/shipments"/>
       </genClasses>
       <genClasses image="false" ecoreClass="CommonFreightTransportMetamodel.ecore#//logisticDemand/FromOutsideStudyAreaShipment">
@@ -28,11 +29,11 @@
       <genClasses ecoreClass="CommonFreightTransportMetamodel.ecore#//logisticDemand/InsideToInsideShipment"/>
       <genClasses ecoreClass="CommonFreightTransportMetamodel.ecore#//logisticDemand/InsideToOutsideShipment"/>
       <genClasses image="false" ecoreClass="CommonFreightTransportMetamodel.ecore#//logisticDemand/Shipment">
-        <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference CommonFreightTransportMetamodel.ecore#//logisticDemand/Shipment/responsibleCEPSP"/>
         <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference CommonFreightTransportMetamodel.ecore#//logisticDemand/Shipment/size"/>
+        <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference CommonFreightTransportMetamodel.ecore#//logisticDemand/Shipment/responsibleCEPSP"/>
       </genClasses>
       <genClasses ecoreClass="CommonFreightTransportMetamodel.ecore#//logisticDemand/SplittedShipment">
-        <genFeatures createChild="false" ecoreFeature="ecore:EAttribute CommonFreightTransportMetamodel.ecore#//logisticDemand/SplittedShipment/originalId"/>
+        <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference CommonFreightTransportMetamodel.ecore#//logisticDemand/SplittedShipment/originalShipmentReference"/>
       </genClasses>
       <genClasses image="false" ecoreClass="CommonFreightTransportMetamodel.ecore#//logisticDemand/FromInsideStudyAreaShipmentBase">
         <genFeatures notify="false" createChild="false" propertySortChoices="true"
@@ -43,6 +44,10 @@
         <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference CommonFreightTransportMetamodel.ecore#//logisticDemand/ToInsideStudyAreaShipmentBase/arrivalAtDestinationTimeWindow"/>
         <genFeatures notify="false" createChild="false" propertySortChoices="true"
             ecoreFeature="ecore:EReference CommonFreightTransportMetamodel.ecore#//logisticDemand/ToInsideStudyAreaShipmentBase/destination"/>
+      </genClasses>
+      <genClasses ecoreClass="CommonFreightTransportMetamodel.ecore#//logisticDemand/OriginalShipmentReference">
+        <genFeatures createChild="false" ecoreFeature="ecore:EAttribute CommonFreightTransportMetamodel.ecore#//logisticDemand/OriginalShipmentReference/originalID"/>
+        <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference CommonFreightTransportMetamodel.ecore#//logisticDemand/OriginalShipmentReference/originalShipmentReference"/>
       </genClasses>
     </nestedGenPackages>
     <nestedGenPackages prefix="Utils" disposableProviderFactory="true" ecorePackage="CommonFreightTransportMetamodel.ecore#//utils">
@@ -88,7 +93,7 @@
         <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference CommonFreightTransportMetamodel.ecore#//utils/VolumeAndWeightBasedDimension/weightDimension"/>
       </genClasses>
       <genClasses image="false" ecoreClass="CommonFreightTransportMetamodel.ecore#//utils/Dimension"/>
-      <genClasses image="false" ecoreClass="CommonFreightTransportMetamodel.ecore#//utils/ShipmentlLegStartEndPoint"/>
+      <genClasses image="false" ecoreClass="CommonFreightTransportMetamodel.ecore#//utils/ShipmentLegStartEndPoint"/>
       <genClasses ecoreClass="CommonFreightTransportMetamodel.ecore#//utils/InfiniteVolumeDimension"/>
       <genClasses ecoreClass="CommonFreightTransportMetamodel.ecore#//utils/FiniteVolumeDimension">
         <genFeatures createChild="false" ecoreFeature="ecore:EAttribute CommonFreightTransportMetamodel.ecore#//utils/FiniteVolumeDimension/volumeCubicMetre"/>
@@ -252,8 +257,6 @@
         <genFeatures notify="false" createChild="false" propertySortChoices="true"
             ecoreFeature="ecore:EReference CommonFreightTransportMetamodel.ecore#//logisticSolution/ShipmentRecordEntry/executingCEPSP"/>
         <genFeatures createChild="false" ecoreFeature="ecore:EAttribute CommonFreightTransportMetamodel.ecore#//logisticSolution/ShipmentRecordEntry/no"/>
-        <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference CommonFreightTransportMetamodel.ecore#//logisticSolution/ShipmentRecordEntry/from"/>
-        <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference CommonFreightTransportMetamodel.ecore#//logisticSolution/ShipmentRecordEntry/to"/>
         <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference CommonFreightTransportMetamodel.ecore#//logisticSolution/ShipmentRecordEntry/timeWindow"/>
         <genFeatures notify="false" createChild="false" propertySortChoices="true"
             ecoreFeature="ecore:EReference CommonFreightTransportMetamodel.ecore#//logisticSolution/ShipmentRecordEntry/fromSpec"/>
@@ -263,6 +266,10 @@
             ecoreFeature="ecore:EReference CommonFreightTransportMetamodel.ecore#//logisticSolution/ShipmentRecordEntry/tour"/>
         <genFeatures notify="false" createChild="false" propertySortChoices="true"
             ecoreFeature="ecore:EReference CommonFreightTransportMetamodel.ecore#//logisticSolution/ShipmentRecordEntry/record"/>
+        <genFeatures notify="false" createChild="false" propertySortChoices="true"
+            ecoreFeature="ecore:EReference CommonFreightTransportMetamodel.ecore#//logisticSolution/ShipmentRecordEntry/pickUpStop"/>
+        <genFeatures notify="false" createChild="false" propertySortChoices="true"
+            ecoreFeature="ecore:EReference CommonFreightTransportMetamodel.ecore#//logisticSolution/ShipmentRecordEntry/deliveryStop"/>
       </genClasses>
       <genClasses image="false" ecoreClass="CommonFreightTransportMetamodel.ecore#//logisticSolution/ShipmentEntry">
         <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference CommonFreightTransportMetamodel.ecore#//logisticSolution/ShipmentEntry/time"/>

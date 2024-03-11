@@ -5,6 +5,7 @@ import com.google.common.collect.ImmutableSet;
 
 import logiToppMetamodel.base.RelativeTime;
 import logiToppMetamodel.base.Time;
+import logiToppMetamodel.base.Weekday;
 import logiToppMetamodel.dataExchange.DataExchangeFactory;
 import logiToppMetamodel.dataExchange.TransportInfrastructure;
 import logiToppMetamodel.logiTopp.distribution.CEPServiceProvider;
@@ -67,16 +68,17 @@ public class LogiToppTransportInfrastructureUtil {
 		return result;
 	}
 
-	public static DeliveryVehicle createDeliveryVehicle(String id, int vehicleType) {
+	public static DeliveryVehicle createDeliveryVehicle(String id, int vehicleType, Time earliestStartTime, Time latestEndTime) {
 		DeliveryVehicle result = FleetFactory.eINSTANCE.createDeliveryVehicle();
-		
+
 		result.setId(id);
 		result.setVehicleType(VehicleType.get(vehicleType));
 		result.setCapacity(vehicleType2Capacity(result.getVehicleType()));
-		// TODO: major : vehicle start and end times
-		result.setEarliestStartTime(null);
-		result.setLatestEndTime(null);
-		
+		earliestStartTime.setDay(Weekday.MONDAY);
+		latestEndTime.setDay(Weekday.MONDAY);
+		result.setEarliestStartTime(earliestStartTime);
+		result.setLatestEndTime(latestEndTime);
+
 		return result;
 	}
 
@@ -98,9 +100,9 @@ public class LogiToppTransportInfrastructureUtil {
 
 	public static RegionalReach createRegionalReach(ServiceArea serviceArea) {
 		RegionalReach result = RegionFactory.eINSTANCE.createRegionalReach();
-		
+
 		result.setServiceArea(serviceArea);
-		
+
 		return result;
 	}
 

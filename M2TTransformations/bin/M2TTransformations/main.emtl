@@ -1,18 +1,137 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <xmi:XMI xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore" xmlns:mtl="http://www.eclipse.org/acceleo/mtl/3.0" xmlns:ocl.ecore="http://www.eclipse.org/ocl/1.1.0/Ecore">
-  <mtl:Module name="main" nsURI="M2TTransformations::main" startHeaderPosition="29" endHeaderPosition="45">
-    <input/>
+  <mtl:Module name="main" nsURI="M2TTransformations::main" startHeaderPosition="29" endHeaderPosition="101">
+    <input>
+      <takesTypesFrom href="http://www.cep-model-coupling.com/matSimFreightMetamodel/matsim/vehicles#/"/>
+      <takesTypesFrom href="http://www.cep-model-coupling.com/matSimFreightMetamodel/matsim/vehicles#//freightContrib"/>
+      <takesTypesFrom href="http://www.cep-model-coupling.com/matSimFreightMetamodel/matsim/vehicles#//freightContrib/tour"/>
+      <takesTypesFrom href="http://www.cep-model-coupling.com/matSimFreightMetamodel/matsim/vehicles#//freightContrib/events"/>
+      <takesTypesFrom href="http://www.cep-model-coupling.com/matSimFreightMetamodel/matsim/vehicles#//base"/>
+      <takesTypesFrom href="http://www.cep-model-coupling.com/matSimFreightMetamodel/matsim/vehicles#//matsim"/>
+      <takesTypesFrom href="http://www.cep-model-coupling.com/matSimFreightMetamodel/matsim/vehicles#//matsim/vehicles"/>
+      <takesTypesFrom href="http://www.cep-model-coupling.com/matSimFreightMetamodel/matsim/vehicles#//matsim/core"/>
+      <takesTypesFrom href="http://www.cep-model-coupling.com/matSimFreightMetamodel/matsim/vehicles#//matsim/core/network"/>
+      <takesTypesFrom href="http://www.cep-model-coupling.com/matSimFreightMetamodel/matsim/vehicles#//matsim/core/population"/>
+      <takesTypesFrom href="http://www.cep-model-coupling.com/matSimFreightMetamodel/matsim/vehicles#//matsim/households"/>
+      <takesTypesFrom href="http://www.cep-model-coupling.com/matSimFreightMetamodel/matsim/vehicles#//freightReceiver"/>
+      <takesTypesFrom href="http://www.cep-model-coupling.com/matSimFreightMetamodel/matsim/vehicles#//dataExchange"/>
+    </input>
+    <ownedModuleElement xsi:type="mtl:Comment">
+      <body startPosition="113" endPosition="160" value=" import M2TTransformations::MATSimVehicleTypes "/>
+    </ownedModuleElement>
+    <ownedModuleElement xsi:type="mtl:Comment">
+      <body startPosition="171" endPosition="213" value=" import M2TTransformations::MATSimNetwork "/>
+    </ownedModuleElement>
+    <ownedModuleElement xsi:type="mtl:Comment">
+      <body startPosition="224" endPosition="267" value=" import M2TTransformations::MATSimCarriers "/>
+    </ownedModuleElement>
     <ownedModuleElement xsi:type="mtl:Template" name="main" visibility="Public" main="true">
-      <body xsi:type="ocl.ecore:StringLiteralExp" stringSymbol="&#x9;&#xA;"/>
+      <body xsi:type="ocl.ecore:StringLiteralExp" stringSymbol="&#x9;"/>
+      <body xsi:type="mtl:TemplateInvocation" definition="/0/test">
+        <eType xsi:type="ocl.ecore:PrimitiveType" href="http://www.eclipse.org/ocl/1.1.0/oclstdlib.ecore#/0/String"/>
+        <argument xsi:type="ocl.ecore:PropertyCallExp">
+          <eType xsi:type="ecore:EClass" href="http://www.cep-model-coupling.com/matSimFreightMetamodel/matsim/vehicles#//matsim/core/network/Network"/>
+          <source xsi:type="ocl.ecore:VariableExp" name="self" referredVariable="/6">
+            <eType xsi:type="ecore:EClass" href="http://www.cep-model-coupling.com/matSimFreightMetamodel/matsim/vehicles#//dataExchange/DataExchangeRoot"/>
+          </source>
+          <referredProperty xsi:type="ecore:EReference" href="http://www.cep-model-coupling.com/matSimFreightMetamodel/matsim/vehicles#//dataExchange/DataExchangeRoot/network"/>
+        </argument>
+      </body>
+      <body xsi:type="ocl.ecore:StringLiteralExp" stringSymbol="&#xA;"/>
+      <parameter name="root">
+        <eType xsi:type="ecore:EClass" href="http://www.cep-model-coupling.com/matSimFreightMetamodel/matsim/vehicles#//dataExchange/DataExchangeRoot"/>
+      </parameter>
+    </ownedModuleElement>
+    <ownedModuleElement xsi:type="mtl:Template" name="test" visibility="Public">
       <body xsi:type="mtl:FileBlock" openMode="OverWrite">
-        <body xsi:type="ocl.ecore:StringLiteralExp" stringSymbol="&#x9;&#x9;&#xA;"/>
+        <body xsi:type="ocl.ecore:StringLiteralExp" stringSymbol="&#x9;XY: "/>
+        <body xsi:type="ocl.ecore:IteratorExp" name="collect" eType="/13/Sequence(String)">
+          <source xsi:type="ocl.ecore:OperationCallExp">
+            <eType xsi:type="ocl.ecore:SequenceType" href="http://www.eclipse.org/ocl/1.1.0/oclstdlib.ecore#/0/Sequence(T)"/>
+            <source xsi:type="ocl.ecore:VariableExp" name="network" referredVariable="/0/test/network">
+              <eType xsi:type="ecore:EClass" href="http://www.cep-model-coupling.com/matSimFreightMetamodel/matsim/vehicles#//matsim/core/network/Network"/>
+            </source>
+            <referredOperation xsi:type="ecore:EOperation" href="http://www.eclipse.org/emf/2002/Ecore#//EObject/eContents"/>
+          </source>
+          <body xsi:type="ocl.ecore:OperationCallExp">
+            <eType xsi:type="ocl.ecore:PrimitiveType" href="http://www.eclipse.org/ocl/1.1.0/oclstdlib.ecore#/0/String"/>
+            <source xsi:type="ocl.ecore:VariableExp" name="temp1" referredVariable="/0/test/%/collect/temp1">
+              <eType xsi:type="ocl.ecore:AnyType" href="http://www.eclipse.org/ocl/1.1.0/oclstdlib.ecore#/0/T"/>
+            </source>
+            <referredOperation xsi:type="ecore:EOperation" href="http://www.eclipse.org/ocl/1.1.0/oclstdlib.ecore#/0/OclAny_Class/toString"/>
+          </body>
+          <iterator xsi:type="ocl.ecore:Variable" name="temp1">
+            <eType xsi:type="ocl.ecore:AnyType" href="http://www.eclipse.org/ocl/1.1.0/oclstdlib.ecore#/0/T"/>
+          </iterator>
+        </body>
+        <body xsi:type="ocl.ecore:StringLiteralExp" stringSymbol="&#xA;"/>
+        <body xsi:type="mtl:ForBlock">
+          <body xsi:type="ocl.ecore:StringLiteralExp" stringSymbol="&#x9;&#x9;Node: "/>
+          <body xsi:type="ocl.ecore:OperationCallExp" referredOperation="/1/oclstdlib_OclAny_Class/toString">
+            <eType xsi:type="ocl.ecore:PrimitiveType" href="http://www.eclipse.org/ocl/1.1.0/oclstdlib.ecore#/0/String"/>
+            <source xsi:type="ocl.ecore:VariableExp" name="node" referredVariable="/0/test/%/%.2/node">
+              <eType xsi:type="ecore:EClass" href="http://www.cep-model-coupling.com/matSimFreightMetamodel/matsim/vehicles#//matsim/core/network/Node"/>
+            </source>
+          </body>
+          <body xsi:type="ocl.ecore:StringLiteralExp" stringSymbol="&#xA;"/>
+          <loopVariable name="node">
+            <eType xsi:type="ecore:EClass" href="http://www.cep-model-coupling.com/matSimFreightMetamodel/matsim/vehicles#//matsim/core/network/Node"/>
+          </loopVariable>
+          <iterSet xsi:type="ocl.ecore:PropertyCallExp" eType="/13/OrderedSet(Node)">
+            <source xsi:type="ocl.ecore:VariableExp" name="network" referredVariable="/0/test/network">
+              <eType xsi:type="ecore:EClass" href="http://www.cep-model-coupling.com/matSimFreightMetamodel/matsim/vehicles#//matsim/core/network/Network"/>
+            </source>
+            <referredProperty xsi:type="ecore:EReference" href="http://www.cep-model-coupling.com/matSimFreightMetamodel/matsim/vehicles#//matsim/core/network/Network/nodes"/>
+          </iterSet>
+        </body>
+        <body xsi:type="ocl.ecore:StringLiteralExp" stringSymbol="&#xA;&#x9;Test: "/>
+        <body xsi:type="ocl.ecore:PropertyCallExp" eType="/13/OrderedSet(Node)">
+          <source xsi:type="ocl.ecore:VariableExp" name="self" referredVariable="/20">
+            <eType xsi:type="ecore:EClass" href="http://www.cep-model-coupling.com/matSimFreightMetamodel/matsim/vehicles#//matsim/core/network/Network"/>
+          </source>
+          <referredProperty xsi:type="ecore:EReference" href="http://www.cep-model-coupling.com/matSimFreightMetamodel/matsim/vehicles#//matsim/core/network/Network/nodes"/>
+        </body>
+        <body xsi:type="ocl.ecore:StringLiteralExp" stringSymbol="&#xA;&#x9;Test: "/>
+        <body xsi:type="ocl.ecore:PropertyCallExp" eType="/13/OrderedSet(Node)">
+          <source xsi:type="ocl.ecore:VariableExp" name="network" referredVariable="/0/test/network">
+            <eType xsi:type="ecore:EClass" href="http://www.cep-model-coupling.com/matSimFreightMetamodel/matsim/vehicles#//matsim/core/network/Network"/>
+          </source>
+          <referredProperty xsi:type="ecore:EReference" href="http://www.cep-model-coupling.com/matSimFreightMetamodel/matsim/vehicles#//matsim/core/network/Network/nodes"/>
+        </body>
+        <body xsi:type="ocl.ecore:StringLiteralExp" stringSymbol="&#xA;&#x9;Test: "/>
+        <body xsi:type="ocl.ecore:OperationCallExp">
+          <eType xsi:type="ocl.ecore:PrimitiveType" href="http://www.eclipse.org/ocl/1.1.0/oclstdlib.ecore#/0/String"/>
+          <source xsi:type="ocl.ecore:PropertyCallExp">
+            <eType xsi:type="ocl.ecore:PrimitiveType" href="http://www.eclipse.org/ocl/1.1.0/oclstdlib.ecore#/0/Real"/>
+            <source xsi:type="ocl.ecore:VariableExp" name="self" referredVariable="/22">
+              <eType xsi:type="ecore:EClass" href="http://www.cep-model-coupling.com/matSimFreightMetamodel/matsim/vehicles#//matsim/core/network/Network"/>
+            </source>
+            <referredProperty xsi:type="ecore:EAttribute" href="http://www.cep-model-coupling.com/matSimFreightMetamodel/matsim/vehicles#//matsim/core/network/Network/effectiveLaneWidht"/>
+          </source>
+          <referredOperation xsi:type="ecore:EOperation" href="http://www.eclipse.org/ocl/1.1.0/oclstdlib.ecore#/0/Real_Class/toString"/>
+        </body>
+        <body xsi:type="ocl.ecore:StringLiteralExp" stringSymbol="&#xA;&#x9;Test: "/>
+        <body xsi:type="ocl.ecore:OperationCallExp">
+          <eType xsi:type="ocl.ecore:PrimitiveType" href="http://www.eclipse.org/ocl/1.1.0/oclstdlib.ecore#/0/String"/>
+          <source xsi:type="ocl.ecore:PropertyCallExp">
+            <eType xsi:type="ocl.ecore:PrimitiveType" href="http://www.eclipse.org/ocl/1.1.0/oclstdlib.ecore#/0/Real"/>
+            <source xsi:type="ocl.ecore:VariableExp" name="network" referredVariable="/0/test/network">
+              <eType xsi:type="ecore:EClass" href="http://www.cep-model-coupling.com/matSimFreightMetamodel/matsim/vehicles#//matsim/core/network/Network"/>
+            </source>
+            <referredProperty xsi:type="ecore:EAttribute" href="http://www.cep-model-coupling.com/matSimFreightMetamodel/matsim/vehicles#//matsim/core/network/Network/effectiveLaneWidht"/>
+          </source>
+          <referredOperation xsi:type="ecore:EOperation" href="http://www.eclipse.org/ocl/1.1.0/oclstdlib.ecore#/0/Real_Class/toString"/>
+        </body>
+        <body xsi:type="ocl.ecore:StringLiteralExp" stringSymbol="&#xA;"/>
+        <fileUrl xsi:type="ocl.ecore:StringLiteralExp" stringSymbol="test.txt">
+          <eType xsi:type="ocl.ecore:PrimitiveType" href="http://www.eclipse.org/ocl/1.1.0/oclstdlib.ecore#/0/String"/>
+        </fileUrl>
         <charset xsi:type="ocl.ecore:StringLiteralExp" stringSymbol="UTF-8">
           <eType xsi:type="ocl.ecore:PrimitiveType" href="http://www.eclipse.org/ocl/1.1.0/oclstdlib.ecore#/0/String"/>
         </charset>
       </body>
-      <body xsi:type="ocl.ecore:StringLiteralExp" stringSymbol="&#x9;"/>
-      <parameter name="element">
-        <eType xsi:type="ocl.ecore:AnyType" href="http://www.eclipse.org/ocl/1.1.0/oclstdlib.ecore#/0/OclAny"/>
+      <parameter name="network">
+        <eType xsi:type="ecore:EClass" href="http://www.cep-model-coupling.com/matSimFreightMetamodel/matsim/vehicles#//matsim/core/network/Network"/>
       </parameter>
     </ownedModuleElement>
   </mtl:Module>
@@ -42,8 +161,18 @@
         </eAnnotations>
         <eAnnotations source="MTL" references="/0/main"/>
         <eType xsi:type="ocl.ecore:PrimitiveType" href="http://www.eclipse.org/ocl/1.1.0/oclstdlib.ecore#/0/String"/>
-        <eParameters name="element">
-          <eType xsi:type="ocl.ecore:AnyType" href="http://www.eclipse.org/ocl/1.1.0/oclstdlib.ecore#/0/OclAny"/>
+        <eParameters name="root">
+          <eType xsi:type="ecore:EClass" href="http://www.cep-model-coupling.com/matSimFreightMetamodel/matsim/vehicles#//dataExchange/DataExchangeRoot"/>
+        </eParameters>
+      </eOperations>
+      <eOperations name="test">
+        <eAnnotations source="http://www.eclipse.org/ocl/1.1.0/OCL">
+          <contents xsi:type="ocl.ecore:Constraint"/>
+        </eAnnotations>
+        <eAnnotations source="MTL" references="/0/test"/>
+        <eType xsi:type="ocl.ecore:PrimitiveType" href="http://www.eclipse.org/ocl/1.1.0/oclstdlib.ecore#/0/String"/>
+        <eParameters name="network">
+          <eType xsi:type="ecore:EClass" href="http://www.cep-model-coupling.com/matSimFreightMetamodel/matsim/vehicles#//matsim/core/network/Network"/>
         </eParameters>
       </eOperations>
     </eClassifiers>
@@ -51,6 +180,10 @@
       <eAnnotations source="http://www.eclipse.org/ocl/1.1.0/OCL">
         <references href="http://www.eclipse.org/ocl/1.1.0/oclstdlib.ecore#/0/OclAny"/>
       </eAnnotations>
+      <eOperations name="toString">
+        <eAnnotations source="MTL non-standard"/>
+        <eType xsi:type="ocl.ecore:PrimitiveType" href="http://www.eclipse.org/ocl/1.1.0/oclstdlib.ecore#/0/String"/>
+      </eOperations>
     </eClassifiers>
     <eClassifiers xsi:type="ecore:EClass" name="oclstdlib_Collection(T)_Class">
       <eAnnotations source="http://www.eclipse.org/ocl/1.1.0/OCL">
@@ -67,72 +200,321 @@
         <references href="http://www.eclipse.org/ocl/1.1.0/oclstdlib.ecore#/0/OrderedSet(T)"/>
       </eAnnotations>
     </eClassifiers>
+    <eClassifiers xsi:type="ecore:EClass" name="dataExchange_DataExchangeRoot_Class">
+      <eAnnotations source="http://www.eclipse.org/ocl/1.1.0/OCL">
+        <references href="http://www.cep-model-coupling.com/matSimFreightMetamodel/matsim/vehicles#//dataExchange/DataExchangeRoot"/>
+      </eAnnotations>
+    </eClassifiers>
+    <eClassifiers xsi:type="ecore:EClass" name="network_Network_Class">
+      <eAnnotations source="http://www.eclipse.org/ocl/1.1.0/OCL">
+        <references href="http://www.cep-model-coupling.com/matSimFreightMetamodel/matsim/vehicles#//matsim/core/network/Network"/>
+      </eAnnotations>
+    </eClassifiers>
   </ecore:EPackage>
   <ocl.ecore:Variable name="self">
     <eType xsi:type="ecore:EClass" href="http://www.eclipse.org/emf/2002/Ecore#//EObject"/>
   </ocl.ecore:Variable>
   <ocl.ecore:Variable name="self">
-    <eType xsi:type="ocl.ecore:AnyType" href="http://www.eclipse.org/ocl/1.1.0/oclstdlib.ecore#/0/OclAny"/>
+    <eType xsi:type="ecore:EClass" href="http://www.cep-model-coupling.com/matSimFreightMetamodel/matsim/vehicles#//dataExchange/DataExchangeRoot"/>
   </ocl.ecore:Variable>
   <ocl.ecore:Variable name="self">
     <eType xsi:type="ocl.ecore:PrimitiveType" href="http://www.eclipse.org/ocl/1.1.0/oclstdlib.ecore#/0/String"/>
   </ocl.ecore:Variable>
   <ocl.ecore:Variable name="self">
-    <eType xsi:type="ocl.ecore:AnyType" href="http://www.eclipse.org/ocl/1.1.0/oclstdlib.ecore#/0/OclAny"/>
+    <eType xsi:type="ecore:EClass" href="http://www.cep-model-coupling.com/matSimFreightMetamodel/matsim/vehicles#//dataExchange/DataExchangeRoot"/>
+  </ocl.ecore:Variable>
+  <ocl.ecore:Variable name="self">
+    <eType xsi:type="ecore:EClass" href="http://www.cep-model-coupling.com/matSimFreightMetamodel/matsim/vehicles#//dataExchange/DataExchangeRoot"/>
   </ocl.ecore:Variable>
   <ocl.ecore:Variable name="self">
     <eType xsi:type="ecore:EClass" href="http://www.eclipse.org/emf/2002/Ecore#//EObject"/>
   </ocl.ecore:Variable>
   <ocl.ecore:Variable name="self">
-    <eType xsi:type="ocl.ecore:AnyType" href="http://www.eclipse.org/ocl/1.1.0/oclstdlib.ecore#/0/OclAny"/>
+    <eType xsi:type="ecore:EClass" href="http://www.cep-model-coupling.com/matSimFreightMetamodel/matsim/vehicles#//matsim/core/network/Network"/>
   </ocl.ecore:Variable>
   <ocl.ecore:Variable name="self">
-    <eType xsi:type="ecore:EClass" href="http://www.eclipse.org/emf/2002/Ecore#//EObject"/>
+    <eType xsi:type="ocl.ecore:PrimitiveType" href="http://www.eclipse.org/ocl/1.1.0/oclstdlib.ecore#/0/String"/>
   </ocl.ecore:Variable>
   <ocl.ecore:Variable name="self">
-    <eType xsi:type="ocl.ecore:AnyType" href="http://www.eclipse.org/ocl/1.1.0/oclstdlib.ecore#/0/OclAny"/>
+    <eType xsi:type="ecore:EClass" href="http://www.cep-model-coupling.com/matSimFreightMetamodel/matsim/vehicles#//matsim/core/network/Network"/>
   </ocl.ecore:Variable>
   <ocl.ecore:Variable name="self">
-    <eType xsi:type="ocl.ecore:AnyType" href="http://www.eclipse.org/ocl/1.1.0/oclstdlib.ecore#/0/OclAny"/>
+    <eType xsi:type="ecore:EClass" href="http://www.cep-model-coupling.com/matSimFreightMetamodel/matsim/vehicles#//matsim/core/network/Network"/>
+  </ocl.ecore:Variable>
+  <ocl.ecore:Variable name="self">
+    <eType xsi:type="ecore:EClass" href="http://www.cep-model-coupling.com/matSimFreightMetamodel/matsim/vehicles#//matsim/core/network/Network"/>
+  </ocl.ecore:Variable>
+  <ecore:EPackage name="collections">
+    <eClassifiers xsi:type="ocl.ecore:SequenceType" name="Sequence(String)" instanceClassName="java.util.List">
+      <elementType xsi:type="ocl.ecore:PrimitiveType" href="http://www.eclipse.org/ocl/1.1.0/oclstdlib.ecore#/0/String"/>
+    </eClassifiers>
+    <eClassifiers xsi:type="ocl.ecore:OrderedSetType" name="OrderedSet(Node)" instanceClassName="java.util.LinkedHashSet">
+      <elementType xsi:type="ecore:EClass" href="http://www.cep-model-coupling.com/matSimFreightMetamodel/matsim/vehicles#//matsim/core/network/Node"/>
+    </eClassifiers>
+  </ecore:EPackage>
+  <ocl.ecore:Variable name="self">
+    <eType xsi:type="ecore:EClass" href="http://www.cep-model-coupling.com/matSimFreightMetamodel/matsim/vehicles#//matsim/core/network/Network"/>
+  </ocl.ecore:Variable>
+  <ocl.ecore:Variable name="self">
+    <eType xsi:type="ecore:EClass" href="http://www.cep-model-coupling.com/matSimFreightMetamodel/matsim/vehicles#//matsim/core/network/Network"/>
+  </ocl.ecore:Variable>
+  <ocl.ecore:Variable name="self">
+    <eType xsi:type="ecore:EClass" href="http://www.cep-model-coupling.com/matSimFreightMetamodel/matsim/vehicles#//matsim/core/network/Node"/>
+  </ocl.ecore:Variable>
+  <ocl.ecore:Variable name="self">
+    <eType xsi:type="ecore:EClass" href="http://www.cep-model-coupling.com/matSimFreightMetamodel/matsim/vehicles#//matsim/core/network/Node"/>
+  </ocl.ecore:Variable>
+  <ocl.ecore:Variable name="self">
+    <eType xsi:type="ecore:EClass" href="http://www.cep-model-coupling.com/matSimFreightMetamodel/matsim/vehicles#//matsim/core/network/Network"/>
+  </ocl.ecore:Variable>
+  <ocl.ecore:Variable name="i">
+    <eType xsi:type="ocl.ecore:PrimitiveType" href="http://www.eclipse.org/ocl/1.1.0/oclstdlib.ecore#/0/Integer"/>
+  </ocl.ecore:Variable>
+  <ocl.ecore:Variable name="self">
+    <eType xsi:type="ecore:EClass" href="http://www.cep-model-coupling.com/matSimFreightMetamodel/matsim/vehicles#//matsim/core/network/Network"/>
+  </ocl.ecore:Variable>
+  <ocl.ecore:Variable name="self">
+    <eType xsi:type="ecore:EClass" href="http://www.cep-model-coupling.com/matSimFreightMetamodel/matsim/vehicles#//matsim/core/network/Network"/>
+  </ocl.ecore:Variable>
+  <ocl.ecore:Variable name="self">
+    <eType xsi:type="ecore:EClass" href="http://www.cep-model-coupling.com/matSimFreightMetamodel/matsim/vehicles#//matsim/core/network/Network"/>
+  </ocl.ecore:Variable>
+  <ocl.ecore:Variable name="self">
+    <eType xsi:type="ecore:EClass" href="http://www.cep-model-coupling.com/matSimFreightMetamodel/matsim/vehicles#//matsim/core/network/Network"/>
   </ocl.ecore:Variable>
   <ocl.ecore:Variable name="self">
     <eType xsi:type="ecore:EClass" href="http://www.eclipse.org/emf/2002/Ecore#//EObject"/>
   </ocl.ecore:Variable>
   <ecore:EAnnotation source="positions">
-    <eAnnotations source="positions.0" references="/0/main">
-      <details key="start" value="49"/>
-      <details key="end" value="191"/>
-      <details key="line" value="4"/>
-    </eAnnotations>
-    <eAnnotations source="positions.1" references="/0/main/%">
-      <details key="start" value="90"/>
-      <details key="end" value="92"/>
-      <details key="line" value="5"/>
-    </eAnnotations>
-    <eAnnotations source="positions.2" references="/0/main/%.1">
-      <details key="start" value="112"/>
-      <details key="end" value="177"/>
-      <details key="line" value="7"/>
-    </eAnnotations>
-    <eAnnotations source="positions.3" references="/0/main/%.1/%">
-      <details key="start" value="166"/>
-      <details key="end" value="169"/>
-      <details key="line" value="8"/>
-    </eAnnotations>
-    <eAnnotations source="positions.4" references="/0/main/%.1/%.1">
-      <details key="start" value="156"/>
-      <details key="end" value="163"/>
+    <eAnnotations source="positions.0" references="/0/%">
+      <details key="start" value="105"/>
+      <details key="end" value="162"/>
       <details key="line" value="0"/>
     </eAnnotations>
-    <eAnnotations source="positions.5" references="/0/main/%.2">
-      <details key="start" value="178"/>
-      <details key="end" value="179"/>
+    <eAnnotations source="positions.1" references="/0/%.1">
+      <details key="start" value="163"/>
+      <details key="end" value="215"/>
+      <details key="line" value="0"/>
+    </eAnnotations>
+    <eAnnotations source="positions.2" references="/0/%.2">
+      <details key="start" value="216"/>
+      <details key="end" value="269"/>
+      <details key="line" value="0"/>
+    </eAnnotations>
+    <eAnnotations source="positions.3" references="/0/main">
+      <details key="start" value="271"/>
+      <details key="end" value="451"/>
+      <details key="line" value="8"/>
+    </eAnnotations>
+    <eAnnotations source="positions.4" references="/0/main/%">
+      <details key="start" value="337"/>
+      <details key="end" value="338"/>
       <details key="line" value="10"/>
     </eAnnotations>
-    <eAnnotations source="positions.6" references="/0/main/element">
-      <details key="start" value="71"/>
-      <details key="end" value="87"/>
-      <details key="line" value="4"/>
+    <eAnnotations source="positions.5" references="/0/main/%.1">
+      <details key="start" value="339"/>
+      <details key="end" value="352"/>
+      <details key="line" value="0"/>
+    </eAnnotations>
+    <eAnnotations source="positions.6" references="/0/main/%.1/%">
+      <details key="start" value="344"/>
+      <details key="end" value="351"/>
+      <details key="line" value="0"/>
+    </eAnnotations>
+    <eAnnotations source="positions.7" references="/0/main/%.1/%/self">
+      <details key="start" value="-1"/>
+      <details key="end" value="-1"/>
+      <details key="line" value="0"/>
+    </eAnnotations>
+    <eAnnotations source="positions.8" references="/0/main/%.2">
+      <details key="start" value="354"/>
+      <details key="end" value="355"/>
+      <details key="line" value="11"/>
+    </eAnnotations>
+    <eAnnotations source="positions.9" references="/0/main/root">
+      <details key="start" value="293"/>
+      <details key="end" value="316"/>
+      <details key="line" value="8"/>
+    </eAnnotations>
+    <eAnnotations source="positions.10" references="/0/test">
+      <details key="start" value="453"/>
+      <details key="end" value="794"/>
+      <details key="line" value="15"/>
+    </eAnnotations>
+    <eAnnotations source="positions.11" references="/0/test/%">
+      <details key="start" value="495"/>
+      <details key="end" value="782"/>
+      <details key="line" value="16"/>
+    </eAnnotations>
+    <eAnnotations source="positions.12" references="/0/test/%/%">
+      <details key="start" value="531"/>
+      <details key="end" value="536"/>
+      <details key="line" value="17"/>
+    </eAnnotations>
+    <eAnnotations source="positions.13" references="/0/test/%/collect">
+      <details key="start" value="537"/>
+      <details key="end" value="567"/>
+      <details key="line" value="0"/>
+    </eAnnotations>
+    <eAnnotations source="positions.14" references="/0/test/%/collect/%">
+      <details key="start" value="537"/>
+      <details key="end" value="556"/>
+      <details key="line" value="0"/>
+    </eAnnotations>
+    <eAnnotations source="positions.15" references="/0/test/%/collect/%/network">
+      <details key="start" value="537"/>
+      <details key="end" value="544"/>
+      <details key="line" value="0"/>
+    </eAnnotations>
+    <eAnnotations source="positions.16" references="/0/test/%/collect/%.1">
+      <details key="start" value="-1"/>
+      <details key="end" value="-1"/>
+      <details key="line" value="0"/>
+    </eAnnotations>
+    <eAnnotations source="positions.17" references="/0/test/%/collect/%.1/temp1">
+      <details key="start" value="-1"/>
+      <details key="end" value="-1"/>
+      <details key="line" value="0"/>
+    </eAnnotations>
+    <eAnnotations source="positions.18" references="/0/test/%/collect/temp1">
+      <details key="start" value="-1"/>
+      <details key="end" value="-1"/>
+      <details key="line" value="0"/>
+    </eAnnotations>
+    <eAnnotations source="positions.19" references="/0/test/%/%.1">
+      <details key="start" value="569"/>
+      <details key="end" value="570"/>
+      <details key="line" value="18"/>
+    </eAnnotations>
+    <eAnnotations source="positions.20" references="/0/test/%/%.2">
+      <details key="start" value="571"/>
+      <details key="end" value="641"/>
+      <details key="line" value="18"/>
+    </eAnnotations>
+    <eAnnotations source="positions.21" references="/0/test/%/%.2/%">
+      <details key="start" value="607"/>
+      <details key="end" value="615"/>
+      <details key="line" value="19"/>
+    </eAnnotations>
+    <eAnnotations source="positions.22" references="/0/test/%/%.2/%.1">
+      <details key="start" value="616"/>
+      <details key="end" value="631"/>
+      <details key="line" value="0"/>
+    </eAnnotations>
+    <eAnnotations source="positions.23" references="/0/test/%/%.2/%.1/node">
+      <details key="start" value="616"/>
+      <details key="end" value="620"/>
+      <details key="line" value="0"/>
+    </eAnnotations>
+    <eAnnotations source="positions.24" references="/0/test/%/%.2/%.2">
+      <details key="start" value="633"/>
+      <details key="end" value="634"/>
+      <details key="line" value="20"/>
+    </eAnnotations>
+    <eAnnotations source="positions.25" references="/0/test/%/%.2/node">
+      <details key="start" value="577"/>
+      <details key="end" value="588"/>
+      <details key="line" value="18"/>
+    </eAnnotations>
+    <eAnnotations source="positions.26" references="/0/test/%/%.2/%.3">
+      <details key="start" value="591"/>
+      <details key="end" value="604"/>
+      <details key="line" value="0"/>
+    </eAnnotations>
+    <eAnnotations source="positions.27" references="/0/test/%/%.2/%.3/network">
+      <details key="start" value="591"/>
+      <details key="end" value="598"/>
+      <details key="line" value="0"/>
+    </eAnnotations>
+    <eAnnotations source="positions.28" references="/0/test/%/%.3">
+      <details key="start" value="642"/>
+      <details key="end" value="650"/>
+      <details key="line" value="21"/>
+    </eAnnotations>
+    <eAnnotations source="positions.29" references="/0/test/%/%.4">
+      <details key="start" value="651"/>
+      <details key="end" value="656"/>
+      <details key="line" value="0"/>
+    </eAnnotations>
+    <eAnnotations source="positions.30" references="/0/test/%/%.4/self">
+      <details key="start" value="-1"/>
+      <details key="end" value="-1"/>
+      <details key="line" value="0"/>
+    </eAnnotations>
+    <eAnnotations source="positions.31" references="/0/test/%/%.5">
+      <details key="start" value="659"/>
+      <details key="end" value="667"/>
+      <details key="line" value="23"/>
+    </eAnnotations>
+    <eAnnotations source="positions.32" references="/0/test/%/%.6">
+      <details key="start" value="668"/>
+      <details key="end" value="681"/>
+      <details key="line" value="0"/>
+    </eAnnotations>
+    <eAnnotations source="positions.33" references="/0/test/%/%.6/network">
+      <details key="start" value="668"/>
+      <details key="end" value="675"/>
+      <details key="line" value="0"/>
+    </eAnnotations>
+    <eAnnotations source="positions.34" references="/0/test/%/%.7">
+      <details key="start" value="684"/>
+      <details key="end" value="692"/>
+      <details key="line" value="24"/>
+    </eAnnotations>
+    <eAnnotations source="positions.35" references="/0/test/%/%.8">
+      <details key="start" value="693"/>
+      <details key="end" value="722"/>
+      <details key="line" value="0"/>
+    </eAnnotations>
+    <eAnnotations source="positions.36" references="/0/test/%/%.8/%">
+      <details key="start" value="693"/>
+      <details key="end" value="711"/>
+      <details key="line" value="0"/>
+    </eAnnotations>
+    <eAnnotations source="positions.37" references="/0/test/%/%.8/%/self">
+      <details key="start" value="-1"/>
+      <details key="end" value="-1"/>
+      <details key="line" value="0"/>
+    </eAnnotations>
+    <eAnnotations source="positions.38" references="/0/test/%/%.9">
+      <details key="start" value="725"/>
+      <details key="end" value="733"/>
+      <details key="line" value="25"/>
+    </eAnnotations>
+    <eAnnotations source="positions.39" references="/0/test/%/%.10">
+      <details key="start" value="734"/>
+      <details key="end" value="771"/>
+      <details key="line" value="0"/>
+    </eAnnotations>
+    <eAnnotations source="positions.40" references="/0/test/%/%.10/%">
+      <details key="start" value="734"/>
+      <details key="end" value="760"/>
+      <details key="line" value="0"/>
+    </eAnnotations>
+    <eAnnotations source="positions.41" references="/0/test/%/%.10/%/network">
+      <details key="start" value="734"/>
+      <details key="end" value="741"/>
+      <details key="line" value="0"/>
+    </eAnnotations>
+    <eAnnotations source="positions.42" references="/0/test/%/%.11">
+      <details key="start" value="774"/>
+      <details key="end" value="775"/>
+      <details key="line" value="26"/>
+    </eAnnotations>
+    <eAnnotations source="positions.43" references="/0/test/%/%.12">
+      <details key="start" value="502"/>
+      <details key="end" value="512"/>
+      <details key="line" value="0"/>
+    </eAnnotations>
+    <eAnnotations source="positions.44" references="/0/test/%/%.13">
+      <details key="start" value="521"/>
+      <details key="end" value="528"/>
+      <details key="line" value="0"/>
+    </eAnnotations>
+    <eAnnotations source="positions.45" references="/0/test/network">
+      <details key="start" value="475"/>
+      <details key="end" value="492"/>
+      <details key="line" value="15"/>
     </eAnnotations>
   </ecore:EAnnotation>
 </xmi:XMI>

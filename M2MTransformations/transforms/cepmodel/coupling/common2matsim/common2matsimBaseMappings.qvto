@@ -37,6 +37,26 @@ helper vehicleType2TransportMode(vehicleType : COMMON_MM::network::VehicleType_)
 
 // ---- helper: network ----
 
+helper stopLocationToLink(stopLocation : COMMON_MM::logisticSolution::StopLocation) : MATSIM::matsim::core::network::Link {
+	if (stopLocation.oclIsKindOf(COMMON_MM::logisticSolution::CustomStopLocation)) then {
+		return stopLocationToLink(stopLocation.oclAsType(COMMON_MM::logisticSolution::CustomStopLocation))
+	} endif;
+	
+	if (stopLocation.oclIsKindOf(COMMON_MM::logisticSolution::ReferenceStopLocation)) then {
+		return stopLocationToLink(stopLocation.oclAsType(COMMON_MM::logisticSolution::ReferenceStopLocation))
+	} endif;
+	
+	return null;
+}
+
+helper stopLocationToLink(stopLocation : COMMON_MM::logisticSolution::CustomStopLocation) : MATSIM::matsim::core::network::Link {
+	return location2Link(stopLocation.location);
+}
+
+helper stopLocationToLink(stopLocation : COMMON_MM::logisticSolution::ReferenceStopLocation) : MATSIM::matsim::core::network::Link {
+	return location2Link(stopLocation.location);
+}
+
 helper location2Link(location: COMMON_MM::network::Location_) : MATSIM::matsim::core::network::Link {
 	var edge := location.networkAccess.oclAsType(COMMON_MM::network::EdgeBasedNetworkAccess).edge;
 	return edge.resolveone(MATSIM::matsim::core::network::Link);
@@ -124,7 +144,7 @@ mapping COMMON_MM::utils::FiniteVolumeDimension::finiteVolume2vehicleCapacity():
 inherits COMMON_MM::utils::Dimension::dimension2vehicleCapacity
 when {self.oclIsKindOf(COMMON_MM::utils::FiniteVolumeDimension)}{
 	volumeInCubicMeters := self.volumeCubicMetre;
-	other := self.volumeCubicMetre;
+	other := self.volumeCubicMetre * 1000000;
 	
 	weightInTons := 0;
 	seats := DEFAULT_VEHICLE_SEATS;
@@ -146,7 +166,7 @@ mapping COMMON_MM::utils::FiniteWeightDimension::finiteWeight2vehicleCapacity():
 inherits COMMON_MM::utils::Dimension::dimension2vehicleCapacity
 when {self.oclIsKindOf(COMMON_MM::utils::FiniteWeightDimension)}{
 	weightInTons := self.weightKg / 1000;
-	other := self.weightKg / 1000;
+	other := self.weightKg * 1000;
 	
 	volumeInCubicMeters := 0;
 	seats := DEFAULT_VEHICLE_SEATS;

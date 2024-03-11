@@ -3,6 +3,7 @@ import common2matsimNetwork;
 import common2matsimVehicleTypes;
 import common2matsimCarrierCapabilities;
 import common2matsimCarrierDemand;
+import common2matsimCarrierDemandWithSolution;
 import common2matsimCarrierSolution;
 
 modeltype COMMON_MM uses CommonFreightTransportMetamodel('http://www.cep-model-coupling.com/commonFreightTransportMetamodel');
@@ -34,12 +35,12 @@ main() {
 	var solution := commonRoot.logisticSolution;
 	var matSimCarriers := createCarriers(carriers, demand, solution, matSimVehicleTypes);
 	
-	var matSimRoot := new MATSIM::DataExchangeRoot(matSimNetwork, matSimVehicleTypes, matSimCarriers);
+	var matSimRoot := new MATSIM::dataExchange::DataExchangeRoot(matSimNetwork, matSimVehicleTypes, matSimCarriers);
 	
 	cleanupResult(matsimModel, matSimRoot);
 }
 
-constructor MATSIM::DataExchangeRoot::DataExchangeRoot(
+constructor MATSIM::dataExchange::DataExchangeRoot::DataExchangeRoot(
 	networkElem : MATSIM::matsim::core::network::Network,
 	vehicleTypesElem : MATSIM::matsim::vehicles::VehicleTypes,
 	carrierElems: Collection(MATSIM::freightContrib::Carrier)) {
@@ -48,7 +49,7 @@ constructor MATSIM::DataExchangeRoot::DataExchangeRoot(
 	carriers += carrierElems;
 }
 
-helper cleanupResult(model : MATSIM, matSimRoot : MATSIM::DataExchangeRoot) {
+helper cleanupResult(model : MATSIM, matSimRoot : MATSIM::dataExchange::DataExchangeRoot) {
 	var toBeDeleted := model.rootObjects() -> select(e | e <> matSimRoot);
 	toBeDeleted -> forEach (e) { model.removeElement(e)};
 }
@@ -56,7 +57,11 @@ helper cleanupResult(model : MATSIM, matSimRoot : MATSIM::DataExchangeRoot) {
 helper createCarriers(carriers : Collection(COMMON_MM::logisticNetwork::CEPSP), demand : COMMON_MM::logisticDemand::Demand, solution : COMMON_MM::logisticSolution::LogisticSolution, matSimVehicleTypes : MATSIM::matsim::vehicles::VehicleTypes) : Collection(MATSIM::freightContrib::Carrier) {
 	var matSimCarriers := carriers -> map cepsp2InitialCarrier(matSimVehicleTypes);
 	
-	demand.shipments -> forEach(shipment) {createAndAssignShipment(shipment)};
+	if(solution = null) then {
+		demand.shipments -> forEach(shipment) {createAndAssignShipment(shipment)};
+	} else {
+		demand.shipments -> forEach(shipment) {createAndAssignShipmentWithSolution(shipment, solution)};
+	} endif;
 	solution.tours -> forEach(tour) {createAndAssignTour(tour)};
 	
 	return matSimCarriers;

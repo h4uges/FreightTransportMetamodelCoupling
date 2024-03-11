@@ -1,0 +1,116 @@
+library common2matsimCarrierDemandWithSolution;
+
+import common2matsimNetwork;
+import common2matsimBaseMappings;
+import common2matsimCarrierDemand;
+
+modeltype COMMON_MM uses CommonFreightTransportMetamodel('http://www.cep-model-coupling.com/commonFreightTransportMetamodel');
+modeltype MATSIM uses MATSimFreightMetamodel('http://www.cep-model-coupling.com/MATSimFreightMetamodel');
+
+helper createAndAssignShipmentWithSolution(shipment : COMMON_MM::logisticDemand::Shipment, solution : COMMON_MM::logisticSolution::LogisticSolution) {
+	var responsibleMATSimCarrier := shipment.responsibleCEPSP.resolveone(MATSIM::freightContrib::Carrier);
+	var shipmentRecordExists = solution.shipmentRecords -> select(record | record.shipment = shipment) -> size() > 0;
+	var shipmentRecord = solution.shipmentRecords -> select(record | record.shipment = shipment) -> first();
+	
+	if (shipmentRecordExists or isCarrierShipment(shipment)) then {
+		responsibleMATSimCarrier.shipments += shipment.map mapShipment2shipmentWithSolution(shipmentRecord);
+	}
+	endif;
+	
+	if (not shipmentRecordExists and isCarrierService(shipment)) then {
+		responsibleMATSimCarrier.services += shipment.map mapShipment2service();
+	}
+	endif;
+}
+
+mapping COMMON_MM::logisticDemand::Shipment::mapShipment2shipmentWithSolution(shipmentRecord : COMMON_MM::logisticSolution::ShipmentRecord): MATSIM::freightContrib::CarrierShipment
+disjuncts
+	COMMON_MM::logisticDemand::InsideToInsideShipment::insideShipment2carrierShipmentWithSolution,
+	COMMON_MM::logisticDemand::SplittedShipment::splittedShipment2CarrierShipmentWithSolution,
+	COMMON_MM::logisticDemand::InsideToOutsideShipment::insideToOutside2CarrierShipmentWithSolution,
+	COMMON_MM::logisticDemand::OutsideToInsideShipment::outsideToInside2CarrierShipmentWithSolution
+when {} {}
+
+mapping COMMON_MM::logisticDemand::InsideToInsideShipment::insideShipment2carrierShipmentWithSolution(shipmentRecord : COMMON_MM::logisticSolution::ShipmentRecord) : MATSIM::freightContrib::CarrierShipment
+inherits COMMON_MM::logisticDemand::Shipment::mapShipment2shipmentWithSolution
+{
+	id := self.id;
+	size := dimension2capacity(self.size);
+	_from := location2Link(self.origin);
+	to := location2Link(self.destination);
+	
+	pickupTimeWindow := timeStampToRightOpenTimeWindow(self.arrivalAtOrigin);
+	deliveryTimeWindow := optionalTimeWindow2TimeWindow(self.arrivalAtDestinationTimeWindow);
+	
+	pickupServiceTime := determinePickUpServiceTime(shipmentRecord);
+	deliveryServiceTime := determineDeliveryServiceTime(shipmentRecord);
+}
+
+mapping COMMON_MM::logisticDemand::SplittedShipment::splittedShipment2CarrierShipmentWithSolution(shipmentRecord : COMMON_MM::logisticSolution::ShipmentRecord) : MATSIM::freightContrib::CarrierShipment
+inherits COMMON_MM::logisticDemand::Shipment::mapShipment2shipmentWithSolution
+{
+	id := self.id;
+	size := dimension2capacity(self.size);
+	_from := location2Link(self.origin);
+	to := location2Link(self.destination);
+	
+	pickupTimeWindow := timeStampToRightOpenTimeWindow(self.arrivalAtOrigin);
+	deliveryTimeWindow := optionalTimeWindow2TimeWindow(self.arrivalAtDestinationTimeWindow);
+	
+	pickupServiceTime := determinePickUpServiceTime(shipmentRecord);
+	deliveryServiceTime := determineDeliveryServiceTime(shipmentRecord);
+}
+
+mapping COMMON_MM::logisticDemand::OutsideToInsideShipment::outsideToInside2CarrierShipmentWithSolution(shipmentRecord : COMMON_MM::logisticSolution::ShipmentRecord) : MATSIM::freightContrib::CarrierShipment
+inherits COMMON_MM::logisticDemand::Shipment::mapShipment2shipmentWithSolution
+{
+	id := self.id;
+	size := dimension2capacity(self.size);
+	_from := stopLocationToLink(shipmentRecord.entries -> first().pickUpStop.stopLocation);
+	to := location2Link(self.destination);
+	
+	pickupTimeWindow := timeStampToRightOpenTimeWindow(self.arrivalAtOriginDepot);
+	deliveryTimeWindow := optionalTimeWindow2TimeWindow(self.arrivalAtDestinationTimeWindow);
+	
+	pickupServiceTime := determinePickUpServiceTime(shipmentRecord);
+	deliveryServiceTime := determineDeliveryServiceTime(shipmentRecord);
+}
+
+mapping COMMON_MM::logisticDemand::InsideToOutsideShipment::insideToOutside2CarrierShipmentWithSolution(shipmentRecord : COMMON_MM::logisticSolution::ShipmentRecord) : MATSIM::freightContrib::CarrierShipment
+inherits COMMON_MM::logisticDemand::Shipment::mapShipment2shipmentWithSolution
+{
+	id := self.id;
+	size := dimension2capacity(self.size);
+	_from := location2Link(self.origin);
+	to := stopLocationToLink(shipmentRecord.entries -> last().deliveryStop.stopLocation);
+	
+	pickupTimeWindow := timeStampToRightOpenTimeWindow(self.arrivalAtOrigin);
+	deliveryTimeWindow := optionalTimeWindow2TimeWindow(self.arrivalAtDepotTimeWindow);
+	
+	pickupServiceTime := determinePickUpServiceTime(shipmentRecord);
+	deliveryServiceTime := determineDeliveryServiceTime(shipmentRecord);
+}
+
+helper determinePickUpServiceTime(shipmentRecord : COMMON_MM::logisticSolution::ShipmentRecord) : Integer {
+	if(shipmentRecord = null) then {
+		return PICKUP_SERVICE_TIME_DEFAULT;
+	} endif;
+
+	var pickUpStop = shipmentRecord.entries -> first().pickUpStop.oclAsType(COMMON_MM::logisticSolution::PickUpDeliveryStop);
+	var pickupStopTimeWindow = mapTimeWindow(pickUpStop.stopTimeWindow);
+	var pickUpTimeInSeconds = (pickupStopTimeWindow._end - pickupStopTimeWindow.start).round();
+	var numberOfHandledShipments = pickUpStop.loadedShipments -> size() + pickUpStop.unloadedShipments -> size();
+	return pickUpTimeInSeconds.div(numberOfHandledShipments);
+}
+
+helper determineDeliveryServiceTime(shipmentRecord : COMMON_MM::logisticSolution::ShipmentRecord) : Integer {
+	if(shipmentRecord = null) then {
+		return DELIVERY_SERVICE_TIME_DEFAULT;
+	} endif;
+	
+	var deliveryStop = shipmentRecord.entries -> last().deliveryStop.oclAsType(COMMON_MM::logisticSolution::PickUpDeliveryStop);
+	var deliveryStopTimeWindow = mapTimeWindow(deliveryStop.stopTimeWindow);
+	var deliveryTimeInSeconds = (deliveryStopTimeWindow._end - deliveryStopTimeWindow.start).round();
+	var numberOfHandledShipments = deliveryStop.loadedShipments -> size() + deliveryStop.unloadedShipments -> size();
+	return deliveryTimeInSeconds.div(numberOfHandledShipments);
+}

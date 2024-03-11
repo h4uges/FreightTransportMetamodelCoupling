@@ -13,30 +13,43 @@ mapping LOGITOPP::mobiTopp::network::RoadNetwork::roadNetwork2Network() : COMMON
 
 mapping LOGITOPP::mobiTopp::network::Node::node2Node() : COMMON_MM::network::Node {
 	id := self.id;
-	coordinate := self.coord.map point2D2Coordinate();
+	coordinate := point2D2Coordinate(self.coord);
 }
 
-mapping LOGITOPP::mobiTopp::network::Point2D::point2D2Coordinate() : COMMON_MM::utils::Coordinate {
-	x := self.x;
-	y := self.y;
+helper point2D2Coordinate(point2D : LOGITOPP::mobiTopp::network::Point2D) : COMMON_MM::utils::Coordinate {
+	return new COMMON_MM::utils::Coordinate(point2D.x, point2D.y);
+}
+
+constructor COMMON_MM::utils::Coordinate::Coordinate(x : Real, y : Real) {
+	result.x := x;
+	result.y := y;
 }
 mapping LOGITOPP::mobiTopp::network::Edge::edge2Edge() : COMMON_MM::network::Edge {
 	_from := self._from.resolveone(COMMON_MM::network::Node);
 	to := self.to.resolveone(COMMON_MM::network::Node);
 	length := self.length;
+	// TODO: work on vehicle types
 	allowedVehicleTypes;
 }
 
 // ---- network.location ----
 
-mapping LOGITOPP::mobiTopp::network::Location::location2Location() : COMMON_MM::network::Location_ {
-	id := createLocationId();
-	coordinate := self.coordinate.map point2D2Coordinate();
-	networkAccess := new COMMON_MM::network::EdgeBasedNetworkAccess(self.roadAccessEdge, self.roadPosition);
+helper location2Location(location : LOGITOPP::mobiTopp::network::Location, identifier : String) : COMMON_MM::network::Location_ {
+	var id := createLocationId();
+	var coordinate := point2D2Coordinate(location.coordinate);
+	var networkAccess := new COMMON_MM::network::EdgeBasedNetworkAccess(location.roadAccessEdge, location.roadPosition);
+	
+	return new COMMON_MM::network::Location_(id, identifier, coordinate, networkAccess);
+}
+
+constructor COMMON_MM::network::Location_::Location_(id : String, identifier: String, coordinate : COMMON_MM::utils::Coordinate, networkAccess: COMMON_MM::network::NetworkAccess) {
+	result.id := "loc_" + id + "_" + identifier;
+	result.coordinate := coordinate;
+	result.networkAccess := networkAccess;
 }
 
 helper createLocationId() : String {
-	var id = "loc_" + locationIdCounter.toString();
+	var id = locationIdCounter.toString();
 	locationIdCounter := locationIdCounter + 1;
 	return id;
 }
@@ -50,8 +63,12 @@ helper areEqualLocations(a : COMMON_MM::network::Location_, b : COMMON_MM::netwo
 	var aEdgeBasedAccess := a.networkAccess.oclAsType(COMMON_MM::network::EdgeBasedNetworkAccess);
 	var bEdgeBasedAccess := b.networkAccess.oclAsType(COMMON_MM::network::EdgeBasedNetworkAccess);
 	
-	return a.coordinate.x = b.coordinate.x and
-  	a.coordinate.y = b.coordinate.y and
+	return areEqual(a.coordinate.x, b.coordinate.x, 0.000000001) and
+  	areEqual(a.coordinate.y, b.coordinate.y, 0.000000001) and
   	aEdgeBasedAccess.edge = bEdgeBasedAccess.edge and
-  	aEdgeBasedAccess.edgePosition = bEdgeBasedAccess.edgePosition;
+  	areEqual(aEdgeBasedAccess.edgePosition, bEdgeBasedAccess.edgePosition, 0.000000001);
+}
+
+helper areEqual(r1 : Real, r2 : Real, epsilon : Real) : Boolean {
+    return (r1 - r2).abs() < epsilon;
 }

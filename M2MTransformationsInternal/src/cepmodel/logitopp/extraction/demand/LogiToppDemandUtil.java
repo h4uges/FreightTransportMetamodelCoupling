@@ -24,8 +24,9 @@ public class LogiToppDemandUtil {
 		return result;
 	}
 
-	public static BusinessParcel createBusinessParcel(String id, CEPServiceProvider responsibleCEPSP, ParcelProducer producer, ParcelConsumer consumer,
-			ZoneAndLocation destination, ShipmentSize shipmentSize, boolean isPickup, Time arrivalAtOrigin) {
+	public static BusinessParcel createBusinessParcel(String id, CEPServiceProvider responsibleCEPSP,
+			ParcelProducer producer, ParcelConsumer consumer, ZoneAndLocation destination, ShipmentSize shipmentSize,
+			boolean isPickup, Time arrivalAtOrigin) {
 		BusinessParcel result = ParcelsFactory.eINSTANCE.createBusinessParcel();
 
 		result.setId(id);
@@ -44,14 +45,14 @@ public class LogiToppDemandUtil {
 		return result;
 	}
 
-	public static PrivateParcel createPrivateParcel(String id, CEPServiceProvider responsibleCEPSP, ParcelProducer producer, ParcelConsumer consumer,
-			ZoneAndLocation destination, ShipmentSize shipmentSize, ParcelDestinationType destinationType,
-			boolean isPickup, Time arrivalAtOrigin) {
+	public static PrivateParcel createPrivateParcel(String id, CEPServiceProvider responsibleCEPSP,
+			ParcelProducer producer, ParcelConsumer consumer, ZoneAndLocation destination, ShipmentSize shipmentSize,
+			ParcelDestinationType destinationType, boolean isPickup, Time arrivalAtOrigin) {
 		PrivateParcel result = ParcelsFactory.eINSTANCE.createPrivateParcel();
 
 		result.setId(id);
 		result.setResponsibleCEPSP(responsibleCEPSP);
-		
+
 		result.setProducer(producer);
 		result.setConsumer(consumer);
 

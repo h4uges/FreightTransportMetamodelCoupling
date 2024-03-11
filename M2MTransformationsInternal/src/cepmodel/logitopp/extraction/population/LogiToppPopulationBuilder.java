@@ -104,13 +104,10 @@ public class LogiToppPopulationBuilder {
 				List<OpeningHour> openingHours = new ArrayList<OpeningHour>();
 				for (Weekday weekday : Weekday.VALUES) {
 					String value = record.get("open:" + weekday.toString());
-					if (value != "") {
+					if (!value.isBlank()) {
 						OpeningHour openingHour = LogiToppPopulationUtil.createOpeningHour(weekday,
 								Integer.valueOf(value.split(",")[0]), Integer.valueOf(value.split(",")[0]));
 						openingHours.add(openingHour);
-					} else {
-						// this does not seem to be the case
-						assert (false);
 					}
 				}
 
@@ -172,7 +169,7 @@ public class LogiToppPopulationBuilder {
 				Household household = LogiToppPopulationUtil.createHousehold(householdId, zone, location,
 						ImmutableSet.of());
 				households.put(householdId, household);
-				
+
 				zone.getHouseholds().add(household);
 			}
 		} catch (IOException e) {
@@ -199,7 +196,7 @@ public class LogiToppPopulationBuilder {
 			e.printStackTrace();
 		}
 	}
-	
+
 	private void parseFixedDestinationCsv(String filePath) {
 		try (Reader reader = new FileReader(System.getProperty("user.dir") + "/" + filePath);
 				CSVParser csvParser = CSVFormat.DEFAULT.builder().setHeader().setDelimiter(';').build().parse(reader)) {
@@ -208,13 +205,13 @@ public class LogiToppPopulationBuilder {
 			for (CSVRecord record : csvParser) {
 				String personId = record.get("personOid");
 				Location location = networkBuilder.createLocationFromString(record.get("location"));
-				String a = record.get("activityType");
-				if(record.get("activityType").startsWith("WORK")) {
+				if (record.get("activityType").startsWith("WORK")) {
 					person2WorkLocation.put(personId, location);
 				}
 			}
-			
-			person2WorkLocation.forEach((personId, workLocation) -> persons.get(personId).setWorkLocation(workLocation));
+
+			person2WorkLocation
+					.forEach((personId, workLocation) -> persons.get(personId).setWorkLocation(workLocation));
 		} catch (IOException e) {
 			e.printStackTrace();
 		}

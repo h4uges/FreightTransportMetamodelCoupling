@@ -1,0 +1,48 @@
+[comment encoding = UTF-8 /]
+[module MATSimVehicleTypes('http://www.cep-model-coupling.com/matSimFreightMetamodel')]
+
+[template public generateMATSimVehicleTypes(root : DataExchangeRoot)]
+[file ('vehicleTypes.xml', false, 'UTF-8')]
+[generateVehicleTypes(root.vehicleTypes) /]
+[/file]
+[/template]
+
+[template public generateVehicleTypes(vehicleTypes : VehicleTypes)]
+<?xml version="1.0" encoding="utf-8"?>
+<vehicleDefinitions xmlns="http://www.matsim.org/files/dtd">
+    [for (vehicleType : VehicleType | vehicleTypes.vehicleTypes)]
+        [generateVehicleType(vehicleType)/]
+    [/for]
+	[comment currenlty no vehicles /]
+</vehicleDefinitions>
+[/template]
+
+[template public generateVehicleType(vehicleType : VehicleType)]
+<vehicleType id="[vehicleType.id/]">
+    <description>[vehicleType.description/]</description>
+    <capacity seats="[vehicleType.capacity.seats/]" standingRoomInPersons="[vehicleType.capacity.standingRoom/]"
+              volumeInCubicMeters="[vehicleType.capacity.volumeInCubicMeters/]" weightInTons="[vehicleType.capacity.weightInTons/]"
+              other="[vehicleType.capacity.other/]"/>
+    <length meter="[vehicleType.length/]"/>
+	<widht meter="[vehicleType.width/]"/>
+	[comment currenty dummy engineInformation + costinformation /]
+	[generateDummyEngineInformation()/]
+	[generateDummyCostInformation()/]
+	<passengerCarEquivalents meter="[vehicleType.pcuEquivalents/]"/>
+	<networkMode networkMode="[vehicleType.networkMode/]"/>
+	<flowEfficiencyFactor factor="[vehicleType.flowEfficiencyFactor/]"/>
+</vehicleType>
+[/template]
+
+[template public generateDummyCostInformation()]
+	<costInformation fixedCostsPerDay="20.0" costsPerMeter="0.35" costsPerSecond="30.0">
+[/template]
+
+[template public generateDummyEngineInformation()]
+	<engineInformation>
+		<attributes>
+			<attribute name="fuelConsumptionLitersPerMeter" class="java.lang.Double">0.02</attribute>
+			<attribute name="fuelType" class="org.matsim.vehicles.EngineInformation$FuelType">gasoline</attribute>
+		</attributes>
+	</engineInformation>
+[/template]

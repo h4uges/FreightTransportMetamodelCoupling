@@ -5,6 +5,8 @@
   <eSubpackages name="logisticDemand" nsURI="http://www.cep-model-coupling.com/commonFreightTransportMetamodel/logisticDemand"
       nsPrefix="logisticDemand">
     <eClassifiers xsi:type="ecore:EClass" name="Demand">
+      <eStructuralFeatures xsi:type="ecore:EReference" name="workLocations" upperBound="-1"
+          eType="#//network/Location_" containment="true"/>
       <eStructuralFeatures xsi:type="ecore:EReference" name="shipments" upperBound="-1"
           eType="#//logisticDemand/Shipment" containment="true"/>
     </eClassifiers>
@@ -30,14 +32,14 @@
     <eClassifiers xsi:type="ecore:EClass" name="InsideToInsideShipment" eSuperTypes="#//logisticDemand/FromInsideStudyAreaShipment #//logisticDemand/ToInsideStudyAreaShipment #//logisticDemand/Shipment"/>
     <eClassifiers xsi:type="ecore:EClass" name="InsideToOutsideShipment" eSuperTypes="#//logisticDemand/FromInsideStudyAreaShipment #//logisticDemand/ToOutsideStudyAreaShipment #//logisticDemand/Shipment"/>
     <eClassifiers xsi:type="ecore:EClass" name="Shipment" abstract="true" eSuperTypes="#//utils/HasId_">
-      <eStructuralFeatures xsi:type="ecore:EReference" name="responsibleCEPSP" lowerBound="1"
-          eType="#//logisticNetwork/CEPSP" containment="true"/>
       <eStructuralFeatures xsi:type="ecore:EReference" name="size" lowerBound="1"
           eType="#//utils/Dimension" containment="true"/>
+      <eStructuralFeatures xsi:type="ecore:EReference" name="responsibleCEPSP" lowerBound="1"
+          eType="#//logisticNetwork/CEPSP"/>
     </eClassifiers>
     <eClassifiers xsi:type="ecore:EClass" name="SplittedShipment" eSuperTypes="#//logisticDemand/Shipment #//logisticDemand/ToInsideStudyAreaShipmentBase #//logisticDemand/FromInsideStudyAreaShipmentBase">
-      <eStructuralFeatures xsi:type="ecore:EAttribute" name="originalId" lowerBound="1"
-          eType="ecore:EDataType http://www.eclipse.org/emf/2003/XMLType#//ID"/>
+      <eStructuralFeatures xsi:type="ecore:EReference" name="originalShipmentReference"
+          lowerBound="1" eType="#//logisticDemand/OriginalShipmentReference" containment="true"/>
     </eClassifiers>
     <eClassifiers xsi:type="ecore:EClass" name="FromInsideStudyAreaShipmentBase" abstract="true">
       <eStructuralFeatures xsi:type="ecore:EReference" name="origin" lowerBound="1"
@@ -50,6 +52,12 @@
           eType="#//utils/TimeWindow_" containment="true"/>
       <eStructuralFeatures xsi:type="ecore:EReference" name="destination" lowerBound="1"
           eType="#//network/Location_"/>
+    </eClassifiers>
+    <eClassifiers xsi:type="ecore:EClass" name="OriginalShipmentReference">
+      <eStructuralFeatures xsi:type="ecore:EAttribute" name="originalID" lowerBound="1"
+          eType="ecore:EDataType http://www.eclipse.org/emf/2003/XMLType#//ID"/>
+      <eStructuralFeatures xsi:type="ecore:EReference" name="originalShipmentReference"
+          eType="#//logisticDemand/OriginalShipmentReference" containment="true"/>
     </eClassifiers>
   </eSubpackages>
   <eSubpackages name="utils" nsURI="http://www.cep-model-coupling.com/commonFreightTransportMetamodel/utils"
@@ -115,7 +123,7 @@
           eType="#//utils/WeightBasedDimension" containment="true"/>
     </eClassifiers>
     <eClassifiers xsi:type="ecore:EClass" name="Dimension" abstract="true"/>
-    <eClassifiers xsi:type="ecore:EClass" name="ShipmentlLegStartEndPoint" abstract="true"/>
+    <eClassifiers xsi:type="ecore:EClass" name="ShipmentLegStartEndPoint" abstract="true"/>
     <eClassifiers xsi:type="ecore:EClass" name="InfiniteVolumeDimension" eSuperTypes="#//utils/VolumeBasedDimension"/>
     <eClassifiers xsi:type="ecore:EClass" name="FiniteVolumeDimension" eSuperTypes="#//utils/VolumeBasedDimension">
       <eStructuralFeatures xsi:type="ecore:EAttribute" name="volumeCubicMetre" eType="ecore:EDataType http://www.eclipse.org/emf/2003/XMLType#//Double"/>
@@ -175,7 +183,7 @@
   </eSubpackages>
   <eSubpackages name="localEntities" nsURI="http://www.cep-model-coupling.com/commonFreightTransportMetamodel/localEntites"
       nsPrefix="localEntities">
-    <eClassifiers xsi:type="ecore:EClass" name="BusinessBranch" eSuperTypes="#//localEntities/ShipmentConsumerProducer #//utils/HasId_ #//utils/ShipmentlLegStartEndPoint">
+    <eClassifiers xsi:type="ecore:EClass" name="BusinessBranch" eSuperTypes="#//localEntities/ShipmentConsumerProducer #//utils/HasId_">
       <eStructuralFeatures xsi:type="ecore:EReference" name="location" lowerBound="1"
           eType="#//network/Location_" containment="true"/>
       <eStructuralFeatures xsi:type="ecore:EReference" name="openingHours" lowerBound="1"
@@ -195,8 +203,9 @@
       <eStructuralFeatures xsi:type="ecore:EReference" name="branches" lowerBound="1"
           upperBound="-1" eType="#//localEntities/BusinessBranch" containment="true"/>
     </eClassifiers>
-    <eClassifiers xsi:type="ecore:EClass" name="ShipmentConsumerProducer" abstract="true"/>
-    <eClassifiers xsi:type="ecore:EClass" name="Household" eSuperTypes="#//utils/HasId_ #//utils/ShipmentlLegStartEndPoint">
+    <eClassifiers xsi:type="ecore:EClass" name="ShipmentConsumerProducer" abstract="true"
+        eSuperTypes="#//utils/ShipmentLegStartEndPoint"/>
+    <eClassifiers xsi:type="ecore:EClass" name="Household" eSuperTypes="#//utils/HasId_">
       <eStructuralFeatures xsi:type="ecore:EReference" name="location" lowerBound="1"
           eType="#//network/Location_" containment="true"/>
       <eStructuralFeatures xsi:type="ecore:EReference" name="member" upperBound="-1"
@@ -225,7 +234,7 @@
           upperBound="-1" eType="#//logisticNetwork/PublicServicePoint" containment="true"/>
     </eClassifiers>
     <eClassifiers xsi:type="ecore:EClass" name="PublicServicePoint" abstract="true"
-        eSuperTypes="#//logisticNetwork/LogisticFacility">
+        eSuperTypes="#//logisticNetwork/LogisticFacility #//utils/HasId_">
       <eStructuralFeatures xsi:type="ecore:EReference" name="location" lowerBound="1"
           eType="#//network/Location_" containment="true"/>
       <eStructuralFeatures xsi:type="ecore:EReference" name="storageCapacity" lowerBound="1"
@@ -278,7 +287,7 @@
           eType="#//logisticNetwork/VehicleDepot" eOpposite="#//logisticNetwork/VehicleDepot/vehicles"/>
     </eClassifiers>
     <eClassifiers xsi:type="ecore:EClass" name="LogisticFacility" abstract="true"
-        eSuperTypes="#//utils/ShipmentlLegStartEndPoint"/>
+        eSuperTypes="#//utils/ShipmentLegStartEndPoint"/>
   </eSubpackages>
   <eSubpackages name="logisticSolution" nsURI="http://www.cep-model-coupling.com/commonFreightTransportMetamodel/logisticSolution"
       nsPrefix="logisticSolution">
@@ -323,20 +332,20 @@
       <eStructuralFeatures xsi:type="ecore:EReference" name="executingCEPSP" lowerBound="1"
           eType="#//logisticNetwork/CEPSP"/>
       <eStructuralFeatures xsi:type="ecore:EAttribute" name="no" lowerBound="1" eType="ecore:EDataType http://www.eclipse.org/emf/2003/XMLType#//Int"/>
-      <eStructuralFeatures xsi:type="ecore:EReference" name="from" lowerBound="1"
-          eType="#//network/Location_" containment="true"/>
-      <eStructuralFeatures xsi:type="ecore:EReference" name="to" lowerBound="1" eType="#//network/Location_"
-          containment="true"/>
       <eStructuralFeatures xsi:type="ecore:EReference" name="timeWindow" lowerBound="1"
           eType="#//utils/TimeWindow_" containment="true"/>
       <eStructuralFeatures xsi:type="ecore:EReference" name="fromSpec" lowerBound="1"
-          eType="#//utils/ShipmentlLegStartEndPoint"/>
+          eType="#//utils/ShipmentLegStartEndPoint"/>
       <eStructuralFeatures xsi:type="ecore:EReference" name="toSpec" lowerBound="1"
-          eType="#//utils/ShipmentlLegStartEndPoint"/>
+          eType="#//utils/ShipmentLegStartEndPoint"/>
       <eStructuralFeatures xsi:type="ecore:EReference" name="tour" lowerBound="1"
           eType="#//logisticSolution/Tour"/>
       <eStructuralFeatures xsi:type="ecore:EReference" name="record" lowerBound="1"
           eType="#//logisticSolution/ShipmentRecord" eOpposite="#//logisticSolution/ShipmentRecord/entries"/>
+      <eStructuralFeatures xsi:type="ecore:EReference" name="pickUpStop" lowerBound="1"
+          eType="#//logisticSolution/PickUpDeliveryStop"/>
+      <eStructuralFeatures xsi:type="ecore:EReference" name="deliveryStop" lowerBound="1"
+          eType="#//logisticSolution/PickUpDeliveryStop"/>
     </eClassifiers>
     <eClassifiers xsi:type="ecore:EClass" name="ShipmentEntry" abstract="true">
       <eStructuralFeatures xsi:type="ecore:EReference" name="time" lowerBound="1"

@@ -6,8 +6,11 @@ import logitopp2commonNetwork;
 modeltype COMMON_MM uses CommonFreightTransportMetamodel('http://www.cep-model-coupling.com/commonFreightTransportMetamodel');
 modeltype LOGITOPP uses logiToppMetamodel('http://www.cep-model-coupling.com/logiToppMetamodel');
 
+property workLocationsCollector : Set(COMMON_MM::network::Location_) = Set{};
+
 mapping LOGITOPP::dataExchange::Demand::demand2Demand(logisticNetwork : COMMON_MM::logisticNetwork::LogisticNetwork) : COMMON_MM::logisticDemand::Demand {
 	shipments += self.parcels -> map parcel2Shipment(logisticNetwork);
+	workLocations += workLocationsCollector;
 }
 
 // assumption: no inside - inside shipments
@@ -22,7 +25,7 @@ disjuncts
 mapping LOGITOPP::logiTopp::parcels::PrivateParcel::privateParcel2OutsideToInsideShipment(logisticNetwork : COMMON_MM::logisticNetwork::LogisticNetwork) : COMMON_MM::logisticDemand::OutsideToInsideShipment 
 when {self.oclIsKindOf(LOGITOPP::logiTopp::parcels::PrivateParcel)}
 {
-	id := self.id.toString();
+	id := self.id;
 	responsibleCEPSP := self.responsibleCEPSP.resolveone(COMMON_MM::logisticNetwork::CEPSP);
 	size := size2Volume(self.shipmentSize);
 	
@@ -37,7 +40,7 @@ when {self.oclIsKindOf(LOGITOPP::logiTopp::parcels::PrivateParcel)}
 
 mapping LOGITOPP::logiTopp::parcels::BusinessParcel::businessParcel2OutsideToInsideShipment(logisticNetwork : COMMON_MM::logisticNetwork::LogisticNetwork) : COMMON_MM::logisticDemand::OutsideToInsideShipment 
 when {self.oclIsKindOf(LOGITOPP::logiTopp::parcels::BusinessParcel) and not self.isPickup} {
-	id := self.id.toString();
+	id := self.id;
 	responsibleCEPSP := self.responsibleCEPSP.resolveone(COMMON_MM::logisticNetwork::CEPSP);
 	size := size2Volume(self.shipmentSize);
 	
@@ -51,7 +54,7 @@ when {self.oclIsKindOf(LOGITOPP::logiTopp::parcels::BusinessParcel) and not self
 
 mapping LOGITOPP::logiTopp::parcels::BusinessParcel::businessParcel2InsideToOutsideShipment(logisticNetwork : COMMON_MM::logisticNetwork::LogisticNetwork) : COMMON_MM::logisticDemand::InsideToOutsideShipment 
 when {self.oclIsKindOf(LOGITOPP::logiTopp::parcels::BusinessParcel) and self.isPickup} {
-	id := self.id.toString();
+	id := self.id;
 	responsibleCEPSP := self.responsibleCEPSP.resolveone(COMMON_MM::logisticNetwork::CEPSP);
 	size := size2Volume(self.shipmentSize);
 	
@@ -69,15 +72,21 @@ helper determineDestination(privateParcel : LOGITOPP::logiTopp::parcels::Private
 			return receiver.household.location
 		}
 		case (privateParcel.destinationType = LOGITOPP::logiTopp::parcels::ParcelDestinationType::WORK) {
-			// TODO: handle case: add work location?
-			return null;
+			var logiToppWorkLocation = privateParcel.consumer -> oclAsType(LOGITOPP::mobiTopp::citizens::Person) -> asSequence() -> first();
+			return createAndAddWorkLocation(logiToppWorkLocation);
 		}
 		case (privateParcel.destinationType = LOGITOPP::logiTopp::parcels::ParcelDestinationType::PACK_STATION) {
-			var location := privateParcel.zoneAndLocation.location.map location2Location();
+			var location := location2Location(privateParcel.zoneAndLocation.location, null);
 			var packstation := logisticNetwork.publicServicePoints -> select(ps | areEqualLocations(ps.location, location)) -> first();
 			return packstation.location;
 		}
-		else return null;	
+		else return null;
 	};
 	return null;
+}
+
+helper createAndAddWorkLocation(person : LOGITOPP::mobiTopp::citizens::Person) : COMMON_MM::network::Location_ {
+	var commonLocation := location2Location(person.workLocation, "workLocationOfPerson_" + person.id);
+	workLocationsCollector += commonLocation;
+	return commonLocation;
 }

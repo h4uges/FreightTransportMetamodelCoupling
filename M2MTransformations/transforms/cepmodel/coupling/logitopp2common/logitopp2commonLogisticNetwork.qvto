@@ -11,6 +11,8 @@ property DEFAULT_TRANSSHIPMENT_TIME = new COMMON_MM::utils::Durration_(0, 0, 0, 
 property DEFAULT_HUB_IS_EXIT = true;
 property DEFAULT_HUB_IS_ENTRY = true;
 
+property packstationCounter = 0;
+
 mapping LOGITOPP::dataExchange::TransportInfrastructure::transportInfrastructure2LogisticNetwork(demand : LOGITOPP::dataExchange::Demand) : COMMON_MM::logisticNetwork::LogisticNetwork {
 	publicServicePoints := findAllPackstationLocations(demand) -> collect(loc | new COMMON_MM::logisticNetwork::Packstation(loc));
 	
@@ -18,14 +20,18 @@ mapping LOGITOPP::dataExchange::TransportInfrastructure::transportInfrastructure
 }
 
 mapping LOGITOPP::logiTopp::distribution::CEPServiceProvider::cepsp2CEPSP(publicServicePoints : Collection(COMMON_MM::logisticNetwork::PublicServicePoint), demand : LOGITOPP::dataExchange::Demand) : COMMON_MM::logisticNetwork::CEPSP {
-	id := self.id.toString();
-	name := self.name.toString();
+	id := self.id;
+	name := self.name;
 	
 	vehicleDepots := self.distributionCenters -> map distributionCenter2VehicleDepot();
 	logisticHubs := self.distributionCenters -> map distributionCenter2LogisticHub();
 	
-	deliveryPartners += self.distributionCenters -> collect(dc | dc.regionalStructure.relatedDeliveryHubs -> collect(hub | hub.CEPSP)) -> flatten() -> asSet() -> late resolveone(COMMON_MM::logisticNetwork::CEPSP);
-	pickUpPartners += self.distributionCenters -> collect(dc | dc.regionalStructure.relatedPickUpHubs -> collect(hub | hub.CEPSP)) -> flatten() -> asSet() -> late resolveone(COMMON_MM::logisticNetwork::CEPSP);
+	deliveryPartners += self.distributionCenters -> collect(dc | dc.regionalStructure.relatedDeliveryHubs -> collect(hub | hub.CEPSP))
+		 -> select(cepsp | cepsp <> self)
+		 -> flatten() -> asSet() -> late resolve(COMMON_MM::logisticNetwork::CEPSP);
+	pickUpPartners += self.distributionCenters -> collect(dc | dc.regionalStructure.relatedPickUpHubs -> collect(hub | hub.CEPSP))
+		 -> select(cepsp | cepsp <> self)
+		 -> flatten() -> asSet() -> late resolve(COMMON_MM::logisticNetwork::CEPSP);
 	
 	var allUsedPackstationLocations := findAllPackstationLocationsForCEPSP(demand, self);
 	var allUsedPublicServicePoints := publicServicePoints -> select(sp | allUsedPackstationLocations -> select(neededPsLocation | areEqualLocations(neededPsLocation, sp.location)) -> size() > 0);
@@ -34,8 +40,8 @@ mapping LOGITOPP::logiTopp::distribution::CEPServiceProvider::cepsp2CEPSP(public
 }
 
 mapping LOGITOPP::logiTopp::distribution::DistributionCenter::distributionCenter2VehicleDepot() : COMMON_MM::logisticNetwork::VehicleDepot {
-	id := "depot_" + self.id.toString();
-	location := self.location.map location2Location();
+	id := "depot_" + self.id;
+	location := location2Location(self.location, id);
 	
 	operationHours := createWholeSimulationPeriodTimeWindow();
 	
@@ -61,8 +67,8 @@ helper createVehicleOperationHours(earliestStartTime : LOGITOPP::base::Time, lat
 }
 
 mapping LOGITOPP::logiTopp::distribution::DistributionCenter::distributionCenter2LogisticHub() : COMMON_MM::logisticNetwork::LogisticHub {
-	id := "hub_" + self.id.toString();
-	location := self.location.map location2Location();
+	id := "hub_" + self.id;
+	location := location2Location(self.location, id);
 	
 	storageCapacity := new COMMON_MM::utils::InfiniteVolumeDimension();
 	operationHours := createWholeSimulationPeriodTimeWindow();
@@ -81,8 +87,16 @@ constructor COMMON_MM::logisticNetwork::UsedPublicServicePoint::UsedPublicServic
 }
 
 constructor COMMON_MM::logisticNetwork::Packstation::Packstation(location_ : COMMON_MM::network::Location_) {
+	id := "packstation_" + getPackstationId();
 	location := location_;
+	location.id := location.id + id;
 	storageCapacity := new COMMON_MM::utils::InfiniteVolumeDimension();
+}
+
+helper getPackstationId() : String {
+	var id = packstationCounter.toString();
+	packstationCounter := packstationCounter + 1;
+	return id;
 }
 
 helper findAllPackstationLocations(demand : LOGITOPP::dataExchange::Demand) :Set(COMMON_MM::network::Location_) {
@@ -90,7 +104,7 @@ helper findAllPackstationLocations(demand : LOGITOPP::dataExchange::Demand) :Set
 		demand.parcels 
 		-> selectByKind(LOGITOPP::logiTopp::parcels::PrivateParcel)
 		-> select(p | p.destinationType = LOGITOPP::logiTopp::parcels::ParcelDestinationType::PACK_STATION)
-		-> collect(p | p.zoneAndLocation.location.map location2Location())
+		-> collect(p | location2Location(p.zoneAndLocation.location, ""))
 		-> asSet();
 		
   	var representativeLocations : Set(COMMON_MM::network::Location_) = Set{};
@@ -120,7 +134,7 @@ query findAllPackstationLocationsForCEPSP(demand : LOGITOPP::dataExchange::Deman
 		-> selectByKind(LOGITOPP::logiTopp::parcels::PrivateParcel)
 		-> select(p | p.destinationType = LOGITOPP::logiTopp::parcels::ParcelDestinationType::PACK_STATION)
 		-> select(p | p.responsibleCEPSP = cepsp)
-		-> collect(p | p.zoneAndLocation.location.map location2Location())
+		-> collect(p | location2Location(p.zoneAndLocation.location, ""))
 		-> asSet();
 	
 	return packstationLocatons;

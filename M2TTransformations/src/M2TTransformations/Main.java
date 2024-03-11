@@ -21,8 +21,19 @@ import org.eclipse.acceleo.engine.service.AbstractAcceleoGenerator;
 import org.eclipse.emf.common.util.BasicMonitor;
 import org.eclipse.emf.common.util.Monitor;
 import org.eclipse.emf.common.util.URI;
+import org.eclipse.emf.ecore.EAttribute;
+import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EObject;
+import org.eclipse.emf.ecore.impl.MinimalEObjectImpl;
+import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.ecore.resource.ResourceSet;
+import org.eclipse.emf.ecore.resource.URIConverter;
+import org.eclipse.emf.ecore.util.EcoreUtil;
+import org.eclipse.emf.ecore.xmi.impl.XMIResourceFactoryImpl;
+
+import MATSimFreightMetamodel.dataExchange.DataExchangePackage;
+import MATSimFreightMetamodel.dataExchange.DataExchangeRoot;
+import MATSimFreightMetamodel.dataExchange.impl.DataExchangeRootImpl;
 
 /**
  * Entry point of the 'Main' generation module.
@@ -83,7 +94,7 @@ public class Main extends AbstractAcceleoGenerator {
      * @throws IOException
      *             This can be thrown in three scenarios : the module cannot be found, it cannot be loaded, or
      *             the model cannot be loaded.
-     * @generated
+     * @generated NOT
      */
     public Main(URI modelURI, File targetFolder,
             List<? extends Object> arguments) throws IOException {
@@ -104,7 +115,7 @@ public class Main extends AbstractAcceleoGenerator {
      *            pass them here.
      * @throws IOException
      *             This can be thrown in two scenarios : the module cannot be found, or it cannot be loaded.
-     * @generated
+     * @generated NOT
      */
     public Main(EObject model, File targetFolder,
             List<? extends Object> arguments) throws IOException {
@@ -335,11 +346,21 @@ public class Main extends AbstractAcceleoGenerator {
      * 
      * @param resourceSet
      *            The resource set which registry has to be updated.
-     * @generated
+     * @generated NOT
      */
     @Override
     public void registerPackages(ResourceSet resourceSet) {
+    	DataExchangePackage.eINSTANCE.eClass();
+    	resourceSet.getPackageRegistry().put(DataExchangePackage.eNS_URI, DataExchangePackage.eINSTANCE);
         super.registerPackages(resourceSet);
+        
+        URI modelUri = URI.createFileURI("/Users/shaug/Documents/0_Studium/MA/Code/Implementation/M2TTransformations/data/example1/example1_matsim.xmi");
+        Resource modelResource = resourceSet.getResource(modelUri, true);
+        DataExchangeRoot root = (DataExchangeRoot) modelResource.getContents().get(0);
+        URI uri = EcoreUtil.getURI(root.getNetwork().eClass().getEReferences().getFirst());
+        
+        EMTLCorrectionService.correctEMTLFiles();
+        
         
         /*
          * If you want to change the content of this method, do NOT forget to change the "@generated"
@@ -379,11 +400,14 @@ public class Main extends AbstractAcceleoGenerator {
      * 
      * @param resourceSet
      *            The resource set which registry has to be updated.
-     * @generated
+     * @generated NOT
      */
     @Override
     public void registerResourceFactories(ResourceSet resourceSet) {
+    	resourceSet.getResourceFactoryRegistry().getExtensionToFactoryMap().put("xmi", new XMIResourceFactoryImpl());
+    	resourceSet.getResourceFactoryRegistry().getExtensionToFactoryMap().put("dataExchange", new XMIResourceFactoryImpl());
         super.registerResourceFactories(resourceSet);
+        
         /*
          * If you want to change the content of this method, do NOT forget to change the "@generated"
          * tag in the Javadoc of this method to "@generated NOT". Without this new tag, any compilation

@@ -1,0 +1,144 @@
+[comment encoding = UTF-8  'http://www.eclipse.org/acceleo/query/1.0/BasicOperations' /]
+[module MATSimCarriers('http://www.cep-model-coupling.com/matSimFreightMetamodel')]
+
+
+[template public generateMATSimCarriers(root : DataExchangeRoot)]
+[file ('carrierPlans.xml', false, 'UTF-8')]
+<?xml version="1.0" encoding="utf-8"?>
+
+<carriers xmlns="http://www.matsim.org/files/dtd" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.matsim.org/files/dtd http://www.matsim.org/files/dtd/carriersDefinitions_v2.1.xsd">
+    [for (carrier : Carrier | root.carriers)]
+        [generateCarrier(carrier)/]
+    [/for]
+</carriers>
+[/file]
+[/template]
+
+[template public generateCarrier(carrier : Carrier)]
+<carrier id="[carrier.id/]">
+	[comment description? /]
+    <capabilities fleetSize="[carrier.carrierCapabilities.fleetSize/]">
+		<vehicles>
+			[for (vehicle : CarrierVehicle | carrier.carrierCapabilities.carrierVehicles)]
+				[generateVehicle(vehicle)/]
+			[/for]
+		</vehicles>
+    </capabilities>
+    <services>
+        [for (carrierService : CarrierService | carrier.services)]
+            [generateCarrierService(carrierService)/]
+        [/for]
+    </services>
+    <shipments>
+        [for (carrierShipment : CarrierShipment | carrier.shipments)]
+            [generateCarrierShipment(carrierShipment)/]
+        [/for]
+    </shipments>
+    [if (carrier.plan->notEmpty())]
+        <plans>
+			[generatePlan(plan)/]
+        </plans>
+    [/if]
+</carrier>
+[/template]
+
+[template public secondsToTime(seconds : Real)]
+	[formatHours(seconds.floor()) /]:[formatMinutes(seconds.floor()) /]:[formatSeconds(seconds.floor()) /]:
+[/template]
+
+[template public formatHours(seconds : Integer)]
+	[let hours : Integer = seconds / 3600]
+	[if (hours < 10)]
+	    ['0'.concat(hours.toString())/]
+	[else]
+	    [hours.toString()/]
+	[/if]
+	[/let]
+[/template]
+
+[template public formatMinutes(seconds : Integer)]
+	[let minutes : Integer = seconds.mod(3600) / 60]
+	[if (minutes < 10)]
+	    ['0'.concat(minutes.toString())/]
+	[else]
+	    [minutes.toString()/]
+	[/if]
+	[/let]
+[/template]
+
+[template public formatSeconds(seconds : Integer)]
+	[let finalSeconds : Integer = seconds.mod(3600).mod(60)]
+	[if (finalSeconds < 10)]
+	    ['0'.concat(finalSeconds.toString())/]
+	[else]
+	    [finalSeconds.toString()/]
+	[/if]
+	[/let]
+[/template]
+
+[template public generateVehicle(vehicle : CarrierVehicle)]
+<vehicle id="[vehicle.id/]" depotLinkId="[vehicle.location.id/]" typeId="[vehicle.type.id/]"
+                 earliestStart="[secondsToTime(vehicle.earliestStartTime)/]" latestEnd="[secondsToTime(vehicle.latestEndTime)/]"/>
+[/template]
+
+[template public generateCarrierService(carrierService : CarrierService)]
+<service id="[carrierService.id/]" to="[carrierService.location.id/]" capacityDemand="[carrierService.capacityDemand/]"
+         earliestStart="[secondsToTime(carrierService.timeWindow.start)/]" latestEnd="[secondsToTime(carrierService.timeWindow.end)/]"
+         serviceDuration="[secondsToTime(carrierService.serviceDuration)/]">
+</service>
+[/template]
+
+[template public generateCarrierShipment(carrierShipment : CarrierShipment)]
+<shipment id="[carrierShipment.id/]" from="[carrierShipment.from.id/]" to="[carrierShipment.to.id/]" size="[carrierShipment.size/]"
+          startPickup="[secondsToTime(carrierShipment.pickupTimeWindow.start)/]" endPickup="[secondsToTime(carrierShipment.pickupTimeWindow.end)/]"
+          pickupServiceTime="[secondsToTime(carrierShipment.pickupServiceTime)/]"
+          startDelivery="[secondsToTime(carrierShipment.deliveryTimeWindow.start)/]" endDelivery="[secondsToTime(carrierShipment.deliveryTimeWindow.end)/]"
+          deliveryServiceTime="[secondsToTime(carrierShipment.deliveryServiceTime)/]">
+</shipment>
+[/template]
+
+[template public generatePlan(plan : CarrierPlan)]
+<plan score="[plan.score/]" selected="true">
+    [if (plan.scheduledTours->notEmpty())]
+        [for (tour : ScheduledTour | plan.scheduledTours)]
+            [generateTour(tour)/]
+        [/for]
+    [/if]
+</plan>
+[/template]
+
+[template public generateTour(tour : ScheduledTour)]
+<tour tourId="[tour.tour.id/]" vehicleId="[tour.vehicle.id/]">
+    [if (tour.tour.tourElements->notEmpty())]
+        [for (tourElement : TourElement | tour.tour.tourElements)]
+    		[generateTourElement(tourElement, tour.departureTime)/]
+		[/for]
+    [/if]
+</tour>
+[/template]
+
+[template public generateTourElement(serviceActivty : ServiceActivity, departureTime: Real)]
+<act type="service" serviceId="[serviceActivty.service.id/]"/>
+[/template]
+
+[template public generateTourElement(start : Start, departureTime : Real)]
+<act type="start" end_time="[secondsToTime(departureTime)/]"/>
+[/template]
+
+[template public generateTourElement(end : End, departureTime: Real)]
+<act type="end"/>
+[/template]
+
+[template public generateTourElement(pickup : Pickup, departureTime: Real)]
+<act type="pickup" shipmentId="[pickup.shipment.id/]"/>
+[/template]
+
+[template public generateTourElement(delivery : Delivery, departureTime: Real)]
+<act type="delivery" shipmentId="[delivery.shipment.id/]"/>
+[/template]
+
+[template public generateTourElement(leg : Leg, departureTime: Real)]
+<leg expected_dep_time="[secondsToTime(leg.expectedDepartureTime)/]" expected_transp_time="[secondsToTime(leg.expectedTransportTime)/]">
+    <route></route>
+</leg>
+[/template]
