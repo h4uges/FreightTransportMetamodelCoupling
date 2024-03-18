@@ -1,8 +1,6 @@
 package cepmodel.logitopp.extraction.network;
 
-import java.io.FileReader;
 import java.io.IOException;
-import java.io.Reader;
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.Map;
@@ -10,12 +8,12 @@ import java.util.Set;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
-import org.apache.commons.csv.CSVFormat;
 import org.apache.commons.csv.CSVParser;
 import org.apache.commons.csv.CSVRecord;
 
 import com.google.common.collect.ImmutableSet;
 
+import cepmodel.logitopp.extraction.LogiToppBuilderBase;
 import cepmodel.logitopp.extraction.LogiToppInputFileRegistry;
 import logiToppMetamodel.mobiTopp.network.Edge;
 import logiToppMetamodel.mobiTopp.network.Location;
@@ -23,13 +21,12 @@ import logiToppMetamodel.mobiTopp.network.Node;
 import logiToppMetamodel.mobiTopp.network.RoadNetwork;
 import logiToppMetamodel.mobiTopp.network.Zone;
 
-// TODO: long-term - add transport modes
-public class LogiToppNetworkBuilder {
-	private final Map<String, Node> nodes = new HashMap<String, Node>();
-	private final Map<String, Edge> edges = new HashMap<String, Edge>();
-	private final Map<String, Zone> zones = new HashMap<String, Zone>();
-	private final Map<String, Zone> matrixColumn2Zones = new HashMap<String, Zone>();
-	
+public class LogiToppNetworkBuilder extends LogiToppBuilderBase {
+	private final Map<String, Node> nodes = new HashMap<>();
+	private final Map<String, Edge> edges = new HashMap<>();
+	private final Map<String, Zone> zones = new HashMap<>();
+	private final Map<String, Zone> matrixColumn2Zones = new HashMap<>();
+
 	private final LogiToppInputFileRegistry fileRegistry;
 
 	public LogiToppNetworkBuilder(LogiToppInputFileRegistry fileRegistry) {
@@ -37,9 +34,9 @@ public class LogiToppNetworkBuilder {
 	}
 
 	public RoadNetwork createNetwork() {
-		fileRegistry.nodeCSVs.forEach(file -> parseNodesCsv(file));
-		fileRegistry.edgeCSVs.forEach(file -> parseEdgesCsv(file));
-		fileRegistry.zoneCSVs.forEach(file -> parseZonesCsv(file));
+		fileRegistry.nodeCSVs.forEach(this::parseNodesCsv);
+		fileRegistry.edgeCSVs.forEach(this::parseEdgesCsv);
+		fileRegistry.zoneCSVs.forEach(this::parseZonesCsv);
 
 		setOppositeEdges();
 
@@ -48,11 +45,11 @@ public class LogiToppNetworkBuilder {
 	}
 
 	private void setOppositeEdges() {
-		Map<String, Set<Edge>> from2Edges = new HashMap<String, Set<Edge>>();
-		Map<String, Set<Edge>> to2Edges = new HashMap<String, Set<Edge>>();
+		Map<String, Set<Edge>> from2Edges = new HashMap<>();
+		Map<String, Set<Edge>> to2Edges = new HashMap<>();
 		for (String nodeId : nodes.keySet()) {
-			from2Edges.put(nodeId, new HashSet<Edge>());
-			to2Edges.put(nodeId, new HashSet<Edge>());
+			from2Edges.put(nodeId, new HashSet<>());
+			to2Edges.put(nodeId, new HashSet<>());
 		}
 
 		for (Edge edge : edges.values()) {
@@ -72,14 +69,12 @@ public class LogiToppNetworkBuilder {
 	}
 
 	private void parseNodesCsv(String filePath) {
-		try (Reader reader = new FileReader(System.getProperty("user.dir") + "/" + filePath);
-				CSVParser csvParser = CSVFormat.DEFAULT.builder().setAllowMissingColumnNames(true).setHeader()
-						.setDelimiter(';').build().parse(reader)) {
+		try (CSVParser csvParser = getCSVParser(filePath)) {
 
-			for (CSVRecord record : csvParser) {
-				String id = record.get("id");
-				double x = Double.valueOf(record.get("x"));
-				double y = Double.valueOf(record.get("y"));
+			for (CSVRecord csvEntry : csvParser) {
+				String id = csvEntry.get("id");
+				double x = Double.parseDouble(csvEntry.get("x"));
+				double y = Double.parseDouble(csvEntry.get("y"));
 				addNode(id, x, y);
 			}
 		} catch (IOException e) {
@@ -93,15 +88,13 @@ public class LogiToppNetworkBuilder {
 	}
 
 	private void parseEdgesCsv(String filePath) {
-		try (Reader reader = new FileReader(System.getProperty("user.dir") + "/" + filePath);
-				CSVParser csvParser = CSVFormat.DEFAULT.builder().setAllowMissingColumnNames(true).setHeader()
-						.setDelimiter(';').build().parse(reader)) {
+		try (CSVParser csvParser = getCSVParser(filePath)) {
 
-			for (CSVRecord record : csvParser) {
-				String id = record.get("id");
-				String fromId = record.get("from");
-				String toId = record.get("to");
-				double length = Double.valueOf(record.get("length"));
+			for (CSVRecord csvEntry : csvParser) {
+				String id = csvEntry.get("id");
+				String fromId = csvEntry.get("from");
+				String toId = csvEntry.get("to");
+				double length = Double.parseDouble(csvEntry.get("length"));
 				addEdge(id, fromId, toId, length);
 			}
 		} catch (IOException e) {
@@ -117,14 +110,12 @@ public class LogiToppNetworkBuilder {
 	}
 
 	private void parseZonesCsv(String filePath) {
-		try (Reader reader = new FileReader(System.getProperty("user.dir") + "/" + filePath);
-				CSVParser csvParser = CSVFormat.DEFAULT.builder().setHeader().setDelimiter(';').build().parse(reader)) {
-
-			for (CSVRecord record : csvParser) {
-				String id = record.get("id");
-				String matrixColumn = record.get("matrixColumn");
-				String name = record.get("name");
-				Location centroid = createLocationFromString(record.get("centroidLocation"));
+		try (CSVParser csvParser = getCSVParser(filePath)) {
+			for (CSVRecord csvEntry : csvParser) {
+				String id = csvEntry.get("id");
+				String matrixColumn = csvEntry.get("matrixColumn");
+				String name = csvEntry.get("name");
+				Location centroid = createLocationFromString(csvEntry.get("centroidLocation"));
 
 				Zone zone = LogiToppNetworkUtil.createZone(id, name, centroid);
 				zones.put(id, zone);
@@ -162,7 +153,7 @@ public class LogiToppNetworkBuilder {
 	public Zone getZone(String zoneId) {
 		return zones.get(zoneId);
 	}
-	
+
 	public Zone getZoneByMatrixColum(String zoneMatrixColumn) {
 		return matrixColumn2Zones.get(zoneMatrixColumn);
 	}

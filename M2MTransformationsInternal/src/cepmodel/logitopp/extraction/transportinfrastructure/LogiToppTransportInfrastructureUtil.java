@@ -1,4 +1,4 @@
-package cepmodel.logitopp.extraction.transportInfrastructure;
+package cepmodel.logitopp.extraction.transportinfrastructure;
 
 import com.google.common.collect.ImmutableList;
 import com.google.common.collect.ImmutableSet;
@@ -25,6 +25,9 @@ import logiToppMetamodel.mobiTopp.network.Location;
 import logiToppMetamodel.mobiTopp.network.Zone;
 
 public class LogiToppTransportInfrastructureUtil {
+
+	private LogiToppTransportInfrastructureUtil() {
+	}
 
 	public static TransportInfrastructure createTransportInfrastructure(ImmutableSet<CEPServiceProvider> cepsps,
 			TimeTable timeTable) {
@@ -68,7 +71,8 @@ public class LogiToppTransportInfrastructureUtil {
 		return result;
 	}
 
-	public static DeliveryVehicle createDeliveryVehicle(String id, int vehicleType, Time earliestStartTime, Time latestEndTime) {
+	public static DeliveryVehicle createDeliveryVehicle(String id, int vehicleType, Time earliestStartTime,
+			Time latestEndTime) {
 		DeliveryVehicle result = FleetFactory.eINSTANCE.createDeliveryVehicle();
 
 		result.setId(id);

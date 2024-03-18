@@ -1,8 +1,6 @@
 package cepmodel.logitopp.extraction.solution;
 
-import java.io.FileReader;
 import java.io.IOException;
-import java.io.Reader;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.HashMap;
@@ -13,7 +11,6 @@ import java.util.Set;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
-import org.apache.commons.csv.CSVFormat;
 import org.apache.commons.csv.CSVParser;
 import org.apache.commons.csv.CSVRecord;
 import org.eclipse.emf.ecore.util.EcoreUtil;
@@ -21,11 +18,12 @@ import org.eclipse.emf.ecore.util.EcoreUtil;
 import com.google.common.collect.ImmutableList;
 import com.google.common.collect.ImmutableSet;
 
-import cepmodel.logitopp.extraction.LogiToppInputFileRegistry;
+import cepmodel.logitopp.extraction.LogiToppBuilderBase;
 import cepmodel.logitopp.extraction.LogiToppExtractionUtil;
+import cepmodel.logitopp.extraction.LogiToppInputFileRegistry;
 import cepmodel.logitopp.extraction.demand.LogiToppDemandBuilder;
 import cepmodel.logitopp.extraction.network.LogiToppNetworkBuilder;
-import cepmodel.logitopp.extraction.transportInfrastructure.LogiToppTransportInfrastructureBuilder;
+import cepmodel.logitopp.extraction.transportinfrastructure.LogiToppTransportInfrastructureBuilder;
 import logiToppMetamodel.base.RelativeTime;
 import logiToppMetamodel.base.Time;
 import logiToppMetamodel.dataExchange.Solution;
@@ -40,8 +38,8 @@ import logiToppMetamodel.mobiTopp.network.NetworkFactory;
 import logiToppMetamodel.mobiTopp.network.Zone;
 import logiToppMetamodel.mobiTopp.network.ZoneAndLocation;
 
-public class LogiToppSolutionBuilder {
-	private Map<String, PlannedDeliveryTour> tours = new HashMap<String, PlannedDeliveryTour>();
+public class LogiToppSolutionBuilder extends LogiToppBuilderBase {
+	private Map<String, PlannedDeliveryTour> tours = new HashMap<>();
 
 	private LogiToppInputFileRegistry fileRegisty;
 	private LogiToppNetworkBuilder networkBuilder;
@@ -58,16 +56,14 @@ public class LogiToppSolutionBuilder {
 	}
 
 	public Solution createSolution() {
-		fileRegisty.plannedToursCSVs.forEach(file -> parsePlannedToursCsv(file));
+		fileRegisty.plannedToursCSVs.forEach(this::parsePlannedToursCsv);
 		List<PlannedDeliveryTour> sortedTours = tours.values().stream()
 				.sorted((t1, t2) -> Integer.compare(Integer.valueOf(t1.getId()), Integer.valueOf(t2.getId()))).toList();
 		return LogiToppSolutionUtil.createSolution(ImmutableList.copyOf(sortedTours));
 	}
 
 	private void parsePlannedToursCsv(String filePath) {
-		try (Reader reader = new FileReader(System.getProperty("user.dir") + "/" + filePath);
-				CSVParser csvParser = CSVFormat.DEFAULT.builder().setAllowMissingColumnNames(true).setHeader()
-						.setDelimiter(';').build().parse(reader)) {
+		try (CSVParser csvParser = getCSVParser(filePath)) {
 
 			Map<String, List<CSVRecord>> rawTours = csvParser.getRecords().stream()
 					.collect(Collectors.groupingBy(t -> t.get("tourId")));
@@ -84,9 +80,9 @@ public class LogiToppSolutionBuilder {
 				VehicleType vehicleType = VehicleType.get(Integer.valueOf(anyTourRecord.get("vehicleType")));
 				Time plannedAt = LogiToppExtractionUtil
 						.createTime(Integer.valueOf(anyTourRecord.get("dispatchSimMin")) * 60);
-				
+
 				// parse tour stops
-				List<ParcelActivity> stops = new ArrayList<ParcelActivity>();
+				List<ParcelActivity> stops = new ArrayList<>();
 				for (CSVRecord rawTourRow : rawTour) {
 					ParcelActivity stop = createIntermediateStop(rawTourRow);
 					stops.add(stop);
@@ -111,22 +107,21 @@ public class LogiToppSolutionBuilder {
 	}
 
 	private ParcelActivity createIntermediateStop(CSVRecord inputStop) {
-		int stopNumber = Integer.valueOf(inputStop.get("stopNo"));
+		int stopNumber = Integer.parseInt(inputStop.get("stopNo"));
 
 		ZoneAndLocation stopZoneAndLocation = parseStopLocation(inputStop, true);
-		double distance = Double.valueOf(inputStop.get("distance"));
-		int tripDurationMinutes = Integer.valueOf(inputStop.get("tripDur"));
+		double distance = Double.parseDouble(inputStop.get("distance"));
+		int tripDurationMinutes = Integer.parseInt(inputStop.get("tripDur"));
 		Time plannedTime = LogiToppExtractionUtil.createTime(Integer.valueOf(inputStop.get("plannedTimeSimMin")) * 60);
-		int deliveryDurationMinutes = Integer.valueOf(inputStop.get("deliveryDur"));
+		int deliveryDurationMinutes = Integer.parseInt(inputStop.get("deliveryDur"));
 		DeliveryVehicle vehicle = transportInfrastructureBuilder.getDeliveryVehicle(inputStop.get("vehicleId"));
 
 		Set<Parcel> deliveries = parseShipments(inputStop.get("deliveries"), inputStop.get("nestedDeliveries"));
 		Set<Parcel> pickUps = parseShipments(inputStop.get("pickups"), inputStop.get("nestedPickups"));
 
-		ParcelActivity stop = LogiToppSolutionUtil.createParcelActivity(stopNumber, stopZoneAndLocation, distance,
-				tripDurationMinutes, plannedTime, deliveryDurationMinutes, vehicle, ImmutableSet.copyOf(deliveries),
+		return LogiToppSolutionUtil.createParcelActivity(stopNumber, stopZoneAndLocation, distance, tripDurationMinutes,
+				plannedTime, deliveryDurationMinutes, vehicle, ImmutableSet.copyOf(deliveries),
 				ImmutableSet.copyOf(pickUps));
-		return stop;
 	}
 
 	private ParcelActivity createFirstStop(CSVRecord firstStopRecord, Time plannedAt, List<ParcelActivity> stops) {
@@ -138,7 +133,7 @@ public class LogiToppSolutionBuilder {
 		return LogiToppSolutionUtil.createParcelActivity(0, stopZoneAndLocation, 0, 0, EcoreUtil.copy(plannedAt), 0,
 				vehicle, ImmutableSet.of(), ImmutableSet.copyOf(pickUps));
 	}
-	
+
 	private ParcelActivity createLastStop(ParcelActivity firstStop, ParcelActivity secondLastStop,
 			List<ParcelActivity> stops) {
 		// simplification: trip duration = 0, simplification: trip distance = 0,
@@ -156,10 +151,10 @@ public class LogiToppSolutionBuilder {
 	private ZoneAndLocation parseStopLocation(CSVRecord inputStop, boolean toRelevant) {
 		String prefix = toRelevant ? "to" : "from";
 
-		double x = Double.valueOf(inputStop.get(prefix + "X"));
-		double y = Double.valueOf(inputStop.get(prefix + "Y"));
+		double x = Double.parseDouble(inputStop.get(prefix + "X"));
+		double y = Double.parseDouble(inputStop.get(prefix + "Y"));
 		String edgeId = inputStop.get(prefix + "Edge");
-		double edgePos = Double.valueOf(inputStop.get(prefix + "EdgePos"));
+		double edgePos = Double.parseDouble(inputStop.get(prefix + "EdgePos"));
 		Location stopLocation = networkBuilder.createLocation(x, y, edgeId, edgePos);
 		Zone zone = networkBuilder.getZone(inputStop.get(prefix + "Zone"));
 		ZoneAndLocation stopZoneAndLocation = NetworkFactory.eINSTANCE.createZoneAndLocation();
@@ -169,7 +164,7 @@ public class LogiToppSolutionBuilder {
 	}
 
 	private Set<Parcel> parseShipments(String parcelString1, String parcelString2) {
-		Set<Parcel> result = new HashSet<Parcel>();
+		Set<Parcel> result = new HashSet<>();
 
 		Stream<String> inputValues = Stream.concat(Arrays.stream(parcelString1.split(",")),
 				Arrays.stream(parcelString2.split(",")));

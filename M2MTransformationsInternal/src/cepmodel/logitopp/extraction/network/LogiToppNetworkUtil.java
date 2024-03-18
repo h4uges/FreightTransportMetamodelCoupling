@@ -13,6 +13,9 @@ import logiToppMetamodel.mobiTopp.network.ZoneAndLocation;
 
 public class LogiToppNetworkUtil {
 
+	private LogiToppNetworkUtil() {
+	}
+
 	public static Node createNode(String id, double x, double y) {
 		Point2D coordinate = NetworkFactory.eINSTANCE.createPoint2D();
 		coordinate.setX(x);

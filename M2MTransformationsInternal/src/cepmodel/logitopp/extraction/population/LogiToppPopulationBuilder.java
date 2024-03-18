@@ -1,41 +1,38 @@
 package cepmodel.logitopp.extraction.population;
 
-import java.io.FileReader;
 import java.io.IOException;
-import java.io.Reader;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-import org.apache.commons.csv.CSVFormat;
 import org.apache.commons.csv.CSVParser;
 import org.apache.commons.csv.CSVRecord;
 
 import com.google.common.collect.ImmutableList;
 import com.google.common.collect.ImmutableSet;
 
+import cepmodel.logitopp.extraction.LogiToppBuilderBase;
 import cepmodel.logitopp.extraction.LogiToppInputFileRegistry;
 import cepmodel.logitopp.extraction.network.LogiToppNetworkBuilder;
-import cepmodel.logitopp.extraction.transportInfrastructure.LogiToppTransportInfrastructureBuilder;
+import cepmodel.logitopp.extraction.transportinfrastructure.LogiToppTransportInfrastructureBuilder;
 import logiToppMetamodel.base.Weekday;
 import logiToppMetamodel.dataExchange.Population;
 import logiToppMetamodel.logiTopp.business.Business;
 import logiToppMetamodel.logiTopp.business.OpeningHour;
 import logiToppMetamodel.logiTopp.distribution.CEPServiceProvider;
-import logiToppMetamodel.mobiTopp.network.Location;
-import logiToppMetamodel.mobiTopp.network.Zone;
 import logiToppMetamodel.mobiTopp.citizens.Employment;
 import logiToppMetamodel.mobiTopp.citizens.Gender;
 import logiToppMetamodel.mobiTopp.citizens.Household;
 import logiToppMetamodel.mobiTopp.citizens.Person;
+import logiToppMetamodel.mobiTopp.network.Location;
+import logiToppMetamodel.mobiTopp.network.Zone;
 
-// TODO: long-term - add work location
-public class LogiToppPopulationBuilder {
-	private final Map<String, Location> business2location = new HashMap<String, Location>();
-	private final Map<String, Business> businesses = new HashMap<String, Business>();
-	private final Map<String, Household> households = new HashMap<String, Household>();
-	private final Map<String, Person> persons = new HashMap<String, Person>();
+public class LogiToppPopulationBuilder extends LogiToppBuilderBase {
+	private final Map<String, Location> business2location = new HashMap<>();
+	private final Map<String, Business> businesses = new HashMap<>();
+	private final Map<String, Household> households = new HashMap<>();
+	private final Map<String, Person> persons = new HashMap<>();
 
 	private LogiToppNetworkBuilder networkBuilder;
 	private LogiToppTransportInfrastructureBuilder transportInfrastructureBuilder;
@@ -49,12 +46,12 @@ public class LogiToppPopulationBuilder {
 	}
 
 	public Population createPopulation() {
-		fileRegistry.businessLocationCSVs.forEach(file -> parseBusinessLocations(file));
-		fileRegistry.businessCSVs.forEach(file -> parseBusinessCsv(file));
-		fileRegistry.businessRelationsCSVs.forEach(file -> parseBusinessPartnerCsv(file));
-		fileRegistry.householdCSVs.forEach(file -> parseHouseholdCsv(file));
-		fileRegistry.personCSVs.forEach(file -> parsePersonCsv(file));
-		fileRegistry.fixedDestinationCSVs.forEach(file -> parseFixedDestinationCsv(file));
+		fileRegistry.businessLocationCSVs.forEach(this::parseBusinessLocations);
+		fileRegistry.businessCSVs.forEach(this::parseBusinessCsv);
+		fileRegistry.businessRelationsCSVs.forEach(this::parseBusinessPartnerCsv);
+		fileRegistry.householdCSVs.forEach(this::parseHouseholdCsv);
+		fileRegistry.personCSVs.forEach(this::parsePersonCsv);
+		fileRegistry.fixedDestinationCSVs.forEach(this::parseFixedDestinationCsv);
 
 		return LogiToppPopulationUtil.createPopulation(ImmutableSet.copyOf(businesses.values()),
 				ImmutableSet.copyOf(households.values()));
@@ -69,16 +66,14 @@ public class LogiToppPopulationBuilder {
 	}
 
 	private void parseBusinessLocations(String filePath) {
-		try (Reader reader = new FileReader(System.getProperty("user.dir") + "/" + filePath);
-				CSVParser csvParser = CSVFormat.DEFAULT.builder().setAllowMissingColumnNames(true).setHeader()
-						.setDelimiter(';').build().parse(reader)) {
+		try (CSVParser csvParser = getCSVParser(filePath)) {
 
-			for (CSVRecord record : csvParser) {
-				String id = record.get("id");
-				double x = Double.valueOf(record.get("x"));
-				double y = Double.valueOf(record.get("y"));
-				String edgeId = record.get("edge");
-				double edgePos = Double.valueOf(record.get("pos"));
+			for (CSVRecord csvEntry : csvParser) {
+				String id = csvEntry.get("id");
+				double x = Double.parseDouble(csvEntry.get("x"));
+				double y = Double.parseDouble(csvEntry.get("y"));
+				String edgeId = csvEntry.get("edge");
+				double edgePos = Double.parseDouble(csvEntry.get("pos"));
 
 				Location location = networkBuilder.createLocation(x, y, edgeId, edgePos);
 				this.business2location.put(id, location);
@@ -89,21 +84,20 @@ public class LogiToppPopulationBuilder {
 	}
 
 	private void parseBusinessCsv(String filePath) {
-		try (Reader reader = new FileReader(System.getProperty("user.dir") + "/" + filePath);
-				CSVParser csvParser = CSVFormat.DEFAULT.builder().setHeader().setDelimiter(';').build().parse(reader)) {
+		try (CSVParser csvParser = getCSVParser(filePath)) {
 
-			for (CSVRecord record : csvParser) {
-				String id = record.get("id");
-				String businessName = record.get("name");
-				String zoneId = record.get("zone");
-				double area = Double.valueOf(record.get("area"));
-				int numEmployees = Integer.valueOf(record.get("employees"));
-				int branchNum = Integer.valueOf(record.get("branch"));
-				int buildingTypeNum = Integer.valueOf(record.get("building"));
+			for (CSVRecord csvEntry : csvParser) {
+				String id = csvEntry.get("id");
+				String businessName = csvEntry.get("name");
+				String zoneId = csvEntry.get("zone");
+				double area = Double.parseDouble(csvEntry.get("area"));
+				int numEmployees = Integer.parseInt(csvEntry.get("employees"));
+				int branchNum = Integer.parseInt(csvEntry.get("branch"));
+				int buildingTypeNum = Integer.parseInt(csvEntry.get("building"));
 
-				List<OpeningHour> openingHours = new ArrayList<OpeningHour>();
+				List<OpeningHour> openingHours = new ArrayList<>();
 				for (Weekday weekday : Weekday.VALUES) {
-					String value = record.get("open:" + weekday.toString());
+					String value = csvEntry.get("open:" + weekday.toString());
 					if (!value.isBlank()) {
 						OpeningHour openingHour = LogiToppPopulationUtil.createOpeningHour(weekday,
 								Integer.valueOf(value.split(",")[0]), Integer.valueOf(value.split(",")[0]));
@@ -131,22 +125,20 @@ public class LogiToppPopulationBuilder {
 	}
 
 	private void parseBusinessPartnerCsv(String filePath) {
-		try (Reader reader = new FileReader(System.getProperty("user.dir") + "/" + filePath);
-				CSVParser csvParser = CSVFormat.DEFAULT.builder().setAllowMissingColumnNames(true).setHeader()
-						.setDelimiter(';').build().parse(reader)) {
+		try (CSVParser csvParser = getCSVParser(filePath)) {
 
-			for (CSVRecord record : csvParser) {
-				String businessId = record.get("Business");
-				String cepspName = record.get("ServiceProvider");
-				String direction = record.get("Tag");
+			for (CSVRecord csvEntry : csvParser) {
+				String businessId = csvEntry.get("Business");
+				String cepspName = csvEntry.get("ServiceProvider");
+				String direction = csvEntry.get("Tag");
 
 				Business business = businesses.get(businessId);
 				CEPServiceProvider cepServiceProvider = transportInfrastructureBuilder.getCEPSP(cepspName);
 
-				if (direction == "consumption") {
+				if ("consumption".equals(direction)) {
 					business.getDeliveryPartners().add(cepServiceProvider);
 				}
-				if (direction == "production") {
+				if ("production".equals(direction)) {
 					business.getPickUpPartners().add(cepServiceProvider);
 				}
 			}
@@ -156,16 +148,13 @@ public class LogiToppPopulationBuilder {
 	}
 
 	private void parseHouseholdCsv(String filePath) {
-		try (Reader reader = new FileReader(System.getProperty("user.dir") + "/" + filePath);
-				CSVParser csvParser = CSVFormat.DEFAULT.builder().setHeader().setDelimiter(';').build().parse(reader)) {
+		try (CSVParser csvParser = getCSVParser(filePath)) {
 
-			for (CSVRecord record : csvParser) {
-				String householdId = record.get("householdId");
-				String locationString = record.get("homeLocation");
-				// TODO: major - fix wrong homeZone
-				Zone zone = networkBuilder.getZoneByMatrixColum(record.get("homeZone"));
+			for (CSVRecord csvEntry : csvParser) {
+				String householdId = csvEntry.get("householdId");
+				String locationString = csvEntry.get("homeLocation");
+				Zone zone = networkBuilder.getZoneByMatrixColum(csvEntry.get("homeZone"));
 				Location location = networkBuilder.createLocationFromString(locationString);
-
 				Household household = LogiToppPopulationUtil.createHousehold(householdId, zone, location,
 						ImmutableSet.of());
 				households.put(householdId, household);
@@ -178,15 +167,13 @@ public class LogiToppPopulationBuilder {
 	}
 
 	private void parsePersonCsv(String filePath) {
-		try (Reader reader = new FileReader(System.getProperty("user.dir") + "/" + filePath);
-				CSVParser csvParser = CSVFormat.DEFAULT.builder().setHeader().setDelimiter(';').build().parse(reader)) {
-
-			for (CSVRecord record : csvParser) {
-				String personId = record.get("personId");
-				int age = Integer.valueOf(record.get("age"));
-				Gender gender = Gender.valueOf(record.get("gender"));
-				Employment employment = Employment.valueOf(record.get("employment"));
-				String householdId = record.get("householdId");
+		try (CSVParser csvParser = getCSVParser(filePath)) {
+			for (CSVRecord csvEntry : csvParser) {
+				String personId = csvEntry.get("personId");
+				int age = Integer.parseInt(csvEntry.get("age"));
+				Gender gender = Gender.valueOf(csvEntry.get("gender"));
+				Employment employment = Employment.valueOf(csvEntry.get("employment"));
+				String householdId = csvEntry.get("householdId");
 
 				Person person = LogiToppPopulationUtil.createPerson(personId, age, gender, employment);
 				persons.put(personId, person);
@@ -198,14 +185,12 @@ public class LogiToppPopulationBuilder {
 	}
 
 	private void parseFixedDestinationCsv(String filePath) {
-		try (Reader reader = new FileReader(System.getProperty("user.dir") + "/" + filePath);
-				CSVParser csvParser = CSVFormat.DEFAULT.builder().setHeader().setDelimiter(';').build().parse(reader)) {
-
-			Map<String, Location> person2WorkLocation = new HashMap<String, Location>();
-			for (CSVRecord record : csvParser) {
-				String personId = record.get("personOid");
-				Location location = networkBuilder.createLocationFromString(record.get("location"));
-				if (record.get("activityType").startsWith("WORK")) {
+		try (CSVParser csvParser = getCSVParser(filePath)) {
+			Map<String, Location> person2WorkLocation = new HashMap<>();
+			for (CSVRecord csvEntry : csvParser) {
+				String personId = csvEntry.get("personOid");
+				Location location = networkBuilder.createLocationFromString(csvEntry.get("location"));
+				if (csvEntry.get("activityType").startsWith("WORK")) {
 					person2WorkLocation.put(personId, location);
 				}
 			}

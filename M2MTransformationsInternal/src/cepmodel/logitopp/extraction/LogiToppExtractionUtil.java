@@ -14,7 +14,10 @@ import logiToppMetamodel.dataExchange.TransportInfrastructure;
 import logiToppMetamodel.mobiTopp.network.RoadNetwork;
 
 public class LogiToppExtractionUtil {
-
+	
+	private LogiToppExtractionUtil() {
+	}
+	
 	public static SolutionExchangeRoot createSolutionExchangeRoot(RoadNetwork network,
 			TransportInfrastructure transportInfrastructure, Population population, Demand demand, Solution solution) {
 		SolutionExchangeRoot result = DataExchangeFactory.eINSTANCE.createSolutionExchangeRoot();

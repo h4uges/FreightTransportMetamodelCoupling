@@ -18,6 +18,9 @@ import logiToppMetamodel.mobiTopp.network.ZoneAndLocation;
 
 public class LogiToppDemandUtil {
 
+	private LogiToppDemandUtil() {
+	}
+
 	public static Demand createDemand(ImmutableList<Parcel> parcels) {
 		Demand result = DataExchangeFactory.eINSTANCE.createDemand();
 		result.getParcels().addAll(parcels);

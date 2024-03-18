@@ -5,7 +5,7 @@ import cepmodel.logitopp.extraction.demand.LogiToppDemandBuilder;
 import cepmodel.logitopp.extraction.network.LogiToppNetworkBuilder;
 import cepmodel.logitopp.extraction.population.LogiToppPopulationBuilder;
 import cepmodel.logitopp.extraction.solution.LogiToppSolutionBuilder;
-import cepmodel.logitopp.extraction.transportInfrastructure.LogiToppTransportInfrastructureBuilder;
+import cepmodel.logitopp.extraction.transportinfrastructure.LogiToppTransportInfrastructureBuilder;
 import logiToppMetamodel.dataExchange.Demand;
 import logiToppMetamodel.dataExchange.Population;
 import logiToppMetamodel.dataExchange.Solution;
@@ -56,9 +56,7 @@ public class LogiToppModelBuilder {
 		Demand demand = demandBuilder.createDemand();
 		Solution solution = solutionBuilder.createSolution();
 
-		SolutionExchangeRoot result = LogiToppExtractionUtil.createSolutionExchangeRoot(network,
-				transportInfrastructure, population, demand, solution);
-
-		return result;
+		return LogiToppExtractionUtil.createSolutionExchangeRoot(network, transportInfrastructure, population, demand,
+				solution);
 	}
 }

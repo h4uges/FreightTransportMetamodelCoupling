@@ -19,6 +19,9 @@ import logiToppMetamodel.mobiTopp.network.ZoneAndLocation;
 
 public class LogiToppSolutionUtil {
 
+	private LogiToppSolutionUtil() {
+	}
+
 	public static Solution createSolution(ImmutableList<PlannedDeliveryTour> plannedTours) {
 		Solution result = DataExchangeFactory.eINSTANCE.createSolution();
 		result.getPlannedTours().addAll(plannedTours);

@@ -1,8 +1,6 @@
-package cepmodel.logitopp.extraction.transportInfrastructure;
+package cepmodel.logitopp.extraction.transportinfrastructure;
 
-import java.io.FileReader;
 import java.io.IOException;
-import java.io.Reader;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.HashSet;
@@ -10,13 +8,13 @@ import java.util.List;
 import java.util.Map;
 import java.util.Set;
 
-import org.apache.commons.csv.CSVFormat;
 import org.apache.commons.csv.CSVParser;
 import org.apache.commons.csv.CSVRecord;
 
 import com.google.common.collect.ImmutableList;
 import com.google.common.collect.ImmutableSet;
 
+import cepmodel.logitopp.extraction.LogiToppBuilderBase;
 import cepmodel.logitopp.extraction.LogiToppExtractionUtil;
 import cepmodel.logitopp.extraction.LogiToppInputFileRegistry;
 import cepmodel.logitopp.extraction.network.LogiToppNetworkBuilder;
@@ -36,12 +34,12 @@ import logiToppMetamodel.logiTopp.distribution.timetable.TimeTable;
 import logiToppMetamodel.mobiTopp.network.Location;
 import logiToppMetamodel.mobiTopp.network.Zone;
 
-public class LogiToppTransportInfrastructureBuilder {
-	private final Map<String, Set<String>> dcId2ServiceAreaZones = new HashMap<String, Set<String>>();
-	private final Map<String, CEPServiceProvider> cepsps = new HashMap<String, CEPServiceProvider>();
-	private final Map<String, DistributionCenter> distributionCenters = new HashMap<String, DistributionCenter>();
-	private final Map<String, DeliveryVehicle> deliveryVehicles = new HashMap<String, DeliveryVehicle>();
-	private final List<Connection> connections = new ArrayList<Connection>();
+public class LogiToppTransportInfrastructureBuilder extends LogiToppBuilderBase {
+	private final Map<String, Set<String>> dcId2ServiceAreaZones = new HashMap<>();
+	private final Map<String, CEPServiceProvider> cepsps = new HashMap<>();
+	private final Map<String, DistributionCenter> distributionCenters = new HashMap<>();
+	private final Map<String, DeliveryVehicle> deliveryVehicles = new HashMap<>();
+	private final List<Connection> connections = new ArrayList<>();
 
 	private LogiToppNetworkBuilder networkBuilder;
 	private final LogiToppInputFileRegistry fileRegisty;
@@ -53,12 +51,12 @@ public class LogiToppTransportInfrastructureBuilder {
 	}
 
 	public TransportInfrastructure createTransportInfrastructure() {
-		fileRegisty.serviceAreaCSVs.forEach(file -> parseServiceAreaCsv(file));
-		fileRegisty.distributionCenterCSVs.forEach(file -> parseDistributionCenterCsv(file));
-		fileRegisty.depotLocationCSVs.forEach(file -> parseDepotLocationCsv(file));
-		fileRegisty.fleetCSVs.forEach(file -> parseFleetCsv(file));
-		fileRegisty.depotRelationCSVs.forEach(file -> parseDepotRelationsCsv(file));
-		fileRegisty.timeTableCSVs.forEach(file -> parseTimeTableCsv(file));
+		fileRegisty.serviceAreaCSVs.forEach(this::parseServiceAreaCsv);
+		fileRegisty.distributionCenterCSVs.forEach(this::parseDistributionCenterCsv);
+		fileRegisty.depotLocationCSVs.forEach(this::parseDepotLocationCsv);
+		fileRegisty.fleetCSVs.forEach(this::parseFleetCsv);
+		fileRegisty.depotRelationCSVs.forEach(this::parseDepotRelationsCsv);
+		fileRegisty.timeTableCSVs.forEach(this::parseTimeTableCsv);
 
 		TimeTable timeTable = LogiToppTransportInfrastructureUtil.createTimeTable(ImmutableList.copyOf(connections));
 		return LogiToppTransportInfrastructureUtil.createTransportInfrastructure(ImmutableSet.copyOf(cepsps.values()),
@@ -66,13 +64,11 @@ public class LogiToppTransportInfrastructureBuilder {
 	}
 
 	private void parseServiceAreaCsv(String filePath) {
-		try (Reader reader = new FileReader(System.getProperty("user.dir") + "/" + filePath);
-				CSVParser csvParser = CSVFormat.DEFAULT.builder().setAllowMissingColumnNames(true).setHeader()
-						.setDelimiter(';').build().parse(reader)) {
+		try (CSVParser csvParser = getCSVParser(filePath)) {
 
-			for (CSVRecord record : csvParser) {
-				String dcId = record.get("id");
-				String zoneId = record.get("zone");
+			for (CSVRecord csvEntry : csvParser) {
+				String dcId = csvEntry.get("id");
+				String zoneId = csvEntry.get("zone");
 
 				dcId2ServiceAreaZones.computeIfAbsent(dcId, t -> new HashSet<String>());
 				dcId2ServiceAreaZones.get(dcId).add(zoneId);
@@ -83,16 +79,15 @@ public class LogiToppTransportInfrastructureBuilder {
 	}
 
 	private void parseDistributionCenterCsv(String filePath) {
-		try (Reader reader = new FileReader(System.getProperty("user.dir") + "/" + filePath);
-				CSVParser csvParser = CSVFormat.DEFAULT.builder().setHeader().setDelimiter(';').build().parse(reader)) {
+		try (CSVParser csvParser = getCSVParser(filePath)) {
 
-			for (CSVRecord record : csvParser) {
-				String id = record.get("id");
-				String name = record.get("name");
-				String cepsp = record.get("cepsp");
+			for (CSVRecord csvEntry : csvParser) {
+				String id = csvEntry.get("id");
+				String name = csvEntry.get("name");
+				String cepsp = csvEntry.get("cepsp");
 
-				int vehicleType = Integer.valueOf(record.get("vehicle_type"));
-				int numAttempts = Integer.valueOf(record.get("attempts"));
+				int vehicleType = Integer.parseInt(csvEntry.get("vehicle_type"));
+				int numAttempts = Integer.parseInt(csvEntry.get("attempts"));
 
 				addDistributionCenter(cepsp, id, name, numAttempts, vehicleType);
 			}
@@ -127,17 +122,15 @@ public class LogiToppTransportInfrastructureBuilder {
 	}
 
 	private void parseDepotLocationCsv(String filePath) {
-		try (Reader reader = new FileReader(System.getProperty("user.dir") + "/" + filePath);
-				CSVParser csvParser = CSVFormat.DEFAULT.builder().setAllowMissingColumnNames(true).setHeader()
-						.setDelimiter(';').build().parse(reader)) {
+		try (CSVParser csvParser = getCSVParser(filePath)) {
 
-			for (CSVRecord record : csvParser) {
-				String distributionCenterId = record.get("id");
-				String zoneId = record.get("id");
-				double x = Double.valueOf(record.get("x"));
-				double y = Double.valueOf(record.get("y"));
-				String edgeId = record.get("edge");
-				double edgePos = Double.valueOf(record.get("pos"));
+			for (CSVRecord csvEntry : csvParser) {
+				String distributionCenterId = csvEntry.get("id");
+				String zoneId = csvEntry.get("id");
+				double x = Double.parseDouble(csvEntry.get("x"));
+				double y = Double.parseDouble(csvEntry.get("y"));
+				String edgeId = csvEntry.get("edge");
+				double edgePos = Double.parseDouble(csvEntry.get("pos"));
 
 				Zone zone = networkBuilder.getZone(zoneId);
 				Location location = networkBuilder.createLocation(x, y, edgeId, edgePos);
@@ -159,14 +152,12 @@ public class LogiToppTransportInfrastructureBuilder {
 	}
 
 	private void parseFleetCsv(String filePath) {
-		try (Reader reader = new FileReader(System.getProperty("user.dir") + "/" + filePath);
-				CSVParser csvParser = CSVFormat.DEFAULT.builder().setAllowMissingColumnNames(true).setHeader()
-						.setDelimiter(';').build().parse(reader)) {
+		try (CSVParser csvParser = getCSVParser(filePath)) {
 
-			for (CSVRecord record : csvParser) {
-				String distributionCenterId = record.get("ownerId");
-				String vehicleId = record.get("vehicleId");
-				int vehicleType = Integer.valueOf(record.get("vehicleTypeCode"));
+			for (CSVRecord csvEntry : csvParser) {
+				String distributionCenterId = csvEntry.get("ownerId");
+				String vehicleId = csvEntry.get("vehicleId");
+				int vehicleType = Integer.parseInt(csvEntry.get("vehicleTypeCode"));
 
 				addVehicle(distributionCenterId, vehicleId, vehicleType);
 			}
@@ -184,12 +175,11 @@ public class LogiToppTransportInfrastructureBuilder {
 	}
 
 	private void parseDepotRelationsCsv(String filePath) {
-		try (Reader reader = new FileReader(System.getProperty("user.dir") + "/" + filePath);
-				CSVParser csvParser = CSVFormat.DEFAULT.builder().setHeader().setDelimiter(';').build().parse(reader)) {
+		try (CSVParser csvParser = getCSVParser(filePath)) {
 
-			for (CSVRecord record : csvParser) {
-				String fromDepotId = record.get("from_depot");
-				String toDepotId = record.get("to_depot");
+			for (CSVRecord csvEntry : csvParser) {
+				String fromDepotId = csvEntry.get("from_depot");
+				String toDepotId = csvEntry.get("to_depot");
 
 				distributionCenters.get(fromDepotId).getRegionalStructure().getRelatedDeliveryHubs()
 						.add(distributionCenters.get(toDepotId));
@@ -202,18 +192,14 @@ public class LogiToppTransportInfrastructureBuilder {
 	}
 
 	private void parseTimeTableCsv(String filePath) {
-		try (Reader reader = new FileReader(System.getProperty("user.dir") + "/" + filePath);
-				CSVParser csvParser = CSVFormat.DEFAULT.builder().setHeader().setDelimiter(';').build().parse(reader)) {
-
-			for (CSVRecord record : csvParser) {
-				String fromId = record.get("from_depot");
-				String toId = record.get("to_depot");
-				Weekday departDay = Weekday.get(Integer.valueOf(record.get("depart_day")));
-				int departHour = Integer.valueOf(record.get("depart_hour"));
-				int departMin = Integer.valueOf(record.get("depart_min"));
-				int tripDuration = Integer.valueOf(record.get("trip_duration"));
-				// TODO: major - verify connection capacity
-				int capacity = Integer.valueOf(record.get("capacity"));
+		try (CSVParser csvParser = getCSVParser(filePath)) {
+			for (CSVRecord csvEntry : csvParser) {
+				String fromId = csvEntry.get("from_depot");
+				String toId = csvEntry.get("to_depot");
+				Weekday departDay = Weekday.get(Integer.valueOf(csvEntry.get("depart_day")));
+				int departHour = Integer.parseInt(csvEntry.get("depart_hour"));
+				int departMin = Integer.parseInt(csvEntry.get("depart_min"));
+				int tripDuration = Integer.parseInt(csvEntry.get("trip_duration"));
 
 				DistributionCenter fromDc = distributionCenters.get(fromId);
 				DistributionCenter toDc = distributionCenters.get(toId);
