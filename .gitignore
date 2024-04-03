@@ -14,7 +14,9 @@ LogiToppMM.editor/
 data/
 
 *.arid
+*.aird
 /M2MTransformations/exampleInstances
+/M2MTransformations/exampleResults
 
 # ---- MAC-OS ----
 .DS_Store

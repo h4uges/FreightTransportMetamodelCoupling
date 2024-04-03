@@ -309,16 +309,14 @@
       </genClasses>
     </nestedGenPackages>
     <nestedGenPackages prefix="Results" disposableProviderFactory="true" ecorePackage="CommonFreightTransportMetamodel.ecore#//results">
-      <genClasses ecoreClass="CommonFreightTransportMetamodel.ecore#//results/FailedPickupAttempt"/>
+      <genClasses ecoreClass="CommonFreightTransportMetamodel.ecore#//results/FailedPickUpAttempt"/>
       <genClasses ecoreClass="CommonFreightTransportMetamodel.ecore#//results/FailedDeliveryAttempt">
         <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference CommonFreightTransportMetamodel.ecore#//results/FailedDeliveryAttempt/failedDeliveryLocation"/>
-        <genFeatures notify="false" createChild="false" propertySortChoices="true"
-            ecoreFeature="ecore:EReference CommonFreightTransportMetamodel.ecore#//results/FailedDeliveryAttempt/failedDeliveryFacility"/>
       </genClasses>
       <genClasses ecoreClass="CommonFreightTransportMetamodel.ecore#//results/InitialFailedDeliveryAttempt"/>
       <genClasses ecoreClass="CommonFreightTransportMetamodel.ecore#//results/ResultDeliveryExit">
         <genFeatures notify="false" createChild="false" propertySortChoices="true"
-            ecoreFeature="ecore:EReference CommonFreightTransportMetamodel.ecore#//results/ResultDeliveryExit/failedPickUpAttempts"/>
+            ecoreFeature="ecore:EReference CommonFreightTransportMetamodel.ecore#//results/ResultDeliveryExit/failedDeliveryAttempts"/>
       </genClasses>
       <genClasses ecoreClass="CommonFreightTransportMetamodel.ecore#//results/ResultPickUpEntry">
         <genFeatures notify="false" createChild="false" propertySortChoices="true"

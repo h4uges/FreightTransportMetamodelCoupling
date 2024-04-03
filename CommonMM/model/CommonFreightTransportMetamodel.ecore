@@ -393,21 +393,19 @@
   </eSubpackages>
   <eSubpackages name="results" nsURI="http://www.cep-model-coupling.com/commonFreightTransportMetamodel/results"
       nsPrefix="results">
-    <eClassifiers xsi:type="ecore:EClass" name="FailedPickupAttempt" eSuperTypes="#//logisticSolution/ShipmentRecordEntry"/>
+    <eClassifiers xsi:type="ecore:EClass" name="FailedPickUpAttempt" eSuperTypes="#//logisticSolution/ShipmentRecordEntry"/>
     <eClassifiers xsi:type="ecore:EClass" name="FailedDeliveryAttempt" eSuperTypes="#//logisticSolution/ShipmentRecordEntry">
       <eStructuralFeatures xsi:type="ecore:EReference" name="failedDeliveryLocation"
           lowerBound="1" eType="#//network/Location_" containment="true"/>
-      <eStructuralFeatures xsi:type="ecore:EReference" name="failedDeliveryFacility"
-          eType="#//logisticNetwork/LogisticFacility"/>
     </eClassifiers>
     <eClassifiers xsi:type="ecore:EClass" name="InitialFailedDeliveryAttempt" eSuperTypes="#//results/FailedDeliveryAttempt"/>
     <eClassifiers xsi:type="ecore:EClass" name="ResultDeliveryExit" eSuperTypes="#//logisticSolution/DeliveryExit">
-      <eStructuralFeatures xsi:type="ecore:EReference" name="failedPickUpAttempts"
+      <eStructuralFeatures xsi:type="ecore:EReference" name="failedDeliveryAttempts"
           upperBound="-1" eType="#//results/FailedDeliveryAttempt"/>
     </eClassifiers>
     <eClassifiers xsi:type="ecore:EClass" name="ResultPickUpEntry" eSuperTypes="#//logisticSolution/PickUpEntry">
       <eStructuralFeatures xsi:type="ecore:EReference" name="failedPickUpAttempts"
-          upperBound="-1" eType="#//results/FailedPickupAttempt"/>
+          upperBound="-1" eType="#//results/FailedPickUpAttempt"/>
     </eClassifiers>
     <eClassifiers xsi:type="ecore:EClass" name="ExecutedTour" eSuperTypes="#//logisticSolution/Tour">
       <eStructuralFeatures xsi:type="ecore:EReference" name="plannedTour" lowerBound="1"
