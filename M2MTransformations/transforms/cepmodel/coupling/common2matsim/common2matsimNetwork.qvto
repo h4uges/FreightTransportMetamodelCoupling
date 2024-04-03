@@ -35,7 +35,7 @@ mapping COMMON_MM::utils::Coordinate::coordinate2coordinate() : MATSIM::matsim::
 
 mapping COMMON_MM::network::Edge::edge2link() : MATSIM::matsim::core::network::Link {
 	// TODO: discuss uniqueness of edges
-	id := self._from.id + "->" + self.to.id;
+	id := self.id;
 	_from := self._from.resolveone(MATSIM::matsim::core::network::Node);
 	to := self.to.resolveone(MATSIM::matsim::core::network::Node);
 	

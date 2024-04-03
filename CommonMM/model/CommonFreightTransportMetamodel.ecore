@@ -151,7 +151,7 @@
       <eStructuralFeatures xsi:type="ecore:EReference" name="coordinate" lowerBound="1"
           eType="#//utils/Coordinate" containment="true"/>
     </eClassifiers>
-    <eClassifiers xsi:type="ecore:EClass" name="Edge">
+    <eClassifiers xsi:type="ecore:EClass" name="Edge" eSuperTypes="#//utils/HasId_">
       <eStructuralFeatures xsi:type="ecore:EReference" name="from" lowerBound="1"
           eType="#//network/Node"/>
       <eStructuralFeatures xsi:type="ecore:EReference" name="to" lowerBound="1" eType="#//network/Node"/>

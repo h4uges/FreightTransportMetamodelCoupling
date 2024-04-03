@@ -25,6 +25,7 @@ constructor COMMON_MM::utils::Coordinate::Coordinate(x : Real, y : Real) {
 	result.y := y;
 }
 mapping LOGITOPP::mobiTopp::network::Edge::edge2Edge() : COMMON_MM::network::Edge {
+	id := self.id;
 	_from := self._from.resolveone(COMMON_MM::network::Node);
 	to := self.to.resolveone(COMMON_MM::network::Node);
 	length := self.length;
