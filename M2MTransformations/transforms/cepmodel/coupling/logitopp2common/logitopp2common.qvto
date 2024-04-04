@@ -30,8 +30,6 @@ main() {
 
 mapping LOGITOPP::dataExchange::Solution::solution2Solution(logisticNetwork : COMMON_MM::logisticNetwork::LogisticNetwork) : COMMON_MM::logisticSolution::LogisticSolution {
 	tours += self.plannedTours -> map plannedTour2PlannedTour(logisticNetwork);
-	// TODO: add implementation
-	shipmentRecords;
 }
 
 constructor COMMON_MM::coupling::CommonFreightTransportMetamodelRoot::CommonFreightTransportMetamodelRoot(

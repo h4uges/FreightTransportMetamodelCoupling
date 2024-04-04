@@ -1,6 +1,0 @@
-<?xml version="1.0" encoding="ASCII"?>
-<uriMap:MappingContainer xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:uriMap="http:///www.eclipse.org/m2m/qvt/oml/MModelUriMap/1.0.0">
-  <mapping sourceURI="http://www.cep-model-coupling.com/commonFreightTransportMetamodel" targetURI="platform:/resource/CommonMM/model/CommonFreightTransportMetamodel.ecore"/>
-  <mapping sourceURI="http://www.cep-model-coupling.com/MATSimFreightMetamodel" targetURI="platform:/resource/MATSimMM/model/MATSimFreightMetamodel.ecore"/>
-  <mapping sourceURI="http://www.cep-model-coupling.com/logiToppMetamodel" targetURI="platform:/resource/LogiToppMM/model/logiToppMetamodel.ecore"/>
-</uriMap:MappingContainer>

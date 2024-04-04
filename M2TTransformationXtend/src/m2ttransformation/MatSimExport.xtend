@@ -33,7 +33,7 @@ import java.util.stream.Collectors
 class MatSimExport {
 
 	def static void main(String[] args) {
-		val modelName = "example1"
+		val modelName = "rastatt"
 		val inputFolder = Path.of(System.getProperty("user.dir"), "data", modelName).toString
 		val outputFolder = Path.of(System.getProperty("user.dir"), "data", modelName).toString
 		
@@ -85,10 +85,11 @@ class MatSimExport {
 			StandardOpenOption.TRUNCATE_EXISTING)
 	}
 
+	// TOOD: temporary removed capacity period
 	def static generateNetwork(Network network) '''
 		<?xml version="1.0" encoding="UTF-8"?>
 		<!DOCTYPE network SYSTEM "http://www.matsim.org/files/dtd/network_v1.dtd">
-		<network capDivider="«network.capacityPeriod»">
+		<network>
 			<nodes>
 				«FOR node : network.nodes»
 					«generateNode(node)»
@@ -106,10 +107,21 @@ class MatSimExport {
 		<node id="«node.id»" x="«node.coord.x»" y="«node.coord.y»"/>
 	'''
 
+	// TODO: temporary allow all used modes
 	def static generateLink(Link link) '''
-		<link id="«link.id»" from="«link.from.id»" to="«link.to.id»" length="«link.length»"
-		      freespeed="«link.freespeed»" capacity="«link.capacity»" permlanes="«link.nofLanes»" oneway="1"/>
+		<link id="«generateLinkId(link.id)»" from="«link.from.id»" to="«link.to.id»" length="«link.length»"
+		      freespeed="«link.freespeed»" capacity="«link.capacity»" permlanes="«link.nofLanes»" oneway="1" modes="truck, bike, pt"/>
 	'''
+	
+	def static generateLinkId(String linkId) {
+		if (linkId.endsWith(":1")) {
+            return linkId.substring(0, linkId.length() - 2)
+        } else if (linkId.endsWith(":2")) {
+            return "-" + linkId.substring(0, linkId.length() - 2)
+        } else {
+            throw new IllegalArgumentException("invalid link id " + linkId)
+        }
+	}
 
 	// ---- vehicle types ----
 	def static buildVehicleTypesFile(DataExchangeRoot root, String outputFolder, String modelName) {
@@ -135,17 +147,15 @@ class MatSimExport {
 			             volumeInCubicMeters="«vehicleType.capacity.volumeInCubicMeters»" weightInTons="«vehicleType.capacity.weightInTons»"
 			             other="«vehicleType.capacity.other»"/>
 			   <length meter="«vehicleType.length»"/>
-			<widht meter="«vehicleType.width»"/>
+			<width meter="«vehicleType.width»"/>
 			«generateDummyCostInformation()»
-			«generateDummyEngineInformation()»
-			<passengerCarEquivalents meter="«vehicleType.pcuEquivalents»"/>
 			<networkMode networkMode="«vehicleType.networkMode»"/>
 			<flowEfficiencyFactor factor="«vehicleType.flowEfficiencyFactor»"/>
 		</vehicleType>
 	'''
 
 	def static generateDummyCostInformation() '''
-		<costInformation fixedCostsPerDay="20.0" costsPerMeter="0.35" costsPerSecond="30.0">
+		<costInformation fixedCostsPerDay="20.0" costsPerMeter="0.35" costsPerSecond="30.0"/>
 	'''
 
 	def static generateDummyEngineInformation() '''
@@ -184,38 +194,42 @@ class MatSimExport {
 					«ENDFOR»
 				</vehicles>
 			</capabilities>
+			«IF !carrier.services.empty»
 			<services>
 				«FOR carrierService : carrier.services»
 					«generateCarrierService(carrierService)»
 				«ENDFOR»
 			</services>
+			«ENDIF»
+			«IF !carrier.shipments.isEmpty»
 			<shipments>
 			 	«FOR carrierShipment : carrier.shipments»
 			 		«generateCarrierShipment(carrierShipment)»
 			«ENDFOR»
 			</shipments>
+			«ENDIF»
+			«IF carrier.plan !== null»
 			<plans>
-				«IF carrier.plan !== null»
-					«generateCarrierPlan(carrier.plan)»
-				«ENDIF»
+				«generateCarrierPlan(carrier.plan)»
 			</plans>
+			«ENDIF»
 		</carrier>
 	'''
 
 	def static generateVehicle(CarrierVehicle vehicle) '''
-		<vehicle id="«vehicle.id»" depotLinkId="«vehicle.location.id»" typeId="«vehicle.type.id»"
+		<vehicle id="«vehicle.id»" depotLinkId="«generateLinkId(vehicle.location.id)»" typeId="«vehicle.type.id»"
 			earliestStart="«secondsToTimeStamp(vehicle.earliestStartTime)»" latestEnd="«secondsToTimeStamp(vehicle.latestEndTime)»"/>
 	'''
 
 	def static generateCarrierService(CarrierService carrierService) '''
-		<service id="«carrierService.id»" to="«carrierService.location.id»" capacityDemand="«carrierService.capacityDemand»"
+		<service id="«carrierService.id»" to="«generateLinkId(carrierService.location.id)»" capacityDemand="«carrierService.capacityDemand»"
 		         earliestStart="«secondsToTimeStamp(carrierService.timeWindow.start)»" latestEnd="«secondsToTimeStamp(carrierService.timeWindow.end)»"
 		         serviceDuration="«secondsToTimeStamp(carrierService.serviceDuration)»">
 		</service>
 	'''
 
 	def static generateCarrierShipment(CarrierShipment carrierShipment) '''
-		<shipment id="«carrierShipment.id»" from="«carrierShipment.from.id»" to="«carrierShipment.to.id»" size="«carrierShipment.size»"
+		<shipment id="«carrierShipment.id»" from="«generateLinkId(carrierShipment.from.id)»" to="«generateLinkId(carrierShipment.to.id)»" size="«carrierShipment.size»"
 		          startPickup="«secondsToTimeStamp(carrierShipment.pickupTimeWindow.start)»" endPickup="«secondsToTimeStamp(carrierShipment.pickupTimeWindow.end)»"
 		          pickupServiceTime="«secondsToTimeStamp(carrierShipment.pickupServiceTime)»"
 		          startDelivery="«secondsToTimeStamp(carrierShipment.deliveryTimeWindow.start)»" endDelivery="«secondsToTimeStamp(carrierShipment.deliveryTimeWindow.end)»"
@@ -249,7 +263,7 @@ class MatSimExport {
 				«IF tourElement instanceof Delivery»
 					«generateDelivery(tourElement as Delivery)»
 				«ENDIF»
-				«IF tourElement instanceof ServiceActivity»
+				«IF tourElement instanceof Leg»
 					«generateLeg(tourElement as Leg)»
 				«ENDIF»
 			«ENDFOR»

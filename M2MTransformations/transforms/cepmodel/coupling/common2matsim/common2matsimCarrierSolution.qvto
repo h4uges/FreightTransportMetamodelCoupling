@@ -121,7 +121,7 @@ helper createTourWithLegs(stopList : Sequence(MATSIM::freightContrib::tour::Tour
 		tourWithLegs += stop;
 		
 		var currentIndex := stopList -> indexOf(stop);
-		if (currentIndex < (stopList -> size() - 1)) then {
+		if (currentIndex < (stopList -> size())) then {
 			var previousStop := stopList -> at(currentIndex);
 			var nextStop := stopList -> at(currentIndex + 1);
 			

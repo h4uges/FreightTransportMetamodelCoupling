@@ -18,6 +18,8 @@ data/
 /M2MTransformations/exampleInstances
 /M2MTransformations/exampleResults
 
+.settings/
+
 # ---- MAC-OS ----
 .DS_Store
 

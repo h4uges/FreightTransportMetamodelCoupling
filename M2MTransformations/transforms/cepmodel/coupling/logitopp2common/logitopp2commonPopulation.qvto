@@ -32,7 +32,6 @@ constructor COMMON_MM::localEntities::BusinessBranch::BusinessBranch(business : 
 	openingHours += business.openingHours -> map openingHour2OpeningHour();
 }
 
-// TODO: review
 mapping LOGITOPP::logiTopp::business::OpeningHour::openingHour2OpeningHour() : COMMON_MM::utils::MultiDayTimeWindow {
 	_from := new COMMON_MM::utils::MultiDayTimestamp(self.start);
 	to := new COMMON_MM::utils::MultiDayTimestamp(self._end)

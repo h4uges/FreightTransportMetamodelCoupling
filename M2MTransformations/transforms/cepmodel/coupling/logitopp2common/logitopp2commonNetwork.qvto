@@ -3,12 +3,13 @@ library logitopp2commonNetwork;
 modeltype COMMON_MM uses CommonFreightTransportMetamodel('http://www.cep-model-coupling.com/commonFreightTransportMetamodel');
 modeltype LOGITOPP uses logiToppMetamodel('http://www.cep-model-coupling.com/logiToppMetamodel');
 
+property coordinateEqualityTolerance = 0.000000001;
+property edgePositionTolerance = 0.000000001;
 property locationIdCounter = 0;
 
 mapping LOGITOPP::mobiTopp::network::RoadNetwork::roadNetwork2Network() : COMMON_MM::network::Network {
 	nodes += self.nodes -> map node2Node();
 	edges += self.edges -> map edge2Edge();
-	// no zones in common
 }
 
 mapping LOGITOPP::mobiTopp::network::Node::node2Node() : COMMON_MM::network::Node {
@@ -24,6 +25,7 @@ constructor COMMON_MM::utils::Coordinate::Coordinate(x : Real, y : Real) {
 	result.x := x;
 	result.y := y;
 }
+
 mapping LOGITOPP::mobiTopp::network::Edge::edge2Edge() : COMMON_MM::network::Edge {
 	id := self.id;
 	_from := self._from.resolveone(COMMON_MM::network::Node);
@@ -64,10 +66,10 @@ helper areEqualLocations(a : COMMON_MM::network::Location_, b : COMMON_MM::netwo
 	var aEdgeBasedAccess := a.networkAccess.oclAsType(COMMON_MM::network::EdgeBasedNetworkAccess);
 	var bEdgeBasedAccess := b.networkAccess.oclAsType(COMMON_MM::network::EdgeBasedNetworkAccess);
 	
-	return areEqual(a.coordinate.x, b.coordinate.x, 0.000000001) and
-  	areEqual(a.coordinate.y, b.coordinate.y, 0.000000001) and
+	return areEqual(a.coordinate.x, b.coordinate.x, coordinateEqualityTolerance) and
+  	areEqual(a.coordinate.y, b.coordinate.y, coordinateEqualityTolerance) and
   	aEdgeBasedAccess.edge = bEdgeBasedAccess.edge and
-  	areEqual(aEdgeBasedAccess.edgePosition, bEdgeBasedAccess.edgePosition, 0.000000001);
+  	areEqual(aEdgeBasedAccess.edgePosition, bEdgeBasedAccess.edgePosition, edgePositionTolerance);
 }
 
 helper areEqual(r1 : Real, r2 : Real, epsilon : Real) : Boolean {
