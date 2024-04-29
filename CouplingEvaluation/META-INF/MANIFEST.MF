@@ -1,0 +1,13 @@
+Manifest-Version: 1.0
+Bundle-ManifestVersion: 2
+Bundle-Name: M2MTransformationsInternal
+Bundle-SymbolicName: M2MTransformationsInternal
+Bundle-Version: 1.0.0.qualifier
+Automatic-Module-Name: M2MTransformationss
+Bundle-RequiredExecutionEnvironment: JavaSE-21
+Require-Bundle: CommonMM,
+ LogiToppMM,
+ MATSimMM
+Import-Package: org.eclipse.emf.ecore.xmi.impl,
+ org.junit;version="4.13.2",
+ org.junit.rules;version="4.13.2"
