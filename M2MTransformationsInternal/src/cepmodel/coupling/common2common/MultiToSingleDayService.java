@@ -46,8 +46,6 @@ import CommonFreightTransportMetamodel.utils.UtilsFactory;
  * assumptions:
  * - we work on a solution (that handels every shipment completly)
  * - we work on a MultiDayRepresentation
- * 
- * TODO: documentation
  */
 public class MultiToSingleDayService {
 	private int requestedSimulationDay = 0;
@@ -107,46 +105,52 @@ public class MultiToSingleDayService {
 			CommonFreightTransportMetamodelRoot root) {
 		List<ModifiedShipmentRecord> modifiedShipmentRecords = new ArrayList<>();
 		for (ShipmentRecord shipmentRecord : root.getLogisticSolution().getShipmentRecords()) {
-			List<ShipmentRecordEntry> removedShipmentRecordEntries = new ArrayList<>();
-			ShipmentRecordEntry latestDeltedBeforeRemaining = null;
-			ShipmentRecordEntry firstDeletedAfterRemaining = null;
+			ModifiedShipmentRecord modifiedShipmentRecord = removeShipmentRecordEntriesNotCompletlyWithinRequesteDay(
+					shipmentRecord);
 
-			ShipmentRecordEntry lastDeletedEntry = null;
-			boolean lastEntryHasBeenDeleted = false;
-
-			Iterator<ShipmentRecordEntry> entryIterator = shipmentRecord.getEntries().iterator();
-			int entryCount = 0;
-			while (entryIterator.hasNext()) {
-				ShipmentRecordEntry currentEntry = entryIterator.next();
-				boolean entryGetsRemoved = isNotCompleteWithinRequestedSimulationDay(currentEntry);
-
-				if (entryGetsRemoved) {
-					if (!lastEntryHasBeenDeleted && entryCount > 0) {
-						firstDeletedAfterRemaining = currentEntry;
-					}
-
-					removedShipmentRecordEntries.add(currentEntry);
-					entryIterator.remove();
-
-					lastDeletedEntry = currentEntry;
-					lastEntryHasBeenDeleted = true;
-				} else {
-					if (lastEntryHasBeenDeleted) {
-						latestDeltedBeforeRemaining = lastDeletedEntry;
-					}
-
-					lastEntryHasBeenDeleted = false;
-				}
-				entryCount++;
-			}
-
-			if (!removedShipmentRecordEntries.isEmpty()) {
-				modifiedShipmentRecords.add(
-						new ModifiedShipmentRecord(shipmentRecord, ImmutableList.copyOf(removedShipmentRecordEntries),
-								latestDeltedBeforeRemaining, firstDeletedAfterRemaining));
+			if (!modifiedShipmentRecord.removedShipmentRecordEntries.isEmpty()) {
+				modifiedShipmentRecords.add(modifiedShipmentRecord);
 			}
 		}
 		return ImmutableList.copyOf(modifiedShipmentRecords);
+	}
+
+	private ModifiedShipmentRecord removeShipmentRecordEntriesNotCompletlyWithinRequesteDay(ShipmentRecord shipmentRecord) {
+		List<ShipmentRecordEntry> removedShipmentRecordEntries = new ArrayList<>();
+		ShipmentRecordEntry latestDeltedBeforeRemaining = null;
+		ShipmentRecordEntry firstDeletedAfterRemaining = null;
+
+		ShipmentRecordEntry lastDeletedEntry = null;
+		boolean lastEntryHasBeenDeleted = false;
+
+		Iterator<ShipmentRecordEntry> entryIterator = shipmentRecord.getEntries().iterator();
+		int entryCount = 0;
+		while (entryIterator.hasNext()) {
+			ShipmentRecordEntry currentEntry = entryIterator.next();
+			boolean entryGetsRemoved = isNotCompleteWithinRequestedSimulationDay(currentEntry);
+
+			if (entryGetsRemoved) {
+				if (!lastEntryHasBeenDeleted && entryCount > 0) {
+					firstDeletedAfterRemaining = currentEntry;
+				}
+
+				removedShipmentRecordEntries.add(currentEntry);
+				entryIterator.remove();
+
+				lastDeletedEntry = currentEntry;
+				lastEntryHasBeenDeleted = true;
+			} else {
+				if (lastEntryHasBeenDeleted) {
+					latestDeltedBeforeRemaining = lastDeletedEntry;
+				}
+
+				lastEntryHasBeenDeleted = false;
+			}
+			entryCount++;
+		}
+
+		return new ModifiedShipmentRecord(shipmentRecord, ImmutableList.copyOf(removedShipmentRecordEntries),
+				latestDeltedBeforeRemaining, firstDeletedAfterRemaining);
 	}
 
 	/*
@@ -194,7 +198,7 @@ public class MultiToSingleDayService {
 
 	/*
 	 * For every deleted shipment record entry remove the shipment from the
-	 * corresponding tour stop
+	 * corresponding tour stops
 	 */
 	private void removeDeletedShipmentRecordEntriesFromTours(
 			ImmutableList<ModifiedShipmentRecord> modifiedShipmentRecords) {
@@ -267,14 +271,17 @@ public class MultiToSingleDayService {
 	// ---- shipments ----
 
 	/*
-	 * DISCUSS: - newShipment: origin, destination, arrivalAtOrigin,
-	 * arrivalTimeWindow TODO: documentation
+	 * DISCUSS: - newShipment: origin, destination, arrivalAtOrigin, arrivalTimeWindow
+	 * 
+	 * (1) for every shipment record entry that has been shorted create new shortened SplittedShipnent
+	 * (2) move start and end times of remaining shipments into simulation day
+	 * (3) replace references to original shipments with references to original shipments
 	 */
 	private void updateExistingShipments(CommonFreightTransportMetamodelRoot root,
 			ImmutableList<ModifiedShipmentRecord> modifiedShipmentRecords) {
 		Map<Shipment, SplittedShipment> shipment2ModifiedShipment = new HashMap<>();
 
-		// create shortend shipments
+		// create shortened shipments
 		for (ModifiedShipmentRecord modifiedShipmentRecord : modifiedShipmentRecords) {
 			if (!modifiedShipmentRecord.allEntriesRemoved) {
 				Shipment originalShipment = modifiedShipmentRecord.shipmentRecord.getShipment();

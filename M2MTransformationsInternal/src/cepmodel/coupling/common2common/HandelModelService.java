@@ -58,7 +58,6 @@ public class HandelModelService {
 
 		try {
 			targetResource.save(null);
-			System.out.println("Model saved successfully to: " + targetModelURI.toString());
 		} catch (Exception e) {
 			e.printStackTrace();
 		}

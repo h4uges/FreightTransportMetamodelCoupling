@@ -32,6 +32,7 @@ import CommonFreightTransportMetamodel.utils.MultiDayTimeWindow;
 import CommonFreightTransportMetamodel.utils.ShipmentLegStartEndPoint;
 import CommonFreightTransportMetamodel.utils.UtilsFactory;
 
+// creates shipment records for logistic solutions that don't contain any
 public class CreateShipmentRecordsService {
 
 	private static class RawShipmentRecordEntry {
@@ -50,26 +51,11 @@ public class CreateShipmentRecordsService {
 	}
 
 	public void applyTransformation(CommonFreightTransportMetamodelRoot root) {
-		// build location2ShipmentLegStartEndPoint
-		Map<Location_, ShipmentLegStartEndPoint> location2ShipmentLegStartEndPoint = new HashMap<>();
-		TreeIterator<EObject> modelElementsIterator = root.eAllContents();
-		while (modelElementsIterator.hasNext()) {
-			EObject modelElement = modelElementsIterator.next();
-			if (modelElement instanceof ShipmentLegStartEndPoint shipmentLegStartEndPoint) {
-				Location_ location = getLocationFromShipmentLegStartEndPoint(shipmentLegStartEndPoint);
-				location2ShipmentLegStartEndPoint.put(location, shipmentLegStartEndPoint);
-			}
-		}
-
-		// build shipment2RawShipmentRecords
-		Map<Shipment, Set<RawShipmentRecordEntry>> shipment2RawShipmentRecords = new HashMap<>();
-		List<PlannedTour> plannedTours = root.getLogisticSolution().getTours();
-		for (PlannedTour plannedTour : plannedTours) {
-			getTourLegs(plannedTour).forEach(leg -> {
-				shipment2RawShipmentRecords.putIfAbsent(leg.shipment, new HashSet<>());
-				shipment2RawShipmentRecords.get(leg.shipment).add(leg);
-			});
-		}
+		assertInvariants(root);
+		
+		Map<Location_, ShipmentLegStartEndPoint> location2ShipmentLegStartEndPoint = buildLocation2ShipmentLegStartEndPoint(
+				root);
+		Map<Shipment, List<RawShipmentRecordEntry>> shipment2RawShipmentRecords = buildRawShipmentRecords(root);
 
 		// create shipment records
 		List<ShipmentRecord> shipmentRecords = new ArrayList<>();
@@ -79,14 +65,15 @@ public class CreateShipmentRecordsService {
 				continue;
 			}
 
-			Set<RawShipmentRecordEntry> unsortedLegs = shipment2RawShipmentRecords.get(shipment);
-			List<RawShipmentRecordEntry> sortedLegs = unsortedLegs.stream().sorted(this::compareLegsByTime).toList();
+			List<RawShipmentRecordEntry> sortedLegs = shipment2RawShipmentRecords.get(shipment);
 
+			// initialize shipment record
 			ShipmentRecord shipmentRecord = LogisticSolutionFactory.eINSTANCE.createShipmentRecord();
 			shipmentRecord.setId(shipment.getId() + "_record");
 			shipmentRecord.setShipment(shipment);
 			shipmentRecord.setRepsonsibleCEPSP(shipment.getResponsibleCEPSP());
 
+			// add shipment record entries
 			for (int entryNum = 0; entryNum < sortedLegs.size(); entryNum++) {
 				RawShipmentRecordEntry sortedLeg = sortedLegs.get(entryNum);
 
@@ -98,6 +85,9 @@ public class CreateShipmentRecordsService {
 				shipmentRecordEntry.setPickUpStop(sortedLeg.pickUpStop);
 				shipmentRecordEntry.setDeliveryStop(sortedLeg.deliveryStop);
 
+				// Normally fromSpec and toSpec should be determined by the location. This is
+				// not the case if a custom stop location is used in the case of a pickup and
+				// delivery. For cases we can directly use the producer/consumer of the shipment
 				shipmentRecordEntry.setFromSpec(location2ShipmentLegStartEndPoint
 						.get(CommonMetamodelUtil.getStopLocation(sortedLeg.pickUpStop.getStopLocation())));
 				shipmentRecordEntry.setToSpec(location2ShipmentLegStartEndPoint
@@ -114,19 +104,41 @@ public class CreateShipmentRecordsService {
 				MultiDayTimeWindow tw = UtilsFactory.eINSTANCE.createMultiDayTimeWindow();
 				tw.setFrom(EcoreUtil.copy(((MultiDayTimeWindow) sortedLeg.pickUpStop.getStopTimeWindow()).getFrom()));
 				tw.setTo((EcoreUtil.copy((MultiDayTimeWindow) sortedLeg.deliveryStop.getStopTimeWindow()).getTo()));
-
 				shipmentRecordEntry.setTimeWindow(tw);
 
 				shipmentRecord.getEntries().add(shipmentRecordEntry);
 			}
-
 			shipmentRecords.add(shipmentRecord);
 		}
 
 		root.getLogisticSolution().getShipmentRecords().addAll(shipmentRecords);
-
-		// sort
 		CommonMetamodelUtil.sortDemandAndSolution(root);
+	}
+	
+	private void assertInvariants(CommonFreightTransportMetamodelRoot root) {
+		// TODO: add invariant that no results are contained
+		assert root.getLogisticSolution().getShipmentRecords().isEmpty();
+	}
+
+	private int compareLegsByTime(RawShipmentRecordEntry l1, RawShipmentRecordEntry l2) {
+		// Compare the pickUpTimeWindow of the from value and assume from is set
+		MultiDayTimeWindow l1PickUpTimeWindow = (MultiDayTimeWindow) l1.pickUpStop.getStopTimeWindow();
+		MultiDayTimeWindow l2PickUpTimeWindow = (MultiDayTimeWindow) l2.pickUpStop.getStopTimeWindow();
+		return CommonMetamodelUtil.compareTimes(l1PickUpTimeWindow.getFrom(), l2PickUpTimeWindow.getFrom());
+	}
+
+	private Map<Location_, ShipmentLegStartEndPoint> buildLocation2ShipmentLegStartEndPoint(
+			CommonFreightTransportMetamodelRoot root) {
+		Map<Location_, ShipmentLegStartEndPoint> location2ShipmentLegStartEndPoint = new HashMap<>();
+		TreeIterator<EObject> modelElementsIterator = root.eAllContents();
+		while (modelElementsIterator.hasNext()) {
+			EObject modelElement = modelElementsIterator.next();
+			if (modelElement instanceof ShipmentLegStartEndPoint shipmentLegStartEndPoint) {
+				Location_ location = getLocationFromShipmentLegStartEndPoint(shipmentLegStartEndPoint);
+				location2ShipmentLegStartEndPoint.put(location, shipmentLegStartEndPoint);
+			}
+		}
+		return location2ShipmentLegStartEndPoint;
 	}
 
 	private Location_ getLocationFromShipmentLegStartEndPoint(ShipmentLegStartEndPoint shipmentLegStartEndPoint) {
@@ -146,15 +158,24 @@ public class CreateShipmentRecordsService {
 		}
 	}
 
-	private int compareLegsByTime(RawShipmentRecordEntry l1, RawShipmentRecordEntry l2) {
-		// Compare the pickUpTimeWindow of the from value and assume from is set
-		// TODO: assumption: only multi day time window
-		MultiDayTimeWindow l1PickUpTimeWindow = (MultiDayTimeWindow) l1.pickUpStop.getStopTimeWindow();
-		MultiDayTimeWindow l2PickUpTimeWindow = (MultiDayTimeWindow) l2.pickUpStop.getStopTimeWindow();
-		return CommonMetamodelUtil.compareTimes(l1PickUpTimeWindow.getFrom(), l2PickUpTimeWindow.getFrom());
+	private Map<Shipment, List<RawShipmentRecordEntry>> buildRawShipmentRecords(
+			CommonFreightTransportMetamodelRoot root) {
+		Map<Shipment, Set<RawShipmentRecordEntry>> shipment2RawShipmentRecordEntries = new HashMap<>();
+		List<PlannedTour> plannedTours = root.getLogisticSolution().getTours();
+		for (PlannedTour plannedTour : plannedTours) {
+			getRawShipmentRecordEntriesAssociatedWithTour(plannedTour).forEach(leg -> {
+				shipment2RawShipmentRecordEntries.putIfAbsent(leg.shipment, new HashSet<>());
+				shipment2RawShipmentRecordEntries.get(leg.shipment).add(leg);
+			});
+		}
+
+		Map<Shipment, List<RawShipmentRecordEntry>> result = new HashMap<>();
+		shipment2RawShipmentRecordEntries.forEach((shipment, shipmentRecordEntries) -> result.put(shipment,
+				shipmentRecordEntries.stream().sorted(this::compareLegsByTime).toList()));
+		return result;
 	}
 
-	private Collection<RawShipmentRecordEntry> getTourLegs(PlannedTour plannedTour) {
+	private Collection<RawShipmentRecordEntry> getRawShipmentRecordEntriesAssociatedWithTour(PlannedTour plannedTour) {
 		Set<Shipment> handledShipments = new HashSet<>();
 		Map<Shipment, PickUpDeliveryStop> shipment2PickUpStop = new HashMap<>();
 		Map<Shipment, PickUpDeliveryStop> shipment2DeliveryStop = new HashMap<>();

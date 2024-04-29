@@ -29,6 +29,9 @@ import CommonFreightTransportMetamodel.utils.Timestamp_;
 import CommonFreightTransportMetamodel.utils.UtilsFactory;
 
 public class CommonMetamodelUtil {
+	
+	private CommonMetamodelUtil() {
+	}
 
 	public static MultiDayTimestamp createMultiDayTimeStamp(int simulationDay, int hour, int minute, int second) {
 		MultiDayTimestamp result = UtilsFactory.eINSTANCE.createMultiDayTimestamp();
@@ -79,11 +82,11 @@ public class CommonMetamodelUtil {
 	}
 
 	public static Location_ getStopLocation(StopLocation stopLocation) {
-		if (stopLocation instanceof CustomStopLocation) {
-			return ((CustomStopLocation) stopLocation).getLocation();
+		if (stopLocation instanceof CustomStopLocation customStopLocation) {
+			return customStopLocation.getLocation();
 		}
-		if (stopLocation instanceof ReferenceStopLocation) {
-			return ((ReferenceStopLocation) stopLocation).getLocation();
+		if (stopLocation instanceof ReferenceStopLocation referenceStopLocation) {
+			return referenceStopLocation.getLocation();
 		}
 		assert false;
 		return null;

@@ -27,6 +27,7 @@ mapping COMMON_MM::logisticSolution::PlannedTour::plannedTour2ScheduledTour() : 
 	tour := new MATSIM::freightContrib::tour::Tour(self.id, tourElements);
 	vehicle := self.vehicle.resolveone(MATSIM::freightContrib::CarrierVehicle);
 	
+	// TODO: fix bug
 	departureTime := tour.start.timeWindow.start;
 }
 
