@@ -213,9 +213,6 @@
           <genFeatures createChild="false" ecoreFeature="ecore:EAttribute MATSimFreightMetamodel.ecore#//matsim/core/Coord/y"/>
           <genFeatures createChild="false" ecoreFeature="ecore:EAttribute MATSimFreightMetamodel.ecore#//matsim/core/Coord/z"/>
         </genClasses>
-        <genClasses image="false" ecoreClass="MATSimFreightMetamodel.ecore#//matsim/core/Event">
-          <genFeatures createChild="false" ecoreFeature="ecore:EAttribute MATSimFreightMetamodel.ecore#//matsim/core/Event/time"/>
-        </genClasses>
         <nestedGenPackages prefix="Network" disposableProviderFactory="true" ecorePackage="MATSimFreightMetamodel.ecore#//matsim/core/network">
           <genClasses ecoreClass="MATSimFreightMetamodel.ecore#//matsim/core/network/Network">
             <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference MATSimFreightMetamodel.ecore#//matsim/core/network/Network/nodes"/>

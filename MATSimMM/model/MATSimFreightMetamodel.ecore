@@ -141,7 +141,7 @@
     </eSubpackages>
     <eSubpackages name="events" nsURI="http://www.cep-model-coupling.com/matSimFreightMetamodel/freightContrib/events"
         nsPrefix="events">
-      <eClassifiers xsi:type="ecore:EClass" name="CarrierEvent" abstract="true" eSuperTypes="#//matsim/core/Event">
+      <eClassifiers xsi:type="ecore:EClass" name="CarrierEvent" abstract="true">
         <eStructuralFeatures xsi:type="ecore:EReference" name="carrier" lowerBound="1"
             eType="#//freightContrib/Carrier"/>
         <eStructuralFeatures xsi:type="ecore:EReference" name="link" lowerBound="1"
@@ -303,10 +303,6 @@
             defaultValueLiteral="0"/>
         <eStructuralFeatures xsi:type="ecore:EAttribute" name="z" eType="ecore:EDataType http://www.eclipse.org/emf/2003/XMLType#//Double"
             defaultValueLiteral="0"/>
-      </eClassifiers>
-      <eClassifiers xsi:type="ecore:EClass" name="Event" abstract="true">
-        <eStructuralFeatures xsi:type="ecore:EAttribute" name="time" lowerBound="1"
-            eType="ecore:EDataType http://www.eclipse.org/emf/2003/XMLType#//Double"/>
       </eClassifiers>
       <eSubpackages name="network" nsURI="http://www.cep-model-coupling.com/matSimFreightMetamodel/matsim/core/network"
           nsPrefix="network">
