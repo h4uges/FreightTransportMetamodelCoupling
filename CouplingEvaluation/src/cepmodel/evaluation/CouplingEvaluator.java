@@ -67,6 +67,8 @@ import logiToppMetamodel.mobiTopp.network.Node;
 // evaluation of relations between logiToppMetamodel (source) and MATSimMetamodel (target)
 // assumption: source and target model are consistent regarding their 
 // assumption: order of common transformations "split transport chains" before "to single day"
+//
+// constraints are commented with C1, C2, ... to reference the constraints of the thesis
 public class CouplingEvaluator {
 	private static double coordinatePrecission = 0.0000001;
 	private static double edgeLengthPrecission = 0.0000001;
@@ -82,17 +84,18 @@ public class CouplingEvaluator {
 	public ErrorCollector collector = new ErrorCollector();
 
 	/*
-	 * input models are in data directory
+	 * input models are in data/MODELNAME directory (below project root)
 	 * LogiTopp model file name: MODELNAME_logiTopp.xmi
 	 * MATSim model file name: MODELNAME_day_REQUESTEDSIMULATIONDAY_matsim.xmi
 	 * (REQUESTEDSIMULATIONDAY as integer)
 	 */
 	@BeforeClass
 	public static void init() {
-		String mainPath = System.getProperty("user.dir") + "/data/";
+		// configure here:
 		String modelName = "rastatt";
 		requestedSimulationDay = Weekday.THURSDAY;
 
+		String mainPath = System.getProperty("user.dir") + "/data/";
 		logiToppRoot = HandelModelService
 				.loadLogiToppModel(Path.of(mainPath, modelName, modelName + "_logitopp.xmi").toString());
 		matSimRoot = HandelModelService.loadMATSimModel(
@@ -358,7 +361,6 @@ public class CouplingEvaluator {
 
 	/*
 	 * C8
-	 * TODO: fix description of road access edge in Thesis
 	 */
 	@Test
 	public void testShipments() {

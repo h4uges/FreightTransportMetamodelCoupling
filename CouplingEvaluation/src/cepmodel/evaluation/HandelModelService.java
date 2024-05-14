@@ -10,11 +10,12 @@ import org.eclipse.emf.ecore.resource.ResourceSet;
 import org.eclipse.emf.ecore.resource.impl.ResourceSetImpl;
 import org.eclipse.emf.ecore.xmi.impl.XMIResourceFactoryImpl;
 
-import CommonFreightTransportMetamodel.coupling.CouplingPackage;
 import MATSimFreightMetamodel.dataExchange.DataExchangeRoot;
-import logiToppMetamodel.dataExchange.DataExchangePackage;
 import logiToppMetamodel.dataExchange.SolutionExchangeRoot;
 
+/*
+ * service for loading logiTopp and MATSim model instances from xmi files and extracting the root object
+ */
 public class HandelModelService {
 
 	private HandelModelService() {
@@ -27,13 +28,12 @@ public class HandelModelService {
 		// Load the MATSim model
 		ResourceSet resourceSet = new ResourceSetImpl();
 		resourceSet.getResourceFactoryRegistry().getExtensionToFactoryMap().put("xmi", new XMIResourceFactoryImpl());
-		resourceSet.getResourceFactoryRegistry().getExtensionToFactoryMap().put("dataExchange",
-				new XMIResourceFactoryImpl());
+
 		Resource resource = resourceSet.getResource(URI.createFileURI(sourceModelPath), true);
 
 		// find and return root object
-		Optional<EObject> optionalRoot = resource.getContents().stream()
-				.filter(elem -> elem instanceof DataExchangeRoot).findFirst();
+		Optional<EObject> optionalRoot = resource.getContents().stream().filter(DataExchangeRoot.class::isInstance)
+				.findFirst();
 		if (optionalRoot.isEmpty()) {
 			throw new IllegalArgumentException("could not find MATSim root in model");
 		}
@@ -47,34 +47,14 @@ public class HandelModelService {
 		// Load the LogiTopp model
 		ResourceSet resourceSet = new ResourceSetImpl();
 		resourceSet.getResourceFactoryRegistry().getExtensionToFactoryMap().put("xmi", new XMIResourceFactoryImpl());
-		resourceSet.getResourceFactoryRegistry().getExtensionToFactoryMap().put("dataExchange",
-				new XMIResourceFactoryImpl());
 		Resource resource = resourceSet.getResource(URI.createFileURI(sourceModelPath), true);
 
 		// find and return root object for logistic solution exchange point
-		Optional<EObject> optionalRoot = resource.getContents().stream()
-				.filter(elem -> elem instanceof SolutionExchangeRoot).findFirst();
+		Optional<EObject> optionalRoot = resource.getContents().stream().filter(SolutionExchangeRoot.class::isInstance)
+				.findFirst();
 		if (optionalRoot.isEmpty()) {
 			throw new IllegalArgumentException("could not find LogiTopp solution exchange root in model");
 		}
 		return (SolutionExchangeRoot) optionalRoot.get();
-	}
-
-	public static void saveModel(EObject rootObject, String targetModelPath) {
-		CouplingPackage.eINSTANCE.eClass();
-		DataExchangePackage.eINSTANCE.eClass();
-		Resource.Factory.Registry.INSTANCE.getExtensionToFactoryMap().put("xmi", new XMIResourceFactoryImpl());
-
-		ResourceSet resourceSet = new ResourceSetImpl();
-
-		URI targetModelURI = URI.createFileURI(targetModelPath);
-		Resource targetResource = resourceSet.createResource(targetModelURI);
-		targetResource.getContents().add(rootObject);
-
-		try {
-			targetResource.save(null);
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
 	}
 }
