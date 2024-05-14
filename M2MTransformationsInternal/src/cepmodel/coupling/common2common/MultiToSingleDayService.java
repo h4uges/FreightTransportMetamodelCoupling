@@ -32,14 +32,14 @@ import CommonFreightTransportMetamodel.logisticSolution.ShipmentRecordEntry;
 import CommonFreightTransportMetamodel.logisticSolution.StartEndStop;
 import CommonFreightTransportMetamodel.logisticSolution.Stop;
 import CommonFreightTransportMetamodel.logisticSolution.Tour;
-import CommonFreightTransportMetamodel.network.Location_;
-import CommonFreightTransportMetamodel.utils.Durration_;
+import CommonFreightTransportMetamodel.network.Location;
+import CommonFreightTransportMetamodel.utils.Durration;
 import CommonFreightTransportMetamodel.utils.MultiDayTimeWindow;
 import CommonFreightTransportMetamodel.utils.MultiDayTimestamp;
 import CommonFreightTransportMetamodel.utils.SingleDayTimeWindow;
 import CommonFreightTransportMetamodel.utils.SingleDayTimestamp;
-import CommonFreightTransportMetamodel.utils.TimeWindow_;
-import CommonFreightTransportMetamodel.utils.Timestamp_;
+import CommonFreightTransportMetamodel.utils.TimeWindow;
+import CommonFreightTransportMetamodel.utils.Timestamp;
 import CommonFreightTransportMetamodel.utils.UtilsFactory;
 
 /*
@@ -115,7 +115,8 @@ public class MultiToSingleDayService {
 		return ImmutableList.copyOf(modifiedShipmentRecords);
 	}
 
-	private ModifiedShipmentRecord removeShipmentRecordEntriesNotCompletlyWithinRequesteDay(ShipmentRecord shipmentRecord) {
+	private ModifiedShipmentRecord removeShipmentRecordEntriesNotCompletlyWithinRequesteDay(
+			ShipmentRecord shipmentRecord) {
 		List<ShipmentRecordEntry> removedShipmentRecordEntries = new ArrayList<>();
 		ShipmentRecordEntry latestDeltedBeforeRemaining = null;
 		ShipmentRecordEntry firstDeletedAfterRemaining = null;
@@ -271,11 +272,14 @@ public class MultiToSingleDayService {
 	// ---- shipments ----
 
 	/*
-	 * DISCUSS: - newShipment: origin, destination, arrivalAtOrigin, arrivalTimeWindow
+	 * DISCUSS: - newShipment: origin, destination, arrivalAtOrigin,
+	 * arrivalTimeWindow
 	 * 
-	 * (1) for every shipment record entry that has been shorted create new shortened SplittedShipnent
+	 * (1) for every shipment record entry that has been shorted create new
+	 * shortened SplittedShipnent
 	 * (2) move start and end times of remaining shipments into simulation day
-	 * (3) replace references to original shipments with references to original shipments
+	 * (3) replace references to original shipments with references to original
+	 * shipments
 	 */
 	private void updateExistingShipments(CommonFreightTransportMetamodelRoot root,
 			ImmutableList<ModifiedShipmentRecord> modifiedShipmentRecords) {
@@ -321,7 +325,7 @@ public class MultiToSingleDayService {
 		// origin
 		// if the original origin is valid and present - we take it
 		// otherwise: we take the location of the pickup stop
-		Optional<Location_> origin = getOrigin(originalShipment);
+		Optional<Location> origin = getOrigin(originalShipment);
 		if (modifiedShipmentRecord.latestDeltedBeforeRemaining == null && origin.isPresent()) {
 			newShipment.setOrigin(origin.get());
 		} else {
@@ -332,7 +336,7 @@ public class MultiToSingleDayService {
 		// destination
 		// if the original destination is valid and present - we take it
 		// otherwise: we take the location of the delivery stop
-		Optional<Location_> destination = getDestination(originalShipment);
+		Optional<Location> destination = getDestination(originalShipment);
 		if (modifiedShipmentRecord.firstDeletedAfterRemaining == null && destination.isPresent()) {
 			newShipment.setDestination(destination.get());
 		} else {
@@ -349,7 +353,7 @@ public class MultiToSingleDayService {
 		if (modifiedShipmentRecord.latestDeltedBeforeRemaining != null) {
 			MultiDayTimestamp latestPriviousArrival = ((MultiDayTimeWindow) modifiedShipmentRecord.latestDeltedBeforeRemaining
 					.getDeliveryStop().getStopTimeWindow()).getTo();
-			Durration_ minimumDurationAtHub = ((LogisticHub) modifiedShipmentRecord.latestDeltedBeforeRemaining
+			Durration minimumDurationAtHub = ((LogisticHub) modifiedShipmentRecord.latestDeltedBeforeRemaining
 					.getToSpec()).getMinimumTranshipmentTime();
 
 			newShipment.setArrivalAtOrigin(
@@ -366,7 +370,7 @@ public class MultiToSingleDayService {
 		if (modifiedShipmentRecord.firstDeletedAfterRemaining != null) {
 			MultiDayTimestamp nextDeparture = ((MultiDayTimeWindow) modifiedShipmentRecord.firstDeletedAfterRemaining
 					.getPickUpStop().getStopTimeWindow()).getFrom();
-			Durration_ minimumDurationAtHub = ((LogisticHub) modifiedShipmentRecord.firstDeletedAfterRemaining
+			Durration minimumDurationAtHub = ((LogisticHub) modifiedShipmentRecord.firstDeletedAfterRemaining
 					.getFromSpec()).getMinimumTranshipmentTime();
 			MultiDayTimestamp latestArrivalTime = CommonMetamodelUtil.subtractDurationFromTimestamp(nextDeparture,
 					minimumDurationAtHub);
@@ -458,8 +462,8 @@ public class MultiToSingleDayService {
 		allShops.forEach(shop -> updateTimeWindows(shop.getOpeningHours()));
 	}
 
-	private void updateTimeWindows(Collection<TimeWindow_> timeWindows) {
-		Iterator<TimeWindow_> openingHours = timeWindows.iterator();
+	private void updateTimeWindows(Collection<TimeWindow> timeWindows) {
+		Iterator<TimeWindow> openingHours = timeWindows.iterator();
 		while (openingHours.hasNext()) {
 			MultiDayTimeWindow openingHour = (MultiDayTimeWindow) openingHours.next();
 			if (isPartiallyWithinRequestedSimulationDay(openingHour)) {
@@ -518,21 +522,21 @@ public class MultiToSingleDayService {
 		return multiDayTimestamp.getSimulationDay() == requestedSimulationDay;
 	}
 
-	private Optional<Location_> getOrigin(Shipment shipment) {
+	private Optional<Location> getOrigin(Shipment shipment) {
 		if (shipment instanceof FromInsideStudyAreaShipmentBase fromInsideStudyAreaShipment) {
 			return Optional.of(fromInsideStudyAreaShipment.getOrigin());
 		}
 		return Optional.empty();
 	}
 
-	private Optional<Location_> getDestination(Shipment shipment) {
+	private Optional<Location> getDestination(Shipment shipment) {
 		if (shipment instanceof ToInsideStudyAreaShipment toInsideStudyAreaShipment) {
 			return Optional.of(toInsideStudyAreaShipment.getDestination());
 		}
 		return Optional.empty();
 	}
 
-	private void moveIntoSimulationDay(Timestamp_ timestamp) {
+	private void moveIntoSimulationDay(Timestamp timestamp) {
 		MultiDayTimestamp multiDayTimestamp = (MultiDayTimestamp) timestamp;
 
 		if (multiDayTimestamp.getSimulationDay() < requestedSimulationDay) {
@@ -549,7 +553,7 @@ public class MultiToSingleDayService {
 		}
 	}
 
-	private void moveIntoSimulationDay(TimeWindow_ timeWindow) {
+	private void moveIntoSimulationDay(TimeWindow timeWindow) {
 		MultiDayTimeWindow multiDayTimeWindow = (MultiDayTimeWindow) timeWindow;
 
 		if (multiDayTimeWindow.getFrom() != null) {

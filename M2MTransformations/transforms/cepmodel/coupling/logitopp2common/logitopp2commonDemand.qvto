@@ -6,7 +6,7 @@ import logitopp2commonNetwork;
 modeltype COMMON_MM uses CommonFreightTransportMetamodel('http://www.cep-model-coupling.com/commonFreightTransportMetamodel');
 modeltype LOGITOPP uses logiToppMetamodel('http://www.cep-model-coupling.com/logiToppMetamodel');
 
-property workLocationsCollector : Set(COMMON_MM::network::Location_) = Set{};
+property workLocationsCollector : Set(COMMON_MM::network::Location) = Set{};
 
 mapping LOGITOPP::dataExchange::Demand::demand2Demand(logisticNetwork : COMMON_MM::logisticNetwork::LogisticNetwork) : COMMON_MM::logisticDemand::Demand {
 	shipments += self.parcels -> map parcel2Shipment(logisticNetwork);
@@ -66,7 +66,7 @@ when {self.oclIsKindOf(LOGITOPP::logiTopp::parcels::BusinessParcel) and self.isP
 	arrivalAtDepotTimeWindow := createWholeSimulationPeriodTimeWindow();
 }
 
-helper determineDestination(privateParcel : LOGITOPP::logiTopp::parcels::PrivateParcel, receiver : COMMON_MM::localEntities::Person, logisticNetwork : COMMON_MM::logisticNetwork::LogisticNetwork) : COMMON_MM::network::Location_ {
+helper determineDestination(privateParcel : LOGITOPP::logiTopp::parcels::PrivateParcel, receiver : COMMON_MM::localEntities::Person, logisticNetwork : COMMON_MM::logisticNetwork::LogisticNetwork) : COMMON_MM::network::Location {
 	switch {
 		case (privateParcel.destinationType = LOGITOPP::logiTopp::parcels::ParcelDestinationType::HOME) {
 			return receiver.household.location
@@ -85,7 +85,7 @@ helper determineDestination(privateParcel : LOGITOPP::logiTopp::parcels::Private
 	return null;
 }
 
-helper createAndAddWorkLocation(person : LOGITOPP::mobiTopp::citizens::Person) : COMMON_MM::network::Location_ {
+helper createAndAddWorkLocation(person : LOGITOPP::mobiTopp::citizens::Person) : COMMON_MM::network::Location {
 	var commonLocation := location2Location(person.workLocation, "workLocationOfPerson_" + person.id);
 	workLocationsCollector += commonLocation;
 	return commonLocation;

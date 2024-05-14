@@ -7,7 +7,7 @@ modeltype COMMON_MM uses CommonFreightTransportMetamodel('http://www.cep-model-c
 modeltype LOGITOPP uses logiToppMetamodel('http://www.cep-model-coupling.com/logiToppMetamodel');
 
 // TODO: default values
-property DEFAULT_TRANSSHIPMENT_TIME = new COMMON_MM::utils::Durration_(0, 0, 0, 0);
+property DEFAULT_TRANSSHIPMENT_TIME = new COMMON_MM::utils::Durration(0, 0, 0, 0);
 property DEFAULT_HUB_IS_EXIT = true;
 property DEFAULT_HUB_IS_ENTRY = true;
 
@@ -86,7 +86,7 @@ constructor COMMON_MM::logisticNetwork::UsedPublicServicePoint::UsedPublicServic
 	publicServicePoint := publicServicePoint_;
 }
 
-constructor COMMON_MM::logisticNetwork::Packstation::Packstation(location_ : COMMON_MM::network::Location_) {
+constructor COMMON_MM::logisticNetwork::Packstation::Packstation(location_ : COMMON_MM::network::Location) {
 	id := "packstation_" + getPackstationId();
 	location := location_;
 	location.id := location.id + id;
@@ -99,7 +99,7 @@ helper getPackstationId() : String {
 	return id;
 }
 
-helper findAllPackstationLocations(demand : LOGITOPP::dataExchange::Demand) :Set(COMMON_MM::network::Location_) {
+helper findAllPackstationLocations(demand : LOGITOPP::dataExchange::Demand) :Set(COMMON_MM::network::Location) {
 	var packstationLocatons := 
 		demand.parcels 
 		-> selectByKind(LOGITOPP::logiTopp::parcels::PrivateParcel)
@@ -107,7 +107,7 @@ helper findAllPackstationLocations(demand : LOGITOPP::dataExchange::Demand) :Set
 		-> collect(p | location2Location(p.zoneAndLocation.location, ""))
 		-> asSet();
 		
-  	var representativeLocations : Set(COMMON_MM::network::Location_) = Set{};
+  	var representativeLocations : Set(COMMON_MM::network::Location) = Set{};
 	
 	packstationLocatons -> forEach(loc) {
 		var representativeFound : Boolean = false;
@@ -128,7 +128,7 @@ helper findAllPackstationLocations(demand : LOGITOPP::dataExchange::Demand) :Set
 	  return representativeLocations;
 }
 
-query findAllPackstationLocationsForCEPSP(demand : LOGITOPP::dataExchange::Demand, cepsp : LOGITOPP::logiTopp::distribution::CEPServiceProvider) : Collection(COMMON_MM::network::Location_) {
+query findAllPackstationLocationsForCEPSP(demand : LOGITOPP::dataExchange::Demand, cepsp : LOGITOPP::logiTopp::distribution::CEPServiceProvider) : Collection(COMMON_MM::network::Location) {
 	var packstationLocatons := 
 		demand.parcels
 		-> selectByKind(LOGITOPP::logiTopp::parcels::PrivateParcel)

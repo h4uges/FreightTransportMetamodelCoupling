@@ -84,11 +84,11 @@ query findLogisticFacility(stopLocation_ : LOGITOPP::mobiTopp::network::Location
 	return null;
 }
 
-constructor COMMON_MM::logisticSolution::CustomStopLocation::CustomStopLocation(location_ : COMMON_MM::network::Location_) {
+constructor COMMON_MM::logisticSolution::CustomStopLocation::CustomStopLocation(location_ : COMMON_MM::network::Location) {
 	location := location_;
 }
 
-constructor COMMON_MM::logisticSolution::ReferenceStopLocation::ReferenceStopLocation(location_ : COMMON_MM::network::Location_) {
+constructor COMMON_MM::logisticSolution::ReferenceStopLocation::ReferenceStopLocation(location_ : COMMON_MM::network::Location) {
 	location := location_;
 }
 

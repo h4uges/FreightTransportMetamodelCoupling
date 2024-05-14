@@ -37,15 +37,15 @@ mapping LOGITOPP::mobiTopp::network::Edge::edge2Edge() : COMMON_MM::network::Edg
 
 // ---- network.location ----
 
-helper location2Location(location : LOGITOPP::mobiTopp::network::Location, identifier : String) : COMMON_MM::network::Location_ {
+helper location2Location(location : LOGITOPP::mobiTopp::network::Location, identifier : String) : COMMON_MM::network::Location {
 	var id := createLocationId();
 	var coordinate := point2D2Coordinate(location.coordinate);
 	var networkAccess := new COMMON_MM::network::EdgeBasedNetworkAccess(location.roadAccessEdge, location.roadPosition);
 	
-	return new COMMON_MM::network::Location_(id, identifier, coordinate, networkAccess);
+	return new COMMON_MM::network::Location(id, identifier, coordinate, networkAccess);
 }
 
-constructor COMMON_MM::network::Location_::Location_(id : String, identifier: String, coordinate : COMMON_MM::utils::Coordinate, networkAccess: COMMON_MM::network::NetworkAccess) {
+constructor COMMON_MM::network::Location::Location(id : String, identifier: String, coordinate : COMMON_MM::utils::Coordinate, networkAccess: COMMON_MM::network::NetworkAccess) {
 	result.id := "loc_" + id + "_" + identifier;
 	result.coordinate := coordinate;
 	result.networkAccess := networkAccess;
@@ -62,7 +62,7 @@ constructor COMMON_MM::network::EdgeBasedNetworkAccess::EdgeBasedNetworkAccess(e
 	edgePosition := edgePostion_;
 }
 
-helper areEqualLocations(a : COMMON_MM::network::Location_, b : COMMON_MM::network::Location_) : Boolean {
+helper areEqualLocations(a : COMMON_MM::network::Location, b : COMMON_MM::network::Location) : Boolean {
 	var aEdgeBasedAccess := a.networkAccess.oclAsType(COMMON_MM::network::EdgeBasedNetworkAccess);
 	var bEdgeBasedAccess := b.networkAccess.oclAsType(COMMON_MM::network::EdgeBasedNetworkAccess);
 	

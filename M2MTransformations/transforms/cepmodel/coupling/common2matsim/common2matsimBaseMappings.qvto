@@ -21,16 +21,16 @@ property DEFAULT_VEHICLE_STANDINGROOM = 0;
 // ---- ENUMS ----
 
 // TODO: discuss, maybe add 1 : n mapping
-helper vehicleType2TransportMode(vehicleType : COMMON_MM::network::VehicleType_) : MATSIM::matsim::TransportMode {
+helper vehicleType2TransportMode(vehicleType : COMMON_MM::network::VehicleType) : MATSIM::matsim::TransportMode {
 	switch
 	{
-		case (vehicleType = COMMON_MM::network::VehicleType_::TRUCK) {return MATSIM::matsim::TransportMode::truck};
-		case (vehicleType = COMMON_MM::network::VehicleType_::TRAM) {return MATSIM::matsim::TransportMode::pt};
-		case (vehicleType = COMMON_MM::network::VehicleType_::CAR) {return MATSIM::matsim::TransportMode::car};
-		case (vehicleType = COMMON_MM::network::VehicleType_::BIKE) {return MATSIM::matsim::TransportMode::bike};
-		case (vehicleType = COMMON_MM::network::VehicleType_::WALKING) {return MATSIM::matsim::TransportMode::walk};
-		case (vehicleType = COMMON_MM::network::VehicleType_::DELIVERY_VEHICLE) {return MATSIM::matsim::TransportMode::truck};
-		case (vehicleType = COMMON_MM::network::VehicleType_::OTHER) {return MATSIM::matsim::TransportMode::other};
+		case (vehicleType = COMMON_MM::network::VehicleType::TRUCK) {return MATSIM::matsim::TransportMode::truck};
+		case (vehicleType = COMMON_MM::network::VehicleType::TRAM) {return MATSIM::matsim::TransportMode::pt};
+		case (vehicleType = COMMON_MM::network::VehicleType::CAR) {return MATSIM::matsim::TransportMode::car};
+		case (vehicleType = COMMON_MM::network::VehicleType::BIKE) {return MATSIM::matsim::TransportMode::bike};
+		case (vehicleType = COMMON_MM::network::VehicleType::WALKING) {return MATSIM::matsim::TransportMode::walk};
+		case (vehicleType = COMMON_MM::network::VehicleType::DELIVERY_VEHICLE) {return MATSIM::matsim::TransportMode::truck};
+		case (vehicleType = COMMON_MM::network::VehicleType::OTHER) {return MATSIM::matsim::TransportMode::other};
 		else {return null};
 	};
 }
@@ -57,7 +57,7 @@ helper stopLocationToLink(stopLocation : COMMON_MM::logisticSolution::ReferenceS
 	return location2Link(stopLocation.location);
 }
 
-helper location2Link(location: COMMON_MM::network::Location_) : MATSIM::matsim::core::network::Link {
+helper location2Link(location: COMMON_MM::network::Location) : MATSIM::matsim::core::network::Link {
 	var edge := location.networkAccess.oclAsType(COMMON_MM::network::EdgeBasedNetworkAccess).edge;
 	return edge.resolveone(MATSIM::matsim::core::network::Link);
 }
@@ -69,7 +69,7 @@ constructor MATSIM::freightContrib::TimeWindow::TimeWindow(start_ : Real, _end_:
 	_end := _end_;
 }
 
-helper optionalTimeWindow2TimeWindow(timeWindow : COMMON_MM::utils::TimeWindow_) : MATSIM::freightContrib::TimeWindow {
+helper optionalTimeWindow2TimeWindow(timeWindow : COMMON_MM::utils::TimeWindow) : MATSIM::freightContrib::TimeWindow {
 	if (timeWindow <> null) then {
 		return mapTimeWindow(timeWindow);
 	} else {
@@ -78,7 +78,7 @@ helper optionalTimeWindow2TimeWindow(timeWindow : COMMON_MM::utils::TimeWindow_)
 	endif
 }
 
-helper mapTimeWindow(timeWindow : COMMON_MM::utils::TimeWindow_) : MATSIM::freightContrib::TimeWindow {
+helper mapTimeWindow(timeWindow : COMMON_MM::utils::TimeWindow) : MATSIM::freightContrib::TimeWindow {
 	var singleDayTimeWindow = timeWindow.oclAsType(COMMON_MM::utils::SingleDayTimeWindow);
 	var start := handleTimeWindowStart(singleDayTimeWindow._from);
 	var _end := handleTimeWindowEnd(singleDayTimeWindow.to);
@@ -104,7 +104,7 @@ helper handleTimeWindowEnd(_end : COMMON_MM::utils::SingleDayTimestamp) : Real {
 }
 
 
-helper timeStampToRightOpenTimeWindow(timeStamp : COMMON_MM::utils::Timestamp_) : MATSIM::freightContrib::TimeWindow {
+helper timeStampToRightOpenTimeWindow(timeStamp : COMMON_MM::utils::Timestamp) : MATSIM::freightContrib::TimeWindow {
 	var singleDayTimeStamp := timeStamp.oclAsType(COMMON_MM::utils::SingleDayTimestamp);
 	return new MATSIM::freightContrib::TimeWindow(timeStamp2Seconds(singleDayTimeStamp), 23 * 60 * 60 + 59 * 60 + 59);
 }

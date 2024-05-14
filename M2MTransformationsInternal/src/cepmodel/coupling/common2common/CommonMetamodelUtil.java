@@ -20,16 +20,16 @@ import CommonFreightTransportMetamodel.logisticDemand.ToOutsideStudyAreaShipment
 import CommonFreightTransportMetamodel.logisticSolution.CustomStopLocation;
 import CommonFreightTransportMetamodel.logisticSolution.ReferenceStopLocation;
 import CommonFreightTransportMetamodel.logisticSolution.StopLocation;
-import CommonFreightTransportMetamodel.network.Location_;
-import CommonFreightTransportMetamodel.utils.Durration_;
-import CommonFreightTransportMetamodel.utils.HasId_;
+import CommonFreightTransportMetamodel.network.Location;
+import CommonFreightTransportMetamodel.utils.Durration;
+import CommonFreightTransportMetamodel.utils.HasId;
 import CommonFreightTransportMetamodel.utils.MultiDayTimestamp;
-import CommonFreightTransportMetamodel.utils.TimeWindow_;
-import CommonFreightTransportMetamodel.utils.Timestamp_;
+import CommonFreightTransportMetamodel.utils.TimeWindow;
+import CommonFreightTransportMetamodel.utils.Timestamp;
 import CommonFreightTransportMetamodel.utils.UtilsFactory;
 
 public class CommonMetamodelUtil {
-	
+
 	private CommonMetamodelUtil() {
 	}
 
@@ -51,19 +51,19 @@ public class CommonMetamodelUtil {
 				+ time.getSecond();
 	}
 
-	private static int getSecondRepresentation(Durration_ duration) {
+	private static int getSecondRepresentation(Durration duration) {
 		return duration.getDays() * 24 * 60 * 60 + duration.getHours() * 60 * 60 + duration.getMinutes() * 60
 				+ duration.getSeconds();
 	}
 
-	public static MultiDayTimestamp addDurationToTimestamp(MultiDayTimestamp timestamp, Durration_ duration) {
+	public static MultiDayTimestamp addDurationToTimestamp(MultiDayTimestamp timestamp, Durration duration) {
 		int timestampSeconds = getSecondRepresentation(timestamp);
 		int durationSeconds = getSecondRepresentation(duration);
 
 		return createMultiDayTimestampFromSeconds(timestampSeconds + durationSeconds);
 	}
 
-	public static MultiDayTimestamp subtractDurationFromTimestamp(MultiDayTimestamp timestamp, Durration_ duration) {
+	public static MultiDayTimestamp subtractDurationFromTimestamp(MultiDayTimestamp timestamp, Durration duration) {
 		int timestampSeconds = getSecondRepresentation(timestamp);
 		int durationSeconds = getSecondRepresentation(duration);
 
@@ -81,7 +81,7 @@ public class CommonMetamodelUtil {
 		return result;
 	}
 
-	public static Location_ getStopLocation(StopLocation stopLocation) {
+	public static Location getStopLocation(StopLocation stopLocation) {
 		if (stopLocation instanceof CustomStopLocation customStopLocation) {
 			return customStopLocation.getLocation();
 		}
@@ -92,7 +92,7 @@ public class CommonMetamodelUtil {
 		return null;
 	}
 
-	public static Timestamp_ getArrivalAtOrigin(Shipment shipment) {
+	public static Timestamp getArrivalAtOrigin(Shipment shipment) {
 		if (shipment instanceof FromInsideStudyAreaShipmentBase fromInsideStudyAreaShipmentBase) {
 			return fromInsideStudyAreaShipmentBase.getArrivalAtOrigin();
 		}
@@ -103,7 +103,7 @@ public class CommonMetamodelUtil {
 		return null;
 	}
 
-	public static TimeWindow_ getArrivalAtDestination(Shipment shipment) {
+	public static TimeWindow getArrivalAtDestination(Shipment shipment) {
 		if (shipment instanceof ToInsideStudyAreaShipmentBase toInsideStudyAreaShipmentBase) {
 			return toInsideStudyAreaShipmentBase.getArrivalAtDestinationTimeWindow();
 		}
@@ -128,9 +128,9 @@ public class CommonMetamodelUtil {
 	}
 
 	public static void sortDemandAndSolution(CommonFreightTransportMetamodelRoot root) {
-		sortEList(root.getLogisticSolution().getShipmentRecords(), Comparator.comparing(HasId_::getId));
-		sortEList(root.getLogisticSolution().getTours(), Comparator.comparing(HasId_::getId));
-		sortEList(root.getDemand().getShipments(), Comparator.comparing(HasId_::getId));
+		sortEList(root.getLogisticSolution().getShipmentRecords(), Comparator.comparing(HasId::getId));
+		sortEList(root.getLogisticSolution().getTours(), Comparator.comparing(HasId::getId));
+		sortEList(root.getDemand().getShipments(), Comparator.comparing(HasId::getId));
 	}
 
 	private static <T> void sortEList(EList<T> eList, Comparator<? super T> comparator) {

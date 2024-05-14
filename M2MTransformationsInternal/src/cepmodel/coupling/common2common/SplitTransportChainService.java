@@ -23,10 +23,10 @@ import CommonFreightTransportMetamodel.logisticSolution.ShipmentRecord;
 import CommonFreightTransportMetamodel.logisticSolution.ShipmentRecordEntry;
 import CommonFreightTransportMetamodel.logisticSolution.Stop;
 import CommonFreightTransportMetamodel.logisticSolution.Tour;
-import CommonFreightTransportMetamodel.utils.Durration_;
+import CommonFreightTransportMetamodel.utils.Durration;
 import CommonFreightTransportMetamodel.utils.MultiDayTimeWindow;
 import CommonFreightTransportMetamodel.utils.MultiDayTimestamp;
-import CommonFreightTransportMetamodel.utils.TimeWindow_;
+import CommonFreightTransportMetamodel.utils.TimeWindow;
 
 public class SplitTransportChainService {
 	Map<Shipment, Collection<Shipment>> shipment2splittedShipments;
@@ -133,7 +133,7 @@ public class SplitTransportChainService {
 		if (optionalPreviousShipmentEntry.isPresent()) {
 			MultiDayTimestamp latestPriviusArrival = ((MultiDayTimeWindow) optionalPreviousShipmentEntry.get()
 					.getDeliveryStop().getStopTimeWindow()).getTo();
-			Durration_ minimumDurationAtHub = ((LogisticHub) optionalPreviousShipmentEntry.get().getToSpec())
+			Durration minimumDurationAtHub = ((LogisticHub) optionalPreviousShipmentEntry.get().getToSpec())
 					.getMinimumTranshipmentTime();
 
 			result.setArrivalAtOrigin(
@@ -143,7 +143,7 @@ public class SplitTransportChainService {
 		}
 
 		if (optionalNextShipmentEntry.isPresent()) {
-			TimeWindow_ arrivalAtDestinationTimeWindow = EcoreUtil
+			TimeWindow arrivalAtDestinationTimeWindow = EcoreUtil
 					.copy(shipmentRecordEntry.getDeliveryStop().getStopTimeWindow());
 			((MultiDayTimeWindow) arrivalAtDestinationTimeWindow).setFrom(null);
 			result.setArrivalAtDestinationTimeWindow(arrivalAtDestinationTimeWindow);

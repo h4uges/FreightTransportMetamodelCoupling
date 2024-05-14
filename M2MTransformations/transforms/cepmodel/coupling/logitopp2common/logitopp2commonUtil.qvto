@@ -18,12 +18,12 @@ helper weekdayToSimulationDay(weekday : LOGITOPP::base::Weekday) : Integer {
 	}
 }
 
-helper mapVehicleType(logiToppVehicleType : LOGITOPP::logiTopp::distribution::fleet::VehicleType) : COMMON_MM::network::VehicleType_ {
+helper mapVehicleType(logiToppVehicleType : LOGITOPP::logiTopp::distribution::fleet::VehicleType) : COMMON_MM::network::VehicleType {
 	switch {
-		case (logiToppVehicleType = LOGITOPP::logiTopp::distribution::fleet::VehicleType::BIKE) {return COMMON_MM::network::VehicleType_::BIKE;}
-		case (logiToppVehicleType = LOGITOPP::logiTopp::distribution::fleet::VehicleType::TRUCK) {return COMMON_MM::network::VehicleType_::TRUCK;}
-		case (logiToppVehicleType = LOGITOPP::logiTopp::distribution::fleet::VehicleType::TRAM) {return COMMON_MM::network::VehicleType_::TRAM;}
-		case (logiToppVehicleType = LOGITOPP::logiTopp::distribution::fleet::VehicleType::OTHERS) {return COMMON_MM::network::VehicleType_::OTHER;}
+		case (logiToppVehicleType = LOGITOPP::logiTopp::distribution::fleet::VehicleType::BIKE) {return COMMON_MM::network::VehicleType::BIKE;}
+		case (logiToppVehicleType = LOGITOPP::logiTopp::distribution::fleet::VehicleType::TRUCK) {return COMMON_MM::network::VehicleType::TRUCK;}
+		case (logiToppVehicleType = LOGITOPP::logiTopp::distribution::fleet::VehicleType::TRAM) {return COMMON_MM::network::VehicleType::TRAM;}
+		case (logiToppVehicleType = LOGITOPP::logiTopp::distribution::fleet::VehicleType::OTHERS) {return COMMON_MM::network::VehicleType::OTHER;}
 		else {return null;}
 	};
 }
@@ -78,7 +78,7 @@ constructor COMMON_MM::utils::MultiDayTimestamp::MultiDayTimestamp(simulationDay
 
 // ---- Duration ----
 
-constructor COMMON_MM::utils::Durration_::Durration_(days_ : Integer, hours_ : Integer, minutes_ : Integer, seconds_ : Integer) {
+constructor COMMON_MM::utils::Durration::Durration(days_ : Integer, hours_ : Integer, minutes_ : Integer, seconds_ : Integer) {
 	days := days_;
 	hours := hours_;
 	minutes := minutes_;
@@ -109,15 +109,15 @@ constructor COMMON_MM::utils::FiniteVolumeDimension::FiniteVolumeDimension(volum
 
 // ---- MISC ----
 
-helper createAllVehicleTypes() : Collection(COMMON_MM::network::VehicleType_) {
+helper createAllVehicleTypes() : Collection(COMMON_MM::network::VehicleType) {
 	var allVehicleTypes := Sequence {
-		COMMON_MM::network::VehicleType_::TRUCK,
-		COMMON_MM::network::VehicleType_::TRAM,
-		COMMON_MM::network::VehicleType_::CAR,
-		COMMON_MM::network::VehicleType_::BIKE,
-		COMMON_MM::network::VehicleType_::WALKING,
-		COMMON_MM::network::VehicleType_::DELIVERY_VEHICLE,
-		COMMON_MM::network::VehicleType_::OTHER
+		COMMON_MM::network::VehicleType::TRUCK,
+		COMMON_MM::network::VehicleType::TRAM,
+		COMMON_MM::network::VehicleType::CAR,
+		COMMON_MM::network::VehicleType::BIKE,
+		COMMON_MM::network::VehicleType::WALKING,
+		COMMON_MM::network::VehicleType::DELIVERY_VEHICLE,
+		COMMON_MM::network::VehicleType::OTHER
 	};
 	return allVehicleTypes;
 }

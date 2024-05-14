@@ -57,8 +57,8 @@
         <genFeatures createChild="false" ecoreFeature="ecore:EAttribute CommonFreightTransportMetamodel.ecore#//utils/SingleDayTimestamp/minute"/>
         <genFeatures createChild="false" ecoreFeature="ecore:EAttribute CommonFreightTransportMetamodel.ecore#//utils/SingleDayTimestamp/second"/>
       </genClasses>
-      <genClasses image="false" ecoreClass="CommonFreightTransportMetamodel.ecore#//utils/Timestamp_"/>
-      <genClasses image="false" ecoreClass="CommonFreightTransportMetamodel.ecore#//utils/TimeWindow_"/>
+      <genClasses image="false" ecoreClass="CommonFreightTransportMetamodel.ecore#//utils/Timestamp"/>
+      <genClasses image="false" ecoreClass="CommonFreightTransportMetamodel.ecore#//utils/TimeWindow"/>
       <genClasses ecoreClass="CommonFreightTransportMetamodel.ecore#//utils/MultiDayTimestamp">
         <genFeatures createChild="false" ecoreFeature="ecore:EAttribute CommonFreightTransportMetamodel.ecore#//utils/MultiDayTimestamp/simulationDay"/>
         <genFeatures createChild="false" ecoreFeature="ecore:EAttribute CommonFreightTransportMetamodel.ecore#//utils/MultiDayTimestamp/hour"/>
@@ -73,14 +73,14 @@
         <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference CommonFreightTransportMetamodel.ecore#//utils/MultiDayTimeWindow/from"/>
         <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference CommonFreightTransportMetamodel.ecore#//utils/MultiDayTimeWindow/to"/>
       </genClasses>
-      <genClasses image="false" ecoreClass="CommonFreightTransportMetamodel.ecore#//utils/HasId_">
-        <genFeatures createChild="false" ecoreFeature="ecore:EAttribute CommonFreightTransportMetamodel.ecore#//utils/HasId_/id"/>
+      <genClasses image="false" ecoreClass="CommonFreightTransportMetamodel.ecore#//utils/HasId">
+        <genFeatures createChild="false" ecoreFeature="ecore:EAttribute CommonFreightTransportMetamodel.ecore#//utils/HasId/id"/>
       </genClasses>
-      <genClasses ecoreClass="CommonFreightTransportMetamodel.ecore#//utils/Durration_">
-        <genFeatures createChild="false" ecoreFeature="ecore:EAttribute CommonFreightTransportMetamodel.ecore#//utils/Durration_/hours"/>
-        <genFeatures createChild="false" ecoreFeature="ecore:EAttribute CommonFreightTransportMetamodel.ecore#//utils/Durration_/days"/>
-        <genFeatures createChild="false" ecoreFeature="ecore:EAttribute CommonFreightTransportMetamodel.ecore#//utils/Durration_/seconds"/>
-        <genFeatures createChild="false" ecoreFeature="ecore:EAttribute CommonFreightTransportMetamodel.ecore#//utils/Durration_/minutes"/>
+      <genClasses ecoreClass="CommonFreightTransportMetamodel.ecore#//utils/Durration">
+        <genFeatures createChild="false" ecoreFeature="ecore:EAttribute CommonFreightTransportMetamodel.ecore#//utils/Durration/hours"/>
+        <genFeatures createChild="false" ecoreFeature="ecore:EAttribute CommonFreightTransportMetamodel.ecore#//utils/Durration/days"/>
+        <genFeatures createChild="false" ecoreFeature="ecore:EAttribute CommonFreightTransportMetamodel.ecore#//utils/Durration/seconds"/>
+        <genFeatures createChild="false" ecoreFeature="ecore:EAttribute CommonFreightTransportMetamodel.ecore#//utils/Durration/minutes"/>
       </genClasses>
       <genClasses ecoreClass="CommonFreightTransportMetamodel.ecore#//utils/Coordinate">
         <genFeatures createChild="false" ecoreFeature="ecore:EAttribute CommonFreightTransportMetamodel.ecore#//utils/Coordinate/x"/>
@@ -104,22 +104,22 @@
       <genClasses ecoreClass="CommonFreightTransportMetamodel.ecore#//utils/InfiniteWeightDimension"/>
     </nestedGenPackages>
     <nestedGenPackages prefix="Network" disposableProviderFactory="true" ecorePackage="CommonFreightTransportMetamodel.ecore#//network">
-      <genEnums typeSafeEnumCompatible="false" ecoreEnum="CommonFreightTransportMetamodel.ecore#//network/VehicleType_">
-        <genEnumLiterals ecoreEnumLiteral="CommonFreightTransportMetamodel.ecore#//network/VehicleType_/TRUCK"/>
-        <genEnumLiterals ecoreEnumLiteral="CommonFreightTransportMetamodel.ecore#//network/VehicleType_/TRAM"/>
-        <genEnumLiterals ecoreEnumLiteral="CommonFreightTransportMetamodel.ecore#//network/VehicleType_/CAR"/>
-        <genEnumLiterals ecoreEnumLiteral="CommonFreightTransportMetamodel.ecore#//network/VehicleType_/BIKE"/>
-        <genEnumLiterals ecoreEnumLiteral="CommonFreightTransportMetamodel.ecore#//network/VehicleType_/WALKING"/>
-        <genEnumLiterals ecoreEnumLiteral="CommonFreightTransportMetamodel.ecore#//network/VehicleType_/DELIVERY_VEHICLE"/>
-        <genEnumLiterals ecoreEnumLiteral="CommonFreightTransportMetamodel.ecore#//network/VehicleType_/OTHER"/>
+      <genEnums typeSafeEnumCompatible="false" ecoreEnum="CommonFreightTransportMetamodel.ecore#//network/VehicleType">
+        <genEnumLiterals ecoreEnumLiteral="CommonFreightTransportMetamodel.ecore#//network/VehicleType/TRUCK"/>
+        <genEnumLiterals ecoreEnumLiteral="CommonFreightTransportMetamodel.ecore#//network/VehicleType/TRAM"/>
+        <genEnumLiterals ecoreEnumLiteral="CommonFreightTransportMetamodel.ecore#//network/VehicleType/CAR"/>
+        <genEnumLiterals ecoreEnumLiteral="CommonFreightTransportMetamodel.ecore#//network/VehicleType/BIKE"/>
+        <genEnumLiterals ecoreEnumLiteral="CommonFreightTransportMetamodel.ecore#//network/VehicleType/WALKING"/>
+        <genEnumLiterals ecoreEnumLiteral="CommonFreightTransportMetamodel.ecore#//network/VehicleType/DELIVERY_VEHICLE"/>
+        <genEnumLiterals ecoreEnumLiteral="CommonFreightTransportMetamodel.ecore#//network/VehicleType/OTHER"/>
       </genEnums>
       <genClasses ecoreClass="CommonFreightTransportMetamodel.ecore#//network/Network">
         <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference CommonFreightTransportMetamodel.ecore#//network/Network/nodes"/>
         <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference CommonFreightTransportMetamodel.ecore#//network/Network/edges"/>
       </genClasses>
-      <genClasses ecoreClass="CommonFreightTransportMetamodel.ecore#//network/Location_">
-        <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference CommonFreightTransportMetamodel.ecore#//network/Location_/coordinate"/>
-        <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference CommonFreightTransportMetamodel.ecore#//network/Location_/networkAccess"/>
+      <genClasses ecoreClass="CommonFreightTransportMetamodel.ecore#//network/Location">
+        <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference CommonFreightTransportMetamodel.ecore#//network/Location/coordinate"/>
+        <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference CommonFreightTransportMetamodel.ecore#//network/Location/networkAccess"/>
       </genClasses>
       <genClasses ecoreClass="CommonFreightTransportMetamodel.ecore#//network/Node">
         <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference CommonFreightTransportMetamodel.ecore#//network/Node/coordinate"/>

@@ -27,7 +27,7 @@ import CommonFreightTransportMetamodel.logisticSolution.PlannedTour;
 import CommonFreightTransportMetamodel.logisticSolution.ShipmentRecord;
 import CommonFreightTransportMetamodel.logisticSolution.ShipmentRecordEntry;
 import CommonFreightTransportMetamodel.logisticSolution.Stop;
-import CommonFreightTransportMetamodel.network.Location_;
+import CommonFreightTransportMetamodel.network.Location;
 import CommonFreightTransportMetamodel.utils.MultiDayTimeWindow;
 import CommonFreightTransportMetamodel.utils.ShipmentLegStartEndPoint;
 import CommonFreightTransportMetamodel.utils.UtilsFactory;
@@ -52,8 +52,8 @@ public class CreateShipmentRecordsService {
 
 	public void applyTransformation(CommonFreightTransportMetamodelRoot root) {
 		assertInvariants(root);
-		
-		Map<Location_, ShipmentLegStartEndPoint> location2ShipmentLegStartEndPoint = buildLocation2ShipmentLegStartEndPoint(
+
+		Map<Location, ShipmentLegStartEndPoint> location2ShipmentLegStartEndPoint = buildLocation2ShipmentLegStartEndPoint(
 				root);
 		Map<Shipment, List<RawShipmentRecordEntry>> shipment2RawShipmentRecords = buildRawShipmentRecords(root);
 
@@ -114,7 +114,7 @@ public class CreateShipmentRecordsService {
 		root.getLogisticSolution().getShipmentRecords().addAll(shipmentRecords);
 		CommonMetamodelUtil.sortDemandAndSolution(root);
 	}
-	
+
 	private void assertInvariants(CommonFreightTransportMetamodelRoot root) {
 		// TODO: add invariant that no results are contained
 		assert root.getLogisticSolution().getShipmentRecords().isEmpty();
@@ -127,21 +127,21 @@ public class CreateShipmentRecordsService {
 		return CommonMetamodelUtil.compareTimes(l1PickUpTimeWindow.getFrom(), l2PickUpTimeWindow.getFrom());
 	}
 
-	private Map<Location_, ShipmentLegStartEndPoint> buildLocation2ShipmentLegStartEndPoint(
+	private Map<Location, ShipmentLegStartEndPoint> buildLocation2ShipmentLegStartEndPoint(
 			CommonFreightTransportMetamodelRoot root) {
-		Map<Location_, ShipmentLegStartEndPoint> location2ShipmentLegStartEndPoint = new HashMap<>();
+		Map<Location, ShipmentLegStartEndPoint> location2ShipmentLegStartEndPoint = new HashMap<>();
 		TreeIterator<EObject> modelElementsIterator = root.eAllContents();
 		while (modelElementsIterator.hasNext()) {
 			EObject modelElement = modelElementsIterator.next();
 			if (modelElement instanceof ShipmentLegStartEndPoint shipmentLegStartEndPoint) {
-				Location_ location = getLocationFromShipmentLegStartEndPoint(shipmentLegStartEndPoint);
+				Location location = getLocationFromShipmentLegStartEndPoint(shipmentLegStartEndPoint);
 				location2ShipmentLegStartEndPoint.put(location, shipmentLegStartEndPoint);
 			}
 		}
 		return location2ShipmentLegStartEndPoint;
 	}
 
-	private Location_ getLocationFromShipmentLegStartEndPoint(ShipmentLegStartEndPoint shipmentLegStartEndPoint) {
+	private Location getLocationFromShipmentLegStartEndPoint(ShipmentLegStartEndPoint shipmentLegStartEndPoint) {
 		if (shipmentLegStartEndPoint instanceof Packstation packstation) {
 			return packstation.getLocation();
 		} else if (shipmentLegStartEndPoint instanceof Shop shop) {
