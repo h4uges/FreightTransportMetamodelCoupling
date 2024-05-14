@@ -38,11 +38,8 @@ inherits COMMON_MM::logisticDemand::Shipment::mapShipment2shipmentWithSolution
 	size := dimension2capacity(self.size);
 	_from := stopLocationToLink(shipmentRecord.entries -> first().pickUpStop.stopLocation);
 	to := stopLocationToLink(shipmentRecord.entries -> last().deliveryStop.stopLocation);
-	// alternative variant
-	//_from := location2Link(self.origin);
-	//to := location2Link(self.destination);
-	
-	
+	// alternative variant: map origin/destination instead of stop locations
+
 	pickupTimeWindow := timeStampToRightOpenTimeWindow(self.arrivalAtOrigin);
 	deliveryTimeWindow := optionalTimeWindow2TimeWindow(self.arrivalAtDestinationTimeWindow);
 	
@@ -57,9 +54,7 @@ inherits COMMON_MM::logisticDemand::Shipment::mapShipment2shipmentWithSolution
 	size := dimension2capacity(self.size);
 	_from := stopLocationToLink(shipmentRecord.entries -> first().pickUpStop.stopLocation);
 	to := stopLocationToLink(shipmentRecord.entries -> last().deliveryStop.stopLocation);
-	// alternative variant
-	//_from := location2Link(self.origin);
-	//to := location2Link(self.destination);
+	// alternative variant: map origin/destination instead of stop locations
 	
 	pickupTimeWindow := timeStampToRightOpenTimeWindow(self.arrivalAtOrigin);
 	deliveryTimeWindow := optionalTimeWindow2TimeWindow(self.arrivalAtDestinationTimeWindow);
@@ -75,9 +70,7 @@ inherits COMMON_MM::logisticDemand::Shipment::mapShipment2shipmentWithSolution
 	size := dimension2capacity(self.size);
 	_from := stopLocationToLink(shipmentRecord.entries -> first().pickUpStop.stopLocation);
 	to := stopLocationToLink(shipmentRecord.entries -> last().deliveryStop.stopLocation);
-	// alternative variant
-	//_from := stopLocationToLink(shipmentRecord.entries -> first().pickUpStop.stopLocation);
-	//to := location2Link(self.destination);
+	// alternative variant: map origin/destination instead of stop locations
 	
 	pickupTimeWindow := timeStampToRightOpenTimeWindow(self.arrivalAtOriginDepot);
 	deliveryTimeWindow := optionalTimeWindow2TimeWindow(self.arrivalAtDestinationTimeWindow);
@@ -93,9 +86,7 @@ inherits COMMON_MM::logisticDemand::Shipment::mapShipment2shipmentWithSolution
 	size := dimension2capacity(self.size);
 	_from := stopLocationToLink(shipmentRecord.entries -> first().pickUpStop.stopLocation);
 	to := stopLocationToLink(shipmentRecord.entries -> last().deliveryStop.stopLocation);
-	// alternative variant
-	//_from := location2Link(self.origin);
-	//to := stopLocationToLink(shipmentRecord.entries -> last().deliveryStop.stopLocation);
+	// alternative variant: map origin/destination instead of stop locations
 	
 	pickupTimeWindow := timeStampToRightOpenTimeWindow(self.arrivalAtOrigin);
 	deliveryTimeWindow := optionalTimeWindow2TimeWindow(self.arrivalAtDepotTimeWindow);

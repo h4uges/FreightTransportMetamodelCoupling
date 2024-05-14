@@ -5,10 +5,10 @@ import common2matsimBaseMappings;
 modeltype COMMON_MM uses CommonFreightTransportMetamodel('http://www.cep-model-coupling.com/commonFreightTransportMetamodel');
 modeltype MATSIM uses MATSimFreightMetamodel('http://www.cep-model-coupling.com/MATSimFreightMetamodel');
 
+// default values
 property CAPACITY_PERIOD_DEFAULT = 3600;
 property EFFECTIVE_CELL_SIZE_DEFAULT = 7.5;
 property EFFECTIVE_LANE_WIDTH_DEFAULT = 3.75;
-// TODO: default values
 property FREESPEED_DEFAULT = 14;
 property CAPACITY_DEFAULT = 1000;
 property NOF_LANES_DEFAULT = 1;
@@ -34,7 +34,6 @@ mapping COMMON_MM::utils::Coordinate::coordinate2coordinate() : MATSIM::matsim::
 }
 
 mapping COMMON_MM::network::Edge::edge2link() : MATSIM::matsim::core::network::Link {
-	// TODO: discuss uniqueness of edges
 	id := self.id;
 	_from := self._from.resolveone(MATSIM::matsim::core::network::Node);
 	to := self.to.resolveone(MATSIM::matsim::core::network::Node);

@@ -20,7 +20,6 @@ property DEFAULT_VEHICLE_STANDINGROOM = 0;
 
 // ---- ENUMS ----
 
-// TODO: discuss, maybe add 1 : n mapping
 helper vehicleType2TransportMode(vehicleType : COMMON_MM::network::VehicleType) : MATSIM::matsim::TransportMode {
 	switch
 	{
@@ -116,7 +115,6 @@ helper timeStamp2Seconds(timeStamp : COMMON_MM::utils::SingleDayTimestamp) : Rea
 // ---- helper: capacity ----
 
 helper dimension2capacity(dimension: COMMON_MM::utils::Dimension) : Integer {
-	// TODO: very hacky
 	return dimension.map dimension2vehicleCapacity().other.round()
 }
 

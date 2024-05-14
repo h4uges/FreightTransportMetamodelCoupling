@@ -6,7 +6,7 @@ import logitopp2commonNetwork;
 modeltype COMMON_MM uses CommonFreightTransportMetamodel('http://www.cep-model-coupling.com/commonFreightTransportMetamodel');
 modeltype LOGITOPP uses logiToppMetamodel('http://www.cep-model-coupling.com/logiToppMetamodel');
 
-// TODO: default values
+// default values
 property DEFAULT_TRANSSHIPMENT_TIME = new COMMON_MM::utils::Durration(0, 0, 0, 0);
 property DEFAULT_HUB_IS_EXIT = true;
 property DEFAULT_HUB_IS_ENTRY = true;
@@ -80,6 +80,7 @@ mapping LOGITOPP::logiTopp::distribution::DistributionCenter::distributionCenter
 }
 
 // ---- logisticNetwork.publicServicePoints ----
+// (we need to derive possible packstations and their relations to the cepsps from the demand)
 
 constructor COMMON_MM::logisticNetwork::UsedPublicServicePoint::UsedPublicServicePoint(publicServicePoint_ : COMMON_MM::logisticNetwork::PublicServicePoint) {
 	grantedStorageCapacity := new COMMON_MM::utils::InfiniteVolumeDimension();

@@ -84,7 +84,6 @@ inherits COMMON_MM::logisticDemand::Shipment::mapShipment2service
 	
 	capacityDemand := dimension2capacity(self.size);
 	
-	// TODO: information missing: self.arrivalAtDepotTimeWindow
 	timeWindow := timeStampToRightOpenTimeWindow(self.arrivalAtOrigin);
 	
 	serviceDuration := SERVICE_DURATION_DEFAULT;
@@ -99,7 +98,6 @@ inherits COMMON_MM::logisticDemand::Shipment::mapShipment2service
 	
 	capacityDemand := dimension2capacity(self.size);
 	
-	// TODO: information missing: self.arrivalAtOriginDepot
 	timeWindow := optionalTimeWindow2TimeWindow(self.arrivalAtDestinationTimeWindow);
 	
 	serviceDuration := SERVICE_DURATION_DEFAULT;

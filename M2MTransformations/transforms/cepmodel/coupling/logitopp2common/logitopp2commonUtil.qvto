@@ -3,7 +3,7 @@ library logitopp2commonUtil;
 modeltype COMMON_MM uses CommonFreightTransportMetamodel('http://www.cep-model-coupling.com/commonFreightTransportMetamodel');
 modeltype LOGITOPP uses logiToppMetamodel('http://www.cep-model-coupling.com/logiToppMetamodel');
 
-// ---- MAPPING ----
+// ---- MAPPINGS ----
 
 helper weekdayToSimulationDay(weekday : LOGITOPP::base::Weekday) : Integer {
 	switch {

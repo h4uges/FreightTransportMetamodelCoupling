@@ -13,7 +13,6 @@ mapping LOGITOPP::dataExchange::Demand::demand2Demand(logisticNetwork : COMMON_M
 	workLocations += workLocationsCollector;
 }
 
-// assumption: no inside - inside shipments
 mapping LOGITOPP::logiTopp::parcels::Parcel::parcel2Shipment(logisticNetwork : COMMON_MM::logisticNetwork::LogisticNetwork) : COMMON_MM::logisticDemand::Shipment
 disjuncts
 	LOGITOPP::logiTopp::parcels::PrivateParcel::privateParcel2OutsideToInsideShipment,
@@ -21,7 +20,6 @@ disjuncts
 	LOGITOPP::logiTopp::parcels::BusinessParcel::businessParcel2InsideToOutsideShipment
 {}
 
-// TODO: discuss
 mapping LOGITOPP::logiTopp::parcels::PrivateParcel::privateParcel2OutsideToInsideShipment(logisticNetwork : COMMON_MM::logisticNetwork::LogisticNetwork) : COMMON_MM::logisticDemand::OutsideToInsideShipment 
 when {self.oclIsKindOf(LOGITOPP::logiTopp::parcels::PrivateParcel)}
 {

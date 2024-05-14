@@ -31,8 +31,7 @@ mapping LOGITOPP::mobiTopp::network::Edge::edge2Edge() : COMMON_MM::network::Edg
 	_from := self._from.resolveone(COMMON_MM::network::Node);
 	to := self.to.resolveone(COMMON_MM::network::Node);
 	length := self.length;
-	// TODO: work on vehicle types
-	allowedVehicleTypes;
+	// missing: allowedVehicleTypes
 }
 
 // ---- network.location ----

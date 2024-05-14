@@ -6,7 +6,7 @@ modeltype COMMON_MM uses CommonFreightTransportMetamodel('http://www.cep-model-c
 modeltype MATSIM uses MATSimFreightMetamodel('http://www.cep-model-coupling.com/MATSimFreightMetamodel');
 
 mapping COMMON_MM::logisticNetwork::CEPSP::cepsp2InitialCarrier(matSimVehicleTypes : MATSIM::matsim::vehicles::VehicleTypes) : MATSIM::freightContrib::Carrier {
-	// only initalize carrierCapabilities
+	// only initalize carrierCapabilities, rest is added later
 	id := self.id;
 	var vehicles := self.vehicleDepots -> collect(depot | createMATSimVehiclesFromDepot(depot, matSimVehicleTypes)) -> flatten() -> asBag();
 	carrierCapabilities := new MATSIM::freightContrib::CarrierCapabilities(vehicles);
@@ -30,7 +30,8 @@ mapping COMMON_MM::logisticNetwork::Vehicle::vehicle2carrierVehicle(link : MATSI
 	var typeId := self.resolveone(MATSIM::matsim::vehicles::VehicleType).id;
 	
 	type := matSimVehicleTypes.vehicleTypes -> any(vehicleType | vehicleType.id = typeId);
-	// simplification: only use left and right boarder
+	
+	// simplification/heuristic: only use left and right boarder
 	earliestStartTime := mapTimeWindow(self.operationHours -> first()).start;
 	latestEndTime := mapTimeWindow(self.operationHours -> last())._end;
 }

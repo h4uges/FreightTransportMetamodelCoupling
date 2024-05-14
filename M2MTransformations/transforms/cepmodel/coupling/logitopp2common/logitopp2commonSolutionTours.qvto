@@ -16,6 +16,7 @@ mapping LOGITOPP::logiTopp::distribution::tours::PlannedDeliveryTour::plannedTou
 	var orgFirstStop := intermediateStops -> first();
 	var orgLastStop := intermediateStops -> last();
 	
+	// manually add StartEndStops
 	var firstStop := new COMMON_MM::logisticSolution::StartEndStop(id, orgFirstStop.no - 1, vehicle.depot, orgFirstStop.stopTimeWindow.oclAsType(COMMON_MM::utils::MultiDayTimeWindow));
 	var lastStop := new COMMON_MM::logisticSolution::StartEndStop(id, orgLastStop.no + 1, vehicle.depot, orgLastStop.stopTimeWindow.oclAsType(COMMON_MM::utils::MultiDayTimeWindow));
 	stops := stops -> prepend(firstStop);
@@ -33,7 +34,7 @@ when {
 }{
 	logisticFacility := findLogisticFacility(self.stopLocation.location, logisticNetwork);
 	
-	no := self.no; // TODO: correct?
+	no := self.no;
 	id := tourId + "_" + no.toString();
 	
 	stopLocation := null;
@@ -53,7 +54,7 @@ when {
 mapping LOGITOPP::logiTopp::distribution::delivery::ParcelActivity::parcelActivity2NormalStop(tourId : String, logisticNetwork : COMMON_MM::logisticNetwork::LogisticNetwork) : COMMON_MM::logisticSolution::NormalStop when {
 	findLogisticFacility(self.stopLocation.location, logisticNetwork) = null
 }{
-	no := self.no; // TODO: correct?
+	no := self.no;
 	id := tourId + "_" + no.toString();
 	
 	stopLocation := new COMMON_MM::logisticSolution::CustomStopLocation(location2Location(self.stopLocation.location, "costum stop"));
@@ -63,6 +64,7 @@ mapping LOGITOPP::logiTopp::distribution::delivery::ParcelActivity::parcelActivi
 	loadedShipments +=  self.pickUps -> collect(parcel | parcel.resolveone(COMMON_MM::logisticDemand::Shipment));
 }
 
+// helps do determine wheter a parcel activty takes place at a logistic facility or at any other point in the network
 query findLogisticFacility(stopLocation_ : LOGITOPP::mobiTopp::network::Location, logisticNetwork : COMMON_MM::logisticNetwork::LogisticNetwork) : COMMON_MM::logisticNetwork::LogisticFacility {
 	var stopLocation := location2Location(stopLocation_, "null");
 
