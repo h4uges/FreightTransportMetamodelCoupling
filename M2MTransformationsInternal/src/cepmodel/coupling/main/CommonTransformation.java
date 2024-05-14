@@ -36,12 +36,14 @@ public class CommonTransformation {
 	}
 
 	private static void toSingleDay(String mainPath, String modelName) {
-		CommonFreightTransportMetamodelRoot root = HandelModelService
-				.loadCommonModelRoot(mainPath + modelName + "/transformation_steps/" + modelName + "_common_2.xmi");
-		MultiToSingleDayService multiToSingleDayService = new MultiToSingleDayService();
-		multiToSingleDayService.setRequestedSimulationDay(0);
-		multiToSingleDayService.applyTransformation(root);
-		HandelModelService.saveModel(root,
-				mainPath + modelName + "/transformation_steps/" + modelName + "_common_3.xmi");
+		for (int day = 0; day < 7; day++) {
+			CommonFreightTransportMetamodelRoot root = HandelModelService
+					.loadCommonModelRoot(mainPath + modelName + "/transformation_steps/" + modelName + "_common_2.xmi");
+			MultiToSingleDayService multiToSingleDayService = new MultiToSingleDayService();
+			multiToSingleDayService.setRequestedSimulationDay(day);
+			multiToSingleDayService.applyTransformation(root);
+			HandelModelService.saveModel(root,
+					mainPath + modelName + "/transformation_steps/" + modelName + "_day_" + day + "_common_3.xmi");
+		}
 	}
 }

@@ -26,6 +26,7 @@ import CommonFreightTransportMetamodel.logisticSolution.Tour;
 import CommonFreightTransportMetamodel.utils.Durration_;
 import CommonFreightTransportMetamodel.utils.MultiDayTimeWindow;
 import CommonFreightTransportMetamodel.utils.MultiDayTimestamp;
+import CommonFreightTransportMetamodel.utils.TimeWindow_;
 
 public class SplitTransportChainService {
 	Map<Shipment, Collection<Shipment>> shipment2splittedShipments;
@@ -100,8 +101,8 @@ public class SplitTransportChainService {
 		Demand demand = root.getDemand();
 		demand.getShipments().removeIf(el -> true);
 		demand.getShipments().addAll(splittedShipment2ShipmentRecordEntry.keySet());
-		
-		// sort
+
+		// sort (for readability of output)
 		CommonMetamodelUtil.sortDemandAndSolution(root);
 	}
 
@@ -142,10 +143,13 @@ public class SplitTransportChainService {
 		}
 
 		if (optionalNextShipmentEntry.isPresent()) {
-			result.setArrivalAtDestinationTimeWindow(
-					EcoreUtil.copy(shipmentRecordEntry.getDeliveryStop().getStopTimeWindow()));
+			TimeWindow_ arrivalAtDestinationTimeWindow = EcoreUtil
+					.copy(shipmentRecordEntry.getDeliveryStop().getStopTimeWindow());
+			((MultiDayTimeWindow) arrivalAtDestinationTimeWindow).setFrom(null);
+			result.setArrivalAtDestinationTimeWindow(arrivalAtDestinationTimeWindow);
 		} else {
-			result.setArrivalAtDestinationTimeWindow(EcoreUtil.copy(CommonMetamodelUtil.getArrivalAtDestination(originalShipment)));
+			result.setArrivalAtDestinationTimeWindow(
+					EcoreUtil.copy(CommonMetamodelUtil.getArrivalAtDestination(originalShipment)));
 		}
 
 		return result;
@@ -173,6 +177,4 @@ public class SplitTransportChainService {
 
 		return newShipmentRecord;
 	}
-
-	
 }

@@ -14,7 +14,7 @@ helper weekdayToSimulationDay(weekday : LOGITOPP::base::Weekday) : Integer {
 		case (weekday = LOGITOPP::base::Weekday::FRIDAY) {return 4};
 		case (weekday = LOGITOPP::base::Weekday::SATURDAY) {return 5};
 		case (weekday = LOGITOPP::base::Weekday::SUNDAY) {return 6};
-		else {return -1;}
+		else {return -1};
 	}
 }
 
@@ -88,13 +88,15 @@ constructor COMMON_MM::utils::Durration_::Durration_(days_ : Integer, hours_ : I
 // --- Time: helper ----
 
 helper addMinutes(timeStamp : COMMON_MM::utils::MultiDayTimestamp, minutes : Integer) : COMMON_MM::utils::MultiDayTimestamp {
-	var totalMinutes = timeStamp.minute + minutes;
-    var additionalHours = totalMinutes.div(60);
-    var remainingMinutes = totalMinutes.mod(60);
-    var newHours = (timeStamp.hour + additionalHours).mod(24);
-    var newDays = timeStamp.simulationDay + (timeStamp.simulationDay + additionalHours).div(24);
+	var totalSeconds = timeStamp.simulationDay * 24 * 60 * 60 + timeStamp.hour * 60 * 60 + timeStamp.minute * 60 + timeStamp.second;
+	var newTotalSeconds = totalSeconds + minutes * 60;
 	
-	return new COMMON_MM::utils::MultiDayTimestamp(newDays, newHours, remainingMinutes, timeStamp.second)
+	var newDay = (newTotalSeconds / (60 * 60 * 24)).floor();
+    var newHour = ((newTotalSeconds.mod(60 * 60 * 24)) / (60 * 60)).floor();
+    var newMinute = ((newTotalSeconds.mod(60 * 60)) / 60).floor();
+    var newSecond = newTotalSeconds.mod(60);
+	
+	return new COMMON_MM::utils::MultiDayTimestamp(newDay, newHour, newMinute, newSecond)
 }
 
 // ---- CAPACITY ----

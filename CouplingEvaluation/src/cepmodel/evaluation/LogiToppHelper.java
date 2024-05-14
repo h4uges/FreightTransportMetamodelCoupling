@@ -4,6 +4,7 @@ import logiToppMetamodel.base.BaseFactory;
 import logiToppMetamodel.base.Time;
 import logiToppMetamodel.base.Weekday;
 
+// utility class for handling LogiTopp elements
 public class LogiToppHelper {
 
 	private LogiToppHelper() {

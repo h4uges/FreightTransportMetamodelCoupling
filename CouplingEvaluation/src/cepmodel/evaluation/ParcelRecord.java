@@ -5,6 +5,9 @@ import java.util.Optional;
 
 import logiToppMetamodel.logiTopp.parcels.Parcel;
 
+/*
+ * Keeps track of all transport hops of a parcel
+ */
 class ParcelRecord {
 	private final Parcel parcel;
 	private final List<ParcelRecordEntry> entries;

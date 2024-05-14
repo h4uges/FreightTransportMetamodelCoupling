@@ -11,9 +11,13 @@ import MATSimFreightMetamodel.dataExchange.DataExchangeRoot;
 import MATSimFreightMetamodel.freightContrib.CarrierShipment;
 import MATSimFreightMetamodel.freightContrib.ScheduledTour;
 
+/*
+ * helper class to efficiently query a MATSIM model, by creating some indexes
+ */
 class MATSimModelIndex {
 	private DataExchangeRoot matSimRoot;
 
+	// we use a tree to better find shipments that have been suffixed
 	private Optional<TreeMap<String, CarrierShipment>> id2CarrierShipment;
 	private Optional<Map<String, ScheduledTour>> id2Tour;
 
@@ -28,15 +32,18 @@ class MATSimModelIndex {
 		if (id2Tour.isEmpty()) {
 			buildId2Tour();
 		}
-	
+
 		return id2Tour.get().get(id);
 	}
 
+	// gets carrier shipment with corresponding id and asserts that this id is
+	// unique
 	public CarrierShipment getCarrierShipmentById(String id) {
 		return getCarrierShipmentsWhereIdStartsWith(id).stream().filter(shipment -> shipment.getId().equals(id))
 				.collect(AssertionHelper.toSingleton());
 	}
 
+	// returns all carrier shipments where their id starts with ORIGINALID_
 	public Collection<CarrierShipment> getCarrierShipmentsFromOriginatingId(String originalId) {
 		return getCarrierShipmentsWhereIdStartsWith(originalId).stream()
 				.filter(carrierShipment -> carrierShipment.getId().equals(originalId)
@@ -48,7 +55,7 @@ class MATSimModelIndex {
 		if (id2CarrierShipment.isEmpty()) {
 			buildId2CarrierShipment();
 		}
-	
+
 		return id2CarrierShipment.get().subMap(idPrefix, idPrefix + Character.MAX_VALUE).values();
 	}
 
@@ -59,14 +66,14 @@ class MATSimModelIndex {
 			}
 			return carrier.getPlan().getScheduledTours().stream();
 		}).collect(Collectors.toMap(tour -> tour.getTour().getId(), tour -> tour)));
-	
+
 	}
 
 	private void buildId2CarrierShipment() {
 		TreeMap<String, CarrierShipment> newMap = matSimRoot.getCarriers().stream()
 				.flatMap(carrier -> carrier.getShipments().stream())
 				.collect(TreeMap::new, (map, shipment) -> map.put(shipment.getId(), shipment), TreeMap::putAll);
-	
+
 		id2CarrierShipment = Optional.of(newMap);
 	}
 

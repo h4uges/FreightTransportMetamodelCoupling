@@ -33,7 +33,7 @@ import java.util.stream.Collectors
 class MatSimExport {
 
 	def static void main(String[] args) {
-		val modelName = "rastatt"
+		val modelName = "rastatt_day_1"
 		val inputFolder = Path.of(System.getProperty("user.dir"), "data", modelName).toString
 		val outputFolder = Path.of(System.getProperty("user.dir"), "data", modelName).toString
 		
@@ -79,7 +79,9 @@ class MatSimExport {
 
 	// ---- network ----
 	def static buildNetworkFile(DataExchangeRoot root, String outputFolder, String modelName) {
-		val fileContent = generateNetwork(root.network)
+		val network = root.network
+		NetworkRepairTool.repairNetwork(network)
+		val fileContent = generateNetwork(network)
 		var filePath = Path.of(outputFolder, "network_" + modelName + ".xml")
 		Files.write(filePath, fileContent.toString.getBytes(StandardCharsets.UTF_8), StandardOpenOption.CREATE,
 			StandardOpenOption.TRUNCATE_EXISTING)

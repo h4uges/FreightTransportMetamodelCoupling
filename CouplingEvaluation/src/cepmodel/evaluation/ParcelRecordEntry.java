@@ -7,6 +7,9 @@ import logiToppMetamodel.base.Weekday;
 import logiToppMetamodel.logiTopp.distribution.delivery.ParcelActivity;
 import logiToppMetamodel.logiTopp.distribution.tours.PlannedDeliveryTour;
 
+/*
+ * Describes a single transport hop of a parcel
+ */
 class ParcelRecordEntry {
 	private ParcelRecord parcelRecord;
 	private int no;
@@ -15,7 +18,9 @@ class ParcelRecordEntry {
 	private final PlannedDeliveryTour tour;
 	private final ParcelActivity pickUp;
 	private final ParcelActivity delivery;
+	// start: begin of pickup activity
 	private final Time start;
+	// end: end of delivery activity (including duration of activity)
 	private final Time end;
 
 	public ParcelRecordEntry(PlannedDeliveryTour tour, ParcelActivity pickUp, ParcelActivity delivery) {
@@ -26,6 +31,8 @@ class ParcelRecordEntry {
 		this.start = pickUp.getPlannedTime();
 		this.end = LogiToppHelper.addMinutesToTime(delivery.getPlannedTime(), delivery.getDeliveryDuration());
 	}
+
+	// getter
 
 	public ParcelRecord getRecord() {
 		return parcelRecord;
@@ -62,6 +69,8 @@ class ParcelRecordEntry {
 	public Time getEnd() {
 		return end;
 	}
+
+	// setter
 
 	public void setRecord(ParcelRecord parcelRecord) {
 		this.parcelRecord = parcelRecord;

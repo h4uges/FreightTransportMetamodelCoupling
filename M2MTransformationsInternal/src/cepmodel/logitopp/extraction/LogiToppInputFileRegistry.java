@@ -13,6 +13,10 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.module.SimpleModule;
 import com.google.common.collect.ImmutableList;
 
+/*
+ * Parses "InputFileRegistry" file that describes the filenames and locations of the raw
+ * LogiTopp input data. And used by the builders to access the file locations when needed.
+ */
 public class LogiToppInputFileRegistry {
 
 	// network

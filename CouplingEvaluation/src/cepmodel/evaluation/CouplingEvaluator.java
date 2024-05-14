@@ -1,5 +1,6 @@
 package cepmodel.evaluation;
 
+import static org.hamcrest.CoreMatchers.anyOf;
 import static org.hamcrest.CoreMatchers.equalTo;
 import static org.hamcrest.number.OrderingComparison.greaterThan;
 import static org.hamcrest.number.OrderingComparison.greaterThanOrEqualTo;
@@ -24,7 +25,6 @@ import java.util.stream.Collectors;
 
 import org.eclipse.emf.ecore.EObject;
 import org.junit.BeforeClass;
-import org.junit.Ignore;
 import org.junit.Rule;
 import org.junit.Test;
 import org.junit.rules.ErrorCollector;
@@ -61,11 +61,12 @@ import logiToppMetamodel.logiTopp.parcels.PrivateParcel;
 import logiToppMetamodel.logiTopp.parcels.ShipmentSize;
 import logiToppMetamodel.mobiTopp.citizens.Person;
 import logiToppMetamodel.mobiTopp.network.Edge;
+import logiToppMetamodel.mobiTopp.network.Location;
 import logiToppMetamodel.mobiTopp.network.Node;
-import logiToppMetamodel.mobiTopp.network.Point2D;
 
 // evaluation of relations between logiToppMetamodel (source) and MATSimMetamodel (target)
-// assumed order: (1) split transport chains (2) to single day
+// assumption: source and target model are consistent regarding their 
+// assumption: order of common transformations "split transport chains" before "to single day"
 public class CouplingEvaluator {
 	private static double coordinatePrecission = 0.0000001;
 	private static double edgeLengthPrecission = 0.0000001;
@@ -80,46 +81,26 @@ public class CouplingEvaluator {
 	@Rule
 	public ErrorCollector collector = new ErrorCollector();
 
-	// determine if beforeEach is better
+	/*
+	 * input models are in data directory
+	 * LogiTopp model file name: MODELNAME_logiTopp.xmi
+	 * MATSim model file name: MODELNAME_day_REQUESTEDSIMULATIONDAY_matsim.xmi
+	 * (REQUESTEDSIMULATIONDAY as integer)
+	 */
 	@BeforeClass
 	public static void init() {
 		String mainPath = System.getProperty("user.dir") + "/data/";
 		String modelName = "rastatt";
-		requestedSimulationDay = Weekday.MONDAY;
+		requestedSimulationDay = Weekday.THURSDAY;
 
 		logiToppRoot = HandelModelService
 				.loadLogiToppModel(Path.of(mainPath, modelName, modelName + "_logitopp.xmi").toString());
-		matSimRoot = HandelModelService
-				.loadMATSimModel(Path.of(mainPath, modelName, modelName + "_matsim.xmi").toString());
+		matSimRoot = HandelModelService.loadMATSimModel(
+				Path.of(mainPath, modelName, modelName + "_day_" + requestedSimulationDay.ordinal() + "_matsim.xmi")
+						.toString());
 
 		matSimModelIndex = new MATSimModelIndex(matSimRoot);
 		logiToppModelIndex = new LogiToppModelIndex(logiToppRoot);
-	}
-
-	/*
-	 * Invariant:
-	 * all Parcels arrive within logiTopp simulation period
-	 */
-	@Test
-	@Ignore
-	public void testInvariantAllParcelsArriveWithinLogiToppSimulationPeriod() {
-		List<Parcel> allLogiToppParcels = logiToppRoot.getDemand().getParcels();
-
-		allLogiToppParcels.forEach(parcel -> {
-			ParcelRecord parcelRecord = logiToppModelIndex.getParcelRecordForParcel(parcel);
-			assertTrue(!parcelRecord.getEntries().isEmpty(),
-					"parcel %s is not transported at all".formatted(parcel.toString()));
-			ParcelActivity lastDelivery = parcelRecord.getEntries().getLast().getDelivery();
-
-			Point2D plannedCoordinate = parcel.getZoneAndLocation().getLocation().getCoordinate();
-			Point2D actualLastCoordinate = lastDelivery.getStopLocation().getLocation().getCoordinate();
-			double manhattanDistance = Math.abs(plannedCoordinate.getX() - actualLastCoordinate.getX())
-					+ Math.abs(plannedCoordinate.getY() - actualLastCoordinate.getY());
-
-			assertTrue(manhattanDistance < 0.5,
-					"locations are to far from each other for plannedDestination %s and actual lastDeliveryLocation %s (parcel %s)"
-							.formatted(plannedCoordinate.toString(), actualLastCoordinate.toString(), parcel.getId()));
-		});
 	}
 
 	/*
@@ -132,15 +113,18 @@ public class CouplingEvaluator {
 				.stream().collect(Collectors.toUnmodifiableMap(Entity::getId, node -> node));
 
 		logiToppNodes.forEach(logiToppNode -> {
+			// check corresponding node exists
 			assertTrue(matSimNodes.containsKey(logiToppNode.getId()),
 					"Missing node %s in MATSim".formatted(logiToppNode.getId()));
 			MATSimFreightMetamodel.matsim.core.network.Node matSimNode = matSimNodes.get(logiToppNode.getId());
 
+			// check coordinate
 			assertEquals(logiToppNode.getCoord().getX(), matSimNode.getCoord().getX(), coordinatePrecission);
 			assertEquals(logiToppNode.getCoord().getY(), matSimNode.getCoord().getY(), coordinatePrecission);
 
 		});
 
+		// check no additional nodes exist
 		assertIdSetEquality(logiToppNodes, matSimRoot.getNetwork().getNodes(), "nodes");
 	}
 
@@ -154,10 +138,12 @@ public class CouplingEvaluator {
 				.collect(Collectors.toUnmodifiableMap(Entity::getId, link -> link));
 
 		logiToppEdges.forEach(logiToppEdge -> {
+			// check corresponding edge exists
 			assertTrue(matSimLinks.containsKey(logiToppEdge.getId()),
 					"Missing link %s in MATSim".formatted(logiToppEdge.getId()));
 			Link matSimLink = matSimLinks.get(logiToppEdge.getId());
 
+			// check to, from, length
 			assertEquals(logiToppEdge.getFrom().getId(), matSimLink.getFrom().getId());
 			assertEquals(logiToppEdge.getTo().getId(), matSimLink.getTo().getId());
 			assertEquals(logiToppEdge.getLength(), matSimLink.getLength(), edgeLengthPrecission);
@@ -222,6 +208,41 @@ public class CouplingEvaluator {
 				.filter(privateParcel -> privateParcel.getDestinationType() == ParcelDestinationType.HOME)
 				.filter(this::logiToppParcelArrivesAtRequestedSimulationDay).toList();
 
+		// map that assigns a consumer a packstation location if known
+		// reason: due to a bug LogiTopp sometimes clusters destinations wrongly
+		Map<logiToppMetamodel.logiTopp.ParcelConsumer, String> personToPackstationLocation = logiToppRoot.getDemand()
+				.getParcels().stream().filter(PrivateParcel.class::isInstance).map(PrivateParcel.class::cast)
+				.filter(privateParcel -> privateParcel.getDestinationType() == ParcelDestinationType.PACK_STATION)
+				.filter(this::logiToppParcelArrivesAtRequestedSimulationDay)
+				.collect(Collectors.toMap(Parcel::getConsumer,
+						privateParcel -> privateParcel.getZoneAndLocation().getLocation().getRoadAccessEdge().getId(),
+						(existingValue, newValue) -> {
+							if (existingValue.equals(newValue)) {
+								return existingValue;
+							}
+							throw new IllegalStateException(
+									"two packstation locations found: %s and %s".formatted(newValue, existingValue));
+						}
+
+				));
+		// map that assigns a consumer a work location location if known
+		// reason: due to a bug LogiTopp sometimes clusters destinations wrongly
+		Map<logiToppMetamodel.logiTopp.ParcelConsumer, String> personToWorkLocation = logiToppRoot.getDemand()
+				.getParcels().stream().filter(PrivateParcel.class::isInstance).map(PrivateParcel.class::cast)
+				.filter(privateParcel -> privateParcel.getDestinationType() == ParcelDestinationType.WORK)
+				.filter(this::logiToppParcelArrivesAtRequestedSimulationDay)
+				.collect(Collectors.toMap(Parcel::getConsumer,
+						privateParcel -> privateParcel.getZoneAndLocation().getLocation().getRoadAccessEdge().getId(),
+						(existingValue, newValue) -> {
+							if (existingValue.equals(newValue)) {
+								return existingValue;
+							}
+							throw new IllegalStateException(
+									"two packstation locations found: %s and %s".formatted(newValue, existingValue));
+						}
+
+				));
+
 		relevantLogiToppParcels.forEach(logiToppPrivateParcel -> {
 			Person receivingPerson = (Person) logiToppPrivateParcel.getConsumer();
 			String receivingPersonEdgeId = receivingPerson.getHousehold().getLocation().getRoadAccessEdge().getId();
@@ -230,8 +251,18 @@ public class CouplingEvaluator {
 					logiToppPrivateParcel);
 			String matSimDestinationId = correspondingMATSimDeliveryShipment.getTo().getId();
 
-			assertEquals(receivingPersonEdgeId, matSimDestinationId,
-					"failed for logiToppParcel with id %s".formatted(logiToppPrivateParcel.getId()));
+			// ignore failures due to wrong stop location clustering in logiTopp and also
+			// allow packstation and work location as valid destination
+			String optionalPackstationLocation = personToPackstationLocation
+					.containsKey(logiToppPrivateParcel.getConsumer())
+							? personToPackstationLocation.get(logiToppPrivateParcel.getConsumer())
+							: "invalidId";
+			String optionalWorkLocation = personToWorkLocation.containsKey(logiToppPrivateParcel.getConsumer())
+					? personToWorkLocation.get(logiToppPrivateParcel.getConsumer())
+					: "invalidId";
+			collector.checkThat("failed for logiToppParcel with id %s".formatted(logiToppPrivateParcel.getId()),
+					matSimDestinationId, anyOf(equalTo(receivingPersonEdgeId), equalTo(optionalPackstationLocation),
+							equalTo(optionalWorkLocation)));
 		});
 	}
 
@@ -245,14 +276,15 @@ public class CouplingEvaluator {
 				.collect(Collectors.toMap(Entity::getId, carrier -> carrier));
 
 		logiToppCEPSPs.forEach(logiToppCEPSP -> {
+			// check corresponding CEPSPs exists
 			assertTrue(matSimCarriers.containsKey(logiToppCEPSP.getId()),
 					"Missing carrier %s in MATSim".formatted(logiToppCEPSP.getId()));
 			Carrier matSimCarrier = matSimCarriers.get(logiToppCEPSP.getId());
 
 			assertEquals(logiToppCEPSP.getName(), matSimCarrier.getId());
-
 		});
 
+		// check no additional CEPSP exists
 		assertIdSetEquality(logiToppCEPSPs, matSimRoot.getCarriers(), "CEPSPs");
 	}
 
@@ -278,7 +310,9 @@ public class CouplingEvaluator {
 			VehicleType logiToppVehicleType = logiToppDeliveryVehicle.getVehicleType();
 
 			// check capacity
-			// TODO: fix this (TRAM)
+			// we ignore this property for TRAMs due to changes in LogiTopp during our
+			// implementation (introduction of boxes with capacities instead of TRAMs that
+			// have a capacity)
 			if (logiToppVehicleType != VehicleType.TRAM) {
 				assertEquals(correspondingVehicleCapacity(logiToppVehicleType),
 						correspondingCarrierVehicle.getType().getCapacity().getOther(),
@@ -317,13 +351,14 @@ public class CouplingEvaluator {
 							.formatted(logiToppDeliveryVehicle.getId()));
 		});
 
+		// check no additional carrier vehicle exists
 		assertIdSetEquality(allLogiToppDeliveryVehicles,
 				getAllSubelementsElementsOfType(CarrierVehicle.class, matSimRoot), "delivery vehicles");
 	}
 
 	/*
 	 * C8
-	 * TODO: fix roadAccessEdge ... in MA
+	 * TODO: fix description of road access edge in Thesis
 	 */
 	@Test
 	public void testShipments() {
@@ -336,6 +371,7 @@ public class CouplingEvaluator {
 					? parcel.getId() + "_" + parcelRecordEntry.getNo()
 					: parcel.getId();
 
+			// check corresponding shipment exists
 			CarrierShipment correspondingCarrierShipment = matSimModelIndex.getCarrierShipmentById(matSimShipmentId);
 			assertNotNull(correspondingCarrierShipment,
 					"missing MATSim CarrierShipment with id %s".formatted(matSimShipmentId));
@@ -378,11 +414,16 @@ public class CouplingEvaluator {
 						greaterThanOrEqualTo(
 								LogiToppHelper.timeToSeconds(parcelRecordEntry.getPrevious().get().getEnd())));
 			} else {
-				collector.checkThat("",
-						secondsInSimulationDayContext(correspondingCarrierShipment.getPickupTimeWindow().getStart(),
-								requestedSimulationDay),
-						equalTo(LogiToppHelper
-								.timeToSeconds(parcelRecordEntry.getRecord().getParcel().getArrivalAtOrigin())));
+				double expectedArrivalAtOrigin = parcelRecordEntry.getRecord().getParcel().getArrivalAtOrigin()
+						.getDay() == requestedSimulationDay
+								? LogiToppHelper.timeToSecondWithinDay(
+										parcelRecordEntry.getRecord().getParcel().getArrivalAtOrigin())
+								: 0;
+				collector.checkThat(
+						"arrival at origin inconsistent for MATSimCarrierShipment %s"
+								.formatted(correspondingCarrierShipment.getId()),
+						correspondingCarrierShipment.getPickupTimeWindow().getStart(),
+						equalTo(expectedArrivalAtOrigin));
 			}
 
 			// check delivery time window
@@ -392,25 +433,35 @@ public class CouplingEvaluator {
 								.formatted(correspondingCarrierShipment.getId()),
 						secondsInSimulationDayContext(correspondingCarrierShipment.getDeliveryTimeWindow().getEnd(),
 								requestedSimulationDay),
-						lessThanOrEqualTo(LogiToppHelper.timeToSeconds(parcelRecordEntry.getNext().get().getStart())));
+						// add a tolerance by the delivery duration + minimal default transhipment time
+						// (1 minute) as LogiTopp has a bug and does not consider the delivery duration
+						// properly
+						lessThanOrEqualTo(LogiToppHelper.timeToSeconds(
+								LogiToppHelper.addMinutesToTime(parcelRecordEntry.getNext().get().getStart(),
+										parcelRecordEntry.getDelivery().getDeliveryDuration() + 1))));
+
 			} else {
-				collector.checkThat("", correspondingCarrierShipment.getDeliveryTimeWindow().getEnd(),
+				collector.checkThat(
+						"deliveryTimeWindow ends at/before end of pickup time window in MATSim CarrierShipment %s"
+								.formatted(correspondingCarrierShipment.getId()),
+						correspondingCarrierShipment.getDeliveryTimeWindow().getEnd(),
 						greaterThan(correspondingCarrierShipment.getPickupTimeWindow().getStart()));
 			}
 		});
 
+		// check no additional carrier shipment exists
 		Collection<CarrierShipment> allMATSimCarrierShipments = getAllSubelementsElementsOfType(CarrierShipment.class,
 				matSimRoot);
-		Collection<Parcel> allLogiToppFakeParcels = relevantParcelRecordEntries.stream()
+		Collection<Parcel> allRelevantLogiToppDummySplitParcels = relevantParcelRecordEntries.stream()
 				.map(parcelRecordEntry -> parcelRecordEntry.getRecord().getEntries().size() > 1
 						? parcelRecordEntry.getRecord().getParcel().getId() + "_" + parcelRecordEntry.getNo()
 						: parcelRecordEntry.getRecord().getParcel().getId())
 				.map(id -> {
-					Parcel fakeParcel = ParcelsFactory.eINSTANCE.createPrivateParcel();
-					fakeParcel.setId(id);
-					return fakeParcel;
+					Parcel dummySplitParcel = ParcelsFactory.eINSTANCE.createPrivateParcel();
+					dummySplitParcel.setId(id);
+					return dummySplitParcel;
 				}).toList();
-		assertIdSetEquality(allLogiToppFakeParcels, allMATSimCarrierShipments, "parcels");
+		assertIdSetEquality(allRelevantLogiToppDummySplitParcels, allMATSimCarrierShipments, "parcels");
 	}
 
 	/*
@@ -419,7 +470,7 @@ public class CouplingEvaluator {
 	@Test
 	public void testNoServices() {
 		assertTrue(getAllSubelementsElementsOfType(CarrierService.class, matSimRoot).isEmpty(),
-				"expect no CarrierServices in MATSim model");
+				"expect no Carrier Services in MATSim model");
 	}
 
 	/*
@@ -433,15 +484,18 @@ public class CouplingEvaluator {
 		Collection<Tour> allMATSimTours = getAllSubelementsElementsOfType(Tour.class, matSimRoot);
 
 		allRelevantLogiToppTours.forEach(logiToppTour -> {
+			// check corresponding tour exists
 			ScheduledTour correspondingMATSimTour = matSimModelIndex.getScheduledTour(logiToppTour.getId());
 			assertNotNull(correspondingMATSimTour,
 					"no corresponing tour for LogiTopp tour %s".formatted(logiToppTour.getId()));
 
+			// check vehicle
 			assertEquals(logiToppTour.getStops().getFirst().getVehicle().getId(),
 					correspondingMATSimTour.getVehicle().getId(),
 					"wrong vehicle for tour with id %s".formatted(logiToppTour.getId()));
 		});
 
+		// check no additional tour exists
 		assertIdSetEquality(allRelevantLogiToppTours, allMATSimTours, "tours");
 	}
 
@@ -462,6 +516,7 @@ public class CouplingEvaluator {
 					? parcel.getId() + "_" + parcelRecordEntry.getNo()
 					: parcel.getId();
 
+			// check corresponding pickup stop exists
 			Pickup correspondingPickup = id2Pickup.get(matSimShipmentId);
 			assertNotNull(correspondingPickup,
 					"missing MATSim PickUp with for shipment with id %s".formatted(matSimShipmentId));
@@ -493,7 +548,7 @@ public class CouplingEvaluator {
 		Collection<Pickup> allMATSimPickups = getAllSubelementsElementsOfType(Pickup.class, matSimRoot);
 		// check only one pickup per carrier shipment
 		allMATSimPickups.stream().map(pickup -> pickup.getShipment().getId())
-				.collect(toSetWithoutDuplicates("pickedup shipments"));
+				.collect(assertToSetWithoutDuplicates("pickedup shipments"));
 		// check "vice versa"
 		assertEquals(allRelevantParcelRecordEntries.size(), allMATSimPickups.size(), "additional pickup in MATSim");
 	}
@@ -516,6 +571,7 @@ public class CouplingEvaluator {
 					? parcel.getId() + "_" + parcelRecordEntry.getNo()
 					: parcel.getId();
 
+			// check corresponding delivery stop exists
 			Delivery correspondingDelivery = id2Delivery.get(matSimShipmentId);
 			assertNotNull(correspondingDelivery,
 					"missing MATSim Delivery with for shipment with id %s".formatted(matSimShipmentId));
@@ -548,7 +604,7 @@ public class CouplingEvaluator {
 		Collection<Delivery> allMATSimDeliviers = getAllSubelementsElementsOfType(Delivery.class, matSimRoot);
 		// check only one delivery per carrier shipment
 		allMATSimDeliviers.stream().map(delivery -> delivery.getShipment().getId())
-				.collect(toSetWithoutDuplicates("delivered shipments"));
+				.collect(assertToSetWithoutDuplicates("delivered shipments"));
 		// check "vice versa"
 		assertEquals(allRelevantParcelRecordEntries.size(), allMATSimDeliviers.size(), "additional delivery in MATSim");
 	}
@@ -595,11 +651,27 @@ public class CouplingEvaluator {
 		ParcelRecord parcelRecord = logiToppModelIndex.getParcelRecordForParcel(parcel);
 		ParcelRecordEntry lastEntry = parcelRecord.getEntries().getLast();
 
+		// parcel not transported at all
 		if (parcelRecord.getEntries().isEmpty()) {
 			return false;
 		}
 
-		// TODO: add check if parcel actually arrives at destination?
+		Location finalParcelDestinationLocation = lastEntry.getDelivery().getStopLocation().getLocation();
+		Collection<DistributionCenter> allLogiToppDistributionCenters = logiToppModelIndex.getDistributionCenters();
+		boolean arrivesAtDistributionCenter = allLogiToppDistributionCenters.stream().anyMatch(dc -> {
+			Location dcLocation = dc.getLocation();
+			return dcLocation.getRoadAccessEdge().getId()
+					.equals(finalParcelDestinationLocation.getRoadAccessEdge().getId())
+					&& Math.abs(
+							dcLocation.getRoadPosition() - finalParcelDestinationLocation.getRoadPosition()) < 0.00001;
+		});
+		// parcels transport terminates at a distribution center thus is not transported
+		// to the receiver
+		if (arrivesAtDistributionCenter && !parcel.isIsPickup()) {
+			return false;
+		}
+
+		// parcel does not arrive within requested simulation day
 		return lastEntry.inSlice(requestedSimulationDay);
 	}
 
@@ -628,7 +700,6 @@ public class CouplingEvaluator {
 		case TRAM: {
 			return TransportMode.PT;
 		}
-
 		default:
 			throw new IllegalArgumentException("Unexpected/Unhandled value: " + logiToppVehicleType);
 		}
@@ -642,7 +713,6 @@ public class CouplingEvaluator {
 		case TRUCK: {
 			return 12 * 100 * 100 * 100.0;
 		}
-		// TODO: handle TRAM
 		default:
 			throw new IllegalArgumentException("Unexpected/Unhandled value: " + logiToppVehicleType);
 		}
@@ -679,16 +749,16 @@ public class CouplingEvaluator {
 			Collection<T1> logiToppCollection, Collection<T2> matSimCollection, String setName) {
 
 		Set<String> logiToppSet = logiToppCollection.stream().map(logiToppMetamodel.base.Entity::getId)
-				.collect(toSetWithoutDuplicates("LogiTopp " + setName));
+				.collect(assertToSetWithoutDuplicates("LogiTopp " + setName));
 		Set<String> matSimSet = matSimCollection.stream().map(MATSimFreightMetamodel.base.Entity::getId)
-				.collect(toSetWithoutDuplicates("MATSim " + setName));
+				.collect(assertToSetWithoutDuplicates("MATSim " + setName));
 
 		assertEquals(logiToppSet.size(), matSimSet.size(), "%s are not equal".formatted(setName));
 		assertTrue(logiToppSet.containsAll(matSimSet) && matSimSet.containsAll(logiToppSet),
 				"%s are not equal".formatted(setName));
 	}
 
-	private static <T> Collector<T, ?, Set<T>> toSetWithoutDuplicates(String setName) {
+	private static <T> Collector<T, ?, Set<T>> assertToSetWithoutDuplicates(String setName) {
 		return Collectors.collectingAndThen(Collectors.toSet(), set -> {
 			Set<T> finalSet = new HashSet<>();
 			for (T element : set) {
@@ -699,7 +769,7 @@ public class CouplingEvaluator {
 		});
 	}
 
-	// --- helper general ---
+	// --- helper model querying ---
 
 	private static <T extends EObject> Collection<T> getAllSubelementsElementsOfType(Class<T> type, EObject root) {
 		List<T> result = new ArrayList<>();

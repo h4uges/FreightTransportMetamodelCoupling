@@ -17,6 +17,7 @@ import logiToppMetamodel.logiTopp.distribution.tours.ToursFactory;
 import logiToppMetamodel.logiTopp.parcels.Parcel;
 import logiToppMetamodel.mobiTopp.network.ZoneAndLocation;
 
+// constructor methods for LogiTopp elements related to the logistic solution view type
 public class LogiToppSolutionUtil {
 
 	private LogiToppSolutionUtil() {

@@ -20,7 +20,11 @@ import logiToppMetamodel.mobiTopp.citizens.Person;
 import logiToppMetamodel.mobiTopp.network.Location;
 import logiToppMetamodel.mobiTopp.network.Zone;
 
+//constructor methods for LogiTopp elements related to the population view type
 public class LogiToppPopulationUtil {
+
+	private LogiToppPopulationUtil() {
+	}
 
 	public static Population createPopulation(ImmutableSet<Business> businesses, ImmutableSet<Household> households) {
 		Population population = DataExchangeFactory.eINSTANCE.createPopulation();

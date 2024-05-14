@@ -24,6 +24,7 @@ import logiToppMetamodel.logiTopp.distribution.timetable.TimetableFactory;
 import logiToppMetamodel.mobiTopp.network.Location;
 import logiToppMetamodel.mobiTopp.network.Zone;
 
+// constructor methods for LogiTopp elements related to the transport infrastructure view type
 public class LogiToppTransportInfrastructureUtil {
 
 	private LogiToppTransportInfrastructureUtil() {

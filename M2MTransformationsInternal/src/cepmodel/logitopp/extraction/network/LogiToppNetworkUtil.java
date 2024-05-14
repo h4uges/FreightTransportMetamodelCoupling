@@ -11,6 +11,7 @@ import logiToppMetamodel.mobiTopp.network.RoadNetwork;
 import logiToppMetamodel.mobiTopp.network.Zone;
 import logiToppMetamodel.mobiTopp.network.ZoneAndLocation;
 
+// constructor methods for LogiTopp elements related to the network view type
 public class LogiToppNetworkUtil {
 
 	private LogiToppNetworkUtil() {

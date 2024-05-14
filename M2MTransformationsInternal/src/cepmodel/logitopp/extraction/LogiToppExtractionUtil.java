@@ -13,11 +13,12 @@ import logiToppMetamodel.dataExchange.SolutionExchangeRoot;
 import logiToppMetamodel.dataExchange.TransportInfrastructure;
 import logiToppMetamodel.mobiTopp.network.RoadNetwork;
 
+// construction and utility methods for LogiTopp elements related to times (and root elements)
 public class LogiToppExtractionUtil {
-	
+
 	private LogiToppExtractionUtil() {
 	}
-	
+
 	public static SolutionExchangeRoot createSolutionExchangeRoot(RoadNetwork network,
 			TransportInfrastructure transportInfrastructure, Population population, Demand demand, Solution solution) {
 		SolutionExchangeRoot result = DataExchangeFactory.eINSTANCE.createSolutionExchangeRoot();
@@ -77,7 +78,7 @@ public class LogiToppExtractionUtil {
 		int durationSeconds = getSecondRepresentation(last) - getSecondRepresentation(first);
 		return createRelativeTime(durationSeconds);
 	}
-	
+
 	public static int compareTimes(Time firstTime, Time secondTime) {
 		return Integer.compare(getSecondRepresentation(firstTime), getSecondRepresentation(secondTime));
 	}
