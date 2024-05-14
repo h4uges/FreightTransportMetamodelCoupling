@@ -1,10 +1,6 @@
-package cepmodel.coupling.main;
+package cepmodel.coupling.common2common;
 
 import CommonFreightTransportMetamodel.coupling.CommonFreightTransportMetamodelRoot;
-import cepmodel.coupling.common2common.CreateShipmentRecordsService;
-import cepmodel.coupling.common2common.HandelModelService;
-import cepmodel.coupling.common2common.MultiToSingleDayService;
-import cepmodel.coupling.common2common.SplitTransportChainService;
 
 public class CommonTransformation {
 
