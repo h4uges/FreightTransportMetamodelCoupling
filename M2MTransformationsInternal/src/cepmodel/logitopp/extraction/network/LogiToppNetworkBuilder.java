@@ -21,6 +21,7 @@ import logiToppMetamodel.mobiTopp.network.Node;
 import logiToppMetamodel.mobiTopp.network.RoadNetwork;
 import logiToppMetamodel.mobiTopp.network.Zone;
 
+//builds logiTopp network view type by parsing corresponding input files
 public class LogiToppNetworkBuilder extends LogiToppBuilderBase {
 	private final Map<String, Node> nodes = new HashMap<>();
 	private final Map<String, Edge> edges = new HashMap<>();

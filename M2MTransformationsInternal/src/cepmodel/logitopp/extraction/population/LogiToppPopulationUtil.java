@@ -20,7 +20,7 @@ import logiToppMetamodel.mobiTopp.citizens.Person;
 import logiToppMetamodel.mobiTopp.network.Location;
 import logiToppMetamodel.mobiTopp.network.Zone;
 
-//constructor methods for LogiTopp elements related to the population view type
+//constructor methods for logiTopp elements related to the population view type
 public class LogiToppPopulationUtil {
 
 	private LogiToppPopulationUtil() {

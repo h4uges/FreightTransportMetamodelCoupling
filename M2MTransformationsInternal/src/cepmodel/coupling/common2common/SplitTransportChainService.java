@@ -120,9 +120,7 @@ public class SplitTransportChainService {
 		result.setDestination(
 				CommonMetamodelUtil.getStopLocation(shipmentRecordEntry.getDeliveryStop().getStopLocation()));
 
-		// TODO: major - correct definition of times (arrival at origin, destination
-		// time window)
-		// TODO: discuss
+		// derive time windows (dependent on constraints of previous and next shipment)
 		Optional<ShipmentRecordEntry> optionalPreviousShipmentEntry = shipmentRecord.getEntries().stream().filter(
 				currentShipmentRecordEntry -> currentShipmentRecordEntry.getNo() == shipmentRecordEntry.getNo() - 1)
 				.findFirst();
@@ -136,18 +134,23 @@ public class SplitTransportChainService {
 			Durration minimumDurationAtHub = ((LogisticHub) optionalPreviousShipmentEntry.get().getToSpec())
 					.getMinimumTranshipmentTime();
 
+			// shipment can be picked up at arrival time at hub + getMinimumTranshipmentTime
+			// of hub
 			result.setArrivalAtOrigin(
 					CommonMetamodelUtil.addDurationToTimestamp(latestPriviusArrival, minimumDurationAtHub));
 		} else {
+			// original arrival at origin
 			result.setArrivalAtOrigin(EcoreUtil.copy(CommonMetamodelUtil.getArrivalAtOrigin(originalShipment)));
 		}
 
 		if (optionalNextShipmentEntry.isPresent()) {
+			// shipment must arrive latest at end of stop time (right side is open)
 			TimeWindow arrivalAtDestinationTimeWindow = EcoreUtil
 					.copy(shipmentRecordEntry.getDeliveryStop().getStopTimeWindow());
 			((MultiDayTimeWindow) arrivalAtDestinationTimeWindow).setFrom(null);
 			result.setArrivalAtDestinationTimeWindow(arrivalAtDestinationTimeWindow);
 		} else {
+			// original arrival at destination time window
 			result.setArrivalAtDestinationTimeWindow(
 					EcoreUtil.copy(CommonMetamodelUtil.getArrivalAtDestination(originalShipment)));
 		}

@@ -35,6 +35,8 @@ import CommonFreightTransportMetamodel.utils.UtilsFactory;
 // creates shipment records for logistic solutions that don't contain any
 public class CreateShipmentRecordsService {
 
+	// helper data structure that contains all relevant information to build a
+	// shipment record entry
 	private static class RawShipmentRecordEntry {
 		Shipment shipment;
 		PlannedTour plannedTour;
@@ -55,9 +57,10 @@ public class CreateShipmentRecordsService {
 
 		Map<Location, ShipmentLegStartEndPoint> location2ShipmentLegStartEndPoint = buildLocation2ShipmentLegStartEndPoint(
 				root);
+		// (1) already shorted list of RawShipmentRecordEntry
 		Map<Shipment, List<RawShipmentRecordEntry>> shipment2RawShipmentRecords = buildRawShipmentRecords(root);
 
-		// create shipment records
+		// (2) create actual shipment records
 		List<ShipmentRecord> shipmentRecords = new ArrayList<>();
 		for (Shipment shipment : root.getDemand().getShipments()) {
 			if (!shipment2RawShipmentRecords.containsKey(shipment)) {
@@ -116,7 +119,7 @@ public class CreateShipmentRecordsService {
 	}
 
 	private void assertInvariants(CommonFreightTransportMetamodelRoot root) {
-		// TODO: add invariant that no results are contained
+		// add invariant that no results are contained, ...
 		assert root.getLogisticSolution().getShipmentRecords().isEmpty();
 	}
 

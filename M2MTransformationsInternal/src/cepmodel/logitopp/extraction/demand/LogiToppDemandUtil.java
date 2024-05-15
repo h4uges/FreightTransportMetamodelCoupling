@@ -16,7 +16,7 @@ import logiToppMetamodel.logiTopp.parcels.PrivateParcel;
 import logiToppMetamodel.logiTopp.parcels.ShipmentSize;
 import logiToppMetamodel.mobiTopp.network.ZoneAndLocation;
 
-// constructor methods for LogiTopp elements related to the demand view type
+// constructor methods for logiTopp elements related to the demand view type
 public class LogiToppDemandUtil {
 
 	private LogiToppDemandUtil() {

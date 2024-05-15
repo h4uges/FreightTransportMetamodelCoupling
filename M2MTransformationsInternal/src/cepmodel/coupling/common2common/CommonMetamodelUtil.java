@@ -28,10 +28,13 @@ import CommonFreightTransportMetamodel.utils.TimeWindow;
 import CommonFreightTransportMetamodel.utils.Timestamp;
 import CommonFreightTransportMetamodel.utils.UtilsFactory;
 
+// constructor and utility methods for the common metamodel
 public class CommonMetamodelUtil {
 
 	private CommonMetamodelUtil() {
 	}
+
+	// --- times ---
 
 	public static MultiDayTimestamp createMultiDayTimeStamp(int simulationDay, int hour, int minute, int second) {
 		MultiDayTimestamp result = UtilsFactory.eINSTANCE.createMultiDayTimestamp();
@@ -81,6 +84,8 @@ public class CommonMetamodelUtil {
 		return result;
 	}
 
+	// --- shipments, solutions ---
+
 	public static Location getStopLocation(StopLocation stopLocation) {
 		if (stopLocation instanceof CustomStopLocation customStopLocation) {
 			return customStopLocation.getLocation();
@@ -126,6 +131,8 @@ public class CommonMetamodelUtil {
 		result.setOriginalID(originalShipment.getId());
 		return result;
 	}
+
+	// --- misc ---
 
 	public static void sortDemandAndSolution(CommonFreightTransportMetamodelRoot root) {
 		sortEList(root.getLogisticSolution().getShipmentRecords(), Comparator.comparing(HasId::getId));

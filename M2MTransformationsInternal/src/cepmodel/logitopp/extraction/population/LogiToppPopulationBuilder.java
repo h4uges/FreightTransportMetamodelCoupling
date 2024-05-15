@@ -28,6 +28,7 @@ import logiToppMetamodel.mobiTopp.citizens.Person;
 import logiToppMetamodel.mobiTopp.network.Location;
 import logiToppMetamodel.mobiTopp.network.Zone;
 
+//builds logiTopp population view type by parsing corresponding input files
 public class LogiToppPopulationBuilder extends LogiToppBuilderBase {
 	private final Map<String, Location> business2location = new HashMap<>();
 	private final Map<String, Business> businesses = new HashMap<>();

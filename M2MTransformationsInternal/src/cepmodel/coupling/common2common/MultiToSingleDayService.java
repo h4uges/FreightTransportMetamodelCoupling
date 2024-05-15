@@ -54,6 +54,7 @@ public class MultiToSingleDayService {
 		this.requestedSimulationDay = requestedSimulationDay;
 	}
 
+	// helper data structure that keeps track of actual changes to a shipment record
 	private class ModifiedShipmentRecord {
 		final ShipmentRecord shipmentRecord;
 		final ImmutableList<ShipmentRecordEntry> removedShipmentRecordEntries;
@@ -99,7 +100,7 @@ public class MultiToSingleDayService {
 
 	/*
 	 * Remove record entries where part of time window is not inside requested
-	 * simulation day Returns a list of modified shipment records
+	 * simulation day. Returns a list of modified shipment records.
 	 */
 	private ImmutableList<ModifiedShipmentRecord> removeShipmentRecordEntriesOutsideSelectedDay(
 			CommonFreightTransportMetamodelRoot root) {
@@ -108,13 +109,20 @@ public class MultiToSingleDayService {
 			ModifiedShipmentRecord modifiedShipmentRecord = removeShipmentRecordEntriesNotCompletlyWithinRequesteDay(
 					shipmentRecord);
 
+			// only shipment records where actually an entry has been removed
 			if (!modifiedShipmentRecord.removedShipmentRecordEntries.isEmpty()) {
 				modifiedShipmentRecords.add(modifiedShipmentRecord);
 			}
 		}
+
 		return ImmutableList.copyOf(modifiedShipmentRecords);
 	}
 
+	/*
+	 * remove shipment record entries where part of time window is not inside
+	 * requested.
+	 * Thereby keep track of changes.
+	 */
 	private ModifiedShipmentRecord removeShipmentRecordEntriesNotCompletlyWithinRequesteDay(
 			ShipmentRecord shipmentRecord) {
 		List<ShipmentRecordEntry> removedShipmentRecordEntries = new ArrayList<>();
@@ -128,6 +136,7 @@ public class MultiToSingleDayService {
 		int entryCount = 0;
 		while (entryIterator.hasNext()) {
 			ShipmentRecordEntry currentEntry = entryIterator.next();
+			// actual check
 			boolean entryGetsRemoved = isNotCompleteWithinRequestedSimulationDay(currentEntry);
 
 			if (entryGetsRemoved) {
@@ -311,13 +320,16 @@ public class MultiToSingleDayService {
 	}
 
 	/*
-	 * TODO: documentation
+	 * create a new SplittedShipment hat is derived from the original shipment but
+	 * also consistent with the potentially shortened shipment record
 	 */
 	private SplittedShipment createShortendShipment(Shipment originalShipment,
 			ModifiedShipmentRecord modifiedShipmentRecord) {
 		SplittedShipment newShipment = LogisticDemandFactory.eINSTANCE.createSplittedShipment();
 
 		newShipment.setId(originalShipment + "_shortend");
+
+		// parts that remain exactly
 		newShipment.setOriginalShipmentReference(CommonMetamodelUtil.createOriginalShipmentReference(originalShipment));
 		newShipment.setResponsibleCEPSP(originalShipment.getResponsibleCEPSP());
 		newShipment.setSize(EcoreUtil.copy(originalShipment.getSize()));
@@ -388,10 +400,13 @@ public class MultiToSingleDayService {
 	// ---- TIMES ----
 
 	/*
-	 * TODO: documentation
+	 * Actual exchange from "MultiDay"-Timestamps/TimeWindows with
+	 * "SingleDay"-Timestamps/Timewindows
 	 * 
 	 */
 	private void replaceMultiDayRepresentationBySingleDayRepresentation(CommonFreightTransportMetamodelRoot root) {
+		// separate strategy/handling for time windows used in transport infrastructure
+		// (opening/operation hours)
 		updateTimeWindowsUsedInInfrastructure(root);
 
 		// first pass: map every MultiDayTimeWindow
@@ -455,14 +470,14 @@ public class MultiToSingleDayService {
 		List<Shop> allShops = root.getLogisticNetwork().getPublicServicePoints().stream().filter(Shop.class::isInstance)
 				.map(Shop.class::cast).toList();
 
-		allBranches.forEach(branch -> updateTimeWindows(branch.getOpeningHours()));
-		allVehicles.forEach(vehicle -> updateTimeWindows(vehicle.getOperationHours()));
-		allDepots.forEach(depot -> updateTimeWindows(depot.getOperationHours()));
-		allHubs.forEach(hub -> updateTimeWindows(hub.getOperationHours()));
-		allShops.forEach(shop -> updateTimeWindows(shop.getOpeningHours()));
+		allBranches.forEach(branch -> operationOpeningHoursToSingleDay(branch.getOpeningHours()));
+		allVehicles.forEach(vehicle -> operationOpeningHoursToSingleDay(vehicle.getOperationHours()));
+		allDepots.forEach(depot -> operationOpeningHoursToSingleDay(depot.getOperationHours()));
+		allHubs.forEach(hub -> operationOpeningHoursToSingleDay(hub.getOperationHours()));
+		allShops.forEach(shop -> operationOpeningHoursToSingleDay(shop.getOpeningHours()));
 	}
 
-	private void updateTimeWindows(Collection<TimeWindow> timeWindows) {
+	private void operationOpeningHoursToSingleDay(Collection<TimeWindow> timeWindows) {
 		Iterator<TimeWindow> openingHours = timeWindows.iterator();
 		while (openingHours.hasNext()) {
 			MultiDayTimeWindow openingHour = (MultiDayTimeWindow) openingHours.next();

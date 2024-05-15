@@ -38,6 +38,7 @@ import logiToppMetamodel.mobiTopp.network.NetworkFactory;
 import logiToppMetamodel.mobiTopp.network.Zone;
 import logiToppMetamodel.mobiTopp.network.ZoneAndLocation;
 
+// builds logiTopp solution view type by parsing corresponding input files
 public class LogiToppSolutionBuilder extends LogiToppBuilderBase {
 	private Map<String, PlannedDeliveryTour> tours = new HashMap<>();
 
@@ -87,6 +88,9 @@ public class LogiToppSolutionBuilder extends LogiToppBuilderBase {
 					ParcelActivity stop = createIntermediateStop(rawTourRow);
 					stops.add(stop);
 				}
+
+				// first and last stop are not directly included in the input data and therefore
+				// have to be (heuristically) derived from data provided by the other stops
 				// assume: only one hub stop, parcel not loaded and unloaded at tour
 				ParcelActivity newFirstStop = createFirstStop(rawTour.getFirst(), plannedAt, stops);
 				ParcelActivity newLastStop = createLastStop(newFirstStop, stops.getLast(), stops);
@@ -125,6 +129,7 @@ public class LogiToppSolutionBuilder extends LogiToppBuilderBase {
 	}
 
 	private ParcelActivity createFirstStop(CSVRecord firstStopRecord, Time plannedAt, List<ParcelActivity> stops) {
+		// simplification/heuristic, as required data is not in data set
 		ZoneAndLocation stopZoneAndLocation = parseStopLocation(firstStopRecord, false);
 		DeliveryVehicle vehicle = transportInfrastructureBuilder.getDeliveryVehicle(firstStopRecord.get("vehicleId"));
 		Set<Parcel> pickUps = stops.stream().map(stop -> stop.getParcels()).flatMap(List::stream)
@@ -136,8 +141,7 @@ public class LogiToppSolutionBuilder extends LogiToppBuilderBase {
 
 	private ParcelActivity createLastStop(ParcelActivity firstStop, ParcelActivity secondLastStop,
 			List<ParcelActivity> stops) {
-		// simplification: trip duration = 0, simplification: trip distance = 0,
-		// simplification: same time as lastStop.time + lastStop.deliveryDuration
+		// simplification/heuristic, as required data is not in data set
 		Set<Parcel> deliveries = stops.stream().map(stop -> stop.getPickUps()).flatMap(List::stream)
 				.collect(Collectors.toSet());
 		Time plannedAt = LogiToppExtractionUtil.addDurationToTime(secondLastStop.getPlannedTime(),

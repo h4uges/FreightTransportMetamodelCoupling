@@ -32,8 +32,12 @@ import java.util.stream.Collectors
 
 class MatSimExport {
 
+	// input and output should be in a folder named MODELNAME in the data directory (in the project root)
+	// filename of the matsim model: MODELNAME_matsim.xmi
 	def static void main(String[] args) {
+		// configure here
 		val modelName = "rastatt_day_1"
+		
 		val inputFolder = Path.of(System.getProperty("user.dir"), "data", modelName).toString
 		val outputFolder = Path.of(System.getProperty("user.dir"), "data", modelName).toString
 		
@@ -79,15 +83,13 @@ class MatSimExport {
 
 	// ---- network ----
 	def static buildNetworkFile(DataExchangeRoot root, String outputFolder, String modelName) {
-		val network = root.network
-		NetworkRepairTool.repairNetwork(network)
-		val fileContent = generateNetwork(network)
+		val fileContent = generateNetwork(root.network)
 		var filePath = Path.of(outputFolder, "network_" + modelName + ".xml")
 		Files.write(filePath, fileContent.toString.getBytes(StandardCharsets.UTF_8), StandardOpenOption.CREATE,
 			StandardOpenOption.TRUNCATE_EXISTING)
 	}
 
-	// TOOD: temporary removed capacity period
+	// temporary removed capacity period (problem with parsing in MATSim)
 	def static generateNetwork(Network network) '''
 		<?xml version="1.0" encoding="UTF-8"?>
 		<!DOCTYPE network SYSTEM "http://www.matsim.org/files/dtd/network_v1.dtd">
@@ -109,7 +111,7 @@ class MatSimExport {
 		<node id="«node.id»" x="«node.coord.x»" y="«node.coord.y»"/>
 	'''
 
-	// TODO: temporary allow all used modes
+	// temporary allow all used modes
 	def static generateLink(Link link) '''
 		<link id="«generateLinkId(link.id)»" from="«link.from.id»" to="«link.to.id»" length="«link.length»"
 		      freespeed="«link.freespeed»" capacity="«link.capacity»" permlanes="«link.nofLanes»" oneway="1" modes="truck, bike, pt"/>

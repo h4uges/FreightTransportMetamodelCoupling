@@ -31,6 +31,7 @@ import logiToppMetamodel.mobiTopp.network.Location;
 import logiToppMetamodel.mobiTopp.network.Zone;
 import logiToppMetamodel.mobiTopp.network.ZoneAndLocation;
 
+//builds logiTopp demand view type by parsing corresponding input files
 public class LogiToppDemandBuilder extends LogiToppBuilderBase {
 	private final Map<String, Parcel> parcels = new HashMap<>();
 
@@ -132,6 +133,7 @@ public class LogiToppDemandBuilder extends LogiToppBuilderBase {
 		return LogiToppNetworkUtil.createZoneAndLocation(zone, location);
 	}
 
+	// determine responsibleCEPSP based on parcel type and consumer/producer id
 	private CEPServiceProvider getResponsibleCEPSP(ParcelType parcelType, String producingId, String consumingId) {
 		switch (parcelType) {
 		case PRIVATE: {
@@ -147,21 +149,7 @@ public class LogiToppDemandBuilder extends LogiToppBuilderBase {
 		return null;
 	}
 
-	private ParcelProducer getParcelProducer(ParcelType parcelType, String producingDcId) {
-		switch (parcelType) {
-		case PRIVATE: {
-			return transportInfrastructureBuilder.getDistributionCenter(producingDcId);
-		}
-		case BUSINESS: {
-			return transportInfrastructureBuilder.getDistributionCenter(producingDcId);
-		}
-		case PRODUCTION_BUSINESS: {
-			return populationBuilder.getBusiness(producingDcId);
-		}
-		}
-		return null;
-	}
-
+	// determine parcel consumer based on parcel type and consumer id
 	private ParcelConsumer getParcelConsumer(ParcelType parcelType, String consumingId) {
 		switch (parcelType) {
 		case PRIVATE: {
@@ -177,12 +165,30 @@ public class LogiToppDemandBuilder extends LogiToppBuilderBase {
 		return null;
 	}
 
+	// determine parcel producer based on parcel type and producer id
+	private ParcelProducer getParcelProducer(ParcelType parcelType, String producingDcId) {
+		switch (parcelType) {
+		case PRIVATE: {
+			return transportInfrastructureBuilder.getDistributionCenter(producingDcId);
+		}
+		case BUSINESS: {
+			return transportInfrastructureBuilder.getDistributionCenter(producingDcId);
+		}
+		case PRODUCTION_BUSINESS: {
+			return populationBuilder.getBusiness(producingDcId);
+		}
+		}
+		return null;
+	}
+
 	public Parcel getParcel(String parcelId) {
 		return parcels.get(parcelId);
 	}
 }
 
 enum ParcelType {
+	// stores information about standard values and different header rows of each
+	// parcel types csv
 	BUSINESS("FromId", "ToId", false, false), PRIVATE("DistributionCenterID", "RecipientID", false, true),
 	PRODUCTION_BUSINESS("FromId", "ToId", true, false);
 
