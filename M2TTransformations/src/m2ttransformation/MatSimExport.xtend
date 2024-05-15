@@ -36,10 +36,10 @@ class MatSimExport {
 	// filename of the matsim model: MODELNAME_matsim.xmi
 	def static void main(String[] args) {
 		// configure here
-		val modelName = "rastatt_day_1"
+		val modelName = "rastatt_day_6"
 		
-		val inputFolder = Path.of(System.getProperty("user.dir"), "data", modelName).toString
-		val outputFolder = Path.of(System.getProperty("user.dir"), "data", modelName).toString
+		val inputFolder = Path.of(System.getProperty("user.dir"), "data", "mass").toString
+		val outputFolder = Path.of(System.getProperty("user.dir"), "data", "mass").toString
 		
 		val matSimDataExchangeRoot = loadMatSimModel(inputFolder, modelName);
 		buildNetworkFile(matSimDataExchangeRoot, outputFolder, modelName)
